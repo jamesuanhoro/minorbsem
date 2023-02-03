@@ -1,6 +1,9 @@
 create_data_list <- function(
     lavaan_object = NULL,
-    lkj_shape = 2) {
+    lkj_shape = 2,
+    sl_par = 1,
+    rs_par = 2.5,
+    rc_par = 2.0) {
   data_list <- list()
 
   # Retrieve parameter structure from lavaan
@@ -10,14 +13,18 @@ create_data_list <- function(
   data_list$Y <- lavaan_object@Data@X[[1]]
   data_list$has_data <- ifelse(is.null(data_list$Y), 0, 1)
 
+  # Set up priors
+  data_list$shape_phi_c <- lkj_shape # Shape parameter for LKJ of interfactor corr
+  data_list$sl_par <- sl_par # sigma loading parameter
+  data_list$rs_par <- rs_par # residual sd parameter
+  data_list$rc_par <- rc_par # residual corr parameter
+
   # Sample cov
   data_list$S <- lavaan_object@SampleStats@cov[[1]]
   # Number of items
   data_list$Ni <- nrow(data_list$S)
   # Sample size
   data_list$Np <- lavaan_object@SampleStats@nobs[[1]]
-  # Shape parameter for LKJ of interfactor corr
-  data_list$shape_phi_c <- lkj_shape
 
   # Loading pattern, 0s and 1s
   data_list$loading_pattern <- (param_structure$lambda > 0) * 1
@@ -27,7 +34,7 @@ create_data_list <- function(
   # Is this an SEM or a CFA?
   Psi <- param_structure$psi
   sum_off_diag_psi <- sum(Psi[lower.tri(Psi)])
-  if (!is.null(param_structure$beta)) {
+  if (is.null(param_structure$beta)) {
     # This is a CFA
     # Set to 0 for uncorrelated factors, 1 for correlated
     data_list$corr_fac <- ifelse(sum_off_diag_psi == 0, 0, 1)
