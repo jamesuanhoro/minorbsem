@@ -1,11 +1,9 @@
-minorbsem <- function (
+minorbsem <- function(
     model = NULL,
     data = NULL,
     sample_cov = NULL,
     sample_nobs = NULL,
-    orthogonal = FALSE
-) {
-
+    orthogonal = FALSE) {
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -21,14 +19,18 @@ minorbsem <- function (
   # Run lavaan fit
   if (!is.null(data)) {
     lav_fit <- lavaan::cfa(
-      model, data = data,
+      model,
+      data = data,
       std.lv = TRUE,
-      orthogonal = orthogonal)
+      orthogonal = orthogonal
+    )
   } else {
     lav_fit <- lavaan::cfa(
-      model, sample.cov = sample_cov, sample.nobs = sample_nobs,
+      model,
+      sample.cov = sample_cov, sample.nobs = sample_nobs,
       std.lv = TRUE,
-      orthogonal = orthogonal)
+      orthogonal = orthogonal
+    )
   }
 
   # Obtain data list for Stan

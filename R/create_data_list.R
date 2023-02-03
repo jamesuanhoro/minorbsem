@@ -1,8 +1,6 @@
-create_data_list <- function (
+create_data_list <- function(
     lavaan_object = NULL,
-    lkj_shape = 2
-) {
-
+    lkj_shape = 2) {
   data_list <- list()
 
   # Retrieve parameter structure from lavaan
