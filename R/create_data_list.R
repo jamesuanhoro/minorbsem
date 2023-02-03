@@ -14,6 +14,9 @@ create_data_list <- function(
   data_list$has_data <- ifelse(is.null(data_list$Y), 0, 1)
 
   # Set up priors
+  if (any(c(lkj_shape, sl_par, rs_par, rc_par) <= 0)) {
+    stop("lkj_shape, sl_par, rs_par, rc_par must all exceed 0")
+  }
   data_list$shape_phi_c <- lkj_shape # Shape parameter for LKJ of interfactor corr
   data_list$sl_par <- sl_par # sigma loading parameter
   data_list$rs_par <- rs_par # residual sd parameter
@@ -50,8 +53,13 @@ create_data_list <- function(
   unique_indicators <- which(rowSums(data_list$loading_pattern) == 1)
   unique_indicators <- data_list$loading_pattern[unique_indicators, ]
   if (any(colSums(unique_indicators) == 0)) {
-    stop("Each factor must have at least one indicator unique to it.
-         This is to ensure the sign/direction of the factor does not flip across iterations.")
+    notice <- paste0(
+      "Each factor must have at least one indicator unique to it.", "\n",
+      "This is to ensure the sign/direction of the factor does not flip across iterations.", "\n",
+      "Also, note that the package can only fit standard CFAs and SEM models,", "\n",
+      "no higher-order factors, MIMIC, multilevel SEM, path analysis models, ..."
+    )
+    stop(notice)
   }
   unique_indicators <- rowSums(data_list$loading_pattern) == 1
   for (j in 1:ncol(data_list$loading_pattern)) {

@@ -1,3 +1,39 @@
+#' Fit Bayesian SEM with minor factors assumed
+#'
+#' @param model A description of the user-specified model, lavaan syntax.
+#' @param data An optional data frame containing the observed variables used in
+#' the model.
+#' @param sample_cov (matrix) sample variance-covariance matrix.
+#' The rownames and/or colnames must contain the observed variable names.
+#' @param sample_nobs (positive integer) Number of observations if the full
+#' data frame
+#' is missing and only sample covariance matrix is given.
+#' @param orthogonal (logical) constrain factors orthogonal, must be TRUE to fit
+#' bifactor models.
+#' @param seed (positive integer) seed, set to obtain replicable results.
+#' @param warmup (positive integer) The number of warmup iterations to run per
+#' chain.
+#' @param sampling (positive integer) The number of post-warmup iterations to
+#' run per chain, retained for inference.
+#' @param adapt_delta (real in (0, 1)) Increase to resolve divergent
+#' transitions.
+#' @param max_treedepth (positive integer) Increase to resolve problems with
+#' maximum tree depth.
+#' @param chains (positive integer) The number of Markov chains to run.
+#' @param ncores (positive integer) The number of chains to run in parallel.
+#' @param lkj_shape (positive real) The shape parameter of the LKJ-prior on the
+#' interfactor correlation matrix.
+#' @param sl_par (positive real) The scale parameter of the
+#' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
+#' deviation of loadings.
+#' @param rs_par (positive real) The scale parameter of the
+#' Student-t(df = 3, loc = 0) prior on the residual standard deviations.
+#' @param rc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
+#' prior on the residual error correlations.
+#' @returns A list
+#' @examples
+#' minorbsem("F1 =~ x1 + x2 + x3\nF2 =~ x4 + x5 + x6\nF3 =~ x7 + x8 + x9", HS)
+#' minorbsem("F1 =~ x1 + x2 + x3\nF2 =~ x4 + x5 + x6\nF3 =~ x7 + x8 + x9", HS)
 minorbsem <- function(
     model = NULL,
     data = NULL,
@@ -5,8 +41,8 @@ minorbsem <- function(
     sample_nobs = NULL,
     orthogonal = FALSE,
     seed = 12345,
-    warmup = 1000,
-    sampling = 1000,
+    warmup = 500,
+    sampling = 500,
     adapt_delta = .9,
     max_treedepth = 10,
     chains = 3,
@@ -51,14 +87,14 @@ minorbsem <- function(
 
   message("Compiling Stan code ...")
 
-  # TODO: This should be a global object set up by the user
+  # TODO: This should be a package-level global config setting up by the user
   cmdstanr::set_cmdstan_path("~/cmdstan/")
   mod_resid <- cmdstanr::cmdstan_model(
     "src/cfa_resid_nrm.stan",
     stanc_options = list("O1")
   )
 
-  message("Fitting Stan code ...")
+  message("Fitting Stan model ...")
 
   stan_fit <- mod_resid$sample(
     data = data_list,
@@ -76,5 +112,9 @@ minorbsem <- function(
     chains = chains,
     parallel_chains = ncores
   )
-  return(stan_fit)
+
+  clean_results <- clean_up_stan_fit(stan_fit, lav_fit, data_list)
+  pretty_print_summary(clean_results)
+
+  return(clean_results)
 }
