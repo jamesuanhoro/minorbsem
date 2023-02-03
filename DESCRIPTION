@@ -1,12 +1,21 @@
 Package: minorbsem
-Title: Fit Bayesian structural equation models under the assumption that minor factors exist.
+Title: Fit Bayesian structural equation models under the assumption that minor factors exist
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R: c(
     person("James", "Uanhoro", , "james.uanhoro@unt.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-4843-927X"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+           comment = c(ORCID = "0000-0002-4843-927X")))
+Description: It is rare that structural equation models (SEMs) are able to reject the null
+    hypothesis that there is no misspecification in the model. One explanation for this problem
+    is that covariance structures are influenced by major factors which we can hypothesize about
+    and minor factors which we cannot predict a-priori. This package lets you fit Bayesian SEMs
+    that estimates the influence of minor factors on the covariance matrix.
+License: `use_gpl3_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
+Imports: 
+    bayesplot,
+    cmdstanr,
+    ggplot2,
+    lavaan,
+    posterior
