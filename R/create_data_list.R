@@ -1,9 +1,10 @@
 create_data_list <- function(
     lavaan_object = NULL,
-    lkj_shape = 2,
-    sl_par = 1,
+    lkj_shape = 2.0,
+    sl_par = 1.0,
     rs_par = 2.5,
-    rc_par = 2.0) {
+    rc_par = 2.0,
+    sc_par = 1.0) {
   data_list <- list()
 
   # Retrieve parameter structure from lavaan
@@ -14,13 +15,16 @@ create_data_list <- function(
   data_list$has_data <- ifelse(is.null(data_list$Y), 0, 1)
 
   # Set up priors
-  if (any(c(lkj_shape, sl_par, rs_par, rc_par) <= 0)) {
-    stop("lkj_shape, sl_par, rs_par, rc_par must all exceed 0")
+  if (any(c(lkj_shape, sl_par, rs_par, rc_par, sc_par) <= 0)) {
+    stop("lkj_shape, sl_par, rs_par, rc_par, sc_par must all exceed 0")
   }
   data_list$shape_phi_c <- lkj_shape # Shape parameter for LKJ of interfactor corr
   data_list$sl_par <- sl_par # sigma loading parameter
   data_list$rs_par <- rs_par # residual sd parameter
   data_list$rc_par <- rc_par # residual corr parameter
+  data_list$sc_par <- sc_par # sigma coefficients parameter
+  # TODO: either make this an argument or set std.lv = TRUE
+  data_list$shape_beta <- 2.0
 
   # Sample cov
   data_list$S <- lavaan_object@SampleStats@cov[[1]]
@@ -39,12 +43,26 @@ create_data_list <- function(
   sum_off_diag_psi <- sum(Psi[lower.tri(Psi)])
   if (is.null(param_structure$beta)) {
     # This is a CFA
+    data_list$sem_indicator <- 0
     # Set to 0 for uncorrelated factors, 1 for correlated
     data_list$corr_fac <- ifelse(sum_off_diag_psi == 0, 0, 1)
   } else {
-    # This is an SEM (on hold right now)
-    # data_list$Nf_corr <- 0
-    # (data_list$F_corr_mat <- matrix(byrow = TRUE, ncol = 2, nrow = data_list$Nf_corr))
+    # This is an SEM
+    data_list$sem_indicator <- 1
+    # Factor correlation matrix
+    data_list$F_corr_mat <- matrix(byrow = TRUE, ncol = 2, nrow = 0)
+    if (sum_off_diag_psi > 0) {
+      # Get which elements in theta are non-zero
+      data_list$F_corr_mat <- which(Psi != 0, arr.ind = TRUE)
+      # Eliminate diagonal elements
+      data_list$F_corr_mat <- data_list$F_corr_mat[
+        data_list$F_corr_mat[, 1] != data_list$F_corr_mat[, 2],
+      ]
+      # Eliminate duplicate rows
+      data_list$F_corr_mat <- unique(t(apply(data_list$F_corr_mat, 1, sort)))
+    }
+    data_list$Nf_corr <- nrow(data_list$F_corr_mat)
+    data_list$coef_pattern <- (param_structure$beta > 0) * 1
   }
 
   # Marker variables per factor

@@ -1,4 +1,4 @@
-#' Fit Bayesian SEM with minor factors assumed
+#' Fit Bayesian SEMs with minor factors assumed
 #'
 #' @param model A description of the user-specified model, lavaan syntax.
 #' @param data An optional data frame containing the observed variables used in
@@ -30,10 +30,22 @@
 #' Student-t(df = 3, loc = 0) prior on the residual standard deviations.
 #' @param rc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
 #' prior on the residual error correlations.
+#' @param sc_par (positive real) The scale parameter of the
+#' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
+#' deviations of coefficients; SD(coefs) vary by outcome.
 #' @returns A list
 #' @examples
-#' minorbsem("F1 =~ x1 + x2 + x3\nF2 =~ x4 + x5 + x6\nF3 =~ x7 + x8 + x9", HS)
-#' minorbsem("F1 =~ x1 + x2 + x3\nF2 =~ x4 + x5 + x6\nF3 =~ x7 + x8 + x9", HS)
+#' minorbsem("# latent variable definitions
+#'            F1 =~ x1 + x2 + x3
+#'            F2 =~ x4 + x5 + x6
+#'            F3 =~ x7 + x8 + x9", HS)
+#' minorbsem("# latent variable definitions
+#'            ind60 =~ x1 + x2 + x3
+#'            dem60 =~ y1 + y2 + y3 + y4
+#'            dem65 =~ y5 + y6 + y7 + y8
+#'            # latent regressions
+#'            dem60 ~ ind60
+#'            dem65 ~ ind60 + dem60", PD)
 minorbsem <- function(
     model = NULL,
     data = NULL,
@@ -47,10 +59,11 @@ minorbsem <- function(
     max_treedepth = 10,
     chains = 3,
     ncores = parallel::detectCores() - 2,
-    lkj_shape = 2,
-    sl_par = 1,
+    lkj_shape = 2.0,
+    sl_par = 1.0,
     rs_par = 2.5,
-    rc_par = 2.0) {
+    rc_par = 2.0,
+    sc_par = 1.0) {
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -81,7 +94,7 @@ minorbsem <- function(
   }
 
   # Obtain data list for Stan
-  data_list <- create_data_list(lav_fit, lkj_shape, sl_par, rs_par, rc_par)
+  data_list <- create_data_list(lav_fit, lkj_shape, sl_par, rs_par, rc_par, sc_par)
 
   message("User input fully processed :)\n Now to modeling.")
 
@@ -89,10 +102,18 @@ minorbsem <- function(
 
   # TODO: This should be a package-level global config setting up by the user
   cmdstanr::set_cmdstan_path("~/cmdstan/")
-  mod_resid <- cmdstanr::cmdstan_model(
-    "src/cfa_resid_nrm.stan",
-    stanc_options = list("O1")
-  )
+
+  if (data_list$sem_indicator == 0) {
+    mod_resid <- cmdstanr::cmdstan_model(
+      "src/cfa_resid_nrm.stan",
+      stanc_options = list("O1")
+    )
+  } else if (data_list$sem_indicator == 1) {
+    mod_resid <- cmdstanr::cmdstan_model(
+      "src/sem_resid_nrm.stan",
+      stanc_options = list("O1")
+    )
+  }
 
   message("Fitting Stan model ...")
 

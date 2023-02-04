@@ -21,10 +21,11 @@ pretty_print_summary <- function(
       1, 1
     )
 
+  result <- add_row_header(result, table_to_print, "Latent regression coefficients")
   result <- add_row_header(result, table_to_print, "Factor loadings")
-  result <- add_row_header(result, table_to_print, "Residual variances")
-  result <- add_row_header(result, table_to_print, "Regression coefficients")
   result <- add_row_header(result, table_to_print, "Inter-factor correlations")
+  result <- add_row_header(result, table_to_print, "Factor variances")
+  result <- add_row_header(result, table_to_print, "Residual variances")
   result <- add_row_header(result, table_to_print, "Error correlations")
 
   if (!simple) {

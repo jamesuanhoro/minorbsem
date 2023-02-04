@@ -2,7 +2,7 @@
 % Please edit documentation in R/minorbsem.R
 \name{minorbsem}
 \alias{minorbsem}
-\title{Fit Bayesian SEM with minor factors assumed}
+\title{Fit Bayesian SEMs with minor factors assumed}
 \usage{
 minorbsem(
   model = NULL,
@@ -20,7 +20,8 @@ minorbsem(
   lkj_shape = 2,
   sl_par = 1,
   rs_par = 2.5,
-  rc_par = 2
+  rc_par = 2,
+  sc_par = 1
 )
 }
 \arguments{
@@ -69,14 +70,27 @@ Student-t(df = 3, loc = 0) prior on the residual standard deviations.}
 
 \item{rc_par}{(positive real) The shape parameter of the Beta(rc_par, rc_par)
 prior on the residual error correlations.}
+
+\item{sc_par}{(positive real) The scale parameter of the
+Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
+deviations of coefficients; SD(coefs) vary by outcome.}
 }
 \value{
 A list
 }
 \description{
-Fit Bayesian SEM with minor factors assumed
+Fit Bayesian SEMs with minor factors assumed
 }
 \examples{
-minorbsem("F1 =~ x1 + x2 + x3\nF2 =~ x4 + x5 + x6\nF3 =~ x7 + x8 + x9", HS)
-minorbsem("F1 =~ x1 + x2 + x3\nF2 =~ x4 + x5 + x6\nF3 =~ x7 + x8 + x9", HS)
+minorbsem("# latent variable definitions
+           F1 =~ x1 + x2 + x3
+           F2 =~ x4 + x5 + x6
+           F3 =~ x7 + x8 + x9", HS)
+minorbsem("# latent variable definitions
+           ind60 =~ x1 + x2 + x3
+           dem60 =~ y1 + y2 + y3 + y4
+           dem65 =~ y5 + y6 + y7 + y8
+           # latent regressions
+           dem60 ~ ind60
+           dem65 ~ ind60 + dem60", PD)
 }
