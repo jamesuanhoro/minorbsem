@@ -1,5 +1,6 @@
 #' Fit Bayesian SEMs with minor factors assumed
 #'
+#' @description The major function to fit models
 #' @param model A description of the user-specified model, lavaan syntax.
 #' @param data An optional data frame containing the observed variables used in
 #' the model.
@@ -134,7 +135,7 @@ minorbsem <- function(
     parallel_chains = ncores
   )
 
-  clean_results <- clean_up_stan_fit(stan_fit, lav_fit, data_list)
+  clean_results <- clean_up_stan_fit(stan_fit, data_list)
   pretty_print_summary(clean_results)
 
   return(clean_results)

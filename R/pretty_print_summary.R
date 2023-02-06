@@ -1,3 +1,18 @@
+#' Pretty print model results
+#'
+#' @description Nice printing of model results, optionally produces HTML document
+#' @param clean_results A model fitted with minorbsem.
+#' @param digits (positive integer) Number of decimal places to print in table
+#' @param simple (Logical) TRUE to produce table with less information about parameters;
+#' FALSE: produces table with more information
+#' @param save_html (string) Optional file name to save table as HTML
+#' @returns NULL
+#' @examples
+#' res <- minorbsem("F1 =~ x1 + x2 + x3
+#'                   F2 =~ x4 + x5 + x6
+#'                   F3 =~ x7 + x8 + x9", HS)
+#' pretty_print_summary(res)
+#' pretty_print_summary(res, simple = FALSE)
 pretty_print_summary <- function(
     clean_results, digits = 3, simple = TRUE,
     save_html = NULL) {
@@ -21,12 +36,24 @@ pretty_print_summary <- function(
       1, 1
     )
 
-  result <- add_row_header(result, table_to_print, "Latent regression coefficients")
-  result <- add_row_header(result, table_to_print, "Factor loadings")
-  result <- add_row_header(result, table_to_print, "Inter-factor correlations")
-  result <- add_row_header(result, table_to_print, "Factor variances")
-  result <- add_row_header(result, table_to_print, "Residual variances")
-  result <- add_row_header(result, table_to_print, "Error correlations")
+  result <- add_row_header(
+    result, table_to_print, "Latent regression coefficients", "(outcome ~ predictor)"
+  )
+  result <- add_row_header(
+    result, table_to_print, "Factor loadings", "(factor =~ indicator)"
+  )
+  result <- add_row_header(
+    result, table_to_print, "Inter-factor correlations", "(factor_x ~~ factor_y)"
+  )
+  result <- add_row_header(
+    result, table_to_print, "Factor variances", "(factor_x ~~ factor_x)"
+  )
+  result <- add_row_header(
+    result, table_to_print, "Residual variances", "(indicator_x ~~ indicator_x)"
+  )
+  result <- add_row_header(
+    result, table_to_print, "Error correlations", "(indicator_x ~~ indicator_y)"
+  )
 
   if (!simple) {
     result <- result |>

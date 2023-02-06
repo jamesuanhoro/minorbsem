@@ -79,7 +79,7 @@ deviations of coefficients; SD(coefs) vary by outcome.}
 A list
 }
 \description{
-Fit Bayesian SEMs with minor factors assumed
+The major function to fit models
 }
 \examples{
 minorbsem("# latent variable definitions
