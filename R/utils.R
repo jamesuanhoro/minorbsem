@@ -299,9 +299,18 @@ add_row_header <- function(kbl_object, table_to_print, search_term, extra = NULL
   return(kbl_object)
 }
 
-# load_result <- rename_post_df_columns(
-#   load_result, factor_labels, indicator_labels, "lo:", "=~",
-#   TRUE, "Load_mat\\[\\d+,|\\]", "Load_mat\\[|,\\d+\\]")
+#' Plotting param_type validation
+#'
+#' @param param_type param_type for plotting
+#' @returns NULL
+#' @keywords internal
+#' @export
+validate_param_type <- function(param_type) {
+  if (any(!param_type %in% c("all", "rm", "lo", "ev", "rc", "fc", "fv", "co", "re")) |
+    is.null(param_type)) {
+    stop("All param_type options must be in c(\"all\", \"rm\", \"lo\", \"ev\", \"rc\", \"fc\", \"fv\", \"co\", \"re\")")
+  }
+}
 
 #' Rename columns of posterior data.frame prior by parameter type
 #'
@@ -341,7 +350,7 @@ rename_post_df_columns <- function(
     part_1 <- labels_1[search_term_1]
     part_2 <- labels_2[search_term_2]
   }
-  col_names <- paste0(begin_name, part_1, operation, part_2)
+  col_names <- paste0(begin_name, " ", part_1, operation, part_2)
   colnames(df)[1:len_vars] <- col_names
 
   return(df)
@@ -354,7 +363,7 @@ rename_post_df_columns <- function(
 #' @returns A data.frame that is ready for plotting
 #' @keywords internal
 #' @export
-prepare_stan_plot <- function(
+prepare_stan_plot_data <- function(
     stan_fit,
     data_list) {
   result <- list()
@@ -365,7 +374,7 @@ prepare_stan_plot <- function(
   rms_result <- posterior::as_draws_df(
     posterior::as_draws(stan_fit, variable = "rms_src")
   )
-  colnames(rms_result)[1] <- "rm:rms_src"
+  colnames(rms_result)[1] <- "rm: rms_src"
 
   load_idxs <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern == 1,
@@ -464,5 +473,32 @@ prepare_stan_plot <- function(
   # Drop unchanging columns
   result <- result[apply(result, 2, var) > 0]
 
-  return(result)
+  varying <- colnames(result)[
+    which(regexpr("\\:", colnames(result)) > 0)
+  ]
+
+  result_long <- reshape(
+    result,
+    varying = list(varying),
+    times = varying,
+    idvar = paste0(".", c("chain", "iteration", "draw")),
+    timevar = "parameter", v.names = "value",
+    direction = "long"
+  )
+  rownames(result_long) <- NULL
+
+  result_long$param_class <- unlist(lapply(strsplit(
+    result_long$parameter, ":"
+  ), "[[", 1))
+
+  result_long$parameter <- factor(
+    result_long$parameter,
+    unique(result_long$parameter)
+  )
+  result_long$param_class <- factor(
+    result_long$param_class,
+    c("rm", "co", "lo", "fc", "fv", "ev", "rc", "re")
+  )
+
+  return(result_long)
 }

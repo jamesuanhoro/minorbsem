@@ -3,5 +3,6 @@
 export(add_row_header)
 export(clean_up_stan_fit)
 export(create_data_list)
-export(prepare_stan_plot)
+export(prepare_stan_plot_data)
 export(rename_post_df_columns)
+export(validate_param_type)
