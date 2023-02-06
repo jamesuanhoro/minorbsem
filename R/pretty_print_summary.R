@@ -28,13 +28,10 @@ pretty_print_summary <- function(
     table_to_print[, -1],
     caption = "Parameter estimates",
     digits = digits
-  ) |>
-    kableExtra::kable_paper() |>
-    kableExtra::kable_styling(full_width = FALSE) |>
-    kableExtra::pack_rows(
-      "RMSE(residuals)",
-      1, 1
-    )
+  )
+  result <- kableExtra::kable_paper(result)
+  result <- kableExtra::kable_styling(result, full_width = FALSE)
+  result <- kableExtra::pack_rows(result, "RMSE(residuals)", 1, 1)
 
   result <- add_row_header(
     result, table_to_print, "Latent regression coefficients", "(outcome ~ predictor)"
@@ -56,11 +53,12 @@ pretty_print_summary <- function(
   )
 
   if (!simple) {
-    result <- result |>
-      kableExtra::add_header_above(c(
+    result <- kableExtra::add_header_above(
+      result, c(
         "Relation" = 3, "Location" = 2, "Dispersion" = 4,
         "Parameter convergence" = 3
-      ))
+      )
+    )
   }
 
   if (!is.null(save_html) & is.character(save_html)) {
