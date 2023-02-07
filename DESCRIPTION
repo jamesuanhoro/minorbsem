@@ -21,7 +21,8 @@ Imports:
     kableExtra,
     lavaan,
     mvtnorm,
-    posterior
+    posterior,
+    scales
 Remotes: 
     github::stan-dev/cmdstanr
 LazyData: true

@@ -103,7 +103,18 @@ minorbsem <- function(
   message("Compiling Stan code ...")
 
   # TODO: This should be a package-level global config setting up by the user
-  cmdstanr::set_cmdstan_path("~/cmdstan/")
+  cmdstan_loc_file <- system.file("cmdstan_loc", package = "minorbsem")
+  cmdstan_loc <- readLines(cmdstan_loc_file)
+  while (cmdstan_loc == "") {
+    input <- readline(
+      prompt = "Please enter your CmdStan directory, \"~/cmdstan/\" is assumed if no input is provided: "
+    )
+    if (trimws(input) == "") input <- "~/cmdstan/"
+    update_cmdstan_loc(loc = input)
+    cmdstan_loc <- readLines(cmdstan_loc_file)
+  }
+
+  cmdstanr::set_cmdstan_path(cmdstan_loc)
 
   if (data_list$sem_indicator == 0) {
     mod_resid <- cmdstanr::cmdstan_model(

@@ -88,7 +88,7 @@ create_data_list <- function(
   # Each factor should have one unique indicator or stop!
   data_list$markers <- array(dim = data_list$Nf)
   unique_indicators <- which(rowSums(data_list$loading_pattern) == 1)
-  unique_indicators <- data_list$loading_pattern[unique_indicators, ]
+  unique_indicators <- as.matrix(data_list$loading_pattern[unique_indicators, ])
   if (any(colSums(unique_indicators) == 0)) {
     notice <- paste0(
       "Each factor must have at least one indicator unique to it.", "\n",
