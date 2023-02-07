@@ -107,12 +107,12 @@ minorbsem <- function(
 
   if (data_list$sem_indicator == 0) {
     mod_resid <- cmdstanr::cmdstan_model(
-      "src/inst/cfa_resid_nrm.stan",
+      system.file("Stan/cfa_resid_nrm.stan", package = "minorbsem"),
       stanc_options = list("O1")
     )
   } else if (data_list$sem_indicator == 1) {
     mod_resid <- cmdstanr::cmdstan_model(
-      "src/inst/sem_resid_nrm.stan",
+      system.file("Stan/sem_resid_nrm.stan", package = "minorbsem"),
       stanc_options = list("O1")
     )
   }
