@@ -82,12 +82,6 @@ print(loo_2)
 print(loo::loo_compare(loo_1, loo_2), simplify = FALSE)
 ```
 
-The package also allows for:
-
-1. pretty printing of results on demand `pretty_print_summary()`;
-1. viewing parameter histograms `parameter_hist()` and traceplots `parameter_trace()`; and
-1. plotting the full covariance matrix assumed to result from minor factors `plot_residuals()`.
-
 ## Citations
 
 MacCallum, R. C., & Tucker, L. R. (1991). Representing sources of error in the common-factor model: Implications for theory and practice. _Psychological Bulletin, 109_(3), 502–511. https://doi.org/10.1037/0033-2909.109.3.502
