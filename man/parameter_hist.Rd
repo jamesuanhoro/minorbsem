@@ -28,10 +28,10 @@ Produce histograms of parameter posterior distribution, option to limit
 plot by type of parameter.
 }
 \examples{
-res <- minorbsem("F1 =~ x1 + x2 + x3
+fit <- minorbsem("F1 =~ x1 + x2 + x3
                   F2 =~ x4 + x5 + x6
                   F3 =~ x7 + x8 + x9", HS)
-parameter_hist(res)
-parameter_hist(res, param_type = "all")
-parameter_hist(res, param_type = c("rm", "lo", "fc"))
+parameter_hist(fit)
+parameter_hist(fit, param_type = "all")
+parameter_hist(fit, param_type = c("rm", "lo", "fc"))
 }

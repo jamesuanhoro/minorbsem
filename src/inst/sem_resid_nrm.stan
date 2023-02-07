@@ -141,10 +141,7 @@ model {
         Lambda_One_min_Beta_inv') + loading_par_exp_2,
       delta_mat_ast);
 
-    total_var = diagonal(
-      quad_form(
-        add_diag(F_cov_mat, F_var_resid),
-        Lambda_One_min_Beta_inv')) + res_var;
+    total_var = diagonal(Omega);
 
     {
       int pos = 0;

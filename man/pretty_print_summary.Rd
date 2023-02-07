@@ -25,9 +25,9 @@ FALSE: produces table with more information}
 Nice printing of model results, optionally produces HTML document
 }
 \examples{
-res <- minorbsem("F1 =~ x1 + x2 + x3
+fit <- minorbsem("F1 =~ x1 + x2 + x3
                   F2 =~ x4 + x5 + x6
                   F3 =~ x7 + x8 + x9", HS)
-pretty_print_summary(res)
-pretty_print_summary(res, simple = FALSE)
+pretty_print_summary(fit)
+pretty_print_summary(fit, simple = FALSE)
 }

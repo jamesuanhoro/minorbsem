@@ -16,7 +16,7 @@ minorbsem(
   adapt_delta = 0.9,
   max_treedepth = 10,
   chains = 3,
-  ncores = parallel::detectCores() - 2,
+  ncores = max(parallel::detectCores() - 2, 1),
   lkj_shape = 2,
   sl_par = 1,
   rs_par = 2.5,

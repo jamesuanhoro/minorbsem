@@ -9,17 +9,21 @@ Description: It is rare that structural equation models (SEMs) are able to rejec
     is that covariance structures are influenced by major factors which we can hypothesize about
     and minor factors which we cannot predict a-priori. This package lets you fit Bayesian SEMs
     that estimates the influence of minor factors on the covariance matrix.
-License: `use_gpl3_license()`
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 3.4.0)
 Imports: 
-    bayesplot,
     cmdstanr,
     ggplot2,
     kableExtra,
     lavaan,
+    mvtnorm,
     posterior
+Remotes: 
+    github::stan-dev/cmdstanr
 LazyData: true
+Suggests: 
+    loo

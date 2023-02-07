@@ -15,13 +15,16 @@
 #' "re" = standardized REsidual covariances
 #' @returns ggplot object
 #' @examples
-#' res <- minorbsem("F1 =~ x1 + x2 + x3
+#' fit <- minorbsem("F1 =~ x1 + x2 + x3
 #'                   F2 =~ x4 + x5 + x6
 #'                   F3 =~ x7 + x8 + x9", HS)
-#' parameter_trace(res)
-#' parameter_trace(res, param_type = "all")
-#' parameter_trace(res, param_type = c("rm", "lo", "fc"))
+#' parameter_trace(fit)
+#' parameter_trace(fit, param_type = "all")
+#' parameter_trace(fit, param_type = c("rm", "lo", "fc"))
+#' @export
 parameter_trace <- function(clean_results, param_type = c("rm", "co", "lo", "fc", "fv")) {
+  .iteration <- value <- .chain <- NULL
+
   # param_type must in options
   validate_param_type(param_type)
 

@@ -47,6 +47,7 @@
 #'            # latent regressions
 #'            dem60 ~ ind60
 #'            dem65 ~ ind60 + dem60", PD)
+#' @export
 minorbsem <- function(
     model = NULL,
     data = NULL,
@@ -59,7 +60,7 @@ minorbsem <- function(
     adapt_delta = .9,
     max_treedepth = 10,
     chains = 3,
-    ncores = parallel::detectCores() - 2,
+    ncores = max(parallel::detectCores() - 2, 1),
     lkj_shape = 2.0,
     sl_par = 1.0,
     rs_par = 2.5,
@@ -106,12 +107,12 @@ minorbsem <- function(
 
   if (data_list$sem_indicator == 0) {
     mod_resid <- cmdstanr::cmdstan_model(
-      "src/cfa_resid_nrm.stan",
+      "src/inst/cfa_resid_nrm.stan",
       stanc_options = list("O1")
     )
   } else if (data_list$sem_indicator == 1) {
     mod_resid <- cmdstanr::cmdstan_model(
-      "src/sem_resid_nrm.stan",
+      "src/inst/sem_resid_nrm.stan",
       stanc_options = list("O1")
     )
   }
