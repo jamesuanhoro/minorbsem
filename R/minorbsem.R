@@ -100,7 +100,7 @@ minorbsem <- function(
 
   message("User input fully processed :)\n Now to modeling.")
 
-  message("Compiling Stan code ...")
+  message("Compiling Stan code ...\nThis takes a while the first time you run a CFA and the first time you run an SEM")
 
   # TODO: This should be a package-level global config setting up by the user
   cmdstan_loc_file <- system.file("cmdstan_loc", package = "minorbsem")
