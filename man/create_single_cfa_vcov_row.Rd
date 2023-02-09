@@ -18,8 +18,10 @@ create_single_cfa_vcov_row(
 
 \item{data_list}{Data list object passed to Stan}
 
-\item{include_residuals}{(LOGICAL) TRUE: Include minor factor residual covariances
-in model-implied covariance matrix; FALSE: Exclude them. If TRUE, different
+\item{include_residuals}{(LOGICAL)
+TRUE: Include minor factor residual covariances
+in model-implied covariance matrix;
+FALSE: Exclude them. If TRUE, different
 models fit to the data will hardly be distinguishable.}
 
 \item{all_lo}{loading indexes}

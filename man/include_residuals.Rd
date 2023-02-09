@@ -2,12 +2,13 @@
 % Please edit documentation in R/utils.R
 \name{include_residuals}
 \alias{include_residuals}
-\title{Include minor factor residuals in model implied covariance matrix, helper function}
+\title{Include minor factor residuals in model implied covariance matrix,
+helper function}
 \usage{
-include_residuals(Omega, params, data_list)
+include_residuals(omega_mat, params, data_list)
 }
 \arguments{
-\item{Omega}{model implied covariance matrix to be updated}
+\item{omega_mat}{model implied covariance matrix to be updated}
 
 \item{params}{vector of posterior samples from a single iteration}
 
@@ -17,6 +18,7 @@ include_residuals(Omega, params, data_list)
 A single model-impled covariance matrix
 }
 \description{
-Include minor factor residuals in model implied covariance matrix, helper function
+Include minor factor residuals in model implied covariance matrix,
+helper function
 }
 \keyword{internal}

@@ -16,13 +16,15 @@ pretty_print_summary(
 
 \item{digits}{(positive integer) Number of decimal places to print in table}
 
-\item{simple}{(Logical) TRUE to produce table with less information about parameters;
+\item{simple}{(Logical) TRUE to produce table with less information
+about parameters;
 FALSE: produces table with more information}
 
 \item{save_html}{(string) Optional file name to save table as HTML}
 }
 \description{
-Nice printing of model results, optionally produces HTML document
+Nice printing of model results,
+optionally produces HTML document
 }
 \examples{
 fit <- minorbsem("F1 =~ x1 + x2 + x3

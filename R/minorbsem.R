@@ -74,8 +74,12 @@ minorbsem <- function(
   }
 
   # Must provide either data or sample_cov and sample_nobs
-  if (is.null(data) & (is.null(sample_cov) | is.null(sample_nobs))) {
-    stop("User must provide either:\n\t(i) a dataset or\n\t(ii) sample covariance and sample size")
+  if (is.null(data) && (is.null(sample_cov) || is.null(sample_nobs))) {
+    stop(paste0(
+      "User must provide either:\n\t",
+      "(i) a dataset or\n\t",
+      "(ii) sample covariance and sample size"
+    ))
   }
 
   # Run lavaan fit
@@ -96,18 +100,27 @@ minorbsem <- function(
   }
 
   # Obtain data list for Stan
-  data_list <- create_data_list(lav_fit, lkj_shape, sl_par, rs_par, rc_par, sc_par)
+  data_list <- create_data_list(
+    lav_fit, lkj_shape, sl_par, rs_par, rc_par, sc_par
+  )
 
   message("User input fully processed :)\n Now to modeling.")
 
-  message("Compiling Stan code ...\nThis takes a while the first time you run a CFA and the first time you run an SEM")
+  message(paste0(
+    "Compiling Stan code ...\n",
+    "This takes a while the first time you run a CFA ",
+    "and the first time you run an SEM"
+  ))
 
   # TODO: This should be a package-level global config setting up by the user
   cmdstan_loc_file <- system.file("cmdstan_loc", package = "minorbsem")
   cmdstan_loc <- readLines(cmdstan_loc_file)
   while (cmdstan_loc == "") {
     input <- readline(
-      prompt = "Please enter your CmdStan directory, \"~/cmdstan/\" is assumed if no input is provided: "
+      prompt = paste0(
+        "Please enter your CmdStan directory, \"~/cmdstan/\" ",
+        "is assumed if no input is provided: "
+      )
     )
     if (trimws(input) == "") input <- "~/cmdstan/"
     update_cmdstan_loc(loc = input)

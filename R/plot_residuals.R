@@ -1,6 +1,6 @@
 #' Visualize standardized residual covariances
 #'
-#' @description Visualize distribution of standardized residual covariances clearly
+#' @description Visualize distribution of standardized residual covariances
 #' @param clean_results A model fitted with minorbsem
 #' @param method (string) Either: "range" for lineranges (by default)
 #' or "matrix" for a matrix with point estimates in the lower half.
@@ -12,19 +12,26 @@
 #' plot_residuals(fit)
 #' @export
 plot_residuals <- function(clean_results, method = "matrix") {
-  parameter <- `50%` <- `5%` <- `95%` <- `2.5%` <- `97.5%` <- item_2 <- item_1 <- NULL
+  parameter <- `50%` <- `5%` <- `95%` <- lo <- hi <- item_2 <- item_1 <- NULL
 
   if (!method %in% c("range", "matrix")) {
     stop("method must be either \"range\" or \"matrix\"")
   }
 
-  clean_post_df <- prepare_stan_plot_data(clean_results$stan_fit, clean_results$data_list)
+  clean_post_df <- prepare_stan_plot_data(
+    clean_results$stan_fit, clean_results$data_list
+  )
   clean_post_df <- clean_post_df[clean_post_df$param_class == "re", ]
   clean_post_df$parameter <- gsub("re: ", "", clean_post_df$parameter)
-  plot_df <- stats::aggregate(value ~ parameter, clean_post_df, FUN = function(xs) {
-    stats::quantile(xs, c(.5, .25, .75, .05, .95, .025, .975))
-  })
+  plot_df <- stats::aggregate(
+    value ~ parameter, clean_post_df,
+    FUN = function(xs) {
+      stats::quantile(xs, c(.5, .25, .75, .05, .95, .025, .975))
+    }
+  )
   plot_df <- cbind(plot_df, plot_df$value)
+  plot_df$lo <- plot_df$`2.5%`
+  plot_df$hi <- plot_df$`97.5%`
 
   p <- list()
   if (method == "range") {
@@ -37,11 +44,21 @@ plot_residuals <- function(clean_results, method = "matrix") {
     }
     p <- ggplot2::ggplot(plot_df, ggplot2::aes(parameter, `50%`)) +
       ggplot2::geom_point(shape = 4) +
-      ggplot2::geom_linerange(ggplot2::aes(ymin = `5%`, ymax = `95%`), size = 3, alpha = .25) +
-      ggplot2::geom_linerange(ggplot2::aes(ymin = `2.5%`, ymax = `97.5%`), size = .25) +
+      ggplot2::geom_linerange(
+        ggplot2::aes(ymin = `5%`, ymax = `95%`),
+        size = 3, alpha = .25
+      ) +
+      ggplot2::geom_linerange(
+        ggplot2::aes(ymin = lo, ymax = hi),
+        size = .25
+      ) +
       ggplot2::theme_classic() +
-      ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = .5)) +
-      ggplot2::geom_hline(yintercept = horiz_lines, linetype = 2, alpha = .5) +
+      ggplot2::theme(
+        axis.text.x = ggplot2::element_text(angle = 90, vjust = .5)
+      ) +
+      ggplot2::geom_hline(
+        yintercept = horiz_lines, linetype = 2, alpha = .5
+      ) +
       ggplot2::theme(
         panel.grid.major.x = ggplot2::element_line(linewidth = .5)
       ) +
@@ -52,13 +69,20 @@ plot_residuals <- function(clean_results, method = "matrix") {
   } else if (method == "matrix") {
     # Create items, use factors to ensure correct ordering
     plot_df$item_1 <- unlist(lapply(strsplit(plot_df$parameter, "~~"), "[[", 1))
-    item_list_1 <- unique(unlist(lapply(strsplit(clean_post_df$parameter, "~~"), "[[", 1)))
+    item_list_1 <- unique(unlist(lapply(strsplit(
+      clean_post_df$parameter, "~~"
+    ), "[[", 1)))
     plot_df$item_1 <- factor(plot_df$item_1, rev(item_list_1))
     plot_df$item_2 <- unlist(lapply(strsplit(plot_df$parameter, "~~"), "[[", 2))
-    item_list_2 <- unique(unlist(lapply(strsplit(clean_post_df$parameter, "~~"), "[[", 2)))
+    item_list_2 <- unique(unlist(lapply(strsplit(
+      clean_post_df$parameter, "~~"
+    ), "[[", 2)))
     plot_df$item_2 <- factor(plot_df$item_2, item_list_2)
     p <- ggplot2::ggplot(plot_df, ggplot2::aes(item_2, item_1)) +
-      ggplot2::geom_tile(ggplot2::aes(alpha = abs(`50%`)), fill = "#444444", col = 1) +
+      ggplot2::geom_tile(
+        ggplot2::aes(alpha = abs(`50%`)),
+        fill = "#444444", col = 1
+      ) +
       ggplot2::geom_text(ggplot2::aes(
         label = scales::number(`50%`, .01),
         alpha = abs(`50%`)

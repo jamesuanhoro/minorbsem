@@ -1,9 +1,11 @@
 #' Pretty print model results
 #'
-#' @description Nice printing of model results, optionally produces HTML document
+#' @description Nice printing of model results,
+#' optionally produces HTML document
 #' @param clean_results A model fitted with minorbsem.
 #' @param digits (positive integer) Number of decimal places to print in table
-#' @param simple (Logical) TRUE to produce table with less information about parameters;
+#' @param simple (Logical) TRUE to produce table with less information
+#' about parameters;
 #' FALSE: produces table with more information
 #' @param save_html (string) Optional file name to save table as HTML
 #' @returns NULL
@@ -21,7 +23,10 @@ pretty_print_summary <- function(
 
   if (simple) {
     table_to_print <- table_to_print[
-      c("group", "from", "op", "to", "mean", "sd", "q5", "q95", "rhat", "ess_bulk")
+      c(
+        "group", "from", "op", "to", "mean", "sd",
+        "q5", "q95", "rhat", "ess_bulk"
+      )
     ]
   }
 
@@ -35,22 +40,28 @@ pretty_print_summary <- function(
   result <- kableExtra::pack_rows(result, "RMSE(residuals)", 1, 1)
 
   result <- add_row_header(
-    result, table_to_print, "Latent regression coefficients", "(outcome ~ predictor)"
+    result, table_to_print,
+    "Latent regression coefficients", "(outcome ~ predictor)"
   )
   result <- add_row_header(
-    result, table_to_print, "Factor loadings", "(factor =~ indicator)"
+    result, table_to_print,
+    "Factor loadings", "(factor =~ indicator)"
   )
   result <- add_row_header(
-    result, table_to_print, "Inter-factor correlations", "(factor_x ~~ factor_y)"
+    result, table_to_print,
+    "Inter-factor correlations", "(factor_x ~~ factor_y)"
   )
   result <- add_row_header(
-    result, table_to_print, "Factor variances", "(factor_x ~~ factor_x)"
+    result, table_to_print,
+    "Factor variances", "(factor_x ~~ factor_x)"
   )
   result <- add_row_header(
-    result, table_to_print, "Residual variances", "(indicator_x ~~ indicator_x)"
+    result, table_to_print,
+    "Residual variances", "(indicator_x ~~ indicator_x)"
   )
   result <- add_row_header(
-    result, table_to_print, "Error correlations", "(indicator_x ~~ indicator_y)"
+    result, table_to_print,
+    "Error correlations", "(indicator_x ~~ indicator_y)"
   )
 
   if (!simple) {
@@ -62,7 +73,7 @@ pretty_print_summary <- function(
     )
   }
 
-  if (!is.null(save_html) & is.character(save_html)) {
+  if (!is.null(save_html) && is.character(save_html)) {
     kableExtra::save_kable(result, file = save_html)
   }
 

@@ -16,7 +16,7 @@ or "matrix" for a matrix with point estimates in the lower half.}
 ggplot object
 }
 \description{
-Visualize distribution of standardized residual covariances clearly
+Visualize distribution of standardized residual covariances
 }
 \examples{
 fit <- minorbsem("F1 =~ x1 + x2 + x3

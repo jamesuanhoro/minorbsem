@@ -37,7 +37,8 @@ create_data_list <- function(
   if (any(c(lkj_shape, sl_par, rs_par, rc_par, sc_par) <= 0)) {
     stop("lkj_shape, sl_par, rs_par, rc_par, sc_par must all exceed 0")
   }
-  data_list$shape_phi_c <- lkj_shape # Shape parameter for LKJ of interfactor corr
+  # Shape parameter for LKJ of interfactor corr
+  data_list$shape_phi_c <- lkj_shape
   data_list$sl_par <- sl_par # sigma loading parameter
   data_list$rs_par <- rs_par # residual sd parameter
   data_list$rc_par <- rc_par # residual corr parameter
@@ -58,8 +59,8 @@ create_data_list <- function(
   data_list$Nf <- ncol(data_list$loading_pattern)
 
   # Is this an SEM or a CFA?
-  Psi <- param_structure$psi
-  sum_off_diag_psi <- sum(Psi[lower.tri(Psi)])
+  psi_mat <- param_structure$psi
+  sum_off_diag_psi <- sum(psi_mat[lower.tri(psi_mat)])
   if (is.null(param_structure$beta)) {
     # This is a CFA
     data_list$sem_indicator <- 0
@@ -72,7 +73,7 @@ create_data_list <- function(
     data_list$F_corr_mat <- matrix(byrow = TRUE, ncol = 2, nrow = 0)
     if (sum_off_diag_psi > 0) {
       # Get which elements in theta are non-zero
-      data_list$F_corr_mat <- which(Psi != 0, arr.ind = TRUE)
+      data_list$F_corr_mat <- which(psi_mat != 0, arr.ind = TRUE)
       # Eliminate diagonal elements
       data_list$F_corr_mat <- data_list$F_corr_mat[
         data_list$F_corr_mat[, 1] != data_list$F_corr_mat[, 2],
@@ -92,14 +93,17 @@ create_data_list <- function(
   if (any(colSums(unique_indicators) == 0)) {
     notice <- paste0(
       "Each factor must have at least one indicator unique to it.", "\n",
-      "This is to ensure the sign/direction of the factor does not flip across iterations.", "\n",
-      "Also, note that the package can only fit standard CFAs and SEM models,", "\n",
-      "no higher-order factors, MIMIC, multilevel SEM, path analysis models, ..."
+      "This is to ensure the sign/direction of the factor ",
+      "does not flip across iterations.", "\n",
+      "Also, note that the package can only fit standard ",
+      "CFAs and SEM models,", "\n",
+      "no higher-order factors, MIMIC, multilevel SEM, ",
+      "path analysis models, ..."
     )
     stop(notice)
   }
   unique_indicators <- rowSums(data_list$loading_pattern) == 1
-  for (j in 1:ncol(data_list$loading_pattern)) {
+  for (j in seq_len(ncol(data_list$loading_pattern))) {
     data_list$markers[j] <- which(
       data_list$loading_pattern[, j] == 1 & unique_indicators
     )[1]
@@ -108,11 +112,11 @@ create_data_list <- function(
   # Check for correlated error terms
   # Number of correlated errors
   data_list$error_mat <- matrix(byrow = TRUE, ncol = 2, nrow = 0)
-  Theta <- param_structure$theta
-  sum_off_diag_theta <- sum(Theta[lower.tri(Theta)])
+  theta_mat <- param_structure$theta
+  sum_off_diag_theta <- sum(theta_mat[lower.tri(theta_mat)])
   if (sum_off_diag_theta > 0) {
     # Get which elements in theta are non-zero
-    data_list$error_mat <- which(Theta != 0, arr.ind = TRUE)
+    data_list$error_mat <- which(theta_mat != 0, arr.ind = TRUE)
     # Eliminate diagonal elements
     data_list$error_mat <- data_list$error_mat[
       data_list$error_mat[, 1] != data_list$error_mat[, 2],
@@ -284,7 +288,11 @@ clean_up_stan_fit <- function(
 #' @returns If search_term present in term, modified Kable object,
 #' otherwise: original object is returned
 #' @keywords internal
-add_row_header <- function(kbl_object, table_to_print, search_term, extra = NULL) {
+add_row_header <- function(
+    kbl_object,
+    table_to_print,
+    search_term,
+    extra = NULL) {
   if (any(table_to_print[1] == search_term)) {
     kbl_object <- kableExtra::pack_rows(
       kbl_object,
@@ -302,9 +310,15 @@ add_row_header <- function(kbl_object, table_to_print, search_term, extra = NULL
 #' @returns NULL
 #' @keywords internal
 validate_param_type <- function(param_type) {
-  if (any(!param_type %in% c("all", "rm", "lo", "ev", "rc", "fc", "fv", "co", "re")) |
+  if (any(
+    !param_type %in% c("all", "rm", "lo", "ev", "rc", "fc", "fv", "co", "re")
+  ) ||
     is.null(param_type)) {
-    stop("All param_type options must be in c(\"all\", \"rm\", \"lo\", \"ev\", \"rc\", \"fc\", \"fv\", \"co\", \"re\")")
+    stop(paste0(
+      "All param_type options must be in ",
+      "c(\"all\", \"rm\", \"lo\", \"ev\", \"rc\", \"fc\", ",
+      "\"fv\", \"co\", \"re\")"
+    ))
   }
 }
 
@@ -497,15 +511,16 @@ prepare_stan_plot_data <- function(
   return(result_long)
 }
 
-#' Include minor factor residuals in model implied covariance matrix, helper function
+#' Include minor factor residuals in model implied covariance matrix,
+#' helper function
 #'
-#' @param Omega model implied covariance matrix to be updated
+#' @param omega_mat model implied covariance matrix to be updated
 #' @param params vector of posterior samples from a single iteration
 #' @param data_list Data list object passed to Stan
 #' @returns A single model-impled covariance matrix
 #' @keywords internal
-include_residuals <- function(Omega, params, data_list) {
-  tv <- diag(Omega)
+include_residuals <- function(omega_mat, params, data_list) {
+  tv <- diag(omega_mat)
   n_re <- data_list$Ni * (data_list$Ni - 1) / 2
   re <- params[paste0("resids[", 1:n_re, "]")]
   rm <- params["rms_src"]
@@ -513,19 +528,21 @@ include_residuals <- function(Omega, params, data_list) {
   for (i in 2:data_list$Ni) {
     for (j in 1:(i - 1)) {
       pos <- pos + 1
-      Omega[i, j] <- Omega[i, j] + re[pos] * rm * sqrt(tv[i] * tv[j])
-      Omega[j, i] <- Omega[i, j]
+      omega_mat[i, j] <- omega_mat[i, j] + re[pos] * rm * sqrt(tv[i] * tv[j])
+      omega_mat[j, i] <- omega_mat[i, j]
     }
   }
-  return(Omega)
+  return(omega_mat)
 }
 
 #' Create model implied covariance matrix from CFA, helper function
 #'
 #' @param params vector of posterior samples from a single iteration
 #' @param data_list Data list object passed to Stan
-#' @param include_residuals (LOGICAL) TRUE: Include minor factor residual covariances
-#' in model-implied covariance matrix; FALSE: Exclude them. If TRUE, different
+#' @param include_residuals (LOGICAL)
+#' TRUE: Include minor factor residual covariances
+#' in model-implied covariance matrix;
+#' FALSE: Exclude them. If TRUE, different
 #' models fit to the data will hardly be distinguishable.
 #' @param all_lo loading indexes
 #' @param all_ev error variance indexes
@@ -539,46 +556,47 @@ create_single_cfa_vcov_row <- function(
     all_lo,
     all_ev,
     all_ph) {
-  Lo <- matrix(params[all_lo], nrow = data_list$Ni, ncol = data_list$Nf)
+  lo_mat <- matrix(params[all_lo], nrow = data_list$Ni, ncol = data_list$Nf)
   ev <- params[all_ev]
 
-  Ph <- diag(data_list$Nf)
+  ph_mat <- diag(data_list$Nf)
   if (data_list$corr_fac == 1) {
-    Ph <- matrix(params[all_ph], nrow = data_list$Nf, ncol = data_list$Nf)
+    ph_mat <- matrix(params[all_ph], nrow = data_list$Nf, ncol = data_list$Nf)
   }
 
-  LPL <- Lo %*% Ph %*% t(Lo)
+  lpl_mat <- lo_mat %*% ph_mat %*% t(lo_mat)
 
-  LPE <- matrix(0, nrow = data_list$Ni, ncol = data_list$Nce)
-  if (ncol(LPE) > 0) {
+  lpe_mat <- matrix(0, nrow = data_list$Ni, ncol = data_list$Nce)
+  if (ncol(lpe_mat) > 0) {
     rc <- params[paste0("res_cor[", 1:data_list$Nce, "]")]
     for (i in 1:data_list$Nce) {
-      LPE[data_list$error_mat[i, 1], i] <- sqrt(
+      lpe_mat[data_list$error_mat[i, 1], i] <- sqrt(
         abs(rc[i]) * ev[data_list$error_mat[i, 1]]
       )
-      LPE[data_list$error_mat[i, 2], i] <- sign(rc[i]) * sqrt(
+      lpe_mat[data_list$error_mat[i, 2], i] <- sign(rc[i]) * sqrt(
         abs(rc[i]) * ev[data_list$error_mat[i, 2]]
       )
     }
   }
-  LPE_sq <- tcrossprod(LPE)
+  lpe_sq_mat <- tcrossprod(lpe_mat)
 
-  d_ast <- ev - diag(LPE_sq)
+  d_ast <- ev - diag(lpe_sq_mat)
 
-  Omega <- LPL + LPE_sq + diag(d_ast)
+  omega_mat <- lpl_mat + lpe_sq_mat + diag(d_ast)
 
   if (include_residuals == TRUE) {
-    Omega <- include_residuals(Omega, params, data_list)
+    omega_mat <- include_residuals(omega_mat, params, data_list)
   }
 
-  return(Omega)
+  return(omega_mat)
 }
 
 #' Create model implied covariance matrix from SEM, helper function
 #'
 #' @param params vector of posterior samples from a single iteration
 #' @param data_list Data list object passed to Stan
-#' @param include_residuals (LOGICAL) TRUE: Include minor factor residual covariances
+#' @param include_residuals (LOGICAL)
+#' TRUE: Include minor factor residual covariances
 #' in model-implied covariance matrix; FALSE: Exclude them. If TRUE, different
 #' models fit to the data will hardly be distinguishable.
 #' @param all_lo loading indexes
@@ -597,58 +615,61 @@ create_single_sem_vcov_row <- function(
     all_ph,
     all_co,
     all_fv) {
-  Lo <- matrix(params[all_lo], nrow = data_list$Ni, ncol = data_list$Nf)
-  Co <- matrix(params[all_co], nrow = data_list$Nf, ncol = data_list$Nf)
+  lo_mat <- matrix(params[all_lo], nrow = data_list$Ni, ncol = data_list$Nf)
+  co_mat <- matrix(params[all_co], nrow = data_list$Nf, ncol = data_list$Nf)
   ev <- params[all_ev]
   fv <- params[all_fv]
 
-  LOmBi <- Lo %*% solve(diag(data_list$Nf) - Co)
+  lombi_mat <- lo_mat %*% solve(diag(data_list$Nf) - co_mat)
 
-  FPE <- matrix(0, nrow = data_list$Nf, ncol = data_list$Nf_corr)
-  if (ncol(FPE) > 0) {
+  fpe_mat <- matrix(0, nrow = data_list$Nf, ncol = data_list$Nf_corr)
+  if (ncol(fpe_mat) > 0) {
     fc <- params[all_ph]
     for (i in 1:data_list$Nf_corr) {
-      FPE[data_list$F_corr_mat[i, 1], i] <- sqrt(
+      fpe_mat[data_list$F_corr_mat[i, 1], i] <- sqrt(
         abs(fc[i]) * ev[data_list$F_corr_mat[i, 1]]
       )
-      FPE[data_list$F_corr_mat[i, 2], i] <- sign(fc[i]) * sqrt(
+      fpe_mat[data_list$F_corr_mat[i, 2], i] <- sign(fc[i]) * sqrt(
         abs(fc[i]) * ev[data_list$F_corr_mat[i, 2]]
       )
     }
   }
-  FPE_sq <- tcrossprod(FPE)
-  fvr <- fv - diag(FPE_sq)
+  fpe_sq_mat <- tcrossprod(fpe_mat)
+  fvr <- fv - diag(fpe_sq_mat)
 
-  LPE <- matrix(0, nrow = data_list$Ni, ncol = data_list$Nce)
-  if (ncol(LPE) > 0) {
+  lpe_mat <- matrix(0, nrow = data_list$Ni, ncol = data_list$Nce)
+  if (ncol(lpe_mat) > 0) {
     rc <- params[paste0("res_cor[", 1:data_list$Nce, "]")]
     for (i in 1:data_list$Nce) {
-      LPE[data_list$error_mat[i, 1], i] <- sqrt(
+      lpe_mat[data_list$error_mat[i, 1], i] <- sqrt(
         abs(rc[i]) * ev[data_list$error_mat[i, 1]]
       )
-      LPE[data_list$error_mat[i, 2], i] <- sign(rc[i]) * sqrt(
+      lpe_mat[data_list$error_mat[i, 2], i] <- sign(rc[i]) * sqrt(
         abs(rc[i]) * ev[data_list$error_mat[i, 2]]
       )
     }
   }
-  LPE_sq <- tcrossprod(LPE)
+  lpe_sq_mat <- tcrossprod(lpe_mat)
 
-  d_ast <- ev - diag(LPE_sq)
+  d_ast <- ev - diag(lpe_sq_mat)
 
-  Omega <- LOmBi %*% (FPE_sq + diag(fvr)) %*% t(LOmBi) + LPE_sq + diag(d_ast)
+  omega_mat <- lombi_mat %*% (
+    fpe_sq_mat + diag(fvr)
+  ) %*% t(lombi_mat) + lpe_sq_mat + diag(d_ast)
 
   if (include_residuals == TRUE) {
-    Omega <- include_residuals(Omega, params, data_list)
+    omega_mat <- include_residuals(omega_mat, params, data_list)
   }
 
-  return(Omega)
+  return(omega_mat)
 }
 
 #' Create model implied covariance matrix fit helper function
 #'
 #' @param mat Matrix of posterior samples
 #' @param data_list Data list object passed to Stan
-#' @param include_residuals (LOGICAL) TRUE: Include minor factor residual covariances
+#' @param include_residuals (LOGICAL)
+#' TRUE: Include minor factor residual covariances
 #' in model-implied covariance matrix; FALSE: Exclude them. If TRUE, different
 #' models fit to the data will hardly be distinguishable.
 #' @returns A matrix that is ready for plotting
@@ -661,7 +682,7 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
   all_ev <- paste0("res_var[", 1:data_list$Ni, "]")
   all_ph <- NULL
 
-  Omega <- matrix()
+  omega_mat <- matrix()
   if (data_list$sem_indicator == 0) {
     if (data_list$corr_fac == 1) {
       all_ph <- paste0("phi_mat[", apply(which(
@@ -670,7 +691,7 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
       ), 1, paste0, collapse = ","), "]")
     }
 
-    Omega <- apply(
+    omega_mat <- apply(
       mat, 1, create_single_cfa_vcov_row,
       data_list = data_list, include_residuals = include_residuals,
       all_lo = all_lo, all_ev = all_ev, all_ph = all_ph
@@ -685,7 +706,7 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
       all_ph <- paste0("phi_cor[", 1:data_list$Nf_corr, "]")
     }
 
-    Omega <- apply(
+    omega_mat <- apply(
       mat, 1, create_single_sem_vcov_row,
       data_list = data_list, include_residuals = include_residuals,
       all_lo = all_lo, all_ev = all_ev, all_ph = all_ph,
@@ -693,5 +714,5 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
     )
   }
 
-  return(Omega)
+  return(omega_mat)
 }

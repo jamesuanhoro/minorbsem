@@ -1,7 +1,7 @@
 #' Traceplots of parameter posterior distribution
 #'
-#' @description Produce traceplots of parameter posterior distribution, option to limit
-#' plot by type of parameter.
+#' @description Produce traceplots of parameter posterior distribution,
+#' option to limit plot by type of parameter.
 #' @param clean_results A model fitted with minorbsem
 #' @param param_type (string vector) Choose from a list of options:
 #' "all" = all structural parameters;
@@ -22,20 +22,26 @@
 #' parameter_trace(fit, param_type = "all")
 #' parameter_trace(fit, param_type = c("rm", "lo", "fc"))
 #' @export
-parameter_trace <- function(clean_results, param_type = c("rm", "co", "lo", "fc", "fv")) {
+parameter_trace <- function(
+    clean_results,
+    param_type = c("rm", "co", "lo", "fc", "fv")) {
   .iteration <- value <- .chain <- NULL
 
   # param_type must in options
   validate_param_type(param_type)
 
-  clean_post_df <- prepare_stan_plot_data(clean_results$stan_fit, clean_results$data_list)
+  clean_post_df <- prepare_stan_plot_data(
+    clean_results$stan_fit, clean_results$data_list
+  )
 
   p <- list()
   if (any(param_type == "all")) {
     plot_df <- clean_post_df[
       clean_post_df$param_class != "re",
     ]
-    p <- ggplot2::ggplot(plot_df, ggplot2::aes(.iteration, value, col = factor(.chain))) +
+    p <- ggplot2::ggplot(
+      plot_df, ggplot2::aes(.iteration, value, col = factor(.chain))
+    ) +
       ggplot2::geom_line() +
       ggplot2::theme_classic() +
       ggplot2::theme(
@@ -53,9 +59,13 @@ parameter_trace <- function(clean_results, param_type = c("rm", "co", "lo", "fc"
       clean_post_df$param_class %in% param_type,
     ]
     if (nrow(plot_df) == 0) {
-      stop(paste0("Selected param_type option(s) is/are not in the fitted model"))
+      stop(paste0(
+        "Selected param_type option(s) is/are not in the fitted model"
+      ))
     }
-    p <- ggplot2::ggplot(plot_df, ggplot2::aes(.iteration, value, col = factor(.chain))) +
+    p <- ggplot2::ggplot(
+      plot_df, ggplot2::aes(.iteration, value, col = factor(.chain))
+    ) +
       ggplot2::geom_line() +
       ggplot2::theme_classic() +
       ggplot2::theme(

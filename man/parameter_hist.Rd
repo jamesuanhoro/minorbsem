@@ -24,8 +24,8 @@ parameter_hist(clean_results, param_type = c("rm", "co", "lo", "fc", "fv"))
 ggplot object
 }
 \description{
-Produce histograms of parameter posterior distribution, option to limit
-plot by type of parameter.
+Produce histograms of parameter posterior distribution,
+option to limit plot by type of parameter.
 }
 \examples{
 fit <- minorbsem("F1 =~ x1 + x2 + x3
