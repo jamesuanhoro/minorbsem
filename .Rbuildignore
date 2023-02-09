@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^\.vscode$
+^README\.html$
+^README\_files$

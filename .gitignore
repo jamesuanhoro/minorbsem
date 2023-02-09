@@ -6,3 +6,5 @@
 inst/Stan/*
 !inst/Stan/*.stan
 .vscode/
+README.html
+/README_files/*
