@@ -20,7 +20,7 @@ oblique or orthogonal factors (useful for fitting bifactor models)
 - SEMs, allowing latent regressions (only), cross-loadings, and correlated error
 terms.
 
-One cannot fit MIMIC, multigroup models, multilevel models, or models with
+One cannot fit MIMIC, multi-group models, multilevel models, or models with
 specially constrained parameters (e.g. setting two parameters equal).
 
 All data are assumed multivariate normal, i.e. no binary, ordinal models.
@@ -71,11 +71,17 @@ ll_mat_2 <- casewise_log_likelihood(fit_2, include_residuals = FALSE)
 chain_id <- posterior::as_draws_df(fit_1$stan_fit)$.chain
 
 # loo for model 1
-loo_1 <- loo::loo(ll_mat_1, r_eff = loo::relative_eff(ll_mat_1, chain_id = chain_id))
+loo_1 <- loo::loo(
+  ll_mat_1,
+  r_eff = loo::relative_eff(ll_mat_1, chain_id = chain_id)
+)
 print(loo_1)
 
 # loo for model 2
-loo_2 <- loo::loo(ll_mat_2, r_eff = loo::relative_eff(ll_mat_2, chain_id = chain_id))
+loo_2 <- loo::loo(
+  ll_mat_2,
+  r_eff = loo::relative_eff(ll_mat_2, chain_id = chain_id)
+)
 print(loo_2)
 
 # Compare both models

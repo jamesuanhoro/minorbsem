@@ -5,3 +5,4 @@
 .DS_Store
 inst/Stan/*
 !inst/Stan/*.stan
+.vscode/
