@@ -53,7 +53,7 @@ pretty_print_summary(fit_1, save_html = "baseline_model.html")
 parameter_hist(fit_1)
 
 # Traceplot of parameters, see: ?parameter_trace for arguments
-parameter_hist(fit_1)
+parameter_trace(fit_1)
 
 # Examine all standardized residual covariances
 plot_residuals(fit_1)
