@@ -30,7 +30,7 @@ All data are assumed multivariate normal, i.e. no binary, ordinal models.
 The package requires that you **have CmdStan installed on your machine**,
 see installation instructions here: https://mc-stan.org/cmdstanr/articles/cmdstanr.html
 
-You can install the development version of minorbsem using devtools:
+You can install minorbsem using devtools:
 
 ``` r
 devtools::install_github("stonegold546/minorbsem")
