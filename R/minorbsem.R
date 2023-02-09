@@ -160,8 +160,8 @@ minorbsem <- function(
     parallel_chains = ncores
   )
 
-  clean_results <- clean_up_stan_fit(stan_fit, data_list)
-  pretty_print_summary(clean_results)
+  fit_results <- clean_up_stan_fit(stan_fit, data_list)
+  pretty_print_summary(fit_results)
 
-  return(clean_results)
+  return(fit_results)
 }

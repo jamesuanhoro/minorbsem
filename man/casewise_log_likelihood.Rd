@@ -4,10 +4,10 @@
 \alias{casewise_log_likelihood}
 \title{Get casewise log-likelihood when full data is available}
 \usage{
-casewise_log_likelihood(clean_results, include_residuals = FALSE)
+casewise_log_likelihood(fit_results, include_residuals = FALSE)
 }
 \arguments{
-\item{clean_results}{A model fitted with minorbsem}
+\item{fit_results}{A model fitted with minorbsem}
 
 \item{include_residuals}{(LOGICAL) TRUE: Include minor factor
 residual covariances in model-implied covariance matrix;

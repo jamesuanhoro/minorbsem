@@ -2,7 +2,7 @@
 #'
 #' @description Nice printing of model results,
 #' optionally produces HTML document
-#' @param clean_results A model fitted with minorbsem.
+#' @param fit_results A model fitted with minorbsem.
 #' @param digits (positive integer) Number of decimal places to print in table
 #' @param simple (Logical) TRUE to produce table with less information
 #' about parameters;
@@ -17,9 +17,9 @@
 #' pretty_print_summary(fit, simple = FALSE)
 #' @export
 pretty_print_summary <- function(
-    clean_results, digits = 3, simple = TRUE,
+    fit_results, digits = 3, simple = TRUE,
     save_html = NULL) {
-  table_to_print <- clean_results$major_parameters
+  table_to_print <- fit_results$major_parameters
 
   if (simple) {
     table_to_print <- table_to_print[

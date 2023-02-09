@@ -2,7 +2,7 @@
 #'
 #' @description Get casewise log-likelihood for complete data,
 #' useful for WAIC, LOOIC, ...
-#' @param clean_results A model fitted with minorbsem
+#' @param fit_results A model fitted with minorbsem
 #' @param include_residuals (LOGICAL) TRUE: Include minor factor
 #' residual covariances in model-implied covariance matrix;
 #' FALSE: Exclude them. If TRUE, different
@@ -35,15 +35,15 @@
 #' # Compare both models
 #' print(loo::loo_compare(loo_1, loo_2), simplify = FALSE)
 #' @export
-casewise_log_likelihood <- function(clean_results, include_residuals = FALSE) {
+casewise_log_likelihood <- function(fit_results, include_residuals = FALSE) {
   # data list must have full data
-  data_list <- clean_results$data_list
+  data_list <- fit_results$data_list
 
   if (data_list$has_data != 1) {
     stop("Cannot compute casewise log-likelihood without full data.")
   }
 
-  post_mat <- posterior::as_draws_matrix(clean_results$stan_fit)
+  post_mat <- posterior::as_draws_matrix(fit_results$stan_fit)
 
   m_vcov_list <- create_model_implied_vcov(
     post_mat, data_list,

@@ -4,10 +4,10 @@
 \alias{plot_residuals}
 \title{Visualize standardized residual covariances}
 \usage{
-plot_residuals(clean_results, method = "matrix")
+plot_residuals(fit_results, method = "matrix")
 }
 \arguments{
-\item{clean_results}{A model fitted with minorbsem}
+\item{fit_results}{A model fitted with minorbsem}
 
 \item{method}{(string) Either: "range" for lineranges (by default)
 or "matrix" for a matrix with point estimates in the lower half.}

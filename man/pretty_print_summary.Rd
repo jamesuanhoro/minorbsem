@@ -4,15 +4,10 @@
 \alias{pretty_print_summary}
 \title{Pretty print model results}
 \usage{
-pretty_print_summary(
-  clean_results,
-  digits = 3,
-  simple = TRUE,
-  save_html = NULL
-)
+pretty_print_summary(fit_results, digits = 3, simple = TRUE, save_html = NULL)
 }
 \arguments{
-\item{clean_results}{A model fitted with minorbsem.}
+\item{fit_results}{A model fitted with minorbsem.}
 
 \item{digits}{(positive integer) Number of decimal places to print in table}
 

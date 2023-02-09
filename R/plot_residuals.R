@@ -1,7 +1,7 @@
 #' Visualize standardized residual covariances
 #'
 #' @description Visualize distribution of standardized residual covariances
-#' @param clean_results A model fitted with minorbsem
+#' @param fit_results A model fitted with minorbsem
 #' @param method (string) Either: "range" for lineranges (by default)
 #' or "matrix" for a matrix with point estimates in the lower half.
 #' @returns ggplot object
@@ -11,7 +11,7 @@
 #'                   F3 =~ x7 + x8 + x9", HS)
 #' plot_residuals(fit)
 #' @export
-plot_residuals <- function(clean_results, method = "matrix") {
+plot_residuals <- function(fit_results, method = "matrix") {
   parameter <- `50%` <- `5%` <- `95%` <- lo <- hi <- item_2 <- item_1 <- NULL
 
   if (!method %in% c("range", "matrix")) {
@@ -19,7 +19,7 @@ plot_residuals <- function(clean_results, method = "matrix") {
   }
 
   clean_post_df <- prepare_stan_plot_data(
-    clean_results$stan_fit, clean_results$data_list
+    fit_results$stan_fit, fit_results$data_list
   )
   clean_post_df <- clean_post_df[clean_post_df$param_class == "re", ]
   clean_post_df$parameter <- gsub("re: ", "", clean_post_df$parameter)

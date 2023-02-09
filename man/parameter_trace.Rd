@@ -4,10 +4,10 @@
 \alias{parameter_trace}
 \title{Traceplots of parameter posterior distribution}
 \usage{
-parameter_trace(clean_results, param_type = c("rm", "co", "lo", "fc", "fv"))
+parameter_trace(fit_results, param_type = c("rm", "co", "lo", "fc", "fv"))
 }
 \arguments{
-\item{clean_results}{A model fitted with minorbsem}
+\item{fit_results}{A model fitted with minorbsem}
 
 \item{param_type}{(string vector) Choose from a list of options:
 "all" = all structural parameters;

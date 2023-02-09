@@ -2,7 +2,7 @@
 #'
 #' @description Produce traceplots of parameter posterior distribution,
 #' option to limit plot by type of parameter.
-#' @param clean_results A model fitted with minorbsem
+#' @param fit_results A model fitted with minorbsem
 #' @param param_type (string vector) Choose from a list of options:
 #' "all" = all structural parameters;
 #' "rm" = Root Mean square error of standardized residual covariances;
@@ -23,7 +23,7 @@
 #' parameter_trace(fit, param_type = c("rm", "lo", "fc"))
 #' @export
 parameter_trace <- function(
-    clean_results,
+    fit_results,
     param_type = c("rm", "co", "lo", "fc", "fv")) {
   .iteration <- value <- .chain <- NULL
 
@@ -31,7 +31,7 @@ parameter_trace <- function(
   validate_param_type(param_type)
 
   clean_post_df <- prepare_stan_plot_data(
-    clean_results$stan_fit, clean_results$data_list
+    fit_results$stan_fit, fit_results$data_list
   )
 
   p <- list()
