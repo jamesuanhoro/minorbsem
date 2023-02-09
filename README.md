@@ -36,7 +36,7 @@ You can install minorbsem using devtools:
 devtools::install_github("stonegold546/minorbsem")
 ```
 
-## A reasonably complete example
+## A reasonably complete demonstration
 
 ``` r
 library(minorbsem)
