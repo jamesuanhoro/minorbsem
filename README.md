@@ -57,6 +57,7 @@ parameter_trace(fit_1)
 
 # Examine all standardized residual covariances
 plot_residuals(fit_1)
+plot_residuals(fit_1, method = "range")
 
 ## Fit a second model and compare both using loo
 # A modified Holzinger-Swineford model
