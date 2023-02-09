@@ -48,7 +48,6 @@ parameters {
   vector[Nisqd2] resids;
   vector<lower = 0>[Nl] loadings; // loadings
   real<lower = 0> sigma_loadings; // sd of loadings, hyperparm
-  // vector<lower = 0>[Nf] phi_sd;
   vector<lower = 0>[Ni] res_sds; // item residual sds heteroskedastic
   vector<lower = 0, upper = 1>[Nf_corr] phi_cor_01;
   vector<lower = 0, upper = 1>[Nce] res_cor_01; // correlated errors on 01
@@ -61,8 +60,6 @@ model {
 
   loadings ~ normal(0, sigma_loadings);
   sigma_loadings ~ student_t(3, 0, sl_par);
-  // TODO: set prior as argument here or use standardized approach
-  // phi_sd ~ student_t(3, 0, 1);
 
   res_sds ~ student_t(3, 0, rs_par);
 
@@ -78,7 +75,6 @@ model {
     vector[Nce] res_cor = res_cor_01 * 2 - 1;
     matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
     matrix[Nf, Nf] Coef_mat = rep_matrix(0, Nf, Nf);
-    // vector[Nf] phi_var = square(phi_sd);
     vector[Nf_corr] phi_cor = phi_cor_01 * 2 - 1;
     matrix[Nf, Nf_corr] F_corr_pe = rep_matrix(0, Nf, Nf_corr);
     matrix[Nf, Nf] F_cov_mat;
@@ -105,11 +101,6 @@ model {
           if (loading_pattern[i, j] != 0) {
             pos_3[3] += 1;
             Load_mat[i, j] = loadings[pos_3[3]];
-            // if (i == markers[j]) Load_mat[i, j] = 1;
-            // else {
-            //   pos_3[3] += 1;
-            //   Load_mat[i, j] = loadings[pos_3[3]];
-            // }
           }
         }
       }
@@ -118,10 +109,6 @@ model {
     Lambda_One_min_Beta_inv = Load_mat * inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
 
     for (i in 1:Nf_corr) {
-      // F_corr_pe[F_corr_mat[i, 1], i] = sqrt(
-      //   abs(phi_cor[i]) * phi_var[F_corr_mat[i, 1]]);
-      // F_corr_pe[F_corr_mat[i, 2], i] = sign(phi_cor[i]) * sqrt(
-      //   abs(phi_cor[i]) * phi_var[F_corr_mat[i, 2]]);
       F_corr_pe[F_corr_mat[i, 1], i] = sqrt(abs(phi_cor[i]));
       F_corr_pe[F_corr_mat[i, 2], i] = sign(phi_cor[i]) * sqrt(abs(phi_cor[i]));
     }
@@ -167,7 +154,6 @@ model {
 generated quantities {
   matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
   matrix[Nf, Nf] Coef_mat = rep_matrix(0, Nf, Nf);
-  // vector[Nf] phi_var = square(phi_sd);
   vector[Nf_corr] phi_cor = phi_cor_01 * 2 - 1;
   vector[Ni] res_var = square(res_sds);
   vector[Nce] res_cor = res_cor_01 * 2 - 1;
@@ -190,11 +176,6 @@ generated quantities {
         if (loading_pattern[i, j] != 0) {
           pos_3[3] += 1;
           Load_mat[i, j] = loadings[pos_3[3]];
-          // if (i == markers[j]) Load_mat[i, j] = 1;
-          // else {
-          //   pos_3[3] += 1;
-          //   Load_mat[i, j] = loadings[pos_3[3]];
-          // }
         }
       }
     }

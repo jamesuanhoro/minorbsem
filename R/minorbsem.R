@@ -112,7 +112,8 @@ minorbsem <- function(
     "and the first time you run an SEM"
   ))
 
-  # TODO: This should be a package-level global config setting up by the user
+  # TODO: #1 Entire program assumes package library storage location
+  # is modifiable by user, ensure this is the case?
   cmdstan_loc_file <- system.file("cmdstan_loc", package = "minorbsem")
   cmdstan_loc <- readLines(cmdstan_loc_file)
   while (cmdstan_loc == "") {
