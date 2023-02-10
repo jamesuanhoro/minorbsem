@@ -34,7 +34,7 @@
 #' @param sc_par (positive real) The scale parameter of the
 #' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 #' deviations of coefficients; SD(coefs) vary by outcome.
-#' @returns An object of class mbsem_object
+#' @returns An object of class mbsem
 #' @examples
 #' minorbsem("# latent variable definitions
 #'            F1 =~ x1 + x2 + x3

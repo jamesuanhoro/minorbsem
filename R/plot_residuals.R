@@ -1,7 +1,7 @@
 #' Visualize standardized residual covariances
 #'
 #' @description Visualize distribution of standardized residual covariances
-#' @param object (mbsem_object) An object of class mbsem_object
+#' @param object (mbsem) An object of class mbsem
 #' returned by minorbsem.
 #' @param method (string) Either: "range" for lineranges (by default)
 #' or "matrix" for a matrix with point estimates in the lower half.

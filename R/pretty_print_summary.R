@@ -2,7 +2,7 @@
 #'
 #' @description Nice printing of model results,
 #' optionally produces HTML document
-#' @param object (mbsem_object) An object of class mbsem_object
+#' @param object (mbsem) An object of class mbsem
 #' returned by minorbsem.
 #' @param digits (positive integer) Number of decimal places to print in table
 #' @param simple (Logical) TRUE to produce table with less information
@@ -20,7 +20,7 @@
 pretty_print_summary <- function(
     object, digits = 3, simple = TRUE,
     save_html = NULL) {
-  stopifnot(inherits(object, "mbsem_object"))
+  stopifnot(inherits(object, "mbsem"))
 
   table_to_print <- object@major_parameters
 

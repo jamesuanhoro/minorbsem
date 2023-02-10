@@ -2,13 +2,11 @@
 #' @description A function that cleans up model returned by Stan
 #' @param stan_fit Stan fit
 #' @param data_list Data list object passed to Stan
-#' @returns An mbsem_object
+#' @returns An mbsem
 #' @keywords internal
 clean_up_stan_fit <- function(
     stan_fit,
     data_list) {
-  result <- new_mbsem_object()
-
   indicator_labels <- rownames(data_list$loading_pattern)
   factor_labels <- colnames(data_list$loading_pattern)
 
@@ -120,14 +118,14 @@ clean_up_stan_fit <- function(
     )]
   }
 
-  result@major_parameters <- as.data.frame(rbind(
+  major_parameters <- as.data.frame(rbind(
     rms_result, coef_result, load_result, phi_result, pv_result,
     rv_result, rc_result
   ))
 
-  result@major_parameters$ess_bulk <- round(result@major_parameters$ess_bulk, 1)
-  result@major_parameters$ess_tail <- round(result@major_parameters$ess_tail, 1)
-  result@major_parameters <- result@major_parameters[
+  major_parameters$ess_bulk <- round(major_parameters$ess_bulk, 1)
+  major_parameters$ess_tail <- round(major_parameters$ess_tail, 1)
+  major_parameters <- major_parameters[
     ,
     c(
       "group", "from", "op", "to",
@@ -137,12 +135,18 @@ clean_up_stan_fit <- function(
     )
   ]
 
-  result@minor_factor_matrix <- as.data.frame(posterior::summarise_draws(
+  minor_factor_matrix <- as.data.frame(posterior::summarise_draws(
     posterior::as_draws(stan_fit, variable = "Resid")
   ))
 
-  result@data_list <- data_list
-  result@stan_fit <- stan_fit
+  mbsem_result <- new_mbsem()
+  mbsem_result <- methods::initialize(
+    mbsem_result,
+    major_parameters = major_parameters,
+    minor_factor_matrix = minor_factor_matrix,
+    data_list = data_list,
+    stan_fit = stan_fit
+  )
 
-  return(result)
+  return(mbsem_result)
 }

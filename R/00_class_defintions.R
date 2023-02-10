@@ -4,7 +4,7 @@ methods::setClass("R6")
 methods::setClassUnion("stan_fit_classes", c("CmdStanMCMC", "CmdStanFit", "R6"))
 
 methods::setClass(
-  "mbsem_object",
+  "mbsem",
   methods::representation(
     major_parameters = "data.frame",
     minor_factor_matrix = "data.frame",
@@ -13,6 +13,6 @@ methods::setClass(
   )
 )
 
-new_mbsem_object <- function() {
-  methods::new("mbsem_object")
+new_mbsem <- function() {
+  methods::new("mbsem")
 }

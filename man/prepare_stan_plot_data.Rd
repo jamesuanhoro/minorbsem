@@ -7,7 +7,7 @@
 prepare_stan_plot_data(object)
 }
 \arguments{
-\item{object}{(mbsem_object) An object of class mbsem_object
+\item{object}{(mbsem) An object of class mbsem
 returned by minorbsem.}
 }
 \value{

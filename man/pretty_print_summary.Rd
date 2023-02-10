@@ -7,7 +7,7 @@
 pretty_print_summary(object, digits = 3, simple = TRUE, save_html = NULL)
 }
 \arguments{
-\item{object}{(mbsem_object) An object of class mbsem_object
+\item{object}{(mbsem) An object of class mbsem
 returned by minorbsem.}
 
 \item{digits}{(positive integer) Number of decimal places to print in table}

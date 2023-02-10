@@ -76,7 +76,7 @@ Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 deviations of coefficients; SD(coefs) vary by outcome.}
 }
 \value{
-An object of class mbsem_object
+An object of class mbsem
 }
 \description{
 The major function to fit models

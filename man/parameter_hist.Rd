@@ -7,7 +7,7 @@
 parameter_hist(object, param_type = c("rm", "co", "lo", "fc", "fv"))
 }
 \arguments{
-\item{object}{(mbsem_object) An object of class mbsem_object
+\item{object}{(mbsem) An object of class mbsem
 returned by minorbsem.}
 
 \item{param_type}{(string vector) Choose from a list of options:

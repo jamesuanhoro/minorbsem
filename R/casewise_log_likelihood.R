@@ -2,7 +2,7 @@
 #'
 #' @description Get casewise log-likelihood for complete data,
 #' useful for WAIC, LOOIC, ...
-#' @param object (mbsem_object) An object of class mbsem_object
+#' @param object (mbsem) An object of class mbsem
 #' returned by minorbsem.
 #' @param include_residuals (LOGICAL) TRUE: Include minor factor
 #' residual covariances in model-implied covariance matrix;

@@ -1,23 +1,30 @@
 #' @importFrom methods show
 methods::setMethod(
   "show",
-  "mbsem_object",
+  "mbsem",
   function(object) {
     pretty_print_summary(object)
   }
 )
 
+methods::setGeneric("plot")
 methods::setMethod(
-  "hist",
-  "mbsem_object",
-  function(x, param_type = c("rm", "co", "lo", "fc", "fv")) {
-    parameter_hist(x, param_type = param_type)
+  "plot",
+  "mbsem",
+  function(x, type = "hist", param_type = c("rm", "co", "lo", "fc", "fv")) {
+    stopifnot(type %in% c("hist", "trace"))
+
+    if (type == "hist") {
+      parameter_hist(x, param_type = param_type)
+    } else if (type == "trace") {
+      parameter_trace(x, param_type = param_type)
+    }
   }
 )
 
 methods::setMethod(
   "residuals",
-  "mbsem_object",
+  "mbsem",
   function(object, method = "matrix") {
     stopifnot(method %in% c("table", "matrix", "range"))
 
@@ -31,7 +38,7 @@ methods::setMethod(
 
 methods::setMethod(
   "logLik",
-  "mbsem_object",
+  "mbsem",
   function(object, include_residuals = FALSE) {
     casewise_log_likelihood(object, include_residuals)
   }

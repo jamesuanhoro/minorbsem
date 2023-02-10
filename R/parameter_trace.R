@@ -2,7 +2,7 @@
 #'
 #' @description Produce traceplots of parameter posterior distribution,
 #' option to limit plot by type of parameter.
-#' @param object (mbsem_object) An object of class mbsem_object
+#' @param object (mbsem) An object of class mbsem
 #' returned by minorbsem.
 #' @param param_type (string vector) Choose from a list of options:
 #' "all" = all structural parameters;

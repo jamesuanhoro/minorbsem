@@ -12,7 +12,7 @@ clean_up_stan_fit(stan_fit, data_list)
 \item{data_list}{Data list object passed to Stan}
 }
 \value{
-An mbsem_object
+An mbsem
 }
 \description{
 A function that cleans up model returned by Stan
