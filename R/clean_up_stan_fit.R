@@ -145,7 +145,8 @@ clean_up_stan_fit <- function(
     major_parameters = major_parameters,
     minor_factor_matrix = minor_factor_matrix,
     data_list = data_list,
-    stan_fit = stan_fit
+    stan_fit = stan_fit,
+    version = minorbsem_version()
   )
 
   return(mbsem_result)

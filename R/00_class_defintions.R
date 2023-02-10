@@ -9,7 +9,8 @@ methods::setClass(
     major_parameters = "data.frame",
     minor_factor_matrix = "data.frame",
     data_list = "list",
-    stan_fit = "stan_fit_classes"
+    stan_fit = "stan_fit_classes",
+    version = "character"
   )
 )
 

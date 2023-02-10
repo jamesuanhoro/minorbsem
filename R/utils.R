@@ -1,5 +1,18 @@
 # Helper functions in package
 
+#' Get package version function
+#' @returns Package version as string
+#' @keywords internal
+minorbsem_version <- function() {
+  desc_file <- readLines(system.file("DESCRIPTION", package = "minorbsem"))
+  version_line <- which(sapply(
+    desc_file, function(line) regexpr(pattern = "Version\\:", line) > 0
+  ))
+  version_info <- desc_file[version_line]
+  version <- trimws(gsub("Version\\:", "", version_info))
+  return(version)
+}
+
 #' Add row header helper function
 #' @description A function that adds row headers to kable object
 #' @param kbl_object Kable object

@@ -23,6 +23,7 @@
     \item{\code{minor_factor_matrix}:}{Summary statistics for standardized residual covariances}
     \item{\code{data_list}:}{Data used to fit the model}
     \item{\code{stan_fit}:}{Fitted CmdStan model}
+    \item{\code{version}:}{Package version used to fit model}
   }
 }
 \section{Methods}{
