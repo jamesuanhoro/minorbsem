@@ -20,6 +20,7 @@ Imports:
     ggplot2,
     kableExtra,
     lavaan,
+    methods,
     mvtnorm,
     posterior,
     scales

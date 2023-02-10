@@ -2,7 +2,8 @@
 #'
 #' @description Produce histograms of parameter posterior distribution,
 #' option to limit plot by type of parameter.
-#' @param fit_results A model fitted with minorbsem
+#' @param object (mbsem_object) An object of class mbsem_object
+#' returned by minorbsem.
 #' @param param_type (string vector) Choose from a list of options:
 #' "all" = all structural parameters;
 #' "rm" = Root Mean square error of standardized residual covariances;
@@ -23,16 +24,14 @@
 #' parameter_hist(fit, param_type = c("rm", "lo", "fc"))
 #' @export
 parameter_hist <- function(
-    fit_results,
+    object,
     param_type = c("rm", "co", "lo", "fc", "fv")) {
   value <- NULL
 
   # param_type must in options
   validate_param_type(param_type)
 
-  clean_post_df <- prepare_stan_plot_data(
-    fit_results$stan_fit, fit_results$data_list
-  )
+  clean_post_df <- prepare_stan_plot_data(object)
 
   p <- list()
   if (any(param_type == "all")) {

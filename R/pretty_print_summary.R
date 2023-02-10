@@ -2,7 +2,8 @@
 #'
 #' @description Nice printing of model results,
 #' optionally produces HTML document
-#' @param fit_results A model fitted with minorbsem.
+#' @param object (mbsem_object) An object of class mbsem_object
+#' returned by minorbsem.
 #' @param digits (positive integer) Number of decimal places to print in table
 #' @param simple (Logical) TRUE to produce table with less information
 #' about parameters;
@@ -17,9 +18,11 @@
 #' pretty_print_summary(fit, simple = FALSE)
 #' @export
 pretty_print_summary <- function(
-    fit_results, digits = 3, simple = TRUE,
+    object, digits = 3, simple = TRUE,
     save_html = NULL) {
-  table_to_print <- fit_results$major_parameters
+  stopifnot(inherits(object, "mbsem_object"))
+
+  table_to_print <- object@major_parameters
 
   if (simple) {
     table_to_print <- table_to_print[

@@ -4,10 +4,11 @@
 \alias{parameter_hist}
 \title{Histogram of parameter posterior distribution}
 \usage{
-parameter_hist(fit_results, param_type = c("rm", "co", "lo", "fc", "fv"))
+parameter_hist(object, param_type = c("rm", "co", "lo", "fc", "fv"))
 }
 \arguments{
-\item{fit_results}{A model fitted with minorbsem}
+\item{object}{(mbsem_object) An object of class mbsem_object
+returned by minorbsem.}
 
 \item{param_type}{(string vector) Choose from a list of options:
 "all" = all structural parameters;
