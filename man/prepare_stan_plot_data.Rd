@@ -8,7 +8,7 @@ prepare_stan_plot_data(object)
 }
 \arguments{
 \item{object}{(mbsem) An object of class mbsem
-returned by minorbsem.}
+returned by \code{\link{minorbsem}}.}
 }
 \value{
 A data.frame that is ready for plotting

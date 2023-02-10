@@ -8,7 +8,7 @@ parameter_hist(object, param_type = c("rm", "co", "lo", "fc", "fv"))
 }
 \arguments{
 \item{object}{(mbsem) An object of class mbsem
-returned by minorbsem.}
+returned by \code{\link{minorbsem}}.}
 
 \item{param_type}{(string vector) Choose from a list of options:
 "all" = all structural parameters;

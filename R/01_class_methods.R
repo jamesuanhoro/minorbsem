@@ -7,6 +7,7 @@ methods::setMethod(
   }
 )
 
+#' @export
 methods::setGeneric("plot")
 methods::setMethod(
   "plot",

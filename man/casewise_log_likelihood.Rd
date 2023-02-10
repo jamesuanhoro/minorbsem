@@ -8,7 +8,7 @@ casewise_log_likelihood(object, include_residuals = FALSE)
 }
 \arguments{
 \item{object}{(mbsem) An object of class mbsem
-returned by \code{minorbsem}.}
+returned by \code{\link{minorbsem}}.}
 
 \item{include_residuals}{(LOGICAL) TRUE: Include minor factor
 residual covariances in model-implied covariance matrix;
