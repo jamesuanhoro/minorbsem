@@ -34,7 +34,7 @@
       If \code{type = "hist"}, returns histogram(s).
       If \code{type = "trace"}, returns traceplot(s).
       See \code{\link{parameter_hist}} or \code{\link{parameter_trace}} for
-      elaboration of \code{param_type} arguments
+      elaboration of \code{param_type} argument.
     }
     \item{logLik}{
       \code{signature(object = "mbsem", include_residuals = FALSE)}:
