@@ -285,7 +285,12 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
       all_lo = all_lo, all_ev = all_ev, all_ph = all_ph
     )
   } else if (data_list$sem_indicator == 1) {
-    all_co <- paste0("Coef_mat[", apply(which(
+    # Use _u Coefs and Loads as these are unstandardized
+    all_lo <- paste0("Load_mat_u[", apply(which(
+      data_list$loading_pattern != 2,
+      arr.ind = TRUE
+    ), 1, paste0, collapse = ","), "]")
+    all_co <- paste0("Coef_mat_u[", apply(which(
       data_list$coef_pattern != 2,
       arr.ind = TRUE
     ), 1, paste0, collapse = ","), "]")

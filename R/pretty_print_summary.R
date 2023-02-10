@@ -56,10 +56,6 @@ pretty_print_summary <- function(
   )
   result <- add_row_header(
     result, table_to_print,
-    "Factor variances", "(factor_x ~~ factor_x)"
-  )
-  result <- add_row_header(
-    result, table_to_print,
     "Residual variances", "(indicator_x ~~ indicator_x)"
   )
   result <- add_row_header(
