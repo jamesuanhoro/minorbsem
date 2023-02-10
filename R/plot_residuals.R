@@ -2,7 +2,7 @@
 #'
 #' @description Visualize distribution of standardized residual covariances
 #' @param object (mbsem) An object of class mbsem
-#' returned by minorbsem.
+#' returned by \code{\link{minorbsem}}.
 #' @param method (string) Either: "range" for lineranges (by default)
 #' or "matrix" for a matrix with point estimates in the lower half.
 #' @returns ggplot object

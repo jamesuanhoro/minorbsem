@@ -1,7 +1,7 @@
 #' Pre-plotting Stan fit helper function
 #' @description A function that cleans up model results to prepare for plotting
 #' @param object (mbsem) An object of class mbsem
-#' returned by minorbsem.
+#' returned by \code{\link{minorbsem}}.
 #' @returns A data.frame that is ready for plotting
 #' @keywords internal
 prepare_stan_plot_data <- function(object) {

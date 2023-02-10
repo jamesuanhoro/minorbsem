@@ -3,7 +3,7 @@
 #' @description Nice printing of model results,
 #' optionally produces HTML document
 #' @param object (mbsem) An object of class mbsem
-#' returned by minorbsem.
+#' returned by \code{\link{minorbsem}}.
 #' @param digits (positive integer) Number of decimal places to print in table
 #' @param simple (Logical) TRUE to produce table with less information
 #' about parameters;

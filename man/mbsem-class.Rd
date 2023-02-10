@@ -39,8 +39,8 @@
     \item{logLik}{
       \code{signature(object = "mbsem", include_residuals = FALSE)}:
       Returns the casewise log-likelihood as long as the full data is available.
-      \code{include_residuals = FALSE} ensures that the standardized residual
-      covariances are not included in computing the log-likelihood.
+      \code{include_residuals = FALSE} ensures the minor factor residual
+      covariances are not included when computing the log-likelihood.
       See \code{\link{casewise_log_likelihood}} for more details.
     }
     \item{residuals}{
@@ -65,9 +65,11 @@
 \code{\link{pretty_print_summary}}
 }
 \examples{
-fit_1 <- minorbsem("F1 =~ x1 + x2 + x3
-                    F2 =~ x4 + x5 + x6
-                    F3 =~ x7 + x8 + x9", HS)
-fit_1
+  \dontrun{
+    fit_1 <- minorbsem("F1 =~ x1 + x2 + x3
+                        F2 =~ x4 + x5 + x6
+                        F3 =~ x7 + x8 + x9", HS)
+    plot(fit_1)
+  }
 }
 \keyword{classes}

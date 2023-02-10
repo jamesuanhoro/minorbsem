@@ -3,7 +3,7 @@
 #' @description Produce traceplots of parameter posterior distribution,
 #' option to limit plot by type of parameter.
 #' @param object (mbsem) An object of class mbsem
-#' returned by minorbsem.
+#' returned by \code{\link{minorbsem}}.
 #' @param param_type (string vector) Choose from a list of options:
 #' "all" = all structural parameters;
 #' "rm" = Root Mean square error of standardized residual covariances;

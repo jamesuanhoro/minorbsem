@@ -3,13 +3,30 @@
 #' @description Get casewise log-likelihood for complete data,
 #' useful for WAIC, LOOIC, ...
 #' @param object (mbsem) An object of class mbsem
-#' returned by minorbsem.
+#' returned by \code{\link{minorbsem}}.
 #' @param include_residuals (LOGICAL) TRUE: Include minor factor
 #' residual covariances in model-implied covariance matrix;
 #' FALSE: Exclude them. If TRUE, different
 #' models fit to the data will hardly be distinguishable.
+#' See details below.
 #' @returns matrix (posterior iterations BY sample size)
 #' containing log-likelihood
+#' @details
+#' If comparing two models fit using \code{\link{minorbsem}}, it is
+#' reasonable to
+#' exclude the residual covariance matrix that captures the influences
+#' of minor factors when computing the log-likelihood. If they are not
+#' excluded, the log-likelihood will be near identical for models with
+#' different structures. This is because the minor factor residual
+#' covariances capture the degree of misspecification with the hypothesized
+#' structure.
+#'
+#' The option to set \code{include_residuals = TRUE} is included to allow
+#' comparison of models fit with minorbsem and other packages.
+#' When the influence of minor factors is non-trivial, one can expect
+#' that models fit with minorbsem will have better fit to the data
+#' since minorbsem models simultaneously model the degree of
+#' model misspecification.
 #' @examples
 #' # Comparing two models using LOOCV
 #' fit_1 <- minorbsem("F1 =~ x1 + x2 + x3
