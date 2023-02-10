@@ -4,7 +4,7 @@
 \alias{parameter_hist}
 \title{Histogram of parameter posterior distribution}
 \usage{
-parameter_hist(object, param_type = c("rm", "co", "lo", "fc", "fv"))
+parameter_hist(object, param_type = c("rm", "co", "lo", "fc"))
 }
 \arguments{
 \item{object}{(mbsem) An object of \code{\link{mbsem-class}}
@@ -17,7 +17,6 @@ returned by \code{\link{minorbsem}}.}
 "ev" = Error Variances;
 "rc" = Residual Correlations;
 "fc" = Factor Correlations;
-"fv" = Factor Variances;
 "co" = latent regression COefficients;
 "re" = standardized REsidual covariances}
 }

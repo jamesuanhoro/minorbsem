@@ -158,6 +158,8 @@ model {
   }
 }
 generated quantities {
+  matrix[Ni, Nf] Load_mat_u = rep_matrix(0, Ni, Nf);
+  matrix[Nf, Nf] Coef_mat_u = rep_matrix(0, Nf, Nf);
   matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
   matrix[Nf, Nf] Coef_mat = rep_matrix(0, Nf, Nf);
   vector[Nf] phi_var = square(phi_sd);
@@ -168,26 +170,60 @@ generated quantities {
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
 
   {
-    array[3] int pos_3 = rep_array(0, 3);
-    for (i in 1:Nf) {
-      if (sum(coef_pattern[i, ]) > 0) pos_3[1] += 1;
-      for (j in 1:Nf) {
-        if (coef_pattern[i, j] == 1) {
-          pos_3[2] += 1;
-          Coef_mat[i, j] = sigma_coefs[pos_3[1]] * coefs[pos_3[2]];
-        }
-      }
-    }
-    for (i in 1:Ni) {
-      for (j in 1:Nf) {
-        if (loading_pattern[i, j] != 0) {
-          if (i == markers[j]) Load_mat[i, j] = 1;
-          else {
-            pos_3[3] += 1;
-            Load_mat[i, j] = loadings[pos_3[3]];
+    matrix[Nf, Nf_corr] F_corr_pe = rep_matrix(0, Nf, Nf_corr);
+    matrix[Nf, Nf] F_cov_mat;
+    vector[Nf] F_var_resid;
+    matrix[Nf, Nf] One_min_Beta_inv;
+    vector[Nf] d_rt_c_hat;
+
+    {
+      array[3] int pos_3 = rep_array(0, 3);
+      for (i in 1:Nf) {
+        if (sum(coef_pattern[i, ]) > 0) pos_3[1] += 1;
+        for (j in 1:Nf) {
+          if (coef_pattern[i, j] == 1) {
+            pos_3[2] += 1;
+            Coef_mat[i, j] = sigma_coefs[pos_3[1]] * coefs[pos_3[2]];
           }
         }
       }
+      for (i in 1:Ni) {
+        for (j in 1:Nf) {
+          if (loading_pattern[i, j] != 0) {
+            if (i == markers[j]) Load_mat[i, j] = 1;
+            else {
+              pos_3[3] += 1;
+              Load_mat[i, j] = loadings[pos_3[3]];
+            }
+          }
+        }
+      }
+    }
+    Coef_mat_u = Coef_mat;
+    Load_mat_u = Load_mat;
+
+    One_min_Beta_inv = inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
+
+    for (i in 1:Nf_corr) {
+      F_corr_pe[F_corr_mat[i, 1], i] = sqrt(
+        abs(phi_cor[i]) * phi_var[F_corr_mat[i, 1]]);
+      F_corr_pe[F_corr_mat[i, 2], i] = sign(phi_cor[i]) * sqrt(
+        abs(phi_cor[i]) * phi_var[F_corr_mat[i, 2]]);
+    }
+
+    F_cov_mat = tcrossprod(F_corr_pe);
+    F_var_resid = phi_var - diagonal(F_cov_mat);
+
+    // Bollen (1989), pg 350
+    d_rt_c_hat = sqrt(diagonal(quad_form(
+      add_diag(F_cov_mat, F_var_resid),
+      One_min_Beta_inv'
+    )));
+
+    for (j in 1:Nf) {
+      Load_mat[, j] *= d_rt_c_hat[j];
+      Coef_mat[, j] *= d_rt_c_hat[j];
+      Coef_mat[j, ] /= d_rt_c_hat[j];
     }
   }
 

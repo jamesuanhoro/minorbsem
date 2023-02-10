@@ -51,7 +51,6 @@ prepare_stan_plot_data <- function(object) {
 
   coef_result <- matrix(nrow = nrow(rv_result), ncol = 0)
   phi_result <- matrix(nrow = nrow(rv_result), ncol = 0)
-  pv_result <- matrix(nrow = nrow(rv_result), ncol = 0)
   if (data_list$sem_indicator == 0) {
     phi_result <- posterior::as_draws_df(
       posterior::as_draws(stan_fit, variable = "phi_mat")
@@ -73,15 +72,6 @@ prepare_stan_plot_data <- function(object) {
         FALSE, data_list$F_corr_mat[, 1], data_list$F_corr_mat[, 2]
       )
     }
-
-    # Get factor variances
-    pv_result <- posterior::as_draws_df(
-      posterior::as_draws(stan_fit, variable = "phi_var")
-    )
-    pv_result <- rename_post_df_columns(
-      pv_result, factor_labels, factor_labels, "fv:", "~~",
-      TRUE, "phi_var\\[|\\]", "phi_var\\[|\\]"
-    )
 
     # Get factor coefficients
     coef_idxs <- paste0("Coef_mat[", apply(which(
@@ -106,7 +96,7 @@ prepare_stan_plot_data <- function(object) {
   )
 
   result <- cbind(
-    rms_result, coef_result, load_result, phi_result, pv_result,
+    rms_result, coef_result, load_result, phi_result,
     rv_result, rc_result, resid_result
   )
 
@@ -139,7 +129,7 @@ prepare_stan_plot_data <- function(object) {
   )
   result_long$param_class <- factor(
     result_long$param_class,
-    c("rm", "co", "lo", "fc", "fv", "ev", "rc", "re")
+    c("rm", "co", "lo", "fc", "ev", "rc", "re")
   )
 
   return(result_long)
