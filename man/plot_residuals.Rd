@@ -7,7 +7,7 @@
 plot_residuals(object, method = "matrix")
 }
 \arguments{
-\item{object}{(mbsem) An object of class mbsem
+\item{object}{(mbsem) An object of \code{\link{mbsem-class}}
 returned by \code{\link{minorbsem}}.}
 
 \item{method}{(string) Either: "range" for lineranges (by default)

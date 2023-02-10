@@ -7,7 +7,7 @@
 parameter_hist(object, param_type = c("rm", "co", "lo", "fc", "fv"))
 }
 \arguments{
-\item{object}{(mbsem) An object of class mbsem
+\item{object}{(mbsem) An object of \code{\link{mbsem-class}}
 returned by \code{\link{minorbsem}}.}
 
 \item{param_type}{(string vector) Choose from a list of options:

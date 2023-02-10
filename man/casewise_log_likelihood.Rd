@@ -7,7 +7,7 @@
 casewise_log_likelihood(object, include_residuals = FALSE)
 }
 \arguments{
-\item{object}{(mbsem) An object of class mbsem
+\item{object}{(mbsem) An object of \code{\link{mbsem-class}}
 returned by \code{\link{minorbsem}}.}
 
 \item{include_residuals}{(LOGICAL) TRUE: Include minor factor

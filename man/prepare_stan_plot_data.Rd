@@ -7,7 +7,7 @@
 prepare_stan_plot_data(object)
 }
 \arguments{
-\item{object}{(mbsem) An object of class mbsem
+\item{object}{(mbsem) An object of \code{\link{mbsem-class}}
 returned by \code{\link{minorbsem}}.}
 }
 \value{
