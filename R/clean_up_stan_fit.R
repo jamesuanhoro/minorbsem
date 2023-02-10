@@ -2,7 +2,7 @@
 #' @description A function that cleans up model returned by Stan
 #' @param stan_fit Stan fit
 #' @param data_list Data list object passed to Stan
-#' @returns An mbsem
+#' @returns An object of \code{\link{mbsem-class}}
 #' @keywords internal
 clean_up_stan_fit <- function(
     stan_fit,
