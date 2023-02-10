@@ -2,7 +2,8 @@
 #'
 #' @description Get casewise log-likelihood for complete data,
 #' useful for WAIC, LOOIC, ...
-#' @param fit_results A model fitted with minorbsem
+#' @param object (mbsem_object) An object of class mbsem_object
+#' returned by minorbsem.
 #' @param include_residuals (LOGICAL) TRUE: Include minor factor
 #' residual covariances in model-implied covariance matrix;
 #' FALSE: Exclude them. If TRUE, different
@@ -16,7 +17,7 @@
 #'                     F3 =~ x7 + x8 + x9", HS)
 #' # Compute case wise log-likelihood, exclude minor factor residuals
 #' ll_mat_1 <- casewise_log_likelihood(fit_1, include_residuals = FALSE)
-#' chain_id <- posterior::as_draws_df(fit_1$stan_fit)$.chain
+#' chain_id <- posterior::as_draws_df(fit_1@stan_fit)$.chain
 #' loo_1 <- loo::loo(
 #'   ll_mat_1,
 #'   r_eff = loo::relative_eff(ll_mat_1, chain_id = chain_id)
@@ -35,15 +36,15 @@
 #' # Compare both models
 #' print(loo::loo_compare(loo_1, loo_2), simplify = FALSE)
 #' @export
-casewise_log_likelihood <- function(fit_results, include_residuals = FALSE) {
+casewise_log_likelihood <- function(object, include_residuals = FALSE) {
   # data list must have full data
-  data_list <- fit_results$data_list
+  data_list <- object@data_list
 
   if (data_list$has_data != 1) {
     stop("Cannot compute casewise log-likelihood without full data.")
   }
 
-  post_mat <- posterior::as_draws_matrix(fit_results$stan_fit)
+  post_mat <- posterior::as_draws_matrix(object@stan_fit)
 
   m_vcov_list <- create_model_implied_vcov(
     post_mat, data_list,

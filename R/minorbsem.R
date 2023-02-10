@@ -34,7 +34,7 @@
 #' @param sc_par (positive real) The scale parameter of the
 #' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 #' deviations of coefficients; SD(coefs) vary by outcome.
-#' @returns A list
+#' @returns An object of class mbsem_object
 #' @examples
 #' minorbsem("# latent variable definitions
 #'            F1 =~ x1 + x2 + x3
@@ -161,8 +161,8 @@ minorbsem <- function(
     parallel_chains = ncores
   )
 
-  fit_results <- clean_up_stan_fit(stan_fit, data_list)
-  pretty_print_summary(fit_results)
+  mbsem_results <- clean_up_stan_fit(stan_fit, data_list)
+  show(mbsem_results)
 
-  return(fit_results)
+  return(mbsem_results)
 }
