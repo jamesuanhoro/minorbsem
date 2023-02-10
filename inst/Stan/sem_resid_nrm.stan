@@ -61,7 +61,7 @@ model {
 
   loadings ~ normal(0, sigma_loadings);
   sigma_loadings ~ student_t(3, 0, sl_par);
-  // TODO: set prior as argument here or use standardized approach
+  // TODO: #8 set prior as argument here or use standardized approach
   phi_sd ~ student_t(3, 0, 1);
 
   res_sds ~ student_t(3, 0, rs_par);
