@@ -69,7 +69,7 @@ fit_2 <- minorbsem("F1 =~ x1 + x2 + x3 + x9
 # Compute case wise log-likelihood, exclude minor factor residuals
 ll_mat_1 <- casewise_log_likelihood(fit_1, include_residuals = FALSE)
 ll_mat_2 <- casewise_log_likelihood(fit_2, include_residuals = FALSE)
-chain_id <- posterior::as_draws_df(fit_1$stan_fit)$.chain
+chain_id <- posterior::as_draws_df(fit_1@stan_fit)$.chain
 
 # loo for model 1
 loo_1 <- loo::loo(
