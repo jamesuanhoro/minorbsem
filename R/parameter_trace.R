@@ -11,6 +11,7 @@
 #' "ev" = Error Variances;
 #' "rc" = Residual Correlations;
 #' "fc" = Factor Correlations;
+#' "rsq" = latent variable R SQuare;
 #' "co" = latent regression COefficients;
 #' "re" = standardized REsidual covariances
 #' @returns ggplot object
@@ -24,7 +25,7 @@
 #' @export
 parameter_trace <- function(
     object,
-    param_type = c("rm", "co", "lo", "fc")) {
+    param_type = c("rm", "co", "lo", "fc", "rsq")) {
   .iteration <- value <- .chain <- NULL
 
   # param_type must in options

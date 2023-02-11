@@ -171,7 +171,9 @@ generated quantities {
   matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
   matrix[Nf, Nf] Coef_mat = rep_matrix(0, Nf, Nf);
   vector[Nf] phi_var = square(phi_sd);
+  vector[Nf] r_square;
   vector[Nf_corr] phi_cor = phi_cor_01 * 2 - 1;
+  vector[Ni] res_var_u = square(res_sds);
   vector[Ni] res_var = square(res_sds);
   vector[Nce] res_cor = res_cor_01 * 2 - 1;
   vector[Nce] res_cov;
@@ -243,7 +245,7 @@ generated quantities {
       Load_mat[, j] *= d_rt_c_hat[j];
       Coef_mat[, j] *= d_rt_c_hat[j];
       Coef_mat[j, ] /= d_rt_c_hat[j];
-      phi_var[j] /= square(d_rt_c_hat[j]);
+      r_square[j] = 1.0 - phi_var[j] / square(d_rt_c_hat[j]);
     }
     for (i in 1:Ni) {
       Load_mat[i, ] /= total_sd[i];
