@@ -10,7 +10,6 @@ data {
   int Np;
   int Ni;
   matrix[Ni, Ni] S;
-  real<lower = 1> shape_beta; // beta prior shape for phi
   int Nf;
   int Nce;
   array[Nce, 2] int error_mat; // cor error matrix
@@ -19,10 +18,11 @@ data {
   int Nf_corr;
   array[Nf_corr, 2] int F_corr_mat;
   array[Nf, Nf] int coef_pattern;
-  real sc_par;  // sigma_coefficients parameter
-  real sl_par;  // sigma_loading parameter
-  real rs_par;  // residual sd parameter
-  real rc_par;  // residual corr parameter
+  real<lower = 0> sc_par;  // sigma_coefficients parameter
+  real<lower = 0> sl_par;  // sigma_loading parameter
+  real<lower = 0> rs_par;  // residual sd parameter
+  real<lower = 1> rc_par;  // residual corr parameter
+  real<lower = 1> fc_par; // beta prior shape for phi
   int<lower = 1, upper = 2> method; // which method
 }
 transformed data {
@@ -73,7 +73,7 @@ model {
 
   res_sds ~ student_t(3, 0, rs_par);
 
-  phi_cor_01 ~ beta(shape_beta, shape_beta);
+  phi_cor_01 ~ beta(fc_par, fc_par);
   res_cor_01 ~ beta(rc_par, rc_par);
 
   coefs ~ std_normal();

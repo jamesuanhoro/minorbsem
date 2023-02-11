@@ -18,11 +18,7 @@ minorbsem(
   max_treedepth = 10,
   chains = 3,
   ncores = max(parallel::detectCores() - 2, 1),
-  lkj_shape = 2,
-  sl_par = 1,
-  rs_par = 2.5,
-  rc_par = 2,
-  sc_par = 1,
+  priors = new_mbsempriors(),
   show = TRUE
 )
 }
@@ -66,22 +62,8 @@ maximum tree depth.}
 
 \item{ncores}{(positive integer) The number of chains to run in parallel.}
 
-\item{lkj_shape}{(positive real) The shape parameter of the LKJ-prior on the
-interfactor correlation matrix.}
-
-\item{sl_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-deviation of loadings.}
-
-\item{rs_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the residual standard deviations.}
-
-\item{rc_par}{(positive real) The shape parameter of the Beta(rc_par, rc_par)
-prior on the residual error correlations.}
-
-\item{sc_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-deviations of coefficients; SD(coefs) vary by outcome.}
+\item{priors}{An object of \code{\link{mbsempriors-class}}.
+See \code{\link{new_mbsempriors}} for more information.}
 
 \item{show}{(Logical) If TRUE, show table of results, if FALSE, do not
 show table of results. As an example, use FALSE for simulation studies.}

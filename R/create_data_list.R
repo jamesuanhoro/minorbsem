@@ -2,28 +2,14 @@
 #' @description A function that creates data list object passed to Stan
 #' @param lavaan_object lavaan fit object of corresponding model
 #' @param method (character) One of "normal", "lasso"
-#' @param lkj_shape (positive real) The shape parameter of the LKJ-prior on the
-#' interfactor correlation matrix.
-#' @param sl_par (positive real) The scale parameter of the
-#' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-#' deviation of loadings.
-#' @param rs_par (positive real) The scale parameter of the
-#' Student-t(df = 3, loc = 0) prior on the residual standard deviations.
-#' @param rc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
-#' prior on the residual error correlations.
-#' @param sc_par (positive real) The scale parameter of the
-#' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-#' deviations of coefficients; SD(coefs) vary by outcome.
+#' @param priors An object of \code{\link{mbsempriors-class}}.
+#' See \code{\link{new_mbsempriors}} for more information.
 #' @returns Data list object used in fitting Stan model
 #' @keywords internal
 create_data_list <- function(
     lavaan_object = NULL,
     method = "normal",
-    lkj_shape = 2.0,
-    sl_par = 1.0,
-    rs_par = 2.5,
-    rc_par = 2.0,
-    sc_par = 1.0) {
+    priors = NULL) {
   data_list <- list()
 
   # Retrieve parameter structure from lavaan
@@ -36,18 +22,13 @@ create_data_list <- function(
   data_list$Y <- lavaan_object@Data@X[[1]]
   data_list$has_data <- ifelse(is.null(data_list$Y), 0, 1)
 
-  # Set up priors
-  if (any(c(lkj_shape, sl_par, rs_par, rc_par, sc_par) <= 0)) {
-    stop("lkj_shape, sl_par, rs_par, rc_par, sc_par must all exceed 0")
-  }
   # Shape parameter for LKJ of interfactor corr
-  data_list$shape_phi_c <- lkj_shape
-  data_list$sl_par <- sl_par # sigma loading parameter
-  data_list$rs_par <- rs_par # residual sd parameter
-  data_list$rc_par <- rc_par # residual corr parameter
-  data_list$sc_par <- sc_par # sigma coefficients parameter
-  # TODO: either make this an argument or set std.lv = TRUE
-  data_list$shape_beta <- 2.0
+  data_list$shape_phi_c <- priors@lkj_shape
+  data_list$sl_par <- priors@sl_par # sigma loading parameter
+  data_list$rs_par <- priors@rs_par # residual sd parameter
+  data_list$rc_par <- priors@rc_par # residual corr parameter
+  data_list$sc_par <- priors@sc_par # sigma coefficients parameter
+  data_list$fc_par <- priors@fc_par # factor correlation parameter
 
   # Sample cov
   data_list$S <- lavaan_object@SampleStats@cov[[1]]

@@ -2,10 +2,12 @@
 
 export(casewise_log_likelihood)
 export(minorbsem)
+export(new_mbsempriors)
 export(parameter_hist)
 export(parameter_trace)
 export(plot)
 export(plot_residuals)
 export(pretty_print_summary)
 export(update_cmdstan_loc)
+exportClasses(mbsempriors)
 importFrom(methods,show)

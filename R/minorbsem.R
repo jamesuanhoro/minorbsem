@@ -27,18 +27,8 @@
 #' maximum tree depth.
 #' @param chains (positive integer) The number of Markov chains to run.
 #' @param ncores (positive integer) The number of chains to run in parallel.
-#' @param lkj_shape (positive real) The shape parameter of the LKJ-prior on the
-#' interfactor correlation matrix.
-#' @param sl_par (positive real) The scale parameter of the
-#' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-#' deviation of loadings.
-#' @param rs_par (positive real) The scale parameter of the
-#' Student-t(df = 3, loc = 0) prior on the residual standard deviations.
-#' @param rc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
-#' prior on the residual error correlations.
-#' @param sc_par (positive real) The scale parameter of the
-#' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-#' deviations of coefficients; SD(coefs) vary by outcome.
+#' @param priors An object of \code{\link{mbsempriors-class}}.
+#' See \code{\link{new_mbsempriors}} for more information.
 #' @param show (Logical) If TRUE, show table of results, if FALSE, do not
 #' show table of results. As an example, use FALSE for simulation studies.
 #' @returns An object of \code{\link{mbsem-class}}
@@ -69,17 +59,18 @@ minorbsem <- function(
     max_treedepth = 10,
     chains = 3,
     ncores = max(parallel::detectCores() - 2, 1),
-    lkj_shape = 2.0,
-    sl_par = 1.0,
-    rs_par = 2.5,
-    rc_par = 2.0,
-    sc_par = 1.0,
+    priors = new_mbsempriors(),
     show = TRUE) {
   message("Processing user input ...")
 
   # Model cannot be NULL
   if (is.null(model)) {
     stop("Model cannot be null")
+  }
+
+  # Priors must be class mbsempriors
+  if (!inherits(priors, "mbsempriors")) {
+    stop("See ?new_mbsempriors for how to set up priors.")
   }
 
   stopifnot(method %in% c("normal", "lasso"))
@@ -111,9 +102,7 @@ minorbsem <- function(
   }
 
   # Obtain data list for Stan
-  data_list <- create_data_list(
-    lav_fit, method, lkj_shape, sl_par, rs_par, rc_par, sc_par
-  )
+  data_list <- create_data_list(lav_fit, method, priors)
 
   message("User input fully processed :)\n Now to modeling.")
 
@@ -172,7 +161,7 @@ minorbsem <- function(
     parallel_chains = ncores
   )
 
-  mbsem_results <- clean_up_stan_fit(stan_fit, data_list)
+  mbsem_results <- clean_up_stan_fit(stan_fit, data_list, priors)
   if (show) {
     show(mbsem_results)
   }

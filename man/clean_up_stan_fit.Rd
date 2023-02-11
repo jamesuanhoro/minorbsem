@@ -4,12 +4,15 @@
 \alias{clean_up_stan_fit}
 \title{Clean up Stan fit helper function}
 \usage{
-clean_up_stan_fit(stan_fit, data_list)
+clean_up_stan_fit(stan_fit, data_list, priors)
 }
 \arguments{
 \item{stan_fit}{Stan fit}
 
 \item{data_list}{Data list object passed to Stan}
+
+\item{priors}{An object of \code{\link{mbsempriors-class}}.
+See \code{\link{new_mbsempriors}} for more information.}
 }
 \value{
 An object of \code{\link{mbsem-class}}
