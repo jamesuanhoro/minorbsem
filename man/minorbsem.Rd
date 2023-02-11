@@ -22,7 +22,8 @@ minorbsem(
   sl_par = 1,
   rs_par = 2.5,
   rc_par = 2,
-  sc_par = 1
+  sc_par = 1,
+  show = TRUE
 )
 }
 \arguments{
@@ -81,6 +82,9 @@ prior on the residual error correlations.}
 \item{sc_par}{(positive real) The scale parameter of the
 Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 deviations of coefficients; SD(coefs) vary by outcome.}
+
+\item{show}{(Logical) If TRUE, show table of results, if FALSE, do not
+show table of results. As an example, use FALSE for simulation studies.}
 }
 \value{
 An object of \code{\link{mbsem-class}}
