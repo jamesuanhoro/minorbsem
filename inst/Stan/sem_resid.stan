@@ -179,7 +179,7 @@ generated quantities {
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
 
   if (method == 2) {
-    rms_src = sqrt(2 * square(rms_src));
+    rms_src *= sqrt(2);
   }
 
   {
