@@ -4,13 +4,13 @@
 \alias{plot_residuals}
 \title{Visualize standardized residual covariances}
 \usage{
-plot_residuals(object, method = "matrix")
+plot_residuals(object, type = "matrix")
 }
 \arguments{
 \item{object}{(mbsem) An object of \code{\link{mbsem-class}}
 returned by \code{\link{minorbsem}}.}
 
-\item{method}{(string) Either: "range" for lineranges (by default)
+\item{type}{(string) Either: "range" for lineranges (by default)
 or "matrix" for a matrix with point estimates in the lower half.}
 }
 \value{

@@ -9,6 +9,7 @@ minorbsem(
   data = NULL,
   sample_cov = NULL,
   sample_nobs = NULL,
+  method = "normal",
   orthogonal = FALSE,
   seed = 12345,
   warmup = 500,
@@ -36,6 +37,12 @@ The rownames and/or colnames must contain the observed variable names.}
 \item{sample_nobs}{(positive integer) Number of observations if the full
 data frame
 is missing and only sample covariance matrix is given.}
+
+\item{method}{(character) One of "normal", "lasso". Select "normal"
+under belief that minor factor influences are on average zero with
+continuous deviations away from zero. Select "lasso" under belief that
+minor factor influences are indeed zero with a small number of
+non-zero residual covariances.}
 
 \item{orthogonal}{(logical) constrain factors orthogonal, must be TRUE to fit
 bifactor models.}

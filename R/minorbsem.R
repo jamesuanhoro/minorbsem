@@ -9,6 +9,11 @@
 #' @param sample_nobs (positive integer) Number of observations if the full
 #' data frame
 #' is missing and only sample covariance matrix is given.
+#' @param method (character) One of "normal", "lasso". Select "normal"
+#' under belief that minor factor influences are on average zero with
+#' continuous deviations away from zero. Select "lasso" under belief that
+#' minor factor influences are indeed zero with a small number of
+#' non-zero residual covariances.
 #' @param orthogonal (logical) constrain factors orthogonal, must be TRUE to fit
 #' bifactor models.
 #' @param seed (positive integer) seed, set to obtain replicable results.
@@ -53,6 +58,7 @@ minorbsem <- function(
     data = NULL,
     sample_cov = NULL,
     sample_nobs = NULL,
+    method = "normal",
     orthogonal = FALSE,
     seed = 12345,
     warmup = 500,
@@ -72,6 +78,8 @@ minorbsem <- function(
   if (is.null(model)) {
     stop("Model cannot be null")
   }
+
+  stopifnot(method %in% c("normal", "lasso"))
 
   # Must provide either data or sample_cov and sample_nobs
   if (is.null(data) && (is.null(sample_cov) || is.null(sample_nobs))) {
@@ -101,7 +109,7 @@ minorbsem <- function(
 
   # Obtain data list for Stan
   data_list <- create_data_list(
-    lav_fit, lkj_shape, sl_par, rs_par, rc_par, sc_par
+    lav_fit, method, lkj_shape, sl_par, rs_par, rc_par, sc_par
   )
 
   message("User input fully processed :)\n Now to modeling.")
@@ -132,12 +140,12 @@ minorbsem <- function(
 
   if (data_list$sem_indicator == 0) {
     mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/cfa_resid_nrm.stan", package = "minorbsem"),
+      system.file("Stan/cfa_resid.stan", package = "minorbsem"),
       stanc_options = list("O1")
     )
   } else if (data_list$sem_indicator == 1) {
     mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/sem_resid_nrm.stan", package = "minorbsem"),
+      system.file("Stan/sem_resid.stan", package = "minorbsem"),
       stanc_options = list("O1")
     )
   }

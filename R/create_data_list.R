@@ -1,6 +1,7 @@
 #' Stan data helper function
 #' @description A function that creates data list object passed to Stan
 #' @param lavaan_object lavaan fit object of corresponding model
+#' @param method (character) One of "normal", "lasso"
 #' @param lkj_shape (positive real) The shape parameter of the LKJ-prior on the
 #' interfactor correlation matrix.
 #' @param sl_par (positive real) The scale parameter of the
@@ -17,6 +18,7 @@
 #' @keywords internal
 create_data_list <- function(
     lavaan_object = NULL,
+    method = "normal",
     lkj_shape = 2.0,
     sl_par = 1.0,
     rs_par = 2.5,
@@ -26,6 +28,9 @@ create_data_list <- function(
 
   # Retrieve parameter structure from lavaan
   param_structure <- lavaan::lavInspect(lavaan_object)
+
+  # Set method
+  data_list$method <- method_hash(method)
 
   # Has data?
   data_list$Y <- lavaan_object@Data@X[[1]]
