@@ -22,6 +22,7 @@ create_data_list <- function(
   data_list$Y <- lavaan_object@Data@X[[1]]
   data_list$has_data <- ifelse(is.null(data_list$Y), 0, 1)
 
+  methods::validObject(priors) # validate priors
   # Shape parameter for LKJ of interfactor corr
   data_list$shape_phi_c <- priors@lkj_shape
   data_list$sl_par <- priors@sl_par # sigma loading parameter

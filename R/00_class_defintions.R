@@ -32,6 +32,13 @@ methods::setClass(
     rc_par = "numeric",
     sc_par = "numeric",
     fc_par = "numeric"
+  ), prototype = list(
+    lkj_shape = 2.0,
+    sl_par = 1.0,
+    rs_par = 2.5,
+    rc_par = 2.0,
+    sc_par = 1.0,
+    fc_par = 2.0
   )
 )
 
@@ -71,8 +78,6 @@ new_mbsempriors <- function(
     rc_par = 2.0,
     sc_par = 1.0,
     fc_par = 2.0) {
-  # Set up validation:
-  # lkj > 1, sl > 0, rs > 0, rc > 1, sc > 0, fc > 1
   mb_priors_object <- methods::new("mbsempriors")
   mb_priors_object <- methods::initialize(
     mb_priors_object,
