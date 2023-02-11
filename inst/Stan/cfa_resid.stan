@@ -10,16 +10,16 @@ data {
   int<lower = 0> Np;  // number persons
   int<lower = 0> Ni;  // number items
   matrix[Ni, Ni] S;  // covariance matrix
-  real<lower = 1> shape_phi_c;  // lkj prior shape for phi
   int<lower = 0> Nf;  // number factors
   int<lower = 0> Nce;  // number correlated errors
   array[Nce, 2] int error_mat;  // correlated error matrix
   matrix[Ni, Nf] loading_pattern;  // loading pattern
   array[Nf] int markers;  // marker variables
   int<lower = 0, upper = 1> corr_fac;  // 1 for correlated factors, 0 otherwise
-  real sl_par;  // sigma_loading parameter
-  real rs_par;  // residual sd parameter
-  real rc_par;  // residual corr parameter
+  real<lower = 1> shape_phi_c;  // lkj prior shape for phi
+  real<lower = 0> sl_par;  // sigma_loading parameter
+  real<lower = 0> rs_par;  // residual sd parameter
+  real<lower = 1> rc_par;  // residual corr parameter
   int<lower = 1, upper = 2> method; // which method
 }
 transformed data {

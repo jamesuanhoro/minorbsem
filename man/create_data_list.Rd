@@ -4,37 +4,15 @@
 \alias{create_data_list}
 \title{Stan data helper function}
 \usage{
-create_data_list(
-  lavaan_object = NULL,
-  method = "normal",
-  lkj_shape = 2,
-  sl_par = 1,
-  rs_par = 2.5,
-  rc_par = 2,
-  sc_par = 1
-)
+create_data_list(lavaan_object = NULL, method = "normal", priors = NULL)
 }
 \arguments{
 \item{lavaan_object}{lavaan fit object of corresponding model}
 
 \item{method}{(character) One of "normal", "lasso"}
 
-\item{lkj_shape}{(positive real) The shape parameter of the LKJ-prior on the
-interfactor correlation matrix.}
-
-\item{sl_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-deviation of loadings.}
-
-\item{rs_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the residual standard deviations.}
-
-\item{rc_par}{(positive real) The shape parameter of the Beta(rc_par, rc_par)
-prior on the residual error correlations.}
-
-\item{sc_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-deviations of coefficients; SD(coefs) vary by outcome.}
+\item{priors}{An object of \code{\link{mbsempriors-class}}.
+See \code{\link{new_mbsempriors}} for more information.}
 }
 \value{
 Data list object used in fitting Stan model

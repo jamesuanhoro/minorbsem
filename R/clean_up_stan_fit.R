@@ -2,11 +2,14 @@
 #' @description A function that cleans up model returned by Stan
 #' @param stan_fit Stan fit
 #' @param data_list Data list object passed to Stan
+#' @param priors An object of \code{\link{mbsempriors-class}}.
+#' See \code{\link{new_mbsempriors}} for more information.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @keywords internal
 clean_up_stan_fit <- function(
     stan_fit,
-    data_list) {
+    data_list,
+    priors) {
   indicator_labels <- rownames(data_list$loading_pattern)
   factor_labels <- colnames(data_list$loading_pattern)
 
@@ -146,6 +149,7 @@ clean_up_stan_fit <- function(
     major_parameters = major_parameters,
     minor_factor_matrix = minor_factor_matrix,
     data_list = data_list,
+    priors = priors,
     stan_fit = stan_fit,
     version = minorbsem_version()
   )
