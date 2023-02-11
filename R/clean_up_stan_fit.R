@@ -34,9 +34,22 @@ clean_up_stan_fit <- function(
     gsub("Load_mat\\[|,\\d+\\]", "", load_result$variable)
   )]
 
-  rv_result <- matrix(nrow = 0, ncol = ncol(load_result))
   rc_result <- matrix(nrow = 0, ncol = ncol(load_result))
   if (data_list$Nce > 0) {
+    rc_result <- posterior::summarise_draws(
+      posterior::as_draws(stan_fit, variable = "res_cor")
+    )
+    rc_result$group <- "Error correlations"
+    rc_result$op <- "~~"
+    rc_result$from <- indicator_labels[data_list$error_mat[, 1]]
+    rc_result$to <- indicator_labels[data_list$error_mat[, 2]]
+  }
+
+  rv_result <- matrix(nrow = 0, ncol = ncol(load_result))
+  coef_result <- matrix(nrow = 0, ncol = ncol(load_result))
+  phi_result <- matrix(nrow = 0, ncol = ncol(load_result))
+  rsq_result <- matrix(nrow = 0, ncol = ncol(load_result))
+  if (data_list$sem_indicator == 0) {
     rv_result <- posterior::summarise_draws(
       posterior::as_draws(stan_fit, variable = "res_var")
     )
@@ -49,19 +62,6 @@ clean_up_stan_fit <- function(
       gsub("res_var\\[|\\]", "", rv_result$variable)
     )]
 
-    rc_result <- posterior::summarise_draws(
-      posterior::as_draws(stan_fit, variable = "res_cor")
-    )
-    rc_result$group <- "Error correlations"
-    rc_result$op <- "~~"
-    rc_result$from <- indicator_labels[data_list$error_mat[, 1]]
-    rc_result$to <- indicator_labels[data_list$error_mat[, 2]]
-  }
-
-  coef_result <- matrix(nrow = 0, ncol = ncol(load_result))
-  phi_result <- matrix(nrow = 0, ncol = ncol(load_result))
-  rsq_result <- matrix(nrow = 0, ncol = ncol(load_result))
-  if (data_list$sem_indicator == 0) {
     phi_result <- posterior::summarise_draws(
       posterior::as_draws(stan_fit, variable = "phi_mat")
     )
