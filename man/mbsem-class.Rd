@@ -45,10 +45,10 @@
       See \code{\link{casewise_log_likelihood}} for more details.
     }
     \item{residuals}{
-      \code{signature(object = "mbsem", method = "matrix")}:
-      If \code{method = "table"}, returns summary statistics for standardized residual covariances.
-      If \code{method = "matrix"}, returns a plot of the matrix of standardized residual covariances.
-      If \code{method = "range"}, returns a linerange plot of standardized residual covariances.
+      \code{signature(object = "mbsem", type = "matrix")}:
+      If \code{type = "table"}, returns summary statistics for standardized residual covariances.
+      If \code{type = "matrix"}, returns a plot of the matrix of standardized residual covariances.
+      If \code{type = "range"}, returns a linerange plot of standardized residual covariances.
     }
     \item{show}{
       \code{signature(object = "mbsem")}:

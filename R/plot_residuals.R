@@ -3,7 +3,7 @@
 #' @description Visualize distribution of standardized residual covariances
 #' @param object (mbsem) An object of \code{\link{mbsem-class}}
 #' returned by \code{\link{minorbsem}}.
-#' @param method (string) Either: "range" for lineranges (by default)
+#' @param type (string) Either: "range" for lineranges (by default)
 #' or "matrix" for a matrix with point estimates in the lower half.
 #' @returns ggplot object
 #' @examples
@@ -12,11 +12,11 @@
 #'                   F3 =~ x7 + x8 + x9", HS)
 #' plot_residuals(fit)
 #' @export
-plot_residuals <- function(object, method = "matrix") {
+plot_residuals <- function(object, type = "matrix") {
   parameter <- `50%` <- `5%` <- `95%` <- lo <- hi <- item_2 <- item_1 <- NULL
 
-  if (!method %in% c("range", "matrix")) {
-    stop("method must be either \"range\" or \"matrix\"")
+  if (!type %in% c("range", "matrix")) {
+    stop("type must be either \"range\" or \"matrix\"")
   }
 
   clean_post_df <- prepare_stan_plot_data(object)
@@ -33,7 +33,7 @@ plot_residuals <- function(object, method = "matrix") {
   plot_df$hi <- plot_df$`97.5%`
 
   p <- list()
-  if (method == "range") {
+  if (type == "range") {
     horiz_lines <- c(-.05, 0, .05)
     if (min(plot_df$`2.5%`) < -.1) {
       horiz_lines <- c(horiz_lines, -.1)
@@ -65,7 +65,7 @@ plot_residuals <- function(object, method = "matrix") {
         x = "Indicator-pairs",
         y = "90% & 95% credible intervals"
       )
-  } else if (method == "matrix") {
+  } else if (type == "matrix") {
     # Create items, use factors to ensure correct ordering
     plot_df$item_1 <- unlist(lapply(strsplit(plot_df$parameter, "~~"), "[[", 1))
     item_list_1 <- unique(unlist(lapply(strsplit(

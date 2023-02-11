@@ -26,13 +26,13 @@ methods::setMethod(
 methods::setMethod(
   "residuals",
   "mbsem",
-  function(object, method = "matrix") {
-    stopifnot(method %in% c("table", "matrix", "range"))
+  function(object, type = "matrix") {
+    stopifnot(type %in% c("table", "matrix", "range"))
 
-    if (method == "table") {
+    if (type == "table") {
       object@minor_factor_matrix
     } else {
-      plot_residuals(object, method)
+      plot_residuals(object, type)
     }
   }
 )

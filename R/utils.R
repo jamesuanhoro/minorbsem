@@ -13,6 +13,29 @@ minorbsem_version <- function() {
   return(version)
 }
 
+#' Method hash function
+#' @description A function that swaps method from string to integer
+#' and vice-versa
+#' @param search_term Integer or string
+#' @returns If search_term is integer, returns string and vice-versa
+#' @keywords internal
+method_hash <- function(search_term) {
+  list_methods <- c(
+    "normal" = 1,
+    "lasso" = 2,
+    "lkj" = 3
+  )
+
+  if (is.integer(search_term) || is.numeric(search_term)) {
+    search_term <- as.integer(search_term)
+    converted_value <- names(list_methods)[search_term]
+  } else if (is.character(search_term)) {
+    converted_value <- as.integer(list_methods[search_term])
+  }
+
+  return(converted_value)
+}
+
 #' Add row header helper function
 #' @description A function that adds row headers to kable object
 #' @param kbl_object Kable object

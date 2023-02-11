@@ -23,6 +23,7 @@ pretty_print_summary <- function(
   stopifnot(inherits(object, "mbsem"))
 
   table_to_print <- object@major_parameters
+  method_str <- method_hash(object@data_list$method)
 
   if (simple) {
     table_to_print <- table_to_print[
@@ -35,7 +36,7 @@ pretty_print_summary <- function(
 
   result <- kableExtra::kbl(
     table_to_print[, -1],
-    caption = "Parameter estimates",
+    caption = paste0("Parameter estimates (", method_str, ")"),
     digits = digits
   )
   result <- kableExtra::kable_paper(result)

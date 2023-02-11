@@ -6,6 +6,7 @@
 \usage{
 create_data_list(
   lavaan_object = NULL,
+  method = "normal",
   lkj_shape = 2,
   sl_par = 1,
   rs_par = 2.5,
@@ -15,6 +16,8 @@ create_data_list(
 }
 \arguments{
 \item{lavaan_object}{lavaan fit object of corresponding model}
+
+\item{method}{(character) One of "normal", "lasso"}
 
 \item{lkj_shape}{(positive real) The shape parameter of the LKJ-prior on the
 interfactor correlation matrix.}

@@ -23,6 +23,7 @@ data {
   real sl_par;  // sigma_loading parameter
   real rs_par;  // residual sd parameter
   real rc_par;  // residual corr parameter
+  int<lower = 1, upper = 2> method; // which method
 }
 transformed data {
   int<lower = 0> Nl = 0; // N_non-zero loadings
@@ -44,7 +45,7 @@ transformed data {
   }
 }
 parameters {
-  real<lower = 0> rms_src;
+  real<lower = 0> rms_src_p;
   vector[Nisqd2] resids;
   vector<lower = 0>[Nl - Nf] loadings; // loadings
   real<lower = 0> sigma_loadings; // sd of loadings, hyperparm
@@ -56,8 +57,14 @@ parameters {
   vector<lower = 0>[outcome_count] sigma_coefs;
 }
 model {
-  rms_src ~ std_normal();
-  resids ~ std_normal();
+  rms_src_p ~ std_normal();
+  if (method == 1) {
+    // normal
+    resids ~ std_normal();
+  } else if (method == 2) {
+    // lasso
+    resids ~ double_exponential(0, 1);
+  }
 
   loadings ~ normal(0, sigma_loadings);
   sigma_loadings ~ student_t(3, 0, sl_par);
@@ -148,7 +155,7 @@ model {
       for (i in 2:Ni) {
         for (j in 1:(i - 1)) {
           pos += 1;
-          Omega[i, j] += resids[pos] * rms_src * sqrt(total_var[i] * total_var[j]);
+          Omega[i, j] += resids[pos] * rms_src_p * sqrt(total_var[i] * total_var[j]);
           Omega[j, i] = Omega[i, j];
         }
       }
@@ -158,6 +165,7 @@ model {
   }
 }
 generated quantities {
+  real<lower = 0> rms_src = rms_src_p;  // RMSE of residuals
   matrix[Ni, Nf] Load_mat_u = rep_matrix(0, Ni, Nf);
   matrix[Nf, Nf] Coef_mat_u = rep_matrix(0, Nf, Nf);
   matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
@@ -168,6 +176,10 @@ generated quantities {
   vector[Nce] res_cor = res_cor_01 * 2 - 1;
   vector[Nce] res_cov;
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
+
+  if (method == 2) {
+    rms_src = sqrt(2 * square(rms_src));
+  }
 
   {
     matrix[Nf, Nf_corr] F_corr_pe = rep_matrix(0, Nf, Nf_corr);
@@ -232,7 +244,7 @@ generated quantities {
     for (i in 2:Ni) {
       for (j in 1:(i - 1)) {
         pos += 1;
-        Resid[i, j] = resids[pos] * rms_src;
+        Resid[i, j] = resids[pos] * rms_src_p;
         Resid[j, i] = Resid[i, j];
       }
     }
