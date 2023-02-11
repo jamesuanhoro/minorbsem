@@ -186,7 +186,9 @@ generated quantities {
     matrix[Nf, Nf] F_cov_mat;
     vector[Nf] F_var_resid;
     matrix[Nf, Nf] One_min_Beta_inv;
+    matrix[Ni, Nf] Lambda_One_min_Beta_inv;
     vector[Nf] d_rt_c_hat;
+    vector[Ni] total_sd;
 
     {
       array[3] int pos_3 = rep_array(0, 3);
@@ -215,6 +217,7 @@ generated quantities {
     Load_mat_u = Load_mat;
 
     One_min_Beta_inv = inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
+    Lambda_One_min_Beta_inv = Load_mat * One_min_Beta_inv;
 
     for (i in 1:Nf_corr) {
       F_corr_pe[F_corr_mat[i, 1], i] = sqrt(
@@ -231,11 +234,20 @@ generated quantities {
       add_diag(F_cov_mat, F_var_resid),
       One_min_Beta_inv'
     )));
+    total_sd = sqrt(diagonal(add_diag(quad_form(
+      add_diag(F_cov_mat, F_var_resid),
+      Lambda_One_min_Beta_inv'
+    ), res_var)));
 
     for (j in 1:Nf) {
       Load_mat[, j] *= d_rt_c_hat[j];
       Coef_mat[, j] *= d_rt_c_hat[j];
       Coef_mat[j, ] /= d_rt_c_hat[j];
+      phi_var[j] /= square(d_rt_c_hat[j]);
+    }
+    for (i in 1:Ni) {
+      Load_mat[i, ] /= total_sd[i];
+      res_var[i] /= square(total_sd[i]);
     }
   }
 
