@@ -39,6 +39,8 @@
 #' @param sc_par (positive real) The scale parameter of the
 #' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 #' deviations of coefficients; SD(coefs) vary by outcome.
+#' @param show (Logical) If TRUE, show table of results, if FALSE, do not
+#' show table of results. As an example, use FALSE for simulation studies.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @examples
 #' minorbsem("# latent variable definitions
@@ -71,7 +73,8 @@ minorbsem <- function(
     sl_par = 1.0,
     rs_par = 2.5,
     rc_par = 2.0,
-    sc_par = 1.0) {
+    sc_par = 1.0,
+    show = TRUE) {
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -170,7 +173,9 @@ minorbsem <- function(
   )
 
   mbsem_results <- clean_up_stan_fit(stan_fit, data_list)
-  show(mbsem_results)
+  if (show) {
+    show(mbsem_results)
+  }
 
   return(mbsem_results)
 }
