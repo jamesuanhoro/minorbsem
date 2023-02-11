@@ -59,6 +59,7 @@ clean_up_stan_fit <- function(
 
   coef_result <- matrix(nrow = 0, ncol = nrow(rv_result))
   phi_result <- matrix(nrow = 0, ncol = nrow(rv_result))
+  rsq_result <- matrix(nrow = 0, ncol = nrow(rv_result))
   if (data_list$sem_indicator == 0) {
     phi_result <- posterior::summarise_draws(
       posterior::as_draws(stan_fit, variable = "phi_mat")
@@ -86,6 +87,19 @@ clean_up_stan_fit <- function(
       phi_result$to <- factor_labels[data_list$F_corr_mat[, 2]]
     }
 
+    # Get R-square
+    rsq_result <- posterior::summarise_draws(
+      posterior::as_draws(stan_fit, variable = "r_square")
+    )
+    rsq_result$group <- "R square"
+    rsq_result$op <- "~~"
+    rsq_result$from <- factor_labels[as.integer(
+      gsub("r_square\\[|\\]", "", rsq_result$variable)
+    )]
+    rsq_result$to <- factor_labels[as.integer(
+      gsub("r_square\\[|\\]", "", rsq_result$variable)
+    )]
+
     # Get factor coefficients
     coef_idxs <- paste0("Coef_mat[", apply(which(
       data_list$coef_pattern == 1,
@@ -105,7 +119,7 @@ clean_up_stan_fit <- function(
   }
 
   major_parameters <- as.data.frame(rbind(
-    rms_result, coef_result, load_result, phi_result,
+    rms_result, coef_result, load_result, phi_result, rsq_result,
     rv_result, rc_result
   ))
 

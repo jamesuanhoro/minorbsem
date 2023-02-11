@@ -12,7 +12,7 @@ methods::setGeneric("plot")
 methods::setMethod(
   "plot",
   "mbsem",
-  function(x, type = "hist", param_type = c("rm", "co", "lo", "fc")) {
+  function(x, type = "hist", param_type = c("rm", "co", "lo", "fc", "rsq")) {
     stopifnot(type %in% c("hist", "trace"))
 
     if (type == "hist") {

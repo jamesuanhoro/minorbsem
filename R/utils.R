@@ -68,13 +68,13 @@ add_row_header <- function(
 #' @keywords internal
 validate_param_type <- function(param_type) {
   if (any(
-    !param_type %in% c("all", "rm", "lo", "ev", "rc", "fc", "fv", "co", "re")
+    !param_type %in% c("all", "rm", "lo", "ev", "rc", "fc", "rsq", "co", "re")
   ) ||
     is.null(param_type)) {
     stop(paste0(
       "All param_type options must be in ",
       "c(\"all\", \"rm\", \"lo\", \"ev\", \"rc\", \"fc\", ",
-      "\"fv\", \"co\", \"re\")"
+      "\"rsq\", \"co\", \"re\")"
     ))
   }
 }
@@ -290,11 +290,11 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
     data_list$loading_pattern != 2,
     arr.ind = TRUE
   ), 1, paste0, collapse = ","), "]")
-  all_ev <- paste0("res_var[", 1:data_list$Ni, "]")
   all_ph <- NULL
 
   omega_mat <- matrix()
   if (data_list$sem_indicator == 0) {
+    all_ev <- paste0("res_var[", 1:data_list$Ni, "]")
     if (data_list$corr_fac == 1) {
       all_ph <- paste0("phi_mat[", apply(which(
         diag(data_list$Nf) != 2,
@@ -309,6 +309,7 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
     )
   } else if (data_list$sem_indicator == 1) {
     # Use _u Coefs and Loads as these are unstandardized
+    all_ev <- paste0("res_var_u[", 1:data_list$Ni, "]")
     all_lo <- paste0("Load_mat_u[", apply(which(
       data_list$loading_pattern != 2,
       arr.ind = TRUE

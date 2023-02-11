@@ -29,7 +29,7 @@
 \section{Methods}{
   \describe{
     \item{plot}{
-      \code{signature(x = "mbsem", type = "hist", param_type = c("rm", "co", "lo", "fc"))}:
+      \code{signature(x = "mbsem", type = "hist", param_type = c("rm", "co", "lo", "fc", "rsq"))}:
       Visualizes the posterior distribution of requested parameter types in
       \code{param_type = } argument.
       If \code{type = "hist"}, returns histogram(s).
