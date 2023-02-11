@@ -34,20 +34,21 @@ clean_up_stan_fit <- function(
     gsub("Load_mat\\[|,\\d+\\]", "", load_result$variable)
   )]
 
-  rv_result <- posterior::summarise_draws(
-    posterior::as_draws(stan_fit, variable = "res_var")
-  )
-  rv_result$group <- "Residual variances"
-  rv_result$op <- "~~"
-  rv_result$from <- indicator_labels[as.integer(
-    gsub("res_var\\[|\\]", "", rv_result$variable)
-  )]
-  rv_result$to <- indicator_labels[as.integer(
-    gsub("res_var\\[|\\]", "", rv_result$variable)
-  )]
-
-  rc_result <- matrix(nrow = 0, ncol = nrow(rv_result))
+  rv_result <- matrix(nrow = 0, ncol = ncol(load_result))
+  rc_result <- matrix(nrow = 0, ncol = ncol(load_result))
   if (data_list$Nce > 0) {
+    rv_result <- posterior::summarise_draws(
+      posterior::as_draws(stan_fit, variable = "res_var")
+    )
+    rv_result$group <- "Residual variances"
+    rv_result$op <- "~~"
+    rv_result$from <- indicator_labels[as.integer(
+      gsub("res_var\\[|\\]", "", rv_result$variable)
+    )]
+    rv_result$to <- indicator_labels[as.integer(
+      gsub("res_var\\[|\\]", "", rv_result$variable)
+    )]
+
     rc_result <- posterior::summarise_draws(
       posterior::as_draws(stan_fit, variable = "res_cor")
     )
@@ -57,9 +58,9 @@ clean_up_stan_fit <- function(
     rc_result$to <- indicator_labels[data_list$error_mat[, 2]]
   }
 
-  coef_result <- matrix(nrow = 0, ncol = nrow(rv_result))
-  phi_result <- matrix(nrow = 0, ncol = nrow(rv_result))
-  rsq_result <- matrix(nrow = 0, ncol = nrow(rv_result))
+  coef_result <- matrix(nrow = 0, ncol = ncol(load_result))
+  phi_result <- matrix(nrow = 0, ncol = ncol(load_result))
+  rsq_result <- matrix(nrow = 0, ncol = ncol(load_result))
   if (data_list$sem_indicator == 0) {
     phi_result <- posterior::summarise_draws(
       posterior::as_draws(stan_fit, variable = "phi_mat")
@@ -119,7 +120,7 @@ clean_up_stan_fit <- function(
   }
 
   major_parameters <- as.data.frame(rbind(
-    rms_result, coef_result, load_result, phi_result, rsq_result,
+    rms_result, coef_result, rsq_result, load_result, phi_result,
     rv_result, rc_result
   ))
 

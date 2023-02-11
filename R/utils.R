@@ -286,6 +286,7 @@ create_single_sem_vcov_row <- function(
 #' @returns A matrix that is ready for plotting
 #' @keywords internal
 create_model_implied_vcov <- function(mat, data_list, include_residuals) {
+  all_ev <- paste0("res_var[", 1:data_list$Ni, "]")
   all_lo <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern != 2,
     arr.ind = TRUE
@@ -294,7 +295,6 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
 
   omega_mat <- matrix()
   if (data_list$sem_indicator == 0) {
-    all_ev <- paste0("res_var[", 1:data_list$Ni, "]")
     if (data_list$corr_fac == 1) {
       all_ph <- paste0("phi_mat[", apply(which(
         diag(data_list$Nf) != 2,
@@ -309,7 +309,6 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
     )
   } else if (data_list$sem_indicator == 1) {
     # Use _u Coefs and Loads as these are unstandardized
-    all_ev <- paste0("res_var_u[", 1:data_list$Ni, "]")
     all_lo <- paste0("Load_mat_u[", apply(which(
       data_list$loading_pattern != 2,
       arr.ind = TRUE

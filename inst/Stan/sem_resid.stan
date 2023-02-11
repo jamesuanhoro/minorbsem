@@ -173,7 +173,6 @@ generated quantities {
   vector[Nf] phi_var = square(phi_sd);
   vector[Nf] r_square;
   vector[Nf_corr] phi_cor = phi_cor_01 * 2 - 1;
-  vector[Ni] res_var_u = square(res_sds);
   vector[Ni] res_var = square(res_sds);
   vector[Nce] res_cor = res_cor_01 * 2 - 1;
   vector[Nce] res_cov;
@@ -249,7 +248,6 @@ generated quantities {
     }
     for (i in 1:Ni) {
       Load_mat[i, ] /= total_sd[i];
-      res_var[i] /= square(total_sd[i]);
     }
   }
 
