@@ -23,12 +23,13 @@ method_hash <- function(search_term) {
   list_methods <- c(
     "normal" = 1,
     "lasso" = 2,
-    "lkj" = 3
+    "lkj" = 3,
+    "none" = 100
   )
 
   if (is.integer(search_term) || is.numeric(search_term)) {
     search_term <- as.integer(search_term)
-    converted_value <- names(list_methods)[search_term]
+    converted_value <- names(list_methods)[which(search_term == list_methods)]
   } else if (is.character(search_term)) {
     converted_value <- as.integer(list_methods[search_term])
   }
@@ -131,10 +132,14 @@ rename_post_df_columns <- function(
 #' @returns A single model-impled covariance matrix
 #' @keywords internal
 include_residuals <- function(omega_mat, params, data_list) {
+  if (data_list$method == 100) {
+    # there is no residual to include for this method
+    return(omega_mat);
+  }
   tv <- diag(omega_mat)
   n_re <- data_list$Ni * (data_list$Ni - 1) / 2
   re <- params[paste0("resids[", 1:n_re, "]")]
-  rm <- params["rms_src"]
+  rm <- params["rms_src_p"]
   pos <- 0
   for (i in 2:data_list$Ni) {
     for (j in 1:(i - 1)) {

@@ -9,11 +9,12 @@
 #' @param sample_nobs (positive integer) Number of observations if the full
 #' data frame
 #' is missing and only sample covariance matrix is given.
-#' @param method (character) One of "normal", "lasso". Select "normal"
-#' under belief that minor factor influences are on average zero with
-#' continuous deviations away from zero. Select "lasso" under belief that
-#' minor factor influences are indeed zero with a small number of
-#' non-zero residual covariances.
+#' @param method (character) One of "normal", "lasso" or "none".
+#' Select "normal" under belief that minor factor influences are
+#' on average zero with continuous deviations away from zero.
+#' Select "lasso" under belief that minor factor influences are
+#' indeed zero with a small number of non-zero residual covariances.
+#' Select "none" if intending to ignore the influence of minor factors.
 #' @param orthogonal (logical) constrain factors orthogonal, must be TRUE to fit
 #' bifactor models.
 #' @param seed (positive integer) seed, set to obtain replicable results.
@@ -73,7 +74,7 @@ minorbsem <- function(
     stop("See ?new_mbsempriors for how to set up priors.")
   }
 
-  stopifnot(method %in% c("normal", "lasso"))
+  stopifnot(method %in% c("normal", "lasso", "none"))
 
   # Must provide either data or sample_cov and sample_nobs
   if (is.null(data) && (is.null(sample_cov) || is.null(sample_nobs))) {
@@ -130,16 +131,30 @@ minorbsem <- function(
 
   cmdstanr::set_cmdstan_path(cmdstan_loc)
 
-  if (data_list$sem_indicator == 0) {
-    mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/cfa_resid.stan", package = "minorbsem"),
-      stanc_options = list("O1")
-    )
-  } else if (data_list$sem_indicator == 1) {
-    mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/sem_resid.stan", package = "minorbsem"),
-      stanc_options = list("O1")
-    )
+  if (method == "none") {
+    if (data_list$sem_indicator == 0) {
+      mod_resid <- cmdstanr::cmdstan_model(
+        system.file("Stan/cfa.stan", package = "minorbsem"),
+        stanc_options = list("O1")
+      )
+    } else if (data_list$sem_indicator == 1) {
+      mod_resid <- cmdstanr::cmdstan_model(
+        system.file("Stan/sem.stan", package = "minorbsem"),
+        stanc_options = list("O1")
+      )
+    }
+  } else {
+    if (data_list$sem_indicator == 0) {
+      mod_resid <- cmdstanr::cmdstan_model(
+        system.file("Stan/cfa_resid.stan", package = "minorbsem"),
+        stanc_options = list("O1")
+      )
+    } else if (data_list$sem_indicator == 1) {
+      mod_resid <- cmdstanr::cmdstan_model(
+        system.file("Stan/sem_resid.stan", package = "minorbsem"),
+        stanc_options = list("O1")
+      )
+    }
   }
 
   message("Fitting Stan model ...")

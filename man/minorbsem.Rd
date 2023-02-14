@@ -35,11 +35,12 @@ The rownames and/or colnames must contain the observed variable names.}
 data frame
 is missing and only sample covariance matrix is given.}
 
-\item{method}{(character) One of "normal", "lasso". Select "normal"
-under belief that minor factor influences are on average zero with
-continuous deviations away from zero. Select "lasso" under belief that
-minor factor influences are indeed zero with a small number of
-non-zero residual covariances.}
+\item{method}{(character) One of "normal", "lasso" or "none".
+Select "normal" under belief that minor factor influences are
+on average zero with continuous deviations away from zero.
+Select "lasso" under belief that minor factor influences are
+indeed zero with a small number of non-zero residual covariances.
+Select "none" if intending to ignore the influence of minor factors.}
 
 \item{orthogonal}{(logical) constrain factors orthogonal, must be TRUE to fit
 bifactor models.}
