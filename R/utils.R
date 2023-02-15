@@ -134,7 +134,7 @@ rename_post_df_columns <- function(
 include_residuals <- function(omega_mat, params, data_list) {
   if (data_list$method == 100) {
     # there is no residual to include for this method
-    return(omega_mat);
+    return(omega_mat)
   }
   tv <- diag(omega_mat)
   n_re <- data_list$Ni * (data_list$Ni - 1) / 2
