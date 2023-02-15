@@ -203,8 +203,8 @@ generated quantities {
   } else if (method == 3) {
     rms_src *= pi_sqrt_three;
   } else if (method == 4) {
-    rms_src *= sqrt_two * alpha / sqrt(
-      (alpha - 1.0) * (alpha - 2.0)
+    rms_src *= sqrt_two * gdp_alpha / sqrt(
+      (gdp_alpha - 1.0) * (gdp_alpha - 2.0)
     );
   }
 
