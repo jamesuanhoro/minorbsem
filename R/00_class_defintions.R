@@ -32,7 +32,8 @@ methods::setClass(
     rc_par = "numeric",
     sc_par = "numeric",
     fc_par = "numeric"
-  ), prototype = list(
+  ),
+  prototype = list(
     lkj_shape = 2.0,
     sl_par = 1.0,
     rs_par = 2.5,
