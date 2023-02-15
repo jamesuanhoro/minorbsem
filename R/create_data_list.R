@@ -1,7 +1,8 @@
 #' Stan data helper function
 #' @description A function that creates data list object passed to Stan
 #' @param lavaan_object lavaan fit object of corresponding model
-#' @param method (character) One of "normal", "lasso", "logistic", "none"
+#' @param method (character) One of "normal", "lasso",
+#' "logistic", "GDP", "none"
 #' @param priors An object of \code{\link{mbsempriors-class}}.
 #' See \code{\link{new_mbsempriors}} for more information.
 #' @returns Data list object used in fitting Stan model

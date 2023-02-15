@@ -5,6 +5,11 @@ functions {
     else
       return -1;
   }
+  real generalized_double_pareto_lpdf(vector x, real alpha) {
+    return(sum(
+      -(alpha + 1.0) * log(1.0 + abs(x) / alpha)
+    ));
+  }
 }
 data {
   int Np;
@@ -23,7 +28,7 @@ data {
   real<lower = 0> rs_par;  // residual sd parameter
   real<lower = 1> rc_par;  // residual corr parameter
   real<lower = 1> fc_par; // beta prior shape for phi
-  int<lower = 1, upper = 3> method; // which method
+  int<lower = 1, upper = 4> method; // which method
 }
 transformed data {
   real sqrt_two = sqrt(2.0);
@@ -33,6 +38,9 @@ transformed data {
   int coef_count = 0;
   int outcome_count = 0;
   int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
+  int N_alpha = 0;
+
+  if (method == 4) N_alpha = 1;
 
   for (i in 1:Nf) {
     if (sum(coef_pattern[i, ]) > 0) outcome_count += 1;
@@ -48,6 +56,7 @@ transformed data {
 }
 parameters {
   real<lower = 0> rms_src_p;
+  vector<lower = 2.0>[N_alpha] gdp_alpha;
   vector[Nisqd2] resids;
   vector<lower = 0>[Nl - Nf] loadings; // loadings
   real<lower = 0> sigma_loadings; // sd of loadings, hyperparm
@@ -69,6 +78,12 @@ model {
   } else if (method == 3) {
     // logistic
     resids ~ logistic(0, 1);
+  } else if (method == 4) {
+    // generalized double Pareto
+    // https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/
+    gdp_alpha ~ cauchy(0, 1);
+    target += generalized_double_pareto_lpdf(
+      resids | gdp_alpha[1]);
   }
 
   loadings ~ normal(0, sigma_loadings);
@@ -187,6 +202,10 @@ generated quantities {
     rms_src *= sqrt_two;
   } else if (method == 3) {
     rms_src *= pi_sqrt_three;
+  } else if (method == 4) {
+    rms_src *= sqrt_two * alpha / sqrt(
+      (alpha - 1.0) * (alpha - 2.0)
+    );
   }
 
   {

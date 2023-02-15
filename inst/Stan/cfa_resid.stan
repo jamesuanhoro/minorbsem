@@ -5,6 +5,11 @@ functions {
     else
       return -1;
   }
+  real generalized_double_pareto_lpdf(vector x, real alpha) {
+    return(sum(
+      -(alpha + 1.0) * log(1.0 + abs(x) / alpha)
+    ));
+  }
 }
 data {
   int<lower = 0> Np;  // number persons
@@ -20,7 +25,7 @@ data {
   real<lower = 0> sl_par;  // sigma_loading parameter
   real<lower = 0> rs_par;  // residual sd parameter
   real<lower = 1> rc_par;  // residual corr parameter
-  int<lower = 1, upper = 3> method; // which method
+  int<lower = 1, upper = 4> method; // which method
 }
 transformed data {
   real sqrt_two = sqrt(2.0);
@@ -29,6 +34,9 @@ transformed data {
   cholesky_factor_cov[Ni] NL_S = sqrt(Np - 1) * cholesky_decompose(S);  // covariance matrix-chol
   int Nf_corr = corr_fac == 1 ? Nf : 1;
   int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
+  int N_alpha = 0;
+
+  if (method == 4) N_alpha = 1;
 
   for (i in 1:Ni) {
     for (j in 1:Nf) {
@@ -38,6 +46,7 @@ transformed data {
 }
 parameters {
   real<lower = 0> rms_src_p;
+  vector<lower = 2.0>[N_alpha] gdp_alpha;
   vector[Nisqd2] resids;  // residual vector
   vector[Nl] loadings;  // loadings
   real<lower = 0> sigma_loadings;  // sd of loadings, hyperparm
@@ -56,6 +65,12 @@ model {
   } else if (method == 3) {
     // logistic
     resids ~ logistic(0, 1);
+  } else if (method == 4) {
+    // generalized double Pareto
+    // https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/
+    gdp_alpha ~ cauchy(0, 1);
+    target += generalized_double_pareto_lpdf(
+      resids | gdp_alpha[1]);
   }
 
   loadings ~ normal(0, sigma_loadings);
@@ -132,6 +147,10 @@ generated quantities {
     rms_src *= sqrt_two;
   } else if (method == 3) {
     rms_src *= pi_sqrt_three;
+  } else if (method == 4) {
+    rms_src *= sqrt_two * alpha / sqrt(
+      (alpha - 1.0) * (alpha - 2.0)
+    );
   }
 
   {

@@ -24,6 +24,7 @@ method_hash <- function(search_term) {
     "normal" = 1,
     "lasso" = 2,
     "logistic" = 3,
+    "GDP" = 4,
     "none" = 100
   )
 

@@ -9,7 +9,8 @@ create_data_list(lavaan_object = NULL, method = "normal", priors = NULL)
 \arguments{
 \item{lavaan_object}{lavaan fit object of corresponding model}
 
-\item{method}{(character) One of "normal", "lasso", "none"}
+\item{method}{(character) One of "normal", "lasso",
+"logistic", "GDP", "none"}
 
 \item{priors}{An object of \code{\link{mbsempriors-class}}.
 See \code{\link{new_mbsempriors}} for more information.}

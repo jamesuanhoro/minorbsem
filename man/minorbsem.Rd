@@ -35,11 +35,17 @@ The rownames and/or colnames must contain the observed variable names.}
 data frame
 is missing and only sample covariance matrix is given.}
 
-\item{method}{(character) One of "normal", "lasso" or "none".
+\item{method}{(character) One of "normal", "lasso", "logistic",
+"GDP" or "none".
 Select "normal" under belief that minor factor influences are
 on average zero with continuous deviations away from zero.
 Select "lasso" under belief that minor factor influences are
 indeed zero with a small number of non-zero residual covariances.
+Select "logistic" for similar belief as normal but more readily
+accomodates extreme outliers.
+Select "GDP" to mimic a global-local approach, i.e.
+attempt to shrink near 0 residual covariances to 0
+with minimal shrinking for larger residual covariances.
 Select "none" if intending to ignore the influence of minor factors.}
 
 \item{orthogonal}{(logical) constrain factors orthogonal, must be TRUE to fit
