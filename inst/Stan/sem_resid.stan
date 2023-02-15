@@ -6,6 +6,8 @@ functions {
       return -1;
   }
   real generalized_double_pareto_lpdf(vector x, real alpha) {
+    // generalized double Pareto
+    // https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/
     return(sum(
       -(alpha + 1.0) * log(1.0 + abs(x) / alpha)
     ));
@@ -79,9 +81,8 @@ model {
     // logistic
     resids ~ logistic(0, 1);
   } else if (method == 4) {
-    // generalized double Pareto
-    // https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/
-    gdp_alpha ~ cauchy(0, 1);
+    // https://www.mdpi.com/2075-1680/11/9/462
+    gdp_alpha ~ lognormal(1, 1);
     target += generalized_double_pareto_lpdf(
       resids | gdp_alpha[1]);
   }
