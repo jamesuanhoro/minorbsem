@@ -23,7 +23,7 @@ method_hash <- function(search_term) {
   list_methods <- c(
     "normal" = 1,
     "lasso" = 2,
-    "lkj" = 3,
+    "logistic" = 3,
     "none" = 100
   )
 

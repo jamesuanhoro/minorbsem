@@ -20,9 +20,11 @@ data {
   real<lower = 0> sl_par;  // sigma_loading parameter
   real<lower = 0> rs_par;  // residual sd parameter
   real<lower = 1> rc_par;  // residual corr parameter
-  int<lower = 1, upper = 2> method; // which method
+  int<lower = 1, upper = 3> method; // which method
 }
 transformed data {
+  real sqrt_two = sqrt(2.0);
+  real pi_sqrt_three = pi() / sqrt(3.0);
   int<lower = 0> Nl = 0;  // N_non-zero loadings
   cholesky_factor_cov[Ni] NL_S = sqrt(Np - 1) * cholesky_decompose(S);  // covariance matrix-chol
   int Nf_corr = corr_fac == 1 ? Nf : 1;
@@ -51,6 +53,9 @@ model {
   } else if (method == 2) {
     // lasso
     resids ~ double_exponential(0, 1);
+  } else if (method == 3) {
+    // logistic
+    resids ~ logistic(0, 1);
   }
 
   loadings ~ normal(0, sigma_loadings);
@@ -124,7 +129,9 @@ generated quantities {
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
 
   if (method == 2) {
-    rms_src = sqrt(2 * square(rms_src));
+    rms_src *= sqrt_two;
+  } else if (method == 3) {
+    rms_src *= pi_sqrt_three;
   }
 
   {

@@ -14,6 +14,8 @@
 #' on average zero with continuous deviations away from zero.
 #' Select "lasso" under belief that minor factor influences are
 #' indeed zero with a small number of non-zero residual covariances.
+#' Select "logistic" for similar belief as normal but more readily
+#' accomodates extreme outliers.
 #' Select "none" if intending to ignore the influence of minor factors.
 #' @param orthogonal (logical) constrain factors orthogonal, must be TRUE to fit
 #' bifactor models.
@@ -74,7 +76,7 @@ minorbsem <- function(
     stop("See ?new_mbsempriors for how to set up priors.")
   }
 
-  stopifnot(method %in% c("normal", "lasso", "none"))
+  stopifnot(method %in% c("normal", "lasso", "logistic", "none"))
 
   # Must provide either data or sample_cov and sample_nobs
   if (is.null(data) && (is.null(sample_cov) || is.null(sample_nobs))) {
