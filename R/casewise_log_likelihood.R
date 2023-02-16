@@ -9,11 +9,15 @@
 #' FALSE: Exclude them. If TRUE, different
 #' models fit to the data will hardly be distinguishable.
 #' See details below.
+#' @param use_armadillo (LOICAL) TRUE: Use RccpArmadillo for
+#' log-likelihood computations. For some reason, this option is
+#' slower.
+#' FALSE: Use implementation in bayesm package (currently faster).
 #' @returns matrix (posterior iterations BY sample size)
 #' containing log-likelihood
 #' @details
-#' If comparing two models fit using \code{\link{minorbsem}}, it is
-#' reasonable to
+#' If comparing two models fit using the same method in
+#' \code{\link{minorbsem}}, it is reasonable to
 #' exclude the residual covariance matrix that captures the influences
 #' of minor factors when computing the log-likelihood. If they are not
 #' excluded, the log-likelihood will be near identical for models with
@@ -22,11 +26,14 @@
 #' structure.
 #'
 #' The option to set \code{include_residuals = TRUE} is included to allow
-#' comparison of models fit with minorbsem and other packages.
+#' (i) comparison of models fit with different minorbsem methods
+#' and; (ii) comparisons of models fit with minorbsem and
+#' models fit with other packages.
+#'
 #' When the influence of minor factors is non-trivial, one can expect
 #' that models fit with minorbsem will have better fit to the data
-#' since minorbsem models simultaneously model the degree of
-#' model misspecification.
+#' than models fit with other packages since minorbsem models
+#' simultaneously model the degree of model misspecification.
 #' @examples
 #' # Comparing two models using LOOCV
 #' fit_1 <- minorbsem("F1 =~ x1 + x2 + x3
@@ -53,7 +60,10 @@
 #' # Compare both models
 #' print(loo::loo_compare(loo_1, loo_2), simplify = FALSE)
 #' @export
-casewise_log_likelihood <- function(object, include_residuals = FALSE) {
+casewise_log_likelihood <- function(
+    object,
+    include_residuals = FALSE,
+    use_armadillo = FALSE) {
   # data list must have full data
   data_list <- object@data_list
 
@@ -68,14 +78,18 @@ casewise_log_likelihood <- function(object, include_residuals = FALSE) {
     include_residuals = include_residuals
   )
 
-  y_dat <- t(t(data_list$Y) - colMeans(data_list$Y))
   mu <- rep(0, data_list$Ni)
-  result <- t(apply(m_vcov_list, 2, function(sigma) {
-    m_vcov <- matrix(sigma, nrow = data_list$Ni, ncol = data_list$Ni)
-    # ll <- mvtnorm::dmvnorm(y_dat, mean = mu, sigma = m_vcov, log = TRUE)
-    ll <- mb_ldmvn(y_dat, mu, m_vcov)
-    return(ll)
-  }))
+  # Note y_dat_t is transposed to save time on computation
+  y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
+  if (isFALSE(use_armadillo)) {
+    result <- t(apply(m_vcov_list, 2, function(sigma) {
+      m_vcov <- matrix(sigma, nrow = data_list$Ni, ncol = data_list$Ni)
+      ll <- mb_ldmvn(y_dat_t, mu, m_vcov)
+      return(ll)
+    }))
+  } else if (isTRUE(use_armadillo)) {
+    result <- ldmvnrm_list_arma_fast(y_dat_t, mu, m_vcov_list)
+  }
 
   return(result)
 }

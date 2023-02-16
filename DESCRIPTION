@@ -22,10 +22,12 @@ Imports:
     lavaan,
     methods,
     posterior,
-    Rcpp,
-    RcppArmadillo
+    Rcpp
 Remotes: 
     github::stan-dev/cmdstanr
 LazyData: true
 Suggests: 
     loo
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo

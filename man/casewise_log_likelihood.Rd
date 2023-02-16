@@ -4,7 +4,11 @@
 \alias{casewise_log_likelihood}
 \title{Get casewise log-likelihood when full data is available}
 \usage{
-casewise_log_likelihood(object, include_residuals = FALSE)
+casewise_log_likelihood(
+  object,
+  include_residuals = FALSE,
+  use_armadillo = FALSE
+)
 }
 \arguments{
 \item{object}{(mbsem) An object of \code{\link{mbsem-class}}
@@ -15,6 +19,11 @@ residual covariances in model-implied covariance matrix;
 FALSE: Exclude them. If TRUE, different
 models fit to the data will hardly be distinguishable.
 See details below.}
+
+\item{use_armadillo}{(LOICAL) TRUE: Use RccpArmadillo for
+log-likelihood computations. For some reason, this option is
+slower.
+FALSE: Use implementation in bayesm package (currently faster).}
 }
 \value{
 matrix (posterior iterations BY sample size)
@@ -25,8 +34,8 @@ Get casewise log-likelihood for complete data,
 useful for WAIC, LOOIC, ...
 }
 \details{
-If comparing two models fit using \code{\link{minorbsem}}, it is
-reasonable to
+If comparing two models fit using the same method in
+\code{\link{minorbsem}}, it is reasonable to
 exclude the residual covariance matrix that captures the influences
 of minor factors when computing the log-likelihood. If they are not
 excluded, the log-likelihood will be near identical for models with
@@ -35,11 +44,14 @@ covariances capture the degree of misspecification with the hypothesized
 structure.
 
 The option to set \code{include_residuals = TRUE} is included to allow
-comparison of models fit with minorbsem and other packages.
+(i) comparison of models fit with different minorbsem methods
+and; (ii) comparisons of models fit with minorbsem and
+models fit with other packages.
+
 When the influence of minor factors is non-trivial, one can expect
 that models fit with minorbsem will have better fit to the data
-since minorbsem models simultaneously model the degree of
-model misspecification.
+than models fit with other packages since minorbsem models
+simultaneously model the degree of model misspecification.
 }
 \examples{
 # Comparing two models using LOOCV

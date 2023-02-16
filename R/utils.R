@@ -46,9 +46,9 @@ method_hash <- function(search_term) {
 #' @returns sum of casewise log-likelihood
 #' @keywords internal
 mb_ldmvn <- function(x_mat, mu, s_mat) {
-  k <- ncol(x_mat)
+  k <- nrow(x_mat)
   rooti <- backsolve(chol(s_mat), diag(k))
-  quads <- colSums((crossprod(rooti, (t(x_mat) - mu))) ^ 2)
+  quads <- colSums((crossprod(rooti, x_mat - mu))^2)
   return(-(k / 2) * log(2 * pi) + sum(log(diag(rooti))) - .5 * quads)
 }
 
