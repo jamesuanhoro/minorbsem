@@ -9,10 +9,9 @@
 #' FALSE: Exclude them. If TRUE, different
 #' models fit to the data will hardly be distinguishable.
 #' See details below.
-#' @param use_armadillo (LOICAL) TRUE: Use RccpArmadillo for
-#' log-likelihood computations. For some reason, this option is
-#' slower.
-#' FALSE: Use implementation in bayesm package (currently faster).
+#' @param use_armadillo (LOGICAL) TRUE: Use RccpArmadillo for
+#' log-likelihood computations.
+#' FALSE: Use base R implementation from bayesm package.
 #' @returns matrix (posterior iterations BY sample size)
 #' containing log-likelihood
 #' @details
@@ -63,7 +62,7 @@
 casewise_log_likelihood <- function(
     object,
     include_residuals = FALSE,
-    use_armadillo = FALSE) {
+    use_armadillo = TRUE) {
   # data list must have full data
   data_list <- object@data_list
 
@@ -89,14 +88,14 @@ casewise_log_likelihood <- function(
   mu <- rep(0, data_list$Ni)
   # Note y_dat_t is transposed to save time on computation
   y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
-  if (isFALSE(use_armadillo)) {
+  if (isTRUE(use_armadillo)) {
+    result <- ldmvnrm_list_arma_fast(y_dat_t, mu, m_vcov_list)
+  } else if (isFALSE(use_armadillo)) {
     result <- t(apply(m_vcov_list, 2, function(sigma) {
       m_vcov <- matrix(sigma, nrow = data_list$Ni, ncol = data_list$Ni)
       ll <- mb_ldmvn(y_dat_t, mu, m_vcov)
       return(ll)
     }))
-  } else if (isTRUE(use_armadillo)) {
-    result <- ldmvnrm_list_arma_fast(y_dat_t, mu, m_vcov_list)
   }
 
   return(result)
