@@ -22,8 +22,7 @@ Imports:
     lavaan,
     methods,
     mvtnorm,
-    posterior,
-    scales
+    posterior
 Remotes: 
     github::stan-dev/cmdstanr
 LazyData: true
