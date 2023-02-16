@@ -7,7 +7,7 @@
 casewise_log_likelihood(
   object,
   include_residuals = FALSE,
-  use_armadillo = FALSE
+  use_armadillo = TRUE
 )
 }
 \arguments{
@@ -20,10 +20,9 @@ FALSE: Exclude them. If TRUE, different
 models fit to the data will hardly be distinguishable.
 See details below.}
 
-\item{use_armadillo}{(LOICAL) TRUE: Use RccpArmadillo for
-log-likelihood computations. For some reason, this option is
-slower.
-FALSE: Use implementation in bayesm package (currently faster).}
+\item{use_armadillo}{(LOGICAL) TRUE: Use RccpArmadillo for
+log-likelihood computations.
+FALSE: Use base R implementation from bayesm package.}
 }
 \value{
 matrix (posterior iterations BY sample size)
