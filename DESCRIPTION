@@ -21,11 +21,13 @@ Imports:
     kableExtra,
     lavaan,
     methods,
-    mvtnorm,
     posterior,
-    scales
+    Rcpp
 Remotes: 
     github::stan-dev/cmdstanr
 LazyData: true
 Suggests: 
     loo
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo

@@ -8,3 +8,4 @@ inst/Stan/*
 .vscode/
 README.html
 /README_files/*
+*trial_code*
