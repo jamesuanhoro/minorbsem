@@ -139,30 +139,16 @@ minorbsem <- function(
 
   cmdstanr::set_cmdstan_path(cmdstan_loc)
 
-  if (method == "none") {
-    if (data_list$sem_indicator == 0) {
-      mod_resid <- cmdstanr::cmdstan_model(
-        system.file("Stan/cfa.stan", package = "minorbsem"),
-        stanc_options = list("O1")
-      )
-    } else if (data_list$sem_indicator == 1) {
-      mod_resid <- cmdstanr::cmdstan_model(
-        system.file("Stan/sem.stan", package = "minorbsem"),
-        stanc_options = list("O1")
-      )
-    }
-  } else {
-    if (data_list$sem_indicator == 0) {
-      mod_resid <- cmdstanr::cmdstan_model(
-        system.file("Stan/cfa_resid.stan", package = "minorbsem"),
-        stanc_options = list("O1")
-      )
-    } else if (data_list$sem_indicator == 1) {
-      mod_resid <- cmdstanr::cmdstan_model(
-        system.file("Stan/sem_resid.stan", package = "minorbsem"),
-        stanc_options = list("O1")
-      )
-    }
+  if (data_list$sem_indicator == 0) {
+    mod_resid <- cmdstanr::cmdstan_model(
+      system.file("Stan/cfa_resid.stan", package = "minorbsem"),
+      stanc_options = list("O1")
+    )
+  } else if (data_list$sem_indicator == 1) {
+    mod_resid <- cmdstanr::cmdstan_model(
+      system.file("Stan/sem_resid.stan", package = "minorbsem"),
+      stanc_options = list("O1")
+    )
   }
 
   message("Fitting Stan model ...")

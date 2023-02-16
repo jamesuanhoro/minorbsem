@@ -154,7 +154,7 @@ include_residuals <- function(omega_mat, params, data_list) {
   tv <- diag(omega_mat)
   n_re <- data_list$Ni * (data_list$Ni - 1) / 2
   re <- params[paste0("resids[", 1:n_re, "]")]
-  rm <- params["rms_src_p"]
+  rm <- params["rms_src_p[1]"]
   pos <- 0
   for (i in 2:data_list$Ni) {
     for (j in 1:(i - 1)) {
