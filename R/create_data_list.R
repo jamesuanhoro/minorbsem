@@ -74,24 +74,9 @@ create_data_list <- function(
   # Marker variables per factor
   # Each factor should have one unique indicator or stop!
   data_list$markers <- array(dim = data_list$Nf)
-  unique_indicators <- which(rowSums(data_list$loading_pattern) == 1)
-  unique_indicators <- as.matrix(data_list$loading_pattern[unique_indicators, ])
-  if (any(colSums(unique_indicators) == 0)) {
-    notice <- paste0(
-      "Each factor must have at least one indicator unique to it.", "\n",
-      "This is to ensure the sign/direction of the factor ",
-      "does not flip across iterations.", "\n",
-      "Also, note that the package can only fit standard ",
-      "CFAs and SEM models,", "\n",
-      "no higher-order factors, MIMIC, multilevel SEM, ",
-      "path analysis models, ..."
-    )
-    stop(notice)
-  }
-  unique_indicators <- rowSums(data_list$loading_pattern) == 1
   for (j in seq_len(ncol(data_list$loading_pattern))) {
     data_list$markers[j] <- which(
-      data_list$loading_pattern[, j] == 1 & unique_indicators
+      data_list$loading_pattern[, j] == 1
     )[1]
   }
 
