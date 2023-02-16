@@ -72,7 +72,8 @@ casewise_log_likelihood <- function(object, include_residuals = FALSE) {
   mu <- rep(0, data_list$Ni)
   result <- t(apply(m_vcov_list, 2, function(sigma) {
     m_vcov <- matrix(sigma, nrow = data_list$Ni, ncol = data_list$Ni)
-    ll <- mvtnorm::dmvnorm(y_dat, mean = mu, sigma = m_vcov, log = TRUE)
+    # ll <- mvtnorm::dmvnorm(y_dat, mean = mu, sigma = m_vcov, log = TRUE)
+    ll <- mb_ldmvn(y_dat, mu, m_vcov)
     return(ll)
   }))
 

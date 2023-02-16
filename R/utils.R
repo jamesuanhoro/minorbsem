@@ -38,6 +38,20 @@ method_hash <- function(search_term) {
   return(converted_value)
 }
 
+#' Multivariate normal density function
+#'
+#' @param x_mat the data matrix
+#' @param mu mean vector
+#' @param s_mat covariance matrix
+#' @returns sum of casewise log-likelihood
+#' @keywords internal
+mb_ldmvn <- function(x_mat, mu, s_mat) {
+  k <- ncol(x_mat)
+  rooti <- backsolve(chol(s_mat), diag(k))
+  quads <- colSums((crossprod(rooti, (t(x_mat) - mu))) ^ 2)
+  return(-(k / 2) * log(2 * pi) + sum(log(diag(rooti))) - .5 * quads)
+}
+
 #' Add row header helper function
 #' @description A function that adds row headers to kable object
 #' @param kbl_object Kable object
