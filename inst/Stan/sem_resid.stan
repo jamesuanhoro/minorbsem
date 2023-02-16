@@ -30,7 +30,7 @@ data {
   real<lower = 0> rs_par;  // residual sd parameter
   real<lower = 1> rc_par;  // residual corr parameter
   real<lower = 1> fc_par; // beta prior shape for phi
-  int<lower = 1, upper = 4> method; // which method
+  int<lower = 1, upper = 100> method; // which method
 }
 transformed data {
   real sqrt_two = sqrt(2.0);
@@ -40,7 +40,13 @@ transformed data {
   int coef_count = 0;
   int outcome_count = 0;
   int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
+  int N_rms = 1;
   int N_alpha = 0;
+
+  if (method == 100) {
+    N_rms = 0;
+    Nisqd2 = 0;
+  }
 
   if (method == 4) N_alpha = 1;
 
@@ -57,7 +63,7 @@ transformed data {
   }
 }
 parameters {
-  real<lower = 0> rms_src_p;
+  vector<lower = 0.0>[N_rms] rms_src_p;
   vector<lower = 2.0>[N_alpha] gdp_alpha;
   vector[Nisqd2] resids;
   vector<lower = 0>[Nl - Nf] loadings; // loadings
@@ -171,12 +177,12 @@ model {
 
     total_var = diagonal(Omega);
 
-    {
+    if (method != 100) {
       int pos = 0;
       for (i in 2:Ni) {
         for (j in 1:(i - 1)) {
           pos += 1;
-          Omega[i, j] += resids[pos] * rms_src_p * sqrt(total_var[i] * total_var[j]);
+          Omega[i, j] += resids[pos] * rms_src_p[1] * sqrt(total_var[i] * total_var[j]);
           Omega[j, i] = Omega[i, j];
         }
       }
@@ -186,7 +192,7 @@ model {
   }
 }
 generated quantities {
-  real<lower = 0> rms_src = rms_src_p;  // RMSE of residuals
+  real<lower = 0> rms_src;  // RMSE of residuals
   matrix[Ni, Nf] Load_mat_u = rep_matrix(0, Ni, Nf);
   matrix[Nf, Nf] Coef_mat_u = rep_matrix(0, Nf, Nf);
   matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
@@ -199,6 +205,11 @@ generated quantities {
   vector[Nce] res_cov;
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
 
+  if (method != 100) {
+    rms_src = rms_src_p[1];
+  } else {
+    rms_src = 0.0;
+  }
   if (method == 2) {
     rms_src *= sqrt_two;
   } else if (method == 3) {
@@ -278,12 +289,12 @@ generated quantities {
     }
   }
 
-  {
+  if (method != 100) {
     int pos = 0;
     for (i in 2:Ni) {
       for (j in 1:(i - 1)) {
         pos += 1;
-        Resid[i, j] = resids[pos] * rms_src_p;
+        Resid[i, j] = resids[pos] * rms_src_p[1];
         Resid[j, i] = Resid[i, j];
       }
     }

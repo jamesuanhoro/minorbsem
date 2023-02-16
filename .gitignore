@@ -4,7 +4,7 @@
 .httr-oauth
 .DS_Store
 inst/Stan/*
-!inst/Stan/*.stan
+!inst/Stan/*_resid.stan
 .vscode/
 README.html
 /README_files/*
