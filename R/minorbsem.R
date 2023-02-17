@@ -90,6 +90,16 @@ minorbsem <- function(
   # Must provide either data or sample_cov and sample_nobs
   user_input_check("data", data, sample_cov, sample_nobs)
 
+  # CmdStan path must be set
+  tryCatch(cmdstanr::cmdstan_path(),
+    error = function(e) {
+      stop(paste0(
+        "Error: CmdStan path has not been set yet.", " ",
+        "See ?cmdstanr::set_cmdstan_path()."
+      ))
+    }
+  )
+
   # Run lavaan fit
   if (!is.null(data)) {
     lav_fit <- lavaan::cfa(
