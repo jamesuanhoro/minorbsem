@@ -34,6 +34,7 @@
 #' than models fit with other packages since minorbsem models
 #' simultaneously model the degree of model misspecification.
 #' @examples
+#' \dontrun{
 #' # Comparing two models using LOOCV
 #' fit_1 <- minorbsem("F1 =~ x1 + x2 + x3
 #'                     F2 =~ x4 + x5 + x6
@@ -47,7 +48,6 @@
 #' # Compute case wise log-likelihood, exclude minor factor residuals
 #' ll_mat_2 <- casewise_log_likelihood(fit_2, include_residuals = FALSE)
 #'
-#' \dontrun{
 #' # LOO compuations
 #' loo_1 <- loo::loo(
 #'   ll_mat_1,
@@ -59,6 +59,7 @@
 #'   r_eff = loo::relative_eff(ll_mat_2, chain_id = chain_id)
 #' )
 #' print(loo_2)
+#'
 #' # Compare both models
 #' print(loo::loo_compare(loo_1, loo_2), simplify = FALSE)
 #' }

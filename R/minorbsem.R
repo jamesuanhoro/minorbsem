@@ -40,6 +40,7 @@
 #' show table of results. As an example, use FALSE for simulation studies.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @examples
+#' \dontrun{
 #' minorbsem("# latent variable definitions
 #'            F1 =~ x1 + x2 + x3
 #'            F2 =~ x4 + x5 + x6
@@ -51,6 +52,7 @@
 #'            # latent regressions
 #'            dem60 ~ ind60
 #'            dem65 ~ ind60 + dem60", PD)
+#' }
 #' @export
 minorbsem <- function(
     model = NULL,

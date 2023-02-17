@@ -7,10 +7,12 @@
 #' or "matrix" for a matrix with point estimates in the lower half.
 #' @returns ggplot object
 #' @examples
+#' \dontrun{
 #' fit <- minorbsem("F1 =~ x1 + x2 + x3
 #'                   F2 =~ x4 + x5 + x6
 #'                   F3 =~ x7 + x8 + x9", HS)
 #' plot_residuals(fit)
+#' }
 #' @export
 plot_residuals <- function(object, type = "matrix") {
   parameter <- `50%` <- `5%` <- `95%` <- lo <- hi <- item_2 <- item_1 <- NULL

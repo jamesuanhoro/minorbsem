@@ -16,12 +16,14 @@
 #' "re" = standardized REsidual covariances
 #' @returns ggplot object
 #' @examples
+#' \dontrun{
 #' fit <- minorbsem("F1 =~ x1 + x2 + x3
 #'                   F2 =~ x4 + x5 + x6
 #'                   F3 =~ x7 + x8 + x9", HS)
 #' parameter_trace(fit)
 #' parameter_trace(fit, param_type = "all")
 #' parameter_trace(fit, param_type = c("rm", "lo", "fc"))
+#' }
 #' @export
 parameter_trace <- function(
     object,
