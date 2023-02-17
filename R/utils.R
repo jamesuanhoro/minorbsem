@@ -13,13 +13,62 @@ minorbsem_version <- function() {
   return(version)
 }
 
+#' Check user input function
+#' @description A function that checks user input for adequacy
+#' and fails on inadequate input.
+#' @param type string for type of check
+#' @param object_1 Object to check
+#' @param object_2 Object to check
+#' @param object_3 Object to check
+#' @returns NULL
+#' @keywords internal
+user_input_check <- function(
+    type,
+    object_1 = NULL,
+    object_2 = NULL,
+    object_3 = NULL) {
+  if (type == "model") {
+    if (is.null(object_1)) {
+      stop("Model cannot be null")
+    }
+  }
+
+  if (type == "priors") {
+    if (!inherits(object_1, "mbsempriors")) {
+      stop("See ?new_mbsempriors for how to set up priors.")
+    }
+  }
+
+  if (type == "method") {
+    if (!tolower(object_1) %in% tolower(method_hash())) {
+      err_msg <- paste0(
+        "method must be one of the following: ",
+        paste0("\"", method_hash(), "\"", collapse = ", ")
+      )
+      stop(err_msg)
+    }
+  }
+
+  if (type == "data") {
+    if (is.null(object_1) && (is.null(object_2) || is.null(object_3))) {
+      stop(paste0(
+        "User must provide either:\n\t",
+        "(i) a dataset or\n\t",
+        "(ii) sample covariance and sample size"
+      ))
+    }
+  }
+
+  return(NULL)
+}
+
 #' Method hash function
 #' @description A function that swaps method from string to integer
 #' and vice-versa
-#' @param search_term Integer or string
+#' @param search_term Integer or string or NULL
 #' @returns If search_term is integer, returns string and vice-versa
 #' @keywords internal
-method_hash <- function(search_term) {
+method_hash <- function(search_term = NULL) {
   list_methods <- c(
     "normal" = 1,
     "lasso" = 2,
@@ -28,11 +77,14 @@ method_hash <- function(search_term) {
     "none" = 100
   )
 
-  if (is.integer(search_term) || is.numeric(search_term)) {
+  if (is.null(search_term)) {
+    converted_value <- names(list_methods)
+  } else if (is.integer(search_term) || is.numeric(search_term)) {
     search_term <- as.integer(search_term)
     converted_value <- names(list_methods)[which(search_term == list_methods)]
   } else if (is.character(search_term)) {
-    converted_value <- as.integer(list_methods[search_term])
+    idx <- which(tolower(search_term) == tolower(names(list_methods)))
+    converted_value <- as.integer(list_methods[idx])
   }
 
   return(converted_value)

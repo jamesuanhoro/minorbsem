@@ -28,6 +28,8 @@
 #' chain.
 #' @param sampling (positive integer) The number of post-warmup iterations to
 #' run per chain, retained for inference.
+#' @param refresh (positive integer) How often to print the status
+#' of the sampler.
 #' @param adapt_delta (real in (0, 1)) Increase to resolve divergent
 #' transitions.
 #' @param max_treedepth (positive integer) Increase to resolve problems with
@@ -38,6 +40,8 @@
 #' See \code{\link{new_mbsempriors}} for more information.
 #' @param show (Logical) If TRUE, show table of results, if FALSE, do not
 #' show table of results. As an example, use FALSE for simulation studies.
+#' @param show_messages (Logical) If TRUE, show messages from Stan sampler,
+#' if FALSE, hide messages.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @examples
 #' \dontrun{
@@ -64,36 +68,27 @@ minorbsem <- function(
     seed = 12345,
     warmup = 500,
     sampling = 500,
+    refresh = (warmup + sampling) / 10,
     adapt_delta = .9,
     max_treedepth = 10,
     chains = 3,
     ncores = max(parallel::detectCores() - 2, 1),
     priors = new_mbsempriors(),
-    show = TRUE) {
+    show = TRUE,
+    show_messages = TRUE) {
   message("Processing user input ...")
 
   # Model cannot be NULL
-  if (is.null(model)) {
-    stop("Model cannot be null")
-  }
+  user_input_check("model", model)
 
   # Priors must be class mbsempriors
-  if (!inherits(priors, "mbsempriors")) {
-    stop("See ?new_mbsempriors for how to set up priors.")
-  }
+  user_input_check("model", priors)
 
-  stopifnot(
-    method %in% c("normal", "lasso", "logistic", "GDP", "none")
-  )
+  # method must be valid
+  user_input_check("method", method)
 
   # Must provide either data or sample_cov and sample_nobs
-  if (is.null(data) && (is.null(sample_cov) || is.null(sample_nobs))) {
-    stop(paste0(
-      "User must provide either:\n\t",
-      "(i) a dataset or\n\t",
-      "(ii) sample covariance and sample size"
-    ))
-  }
+  user_input_check("data", data, sample_cov, sample_nobs)
 
   # Run lavaan fit
   if (!is.null(data)) {
@@ -160,7 +155,7 @@ minorbsem <- function(
     seed = seed,
     iter_warmup = warmup,
     iter_sampling = sampling,
-    refresh = (warmup + sampling) / 10,
+    refresh = refresh,
     init = function() {
       list(
         resids = rep(1e-3, data_list$Ni^2 - data_list$Ni)
@@ -169,7 +164,8 @@ minorbsem <- function(
     adapt_delta = adapt_delta,
     max_treedepth = max_treedepth,
     chains = chains,
-    parallel_chains = ncores
+    parallel_chains = ncores,
+    show_messages = show_messages
   )
 
   mbsem_results <- clean_up_stan_fit(stan_fit, data_list, priors)
