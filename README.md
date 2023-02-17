@@ -41,10 +41,12 @@ devtools::install_github("stonegold546/minorbsem")
 ``` r
 library(minorbsem)
 # Basic Holzinger-Swineford model
+syntax_1 <- "
+F1 =~ x1 + x2 + x3
+F2 =~ x4 + x5 + x6
+F3 =~ x7 + x8 + x9"
 # Expect a summary table output in Viewer
-fit_1 <- minorbsem("F1 =~ x1 + x2 + x3
-                    F2 =~ x4 + x5 + x6
-                    F3 =~ x7 + x8 + x9", HS)
+fit_1 <- minorbsem(syntax_1, HS)
 
 # Save output table to html file, see: ?pretty_print_summary for more options
 pretty_print_summary(fit_1, save_html = "baseline_model.html")
@@ -61,10 +63,11 @@ plot_residuals(fit_1, type = "range")
 
 ## Fit a second model and compare both using loo
 # A modified Holzinger-Swineford model
-fit_2 <- minorbsem("F1 =~ x1 + x2 + x3 + x9
-                    F2 =~ x4 + x5 + x6
-                    F3 =~ x7 + x8 + x9
-                    x2 ~~ x7", HS)
+syntax_2 <- "
+F1 =~ x1 + x2 + x3 + x9
+F2 =~ x4 + x5 + x6
+F3 =~ x7 + x8 + x9"
+fit_2 <- minorbsem(syntax_2, HS)
 
 # Compute case wise log-likelihood, exclude minor factor residuals
 ll_mat_1 <- casewise_log_likelihood(fit_1, include_residuals = FALSE)
