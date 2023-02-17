@@ -51,11 +51,11 @@ plot_residuals <- function(object, type = "matrix") {
       ggplot2::geom_point(shape = 4) +
       ggplot2::geom_linerange(
         ggplot2::aes(ymin = `5%`, ymax = `95%`),
-        size = 3, alpha = .25
+        linewidth = 3, alpha = .25
       ) +
       ggplot2::geom_linerange(
         ggplot2::aes(ymin = lo, ymax = hi),
-        size = .25
+        linewidth = .25
       ) +
       ggplot2::theme_classic() +
       ggplot2::theme(

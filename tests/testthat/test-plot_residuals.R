@@ -13,13 +13,13 @@ test_that("Random method (any case) works for CFA", {
     model_syntax, HS,
     method = method, refresh = 0, show_messages = FALSE
   )
+  type <- sample(c("matrix", "range"), 1)
   if (tolower(method) == "none") {
     expect_error(
       gg <- plot_residuals(fit, type = type),
       "There are no residuals to plot when method = \"none\""
     )
   } else {
-    type <- sample(c("matrix", "range"), 1)
     expect_error(
       gg <- plot_residuals(fit, type = type),
       NA
@@ -37,13 +37,13 @@ test_that("Random method (any case) works for SEM", {
     model_syntax, PD,
     method = method, refresh = 0, show_messages = FALSE
   )
+  type <- sample(c("matrix", "range"), 1)
   if (tolower(method) == "none") {
     expect_error(
       gg <- plot_residuals(fit, type = type),
       "There are no residuals to plot when method = \"none\""
     )
   } else {
-    type <- sample(c("matrix", "range"), 1)
     expect_error(
       gg <- plot_residuals(fit, type = type),
       NA

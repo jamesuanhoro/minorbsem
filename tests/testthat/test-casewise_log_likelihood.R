@@ -11,6 +11,7 @@ test_that("Random method (any case) works for CFA", {
   model_syntax <- sample(model_syntaxes, 1)
   fit <- minorbsem(
     model_syntax, HS,
+    warmup = 500, sampling = 500, chains = 3,
     method = method, refresh = 0, show_messages = FALSE
   )
   residuals <- sample(c(TRUE, FALSE), 1)
@@ -26,15 +27,17 @@ test_that("Random method (any case) works for CFA", {
       ),
       warn_msg
     )
+  } else {
+    expect_error(
+      ll_mat <- casewise_log_likelihood(
+        fit,
+        include_residuals = residuals
+      ),
+      NA
+    )
   }
-  expect_error(
-    ll_mat <- casewise_log_likelihood(
-      fit,
-      include_residuals = residuals
-    ),
-    NA
-  )
   expect_equal(ncol(ll_mat), nrow(HS))
+  expect_equal(nrow(ll_mat), 500 * 3)
   expect_true(!is.na(sum(ll_mat)))
 })
 
@@ -45,6 +48,7 @@ test_that("Random method (any case) works for SEM", {
   dem65 =~ y5 + y6 + y7 + y8\n dem60 ~ ind60\n dem65 ~ ind60 + dem60"
   fit <- minorbsem(
     model_syntax, PD,
+    warmup = 500, sampling = 500, chains = 3,
     method = method, refresh = 0, show_messages = FALSE
   )
   residuals <- sample(c(TRUE, FALSE), 1)
@@ -60,15 +64,17 @@ test_that("Random method (any case) works for SEM", {
       ),
       warn_msg
     )
+  } else {
+    expect_error(
+      ll_mat <- casewise_log_likelihood(
+        fit,
+        include_residuals = residuals
+      ),
+      NA
+    )
   }
-  expect_error(
-    ll_mat <- casewise_log_likelihood(
-      fit,
-      include_residuals = residuals
-    ),
-    NA
-  )
   expect_equal(ncol(ll_mat), nrow(PD))
+  expect_equal(nrow(ll_mat), 500 * 3)
   expect_true(!is.na(sum(ll_mat)))
 })
 
