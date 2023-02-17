@@ -1,5 +1,3 @@
-update_cmdstan_loc("~/cmdstan/")
-
 test_that("Random method (any case) works for CFA", {
   method <- random_method_selection()
   model_syntaxes <- c(
@@ -58,5 +56,3 @@ test_that("Noncreated method fails", {
     method = method, refresh = 0, show_messages = FALSE
   ), err_msg)
 })
-
-update_cmdstan_loc("")

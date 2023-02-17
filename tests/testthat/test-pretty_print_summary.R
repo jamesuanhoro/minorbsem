@@ -1,5 +1,3 @@
-update_cmdstan_loc("~/cmdstan/")
-
 test_that("Random method (any case) works for CFA", {
   method <- random_method_selection()
   model_syntaxes <- c(
@@ -65,5 +63,3 @@ test_that("Random method (any case) works for SEM", {
   expect_true(regexpr("RMSE", kbl, ignore.case = TRUE) > 0)
   expect_true(regexpr("PPP", kbl, ignore.case = TRUE) > 0)
 })
-
-update_cmdstan_loc("")
