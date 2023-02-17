@@ -28,6 +28,10 @@ pretty_print_summary <- function(
   method_str <- method_hash(object@data_list$method)
 
   if (simple) {
+    if (method_str == "GDP") {
+      table_to_print[2, "mean"] <- table_to_print[2, "median"]
+      table_to_print[2, "sd"] <- table_to_print[2, "mad"]
+    }
     table_to_print <- table_to_print[
       c(
         "group", "from", "op", "to", "mean", "sd",
@@ -41,6 +45,17 @@ pretty_print_summary <- function(
     caption = paste0("Parameter estimates (", method_str, ")"),
     digits = digits
   )
+
+  if (simple && method_str == "GDP") {
+    result <- kableExtra::footnote(
+      result,
+      general = paste0(
+        "Mean and SD RMSE are median and mad respectively ",
+        "because RMSE is usually extremely right-skewed."
+      )
+    )
+  }
+
   result <- kableExtra::kable_paper(result)
   result <- kableExtra::kable_styling(result, full_width = FALSE)
   result <- kableExtra::pack_rows(result, "Goodness of fit", 1, 2)
