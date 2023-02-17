@@ -83,5 +83,7 @@ pretty_print_summary <- function(
     kableExtra::save_kable(result, file = save_html)
   }
 
+  print(result)
+
   return(result)
 }
