@@ -13,5 +13,5 @@ update_cmdstan_loc(loc = "")
 Update CmdStan location
 }
 \examples{
-update_cmdstan_loc(loc = "~/cmdstan/")
+update_cmdstan_loc("~/cmdstan/")
 }

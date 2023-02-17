@@ -60,16 +60,19 @@ fit_1 <- minorbsem("F1 =~ x1 + x2 + x3
 # Compute case wise log-likelihood, exclude minor factor residuals
 ll_mat_1 <- casewise_log_likelihood(fit_1, include_residuals = FALSE)
 chain_id <- posterior::as_draws_df(fit_1@stan_fit)$.chain
-loo_1 <- loo::loo(
-  ll_mat_1,
-  r_eff = loo::relative_eff(ll_mat_1, chain_id = chain_id)
-)
-print(loo_1)
 fit_2 <- minorbsem("F1 =~ x1 + x2 + x3 + x9
                     F2 =~ x4 + x5 + x6
                     F3 =~ x7 + x8 + x9", HS)
 # Compute case wise log-likelihood, exclude minor factor residuals
 ll_mat_2 <- casewise_log_likelihood(fit_2, include_residuals = FALSE)
+
+\dontrun{
+# LOO compuations
+loo_1 <- loo::loo(
+  ll_mat_1,
+  r_eff = loo::relative_eff(ll_mat_1, chain_id = chain_id)
+)
+print(loo_1)
 loo_2 <- loo::loo(
   ll_mat_2,
   r_eff = loo::relative_eff(ll_mat_2, chain_id = chain_id)
@@ -77,4 +80,5 @@ loo_2 <- loo::loo(
 print(loo_2)
 # Compare both models
 print(loo::loo_compare(loo_1, loo_2), simplify = FALSE)
+}
 }

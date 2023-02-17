@@ -2,7 +2,7 @@
 #'
 #' @param loc (string) Folder CmdStan lives on system
 #' @examples
-#' update_cmdstan_loc(loc = "~/cmdstan/")
+#' update_cmdstan_loc("~/cmdstan/")
 #' @export
 update_cmdstan_loc <- function(loc = "") {
   writeLines(
