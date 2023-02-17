@@ -118,24 +118,6 @@ minorbsem <- function(
     "and the first time you run an SEM"
   ))
 
-  # TODO: #1 Entire program assumes package library storage location
-  # is modifiable by user, ensure this is the case?
-  cmdstan_loc_file <- system.file("cmdstan_loc", package = "minorbsem")
-  cmdstan_loc <- readLines(cmdstan_loc_file)
-  while (cmdstan_loc == "") {
-    input <- readline(
-      prompt = paste0(
-        "Please enter your CmdStan directory, \"~/cmdstan/\" ",
-        "is assumed if no input is provided: "
-      )
-    )
-    if (trimws(input) == "") input <- "~/cmdstan/"
-    update_cmdstan_loc(loc = input)
-    cmdstan_loc <- readLines(cmdstan_loc_file)
-  }
-
-  cmdstanr::set_cmdstan_path(cmdstan_loc)
-
   if (data_list$sem_indicator == 0) {
     mod_resid <- cmdstanr::cmdstan_model(
       system.file("Stan/cfa_resid.stan", package = "minorbsem"),
