@@ -27,6 +27,9 @@ test_that("Random method (any case) works for CFA", {
     kbl,
     ignore.case = TRUE
   ) > 0)
+  expect_true(regexpr("Goodness of fit", kbl, ignore.case = TRUE) > 0)
+  expect_true(regexpr("RMSE", kbl, ignore.case = TRUE) > 0)
+  expect_true(regexpr("PPP", kbl, ignore.case = TRUE) > 0)
   if (syntax_idx == 3) {
     expect_true(regexpr(
       "Error correlations",
@@ -58,6 +61,9 @@ test_that("Random method (any case) works for SEM", {
   ) > 0)
   expect_true(regexpr("Factor loadings", kbl, ignore.case = TRUE) > 0)
   expect_true(regexpr("R square", kbl, ignore.case = TRUE) > 0)
+  expect_true(regexpr("Goodness of fit", kbl, ignore.case = TRUE) > 0)
+  expect_true(regexpr("RMSE", kbl, ignore.case = TRUE) > 0)
+  expect_true(regexpr("PPP", kbl, ignore.case = TRUE) > 0)
 })
 
 update_cmdstan_loc("")

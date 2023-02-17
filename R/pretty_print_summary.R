@@ -43,7 +43,7 @@ pretty_print_summary <- function(
   )
   result <- kableExtra::kable_paper(result)
   result <- kableExtra::kable_styling(result, full_width = FALSE)
-  result <- kableExtra::pack_rows(result, "RMSE(residuals)", 1, 1)
+  result <- kableExtra::pack_rows(result, "Goodness of fit", 1, 2)
 
   result <- add_row_header(
     result, table_to_print,

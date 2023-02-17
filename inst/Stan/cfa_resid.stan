@@ -142,6 +142,9 @@ model {
   }
 }
 generated quantities {
+  real D_obs;
+  real D_rep;
+  real<lower = 0, upper = 1> ppp;
   real<lower = 0> rms_src;  // RMSE of residuals
   matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
   matrix[Nf_corr, Nf_corr] phi_mat = multiply_lower_tri_self_transpose(phi_mat_chol);
@@ -177,15 +180,58 @@ generated quantities {
   }
 
   {
-    int pos = 0;
-    for (i in 1:Ni) {
-      for (j in 1:Nf) {
-        if (loading_pattern[i, j] != 0) {
-          pos += 1;
-          Load_mat[i, j] = loadings[pos];
+    matrix[Ni, Ni] Omega;
+    matrix[Ni, Ni] S_sim;
+    matrix[Ni, Ni] lamb_phi_lamb;
+    matrix[Ni, Nce] loading_par_exp = rep_matrix(0, Ni, Nce);
+    matrix[Ni, Ni] loading_par_exp_2;
+    vector[Ni] delta_mat_ast;
+    vector[Ni] total_var;
+
+    {
+      int pos = 0;
+      for (i in 1:Ni) {
+        for (j in 1:Nf) {
+          if (loading_pattern[i, j] != 0) {
+            pos += 1;
+            Load_mat[i, j] = loadings[pos];
+          }
         }
       }
     }
+
+    if (corr_fac == 1) lamb_phi_lamb = quad_form_sym(phi_mat, Load_mat');
+    else lamb_phi_lamb = tcrossprod(Load_mat);
+
+    for (i in 1:Nce) {
+      loading_par_exp[error_mat[i, 1], i] = sqrt(
+        abs(res_cor[i]) * res_var[error_mat[i, 1]]);
+      loading_par_exp[error_mat[i, 2], i] = sign(res_cor[i]) * sqrt(
+        abs(res_cor[i]) * res_var[error_mat[i, 2]]);
+    }
+
+    loading_par_exp_2 = tcrossprod(loading_par_exp);
+    delta_mat_ast = res_var - diagonal(loading_par_exp_2);
+
+    Omega = add_diag(lamb_phi_lamb + loading_par_exp_2, delta_mat_ast);
+
+    total_var = diagonal(Omega);
+
+    if (method != 100) {
+      int pos = 0;
+      for (i in 2:Ni) {
+        for (j in 1:(i - 1)) {
+          pos += 1;
+          Omega[i, j] += resids[pos] * rms_src_p[1] * sqrt(total_var[i] * total_var[j]);
+          Omega[j, i] = Omega[i, j];
+        }
+      }
+    }
+
+    S_sim = wishart_rng(Np - 1.0, Omega / (Np - 1.0));
+    D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Omega / (Np - 1.0));
+    D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Omega / (Np - 1.0));
+    ppp = D_rep > D_obs ? 1.0 : 0.0;
   }
 
   for (j in 1:Nf) {
