@@ -192,6 +192,9 @@ model {
   }
 }
 generated quantities {
+  real D_obs;
+  real D_rep;
+  real<lower = 0, upper = 1> ppp;
   real<lower = 0> rms_src;  // RMSE of residuals
   matrix[Ni, Nf] Load_mat_u = rep_matrix(0, Ni, Nf);
   matrix[Nf, Nf] Coef_mat_u = rep_matrix(0, Nf, Nf);
@@ -220,14 +223,30 @@ generated quantities {
     );
   }
 
+  if (method != 100) {
+    int pos = 0;
+    for (i in 2:Ni) {
+      for (j in 1:(i - 1)) {
+        pos += 1;
+        Resid[i, j] = resids[pos] * rms_src_p[1];
+        Resid[j, i] = Resid[i, j];
+      }
+    }
+  }
+
   {
+    matrix[Ni, Ni] Omega;
+    matrix[Ni, Ni] S_sim;
     matrix[Nf, Nf_corr] F_corr_pe = rep_matrix(0, Nf, Nf_corr);
     matrix[Nf, Nf] F_cov_mat;
     vector[Nf] F_var_resid;
+    matrix[Ni, Nce] loading_par_exp = rep_matrix(0, Ni, Nce);
+    matrix[Ni, Ni] loading_par_exp_2;
     matrix[Nf, Nf] One_min_Beta_inv;
     matrix[Ni, Nf] Lambda_One_min_Beta_inv;
+    vector[Ni] delta_mat_ast;
+    vector[Ni] total_var;
     vector[Nf] d_rt_c_hat;
-    vector[Ni] total_sd;
 
     {
       array[3] int pos_3 = rep_array(0, 3);
@@ -252,8 +271,6 @@ generated quantities {
         }
       }
     }
-    Coef_mat_u = Coef_mat;
-    Load_mat_u = Load_mat;
 
     One_min_Beta_inv = inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
     Lambda_One_min_Beta_inv = Load_mat * One_min_Beta_inv;
@@ -268,15 +285,45 @@ generated quantities {
     F_cov_mat = tcrossprod(F_corr_pe);
     F_var_resid = phi_var - diagonal(F_cov_mat);
 
+    for (i in 1:Nce) {
+      loading_par_exp[error_mat[i, 1], i] = sqrt(
+        abs(res_cor[i]) * res_var[error_mat[i, 1]]);
+      loading_par_exp[error_mat[i, 2], i] = sign(res_cor[i]) * sqrt(
+        abs(res_cor[i]) * res_var[error_mat[i, 2]]);
+    }
+
+    loading_par_exp_2 = tcrossprod(loading_par_exp);
+    delta_mat_ast = res_var - diagonal(loading_par_exp_2);
+
+    Omega = add_diag(
+      quad_form(
+        add_diag(F_cov_mat, F_var_resid),
+        Lambda_One_min_Beta_inv') + loading_par_exp_2,
+      delta_mat_ast);
+
+    total_var = diagonal(Omega);
+
+    if (method != 100) {
+      int pos = 0;
+      for (i in 2:Ni) {
+        for (j in 1:(i - 1)) {
+          pos += 1;
+          Omega[i, j] += resids[pos] * rms_src_p[1] * sqrt(total_var[i] * total_var[j]);
+          Omega[j, i] = Omega[i, j];
+        }
+      }
+    }
+
+    S_sim = wishart_rng(Np - 1.0, Omega / (Np - 1.0));
+    D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Omega / (Np - 1.0));
+    D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Omega / (Np - 1.0));
+    ppp = D_rep > D_obs ? 1.0 : 0.0;
+
     // Bollen (1989), pg 350
     d_rt_c_hat = sqrt(diagonal(quad_form(
       add_diag(F_cov_mat, F_var_resid),
       One_min_Beta_inv'
     )));
-    total_sd = sqrt(diagonal(add_diag(quad_form(
-      add_diag(F_cov_mat, F_var_resid),
-      Lambda_One_min_Beta_inv'
-    ), res_var)));
 
     for (j in 1:Nf) {
       Load_mat[, j] *= d_rt_c_hat[j];
@@ -285,18 +332,7 @@ generated quantities {
       r_square[j] = 1.0 - phi_var[j] / square(d_rt_c_hat[j]);
     }
     for (i in 1:Ni) {
-      Load_mat[i, ] /= total_sd[i];
-    }
-  }
-
-  if (method != 100) {
-    int pos = 0;
-    for (i in 2:Ni) {
-      for (j in 1:(i - 1)) {
-        pos += 1;
-        Resid[i, j] = resids[pos] * rms_src_p[1];
-        Resid[j, i] = Resid[i, j];
-      }
+      Load_mat[i, ] /= sqrt(total_var[i]);
     }
   }
 

@@ -14,11 +14,15 @@ clean_up_stan_fit <- function(
   factor_labels <- colnames(data_list$loading_pattern)
 
   rms_result <- posterior::summarise_draws(
-    posterior::as_draws(stan_fit, variable = "rms_src")
+    posterior::as_draws(
+      stan_fit,
+      variable = c("ppp", "rms_src")
+    )
   )
-  rms_result$group <- "RMSE(resids)"
+  rms_result[1, c("sd", "mad")] <- NA_real_
+  rms_result$group <- "Goodness of fit"
   rms_result$op <- ""
-  rms_result$from <- ""
+  rms_result$from <- c("PPP", "RMSE")
   rms_result$to <- ""
 
   load_idxs <- paste0("Load_mat[", apply(which(
