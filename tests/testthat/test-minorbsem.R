@@ -1,13 +1,7 @@
 update_cmdstan_loc("~/cmdstan/")
 
 test_that("Random method (any case) works for CFA", {
-  method <- sample(method_hash(), 1)
-  case_fun <- sample(1:2, 1)
-  if (case_fun == 1) {
-    method <- tolower(method)
-  } else if (case_fun == 2) {
-    method <- toupper(method)
-  }
+  method <- random_method_selection()
   model_syntaxes <- c(
     "F1 =~ x1 + x2 + x3\n F2 =~ x4 + x5 + x6\n F3 =~ x7 + x8 + x9",
     "F1 =~ x1 + x2 + x3 + x9\n F2 =~ x4 + x5 + x6\n F3 =~ x7 + x8 + x9",
@@ -26,13 +20,7 @@ test_that("Random method (any case) works for CFA", {
 })
 
 test_that("Random method (any case) works for SEM", {
-  method <- sample(method_hash(), 1)
-  case_fun <- sample(1:2, 1)
-  if (case_fun == 1) {
-    method <- tolower(method)
-  } else if (case_fun == 2) {
-    method <- toupper(method)
-  }
+  method <- random_method_selection()
   model_syntax <- "
   ind60 =~ x1 + x2 + x3\n dem60 =~ y1 + y2 + y3 + y4\n
   dem65 =~ y5 + y6 + y7 + y8\n dem60 ~ ind60\n dem65 ~ ind60 + dem60"

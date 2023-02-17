@@ -62,6 +62,23 @@ user_input_check <- function(
   return(NULL)
 }
 
+#' Select random method and random case function
+#'
+#' @returns randomly selected method and case
+#' @keywords internal
+random_method_selection <- function() {
+  method <- sample(method_hash(), 1)
+
+  case_fun <- sample(1:2, 1)
+  if (case_fun == 1) {
+    method <- tolower(method)
+  } else if (case_fun == 2) {
+    method <- toupper(method)
+  }
+
+  return(method)
+}
+
 #' Method hash function
 #' @description A function that swaps method from string to integer
 #' and vice-versa
