@@ -21,6 +21,10 @@ plot_residuals <- function(object, type = "matrix") {
     stop("type must be either \"range\" or \"matrix\"")
   }
 
+  if (object@data_list$method == 100) {
+    stop("There are no residuals to plot when method = \"none\"")
+  }
+
   clean_post_df <- prepare_stan_plot_data(object)
   clean_post_df <- clean_post_df[clean_post_df$param_class == "re", ]
   clean_post_df$parameter <- gsub("re: ", "", clean_post_df$parameter)
