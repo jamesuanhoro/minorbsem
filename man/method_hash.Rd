@@ -4,10 +4,10 @@
 \alias{method_hash}
 \title{Method hash function}
 \usage{
-method_hash(search_term)
+method_hash(search_term = NULL)
 }
 \arguments{
-\item{search_term}{Integer or string}
+\item{search_term}{Integer or string or NULL}
 }
 \value{
 If search_term is integer, returns string and vice-versa

@@ -7,16 +7,22 @@
 #' or "matrix" for a matrix with point estimates in the lower half.
 #' @returns ggplot object
 #' @examples
+#' \dontrun{
 #' fit <- minorbsem("F1 =~ x1 + x2 + x3
 #'                   F2 =~ x4 + x5 + x6
 #'                   F3 =~ x7 + x8 + x9", HS)
 #' plot_residuals(fit)
+#' }
 #' @export
 plot_residuals <- function(object, type = "matrix") {
   parameter <- `50%` <- `5%` <- `95%` <- lo <- hi <- item_2 <- item_1 <- NULL
 
   if (!type %in% c("range", "matrix")) {
     stop("type must be either \"range\" or \"matrix\"")
+  }
+
+  if (object@data_list$method == 100) {
+    stop("There are no residuals to plot when method = \"none\"")
   }
 
   clean_post_df <- prepare_stan_plot_data(object)
@@ -45,11 +51,11 @@ plot_residuals <- function(object, type = "matrix") {
       ggplot2::geom_point(shape = 4) +
       ggplot2::geom_linerange(
         ggplot2::aes(ymin = `5%`, ymax = `95%`),
-        size = 3, alpha = .25
+        linewidth = 3, alpha = .25
       ) +
       ggplot2::geom_linerange(
         ggplot2::aes(ymin = lo, ymax = hi),
-        size = .25
+        linewidth = .25
       ) +
       ggplot2::theme_classic() +
       ggplot2::theme(

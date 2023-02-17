@@ -14,12 +14,14 @@ minorbsem(
   seed = 12345,
   warmup = 500,
   sampling = 500,
+  refresh = (warmup + sampling)/10,
   adapt_delta = 0.9,
   max_treedepth = 10,
   chains = 3,
   ncores = max(parallel::detectCores() - 2, 1),
   priors = new_mbsempriors(),
-  show = TRUE
+  show = TRUE,
+  show_messages = TRUE
 )
 }
 \arguments{
@@ -59,6 +61,9 @@ chain.}
 \item{sampling}{(positive integer) The number of post-warmup iterations to
 run per chain, retained for inference.}
 
+\item{refresh}{(positive integer) How often to print the status
+of the sampler.}
+
 \item{adapt_delta}{(real in (0, 1)) Increase to resolve divergent
 transitions.}
 
@@ -74,6 +79,9 @@ See \code{\link{new_mbsempriors}} for more information.}
 
 \item{show}{(Logical) If TRUE, show table of results, if FALSE, do not
 show table of results. As an example, use FALSE for simulation studies.}
+
+\item{show_messages}{(Logical) If TRUE, show messages from Stan sampler,
+if FALSE, hide messages.}
 }
 \value{
 An object of \code{\link{mbsem-class}}
@@ -82,6 +90,7 @@ An object of \code{\link{mbsem-class}}
 The major function to fit models
 }
 \examples{
+\dontrun{
 minorbsem("# latent variable definitions
            F1 =~ x1 + x2 + x3
            F2 =~ x4 + x5 + x6
@@ -93,4 +102,5 @@ minorbsem("# latent variable definitions
            # latent regressions
            dem60 ~ ind60
            dem65 ~ ind60 + dem60", PD)
+}
 }

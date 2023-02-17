@@ -11,11 +11,13 @@
 #' @param save_html (string) Optional file name to save table as HTML
 #' @returns NULL
 #' @examples
+#' \dontrun{
 #' fit <- minorbsem("F1 =~ x1 + x2 + x3
 #'                   F2 =~ x4 + x5 + x6
 #'                   F3 =~ x7 + x8 + x9", HS)
 #' pretty_print_summary(fit)
 #' pretty_print_summary(fit, simple = FALSE)
+#' }
 #' @export
 pretty_print_summary <- function(
     object, digits = 3, simple = TRUE,
@@ -81,5 +83,5 @@ pretty_print_summary <- function(
     kableExtra::save_kable(result, file = save_html)
   }
 
-  print(result)
+  return(result)
 }
