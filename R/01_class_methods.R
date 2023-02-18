@@ -29,10 +29,11 @@ methods::setMethod(
   function(object, include_residuals = TRUE) {
     post_mat <- posterior::as_draws_matrix(object@stan_fit)
 
-    m_vcov_mat <- create_model_implied_vcov(
+    m_vcov_mat <- create_mi_vcov_ll(
       mat = post_mat,
       data_list = object@data_list,
-      include_residuals = include_residuals
+      include_residuals = include_residuals,
+      return_ll = FALSE
     )
 
     m_vcov_mat <- t(m_vcov_mat)

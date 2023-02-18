@@ -1,3 +1,19 @@
+mbsem_test_plot_residuals <- function(fit, method) {
+  type <- sample(c("matrix", "range"), 1)
+  if (tolower(method) == "none") {
+    testthat::expect_error(
+      gg <- plot_residuals(fit, type = type),
+      "There are no residuals to plot when method = \"none\""
+    )
+  } else {
+    testthat::expect_error(
+      gg <- plot_residuals(fit, type = type),
+      NA
+    )
+    testthat::expect_true(inherits(gg, "ggplot"))
+  }
+}
+
 test_that("Random method (any case) works for CFA", {
   method <- random_method_selection()
   model_syntaxes <- c(
@@ -11,19 +27,7 @@ test_that("Random method (any case) works for CFA", {
     model_syntax, HS,
     method = method, refresh = 0, show_messages = FALSE
   )
-  type <- sample(c("matrix", "range"), 1)
-  if (tolower(method) == "none") {
-    expect_error(
-      gg <- plot_residuals(fit, type = type),
-      "There are no residuals to plot when method = \"none\""
-    )
-  } else {
-    expect_error(
-      gg <- plot_residuals(fit, type = type),
-      NA
-    )
-    expect_true(inherits(gg, "ggplot"))
-  }
+  mbsem_test_plot_residuals(fit, method)
 })
 
 test_that("Random method (any case) works for SEM", {
@@ -35,17 +39,5 @@ test_that("Random method (any case) works for SEM", {
     model_syntax, PD,
     method = method, refresh = 0, show_messages = FALSE
   )
-  type <- sample(c("matrix", "range"), 1)
-  if (tolower(method) == "none") {
-    expect_error(
-      gg <- plot_residuals(fit, type = type),
-      "There are no residuals to plot when method = \"none\""
-    )
-  } else {
-    expect_error(
-      gg <- plot_residuals(fit, type = type),
-      NA
-    )
-    expect_true(inherits(gg, "ggplot"))
-  }
+  mbsem_test_plot_residuals(fit, method)
 })
