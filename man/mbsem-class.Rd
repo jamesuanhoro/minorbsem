@@ -45,11 +45,21 @@
       covariances are not included when computing the log-likelihood.
       See \code{\link{casewise_log_likelihood}} for more details.
     }
+    \item{fitted}{
+      \code{signature(object = "mbsem", include_residuals = TRUE)}:
+      Returns the posterior distribution of the model-implied covariance matrix
+      as a #(iterations) by #(items ^ 2) matrix.
+      If \code{include_residuals = TRUE}, includes residual covariances induced by
+      minor factors.
+      If \code{include_residuals = FALSE}, excludes residual covariances induced by
+      minor factors.
+    }
     \item{residuals}{
-      \code{signature(object = "mbsem", type = "matrix")}:
-      If \code{type = "table"}, returns summary statistics for standardized residual covariances.
-      If \code{type = "matrix"}, returns a plot of the matrix of standardized residual covariances.
-      If \code{type = "range"}, returns a linerange plot of standardized residual covariances.
+      \code{signature(object = "mbsem", standardized = TRUE)}:
+      Returns the posterior distribution of residual covariances reflecting the influences of
+      minor factors as a #(iterations) by #(items ^ 2) matrix.
+      If \code{standardized = TRUE}, returns standardized residual covariances.
+      If \code{standardized = FALSE}, returns UNstandardized residual covariances.
     }
     \item{show}{
       \code{signature(object = "mbsem")}:
@@ -71,7 +81,13 @@
     fit_1 <- minorbsem("F1 =~ x1 + x2 + x3
                         F2 =~ x4 + x5 + x6
                         F3 =~ x7 + x8 + x9", HS)
+    # Plot parameter estimates
     plot(fit_1)
+
+    # Model-implied covariances
+    mod_imp_cov <- fitted(fit_1)
+    # Get average of model-implied covariance matrix
+    matrix(colMeans(mod_imp_cov), nrow = fit_1@data_list$Ni)
   }
 }
 \keyword{classes}
