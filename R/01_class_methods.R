@@ -24,16 +24,55 @@ methods::setMethod(
 )
 
 methods::setMethod(
+  "fitted",
+  "mbsem",
+  function(object, include_residuals = TRUE) {
+    post_mat <- posterior::as_draws_matrix(object@stan_fit)
+
+    m_vcov_mat <- create_model_implied_vcov(
+      mat = post_mat,
+      data_list = object@data_list,
+      include_residuals = include_residuals
+    )
+
+    m_vcov_mat <- t(m_vcov_mat)
+
+    n_iter <- nrow(m_vcov_mat)
+
+    m_vcov_mat <- matrix(m_vcov_mat, nrow = n_iter)
+
+    return(m_vcov_mat)
+  }
+)
+
+methods::setMethod(
   "residuals",
   "mbsem",
-  function(object, type = "matrix") {
-    stopifnot(type %in% c("table", "matrix", "range"))
-
-    if (type == "table") {
-      object@minor_factor_matrix
-    } else {
-      plot_residuals(object, type)
+  function(object, standardized = TRUE) {
+    if (object@data_list$method == 100) {
+      warning("Residuals are 0 when `method = \"none\"`")
     }
+
+    resid_mat <- posterior::subset_draws(
+      posterior::as_draws_matrix(object@stan_fit),
+      variable = "Resid"
+    )
+
+    n_iter <- nrow(resid_mat)
+    resid_mat <- matrix(resid_mat, nrow = n_iter)
+
+    if (isFALSE(standardized)) {
+      k <- object@data_list$Ni
+      m_vcov_mat <- fitted(object, include_residuals = FALSE)
+      resid_mat <- t(sapply(1:n_iter, function(i) {
+        resids <- matrix(resid_mat[i, ], nrow = k)
+        m_vcov <- matrix(m_vcov_mat[i, ], nrow = k)
+        sd_mat <- diag(sqrt(diag(m_vcov)))
+        resids <- sd_mat %*% resids %*% sd_mat
+      }))
+    }
+
+    return(resid_mat)
   }
 )
 

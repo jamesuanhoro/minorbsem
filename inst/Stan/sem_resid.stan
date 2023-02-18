@@ -271,6 +271,8 @@ generated quantities {
         }
       }
     }
+    Coef_mat_u = Coef_mat;
+    Load_mat_u = Load_mat;
 
     One_min_Beta_inv = inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
     Lambda_One_min_Beta_inv = Load_mat * One_min_Beta_inv;
