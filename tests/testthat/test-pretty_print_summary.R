@@ -1,3 +1,12 @@
+mbsem_test_kbls_shared <- function(kbl, method) {
+  testthat::expect_true(inherits(kbl, "kableExtra"))
+  testthat::expect_true(regexpr(method, kbl, ignore.case = TRUE) > 0)
+  testthat::expect_true(regexpr("Goodness of fit", kbl, ignore.case = TRUE) > 0)
+  testthat::expect_true(regexpr("RMSE", kbl, ignore.case = TRUE) > 0)
+  testthat::expect_true(regexpr("PPP", kbl, ignore.case = TRUE) > 0)
+  testthat::expect_true(regexpr("Factor loadings", kbl, ignore.case = TRUE) > 0)
+}
+
 test_that("Random method (any case) works for CFA", {
   method <- random_method_selection()
   model_syntaxes <- c(
@@ -16,18 +25,13 @@ test_that("Random method (any case) works for CFA", {
     kbl <- pretty_print_summary(fit),
     NA
   )
-  expect_true(inherits(kbl, "kableExtra"))
-  expect_true(regexpr(method, kbl, ignore.case = TRUE) > 0)
-  expect_true(regexpr("Factor loadings", kbl, ignore.case = TRUE) > 0)
+  mbsem_test_kbls_shared(kbl, method)
   expect_true(regexpr("Residual variances", kbl, ignore.case = TRUE) > 0)
   expect_true(regexpr(
     "Inter-factor correlations",
     kbl,
     ignore.case = TRUE
   ) > 0)
-  expect_true(regexpr("Goodness of fit", kbl, ignore.case = TRUE) > 0)
-  expect_true(regexpr("RMSE", kbl, ignore.case = TRUE) > 0)
-  expect_true(regexpr("PPP", kbl, ignore.case = TRUE) > 0)
   if (syntax_idx == 3) {
     expect_true(regexpr(
       "Error correlations",
@@ -50,16 +54,11 @@ test_that("Random method (any case) works for SEM", {
     kbl <- pretty_print_summary(fit),
     NA
   )
-  expect_true(inherits(kbl, "kableExtra"))
-  expect_true(regexpr(method, kbl, ignore.case = TRUE) > 0)
+  mbsem_test_kbls_shared(kbl, method)
   expect_true(regexpr(
     "Latent regression coefficients",
     kbl,
     ignore.case = TRUE
   ) > 0)
-  expect_true(regexpr("Factor loadings", kbl, ignore.case = TRUE) > 0)
   expect_true(regexpr("R square", kbl, ignore.case = TRUE) > 0)
-  expect_true(regexpr("Goodness of fit", kbl, ignore.case = TRUE) > 0)
-  expect_true(regexpr("RMSE", kbl, ignore.case = TRUE) > 0)
-  expect_true(regexpr("PPP", kbl, ignore.case = TRUE) > 0)
 })
