@@ -364,7 +364,7 @@ create_single_sem_vcov_row <- function(
   return(omega_mat)
 }
 
-#' Create model implied covariance matrix fit helper function
+#' Create model implied cov matrix or log-likelihood helper function
 #'
 #' @param mat Matrix of posterior samples
 #' @param data_list Data list object passed to Stan
@@ -372,9 +372,17 @@ create_single_sem_vcov_row <- function(
 #' TRUE: Include minor factor residual covariances
 #' in model-implied covariance matrix; FALSE: Exclude them. If TRUE, different
 #' models fit to the data will hardly be distinguishable.
-#' @returns A matrix that is ready for plotting
+#' @param return_ll (LOGICAL)
+#' TRUE: Return matrix of log-likelihood
+#' FALSE: Return matrix of covariances
+#' @returns Returns a matrix, which one depends on
+#' \code{return_ll} argument.
 #' @keywords internal
-create_model_implied_vcov <- function(mat, data_list, include_residuals) {
+create_mi_vcov_ll <- function(
+    mat,
+    data_list,
+    include_residuals,
+    return_ll = FALSE) {
   all_ev <- paste0("res_var[", 1:data_list$Ni, "]")
   all_lo <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern != 2,
@@ -382,7 +390,7 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
   ), 1, paste0, collapse = ","), "]")
   all_ph <- NULL
 
-  omega_mat <- matrix()
+  returned_mat <- matrix()
   if (data_list$sem_indicator == 0) {
     if (data_list$corr_fac == 1) {
       all_ph <- paste0("phi_mat[", apply(which(
@@ -391,11 +399,24 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
       ), 1, paste0, collapse = ","), "]")
     }
 
-    omega_mat <- apply(
-      mat, 1, create_single_cfa_vcov_row,
-      data_list = data_list, include_residuals = include_residuals,
-      all_lo = all_lo, all_ev = all_ev, all_ph = all_ph
-    )
+    if (isFALSE(return_ll)) {
+      returned_mat <- apply(
+        mat, 1, create_single_cfa_vcov_row,
+        data_list = data_list, include_residuals = include_residuals,
+        all_lo = all_lo, all_ev = all_ev, all_ph = all_ph
+      )
+    } else if (isTRUE(return_ll)) {
+      mu <- rep(0, data_list$Ni)
+      y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
+      returned_mat <- apply(mat, 1, function(m) {
+        m_vcov <- create_single_cfa_vcov_row(
+          m,
+          data_list = data_list, include_residuals = include_residuals,
+          all_lo = all_lo, all_ev = all_ev, all_ph = all_ph
+        )
+        mb_ldmvn(y_dat_t, mu, m_vcov)
+      })
+    }
   } else if (data_list$sem_indicator == 1) {
     # Use _u Coefs and Loads as these are unstandardized
     all_lo <- paste0("Load_mat_u[", apply(which(
@@ -411,13 +432,27 @@ create_model_implied_vcov <- function(mat, data_list, include_residuals) {
       all_ph <- paste0("phi_cor[", 1:data_list$Nf_corr, "]")
     }
 
-    omega_mat <- apply(
-      mat, 1, create_single_sem_vcov_row,
-      data_list = data_list, include_residuals = include_residuals,
-      all_lo = all_lo, all_ev = all_ev, all_ph = all_ph,
-      all_co = all_co, all_fv = all_fv
-    )
+    if (isFALSE(return_ll)) {
+      returned_mat <- apply(
+        mat, 1, create_single_sem_vcov_row,
+        data_list = data_list, include_residuals = include_residuals,
+        all_lo = all_lo, all_ev = all_ev, all_ph = all_ph,
+        all_co = all_co, all_fv = all_fv
+      )
+    } else if (isTRUE(return_ll)) {
+      mu <- rep(0, data_list$Ni)
+      y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
+      returned_mat <- t(apply(mat, 1, function(m) {
+        m_vcov <- create_single_sem_vcov_row(
+          m,
+          data_list = data_list, include_residuals = include_residuals,
+          all_lo = all_lo, all_ev = all_ev, all_ph = all_ph,
+          all_co = all_co, all_fv = all_fv
+        )
+        mb_ldmvn(y_dat_t, mu, m_vcov)
+      }))
+    }
   }
 
-  return(omega_mat)
+  return(returned_mat)
 }

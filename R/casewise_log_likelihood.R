@@ -85,22 +85,22 @@ casewise_log_likelihood <- function(
 
   post_mat <- posterior::as_draws_matrix(object@stan_fit)
 
-  m_vcov_list <- create_model_implied_vcov(
-    post_mat, data_list,
-    include_residuals = include_residuals
-  )
-
-  mu <- rep(0, data_list$Ni)
-  # Note y_dat_t is transposed to save time on computation
-  y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
+  # TODO: For Rcpp, do it all within Rcpp;
   if (isTRUE(use_armadillo)) {
+    mu <- rep(0, data_list$Ni)
+    y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
+    m_vcov_list <- create_mi_vcov_ll(
+      post_mat, data_list,
+      include_residuals = include_residuals,
+      return_ll = FALSE
+    )
     result <- ldmvnrm_list_arma_fast(y_dat_t, mu, m_vcov_list)
   } else if (isFALSE(use_armadillo)) {
-    result <- t(apply(m_vcov_list, 2, function(sigma) {
-      m_vcov <- matrix(sigma, nrow = data_list$Ni, ncol = data_list$Ni)
-      ll <- mb_ldmvn(y_dat_t, mu, m_vcov)
-      return(ll)
-    }))
+    result <- create_mi_vcov_ll(
+      post_mat, data_list,
+      include_residuals = include_residuals,
+      return_ll = TRUE
+    )
   }
 
   return(result)
