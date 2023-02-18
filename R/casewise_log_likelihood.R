@@ -96,11 +96,11 @@ casewise_log_likelihood <- function(
     )
     result <- ldmvnrm_list_arma_fast(y_dat_t, mu, m_vcov_list)
   } else if (isFALSE(use_armadillo)) {
-    result <- create_mi_vcov_ll(
+    result <- t(create_mi_vcov_ll(
       post_mat, data_list,
       include_residuals = include_residuals,
       return_ll = TRUE
-    )
+    ))
   }
 
   return(result)

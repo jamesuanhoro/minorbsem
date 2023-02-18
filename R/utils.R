@@ -442,7 +442,7 @@ create_mi_vcov_ll <- function(
     } else if (isTRUE(return_ll)) {
       mu <- rep(0, data_list$Ni)
       y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
-      returned_mat <- t(apply(mat, 1, function(m) {
+      returned_mat <- apply(mat, 1, function(m) {
         m_vcov <- create_single_sem_vcov_row(
           m,
           data_list = data_list, include_residuals = include_residuals,
@@ -450,7 +450,7 @@ create_mi_vcov_ll <- function(
           all_co = all_co, all_fv = all_fv
         )
         mb_ldmvn(y_dat_t, mu, m_vcov)
-      }))
+      })
     }
   }
 
