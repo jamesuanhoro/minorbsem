@@ -21,35 +21,44 @@ void inplace_tri_mat_mult(arma::colvec &x, arma::mat const &trimat)
 }
 
 // [[Rcpp::export]]
-arma::mat ldmvnrm_list_arma_fast(arma::mat const &x,
-                                 arma::colvec const &mean,
-                                 arma::mat const &sigma_list)
+arma::rowvec ldmvnrm_arma(arma::mat const &x,
+                          arma::colvec const &mean,
+                          arma::mat const &sigma,
+                          int const &n,
+                          int const &xdim)
 {
-    using arma::uword;
-    uword const n = x.n_cols,
-                xdim = x.n_rows,
-                iter_len = sigma_list.n_cols;
+    arma::rowvec out(n);
+    arma::mat const rooti = arma::inv(trimatu(arma::chol(sigma)));
+    arma::colvec z(xdim);
+    double const constants = -(double)xdim / 2.0 * log2pi,
+                 rootisum = arma::sum(log(rooti.diag())),
+                 other_terms = rootisum + constants;
+
+    for (int j = 0; j < n; j++)
+    {
+        z = (x.col(j) - mean);
+        inplace_tri_mat_mult(z, rooti);
+        out(j) = other_terms - 0.5 * arma::dot(z, z);
+    }
+
+    return out;
+}
+
+// [[Rcpp::export]]
+arma::mat ldmvnrm_list_arma(arma::mat const &x,
+                            arma::colvec const &mean,
+                            arma::mat const &sigma_list)
+{
+    int const n = x.n_cols,
+              xdim = x.n_rows,
+              iter_len = sigma_list.n_cols;
     arma::mat out(iter_len, n);
     arma::mat sigma(xdim, xdim);
-    arma::mat rooti(xdim, xdim);
-    arma::colvec z(xdim);
-    double const constants = -(double)xdim / 2.0 * log2pi;
-    double rootisum,
-        other_terms;
 
-    for (uword i = 0; i < iter_len; i++)
+    for (int i = 0; i < iter_len; i++)
     {
         sigma = reshape(sigma_list.col(i), xdim, xdim);
-        rooti = arma::inv(trimatu(arma::chol(sigma)));
-        rootisum = arma::sum(log(rooti.diag()));
-        other_terms = rootisum + constants;
-
-        for (uword j = 0; j < n; j++)
-        {
-            z = (x.col(j) - mean);
-            inplace_tri_mat_mult(z, rooti);
-            out(i, j) = other_terms - 0.5 * arma::dot(z, z);
-        }
+        out.row(i) = ldmvnrm_arma(x, mean, sigma, n, xdim);
     }
 
     return out;

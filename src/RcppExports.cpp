@@ -11,22 +11,38 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// ldmvnrm_list_arma_fast
-arma::mat ldmvnrm_list_arma_fast(arma::mat const& x, arma::colvec const& mean, arma::mat const& sigma_list);
-RcppExport SEXP _minorbsem_ldmvnrm_list_arma_fast(SEXP xSEXP, SEXP meanSEXP, SEXP sigma_listSEXP) {
+// ldmvnrm_arma
+arma::rowvec ldmvnrm_arma(arma::mat const& x, arma::colvec const& mean, arma::mat const& sigma, int const& n, int const& xdim);
+RcppExport SEXP _minorbsem_ldmvnrm_arma(SEXP xSEXP, SEXP meanSEXP, SEXP sigmaSEXP, SEXP nSEXP, SEXP xdimSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat const& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::colvec const& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type sigma(sigmaSEXP);
+    Rcpp::traits::input_parameter< int const& >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int const& >::type xdim(xdimSEXP);
+    rcpp_result_gen = Rcpp::wrap(ldmvnrm_arma(x, mean, sigma, n, xdim));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ldmvnrm_list_arma
+arma::mat ldmvnrm_list_arma(arma::mat const& x, arma::colvec const& mean, arma::mat const& sigma_list);
+RcppExport SEXP _minorbsem_ldmvnrm_list_arma(SEXP xSEXP, SEXP meanSEXP, SEXP sigma_listSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat const& >::type x(xSEXP);
     Rcpp::traits::input_parameter< arma::colvec const& >::type mean(meanSEXP);
     Rcpp::traits::input_parameter< arma::mat const& >::type sigma_list(sigma_listSEXP);
-    rcpp_result_gen = Rcpp::wrap(ldmvnrm_list_arma_fast(x, mean, sigma_list));
+    rcpp_result_gen = Rcpp::wrap(ldmvnrm_list_arma(x, mean, sigma_list));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_minorbsem_ldmvnrm_list_arma_fast", (DL_FUNC) &_minorbsem_ldmvnrm_list_arma_fast, 3},
+    {"_minorbsem_ldmvnrm_arma", (DL_FUNC) &_minorbsem_ldmvnrm_arma, 5},
+    {"_minorbsem_ldmvnrm_list_arma", (DL_FUNC) &_minorbsem_ldmvnrm_list_arma, 3},
     {NULL, NULL, 0}
 };
 
