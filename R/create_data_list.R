@@ -25,7 +25,7 @@ create_data_list <- function(
   data_list$method <- method_hash(method)
 
   # Set simple structure? -- only relevant for CFAs
-  data_list$complex_struc <- as.integer(ifelse(isTRUE(simple_struc), 0, 1))
+  data_list$complex_struc <- as.integer(ifelse(isFALSE(simple_struc), 1, 0))
 
   # Has data?
   data_list$Y <- lavaan_object@Data@X[[1]]
