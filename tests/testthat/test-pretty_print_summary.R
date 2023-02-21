@@ -17,9 +17,10 @@ test_that("Random method (any case) works for CFA", {
   )
   syntax_idx <- sample(length(model_syntaxes), 1)
   model_syntax <- model_syntaxes[syntax_idx]
+  orthogonal <- sample(c(TRUE, FALSE), 1)
   fit <- minorbsem(
     model_syntax, HS,
-    orthogonal = sample(c(TRUE, FALSE), 1),
+    orthogonal = orthogonal,
     simple_struc = sample(c(TRUE, FALSE), 1),
     method = method, refresh = 0, show_messages = FALSE
   )
@@ -29,11 +30,13 @@ test_that("Random method (any case) works for CFA", {
   )
   mbsem_test_kbls_shared(kbl, method)
   expect_true(regexpr("Residual variances", kbl, ignore.case = TRUE) > 0)
-  expect_true(regexpr(
-    "Inter-factor correlations",
-    kbl,
-    ignore.case = TRUE
-  ) > 0)
+  if (!orthogonal) {
+    expect_true(regexpr(
+      "Inter-factor correlations",
+      kbl,
+      ignore.case = TRUE
+    ) > 0)
+  }
   if (syntax_idx == 3) {
     expect_true(regexpr(
       "Error correlations",

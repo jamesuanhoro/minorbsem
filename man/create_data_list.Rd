@@ -4,13 +4,23 @@
 \alias{create_data_list}
 \title{Stan data helper function}
 \usage{
-create_data_list(lavaan_object = NULL, method = "normal", priors = NULL)
+create_data_list(
+  lavaan_object = NULL,
+  method = "normal",
+  simple_struc = TRUE,
+  priors = NULL
+)
 }
 \arguments{
 \item{lavaan_object}{lavaan fit object of corresponding model}
 
 \item{method}{(character) One of "normal", "lasso",
 "logistic", "GDP", "none"}
+
+\item{simple_struc}{(LOGICAL) Only relevant for CFAs.
+If TRUE: assume simple structure;
+If FALSE: estimate all cross-loadings using generalized
+double Pareto priors.}
 
 \item{priors}{An object of \code{\link{mbsempriors-class}}.
 See \code{\link{new_mbsempriors}} for more information.}
