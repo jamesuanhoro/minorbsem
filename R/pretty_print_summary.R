@@ -27,7 +27,7 @@ pretty_print_summary <- function(
   table_to_print <- object@major_parameters
   method_str <- method_hash(object@data_list$method)
 
-  if (simple) {
+  if (isTRUE(simple)) {
     if (method_str == "GDP") {
       table_to_print[2, "mean"] <- table_to_print[2, "median"]
       table_to_print[2, "sd"] <- table_to_print[2, "mad"]
@@ -38,6 +38,11 @@ pretty_print_summary <- function(
         "q5", "q95", "rhat", "ess_bulk"
       )
     ]
+  }
+
+  if (method_str == "none") {
+    # Remove RMSE index
+    table_to_print[2, 5:ncol(table_to_print)] <- NA_real_
   }
 
   result <- kableExtra::kbl(
@@ -58,8 +63,11 @@ pretty_print_summary <- function(
 
   result <- kableExtra::kable_paper(result)
   result <- kableExtra::kable_styling(result, full_width = FALSE)
-  result <- kableExtra::pack_rows(result, "Goodness of fit", 1, 2)
 
+  result <- add_row_header(
+    result, table_to_print,
+    "Goodness of fit", ""
+  )
   result <- add_row_header(
     result, table_to_print,
     "Latent regression coefficients", "(outcome ~ predictor)"
