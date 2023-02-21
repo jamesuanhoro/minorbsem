@@ -11,6 +11,7 @@ minorbsem(
   sample_nobs = NULL,
   method = "normal",
   orthogonal = FALSE,
+  simple_struc = TRUE,
   seed = 12345,
   warmup = 500,
   sampling = 500,
@@ -52,6 +53,11 @@ Select "none" if intending to ignore the influence of minor factors.}
 
 \item{orthogonal}{(logical) constrain factors orthogonal, must be TRUE to fit
 bifactor models.}
+
+\item{simple_struc}{(LOGICAL) Only relevant for CFAs.
+If TRUE: assume simple structure;
+If FALSE: estimate all cross-loadings using generalized
+double Pareto priors.}
 
 \item{seed}{(positive integer) seed, set to obtain replicable results.}
 
