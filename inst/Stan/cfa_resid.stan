@@ -28,6 +28,7 @@ data {
   real<lower = 0> rs_par;  // residual sd parameter
   real<lower = 1> rc_par;  // residual corr parameter
   int<lower = 1, upper = 100> method; // which method
+  int<lower = 0, upper = 1> complex_struc;
 }
 transformed data {
   real sqrt_two = sqrt(2.0);
@@ -38,6 +39,7 @@ transformed data {
   int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
   int N_rms = 1;
   int N_alpha = 0;
+  int N_complex = 0;
 
   if (method == 100) {
     N_rms = 0;
@@ -51,6 +53,10 @@ transformed data {
       if (loading_pattern[i, j] == 1) Nl += 1;
     }
   }
+
+  if (complex_struc == 1) {
+    N_complex = Ni * Nf - Nl;
+  }
 }
 parameters {
   vector<lower = 0.0>[N_rms] rms_src_p;
@@ -61,6 +67,9 @@ parameters {
   vector<lower = 0>[Ni] res_sds;  // item residual sds heteroskedastic
   cholesky_factor_corr[Nf_corr] phi_mat_chol;
   vector<lower = 0, upper = 1>[Nce] res_cor_01;  // correlated errors on 01
+  vector[N_complex] loadings_complex;
+  vector<lower = 0>[complex_struc] sigma_loadings_complex;
+  vector<lower = 2.0>[complex_struc] gdp_loadings_complex;
 }
 model {
   rms_src_p ~ std_normal();
@@ -78,6 +87,13 @@ model {
     gdp_alpha ~ lognormal(1, 1);
     target += generalized_double_pareto_lpdf(
       resids | gdp_alpha[1]);
+  }
+
+  if (complex_struc == 1) {
+    sigma_loadings_complex ~ std_normal();
+    gdp_loadings_complex ~ lognormal(1, 1);
+    target += generalized_double_pareto_lpdf(
+      loadings_complex | gdp_loadings_complex[1]);
   }
 
   loadings ~ normal(0, sigma_loadings);
@@ -100,11 +116,15 @@ model {
 
     {
       int pos = 0;
+      int pos_complex = 0;
       for (i in 1:Ni) {
         for (j in 1:Nf) {
           if (loading_pattern[i, j] != 0) {
             pos += 1;
             Load_mat[i, j] = loadings[pos];
+          } else if (complex_struc == 1) {
+            pos_complex += 1;
+            Load_mat[i, j] = sigma_loadings_complex[1] * loadings_complex[pos_complex];
           }
         }
       }
@@ -190,11 +210,15 @@ generated quantities {
 
     {
       int pos = 0;
+      int pos_complex = 0;
       for (i in 1:Ni) {
         for (j in 1:Nf) {
           if (loading_pattern[i, j] != 0) {
             pos += 1;
             Load_mat[i, j] = loadings[pos];
+          } else if (complex_struc == 1) {
+            pos_complex += 1;
+            Load_mat[i, j] = sigma_loadings_complex[1] * loadings_complex[pos_complex];
           }
         }
       }

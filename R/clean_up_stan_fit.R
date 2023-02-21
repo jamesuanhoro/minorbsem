@@ -26,7 +26,7 @@ clean_up_stan_fit <- function(
   rms_result$to <- ""
 
   load_idxs <- paste0("Load_mat[", apply(which(
-    data_list$loading_pattern == 1,
+    data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
     arr.ind = TRUE
   ), 1, paste0, collapse = ","), "]")
   load_result <- posterior::summarise_draws(

@@ -23,6 +23,10 @@
 #' Select "none" if intending to ignore the influence of minor factors.
 #' @param orthogonal (logical) constrain factors orthogonal, must be TRUE to fit
 #' bifactor models.
+#' @param simple_struc (LOGICAL) Only relevant for CFAs.
+#' If TRUE: assume simple structure;
+#' If FALSE: estimate all cross-loadings using generalized
+#' double Pareto priors.
 #' @param seed (positive integer) seed, set to obtain replicable results.
 #' @param warmup (positive integer) The number of warmup iterations to run per
 #' chain.
@@ -65,6 +69,7 @@ minorbsem <- function(
     sample_nobs = NULL,
     method = "normal",
     orthogonal = FALSE,
+    simple_struc = TRUE,
     seed = 12345,
     warmup = 500,
     sampling = 500,
@@ -118,7 +123,12 @@ minorbsem <- function(
   }
 
   # Obtain data list for Stan
-  data_list <- create_data_list(lav_fit, method, priors)
+  data_list <- create_data_list(
+    lavaan_object = lav_fit,
+    method = method,
+    simple_struc = simple_struc,
+    priors = priors
+  )
 
   message("User input fully processed :)\n Now to modeling.")
 

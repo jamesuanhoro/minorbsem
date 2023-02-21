@@ -3,6 +3,10 @@
 #' @param lavaan_object lavaan fit object of corresponding model
 #' @param method (character) One of "normal", "lasso",
 #' "logistic", "GDP", "none"
+#' @param simple_struc (LOGICAL) Only relevant for CFAs.
+#' If TRUE: assume simple structure;
+#' If FALSE: estimate all cross-loadings using generalized
+#' double Pareto priors.
 #' @param priors An object of \code{\link{mbsempriors-class}}.
 #' See \code{\link{new_mbsempriors}} for more information.
 #' @returns Data list object used in fitting Stan model
@@ -10,6 +14,7 @@
 create_data_list <- function(
     lavaan_object = NULL,
     method = "normal",
+    simple_struc = TRUE,
     priors = NULL) {
   data_list <- list()
 
@@ -18,6 +23,9 @@ create_data_list <- function(
 
   # Set method
   data_list$method <- method_hash(method)
+
+  # Set simple structure? -- only relevant for CFAs
+  data_list$complex_struc <- as.integer(ifelse(isFALSE(simple_struc), 1, 0))
 
   # Has data?
   data_list$Y <- lavaan_object@Data@X[[1]]
