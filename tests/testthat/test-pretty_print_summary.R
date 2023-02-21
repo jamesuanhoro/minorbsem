@@ -19,6 +19,8 @@ test_that("Random method (any case) works for CFA", {
   model_syntax <- model_syntaxes[syntax_idx]
   fit <- minorbsem(
     model_syntax, HS,
+    orthogonal = sample(c(TRUE, FALSE), 1),
+    simple_struc = sample(c(TRUE, FALSE), 1),
     method = method, refresh = 0, show_messages = FALSE
   )
   expect_error(
@@ -48,6 +50,8 @@ test_that("Random method (any case) works for SEM", {
   dem65 =~ y5 + y6 + y7 + y8\n dem60 ~ ind60\n dem65 ~ ind60 + dem60"
   fit <- minorbsem(
     model_syntax, PD,
+    orthogonal = sample(c(TRUE, FALSE), 1),
+    simple_struc = sample(c(TRUE, FALSE), 1),
     method = method, refresh = 0, show_messages = FALSE
   )
   expect_error(
