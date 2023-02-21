@@ -89,7 +89,13 @@ plot_residuals <- function(object, type = "matrix") {
         fill = "#444444", col = 1
       ) +
       ggplot2::geom_text(ggplot2::aes(
-        label = gsub("0\\.", "\\.", round(`50%`, 3)),
+        label = gsub(
+          "0\\.", "\\.",
+          trimws(format(
+            round(`50%`, 3),
+            scientific = FALSE, digits = 2, nsmall = 2
+          ))
+        ),
         alpha = abs(`50%`)
       )) +
       ggplot2::theme_classic() +
