@@ -19,7 +19,7 @@ prepare_stan_plot_data <- function(object) {
   colnames(rms_result)[1] <- "rm: rms_src"
 
   load_idxs <- paste0("Load_mat[", apply(which(
-    data_list$loading_pattern == 1,
+    data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
     arr.ind = TRUE
   ), 1, paste0, collapse = ","), "]")
   load_result <- posterior::as_draws_df(
