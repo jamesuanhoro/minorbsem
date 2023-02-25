@@ -55,7 +55,7 @@ test_that("Random method (any case) works for SEM", {
     dem65 =~ y5 + y6 + y7 + y8\n dem65 ~ ind60 + dem60",
     "ind60 =~ x1 + x2 + x3\n dem60 =~ y1 + y2 + y3 + y4
     dem65 =~ y5 + y6 + y7 + y8\n dem65 ~ ind60 + dem60
-    y1 ~~ y5\n  y4 ~~ y9"
+    y1 ~~ y5\n  y4 ~~ y8"
   )
   model_syntax <- sample(model_syntaxes, 1)
   fit <- minorbsem(
