@@ -93,7 +93,7 @@ pretty_print_summary <- function(
     "Error correlations", "(indicator_x ~~ indicator_y)"
   )
 
-  if (!simple) {
+  if (isFALSE(simple)) {
     result <- kableExtra::add_header_above(
       result, c(
         "Relation" = 3, "Location" = 2, "Dispersion" = 4,
