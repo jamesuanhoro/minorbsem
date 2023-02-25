@@ -1,6 +1,6 @@
 Package: minorbsem
 Title: Fit Bayesian structural equation models under the assumption that minor factors exist
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: c(
     person("James", "Uanhoro", , "james.uanhoro@unt.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4843-927X")))
