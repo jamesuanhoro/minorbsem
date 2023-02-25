@@ -2,6 +2,7 @@
 # minorbsem
 
 <!-- badges: start -->
+[![Codecov test coverage](https://codecov.io/gh/stonegold546/minorbsem/branch/master/graph/badge.svg)](https://app.codecov.io/gh/stonegold546/minorbsem?branch=master)
 <!-- badges: end -->
 
 It is rare that structural equation models (SEMs) are able to reject the null

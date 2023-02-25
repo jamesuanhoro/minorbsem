@@ -27,6 +27,7 @@ Remotes:
     github::stan-dev/cmdstanr
 LazyData: true
 Suggests: 
+    covr,
     loo,
     testthat (>= 3.0.0)
 LinkingTo: 

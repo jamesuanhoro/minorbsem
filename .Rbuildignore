@@ -4,3 +4,4 @@
 ^\.vscode$
 ^README\.html$
 ^README\_files$
+^codecov\.yml$
