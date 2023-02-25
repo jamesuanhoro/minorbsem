@@ -428,7 +428,7 @@ create_mi_vcov_ll <- function(
       arr.ind = TRUE
     ), 1, paste0, collapse = ","), "]")
     all_fv <- paste0("phi_var[", 1:data_list$Nf, "]")
-    if (data_list$Nf_corr == 1) {
+    if (data_list$Nf_corr > 1) {
       all_ph <- paste0("phi_cor[", 1:data_list$Nf_corr, "]")
     }
 
