@@ -50,7 +50,7 @@ methods::setMethod(
   "residuals",
   "mbsem",
   function(object, standardized = TRUE) {
-    if (object@data_list$method == 100) {
+    if (object@data_list$method >= 90) {
       warning("Residuals are 0 when `method = \"none\"`")
     }
 

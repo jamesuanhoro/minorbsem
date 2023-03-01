@@ -2,7 +2,7 @@
 #' @description A function that creates data list object passed to Stan
 #' @param lavaan_object lavaan fit object of corresponding model
 #' @param method (character) One of "normal", "lasso",
-#' "logistic", "GDP", "none"
+#' "logistic", "GDP", "WB", "none"
 #' @param simple_struc (LOGICAL) Only relevant for CFAs.
 #' If TRUE: assume simple structure;
 #' If FALSE: estimate all cross-loadings using generalized

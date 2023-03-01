@@ -86,11 +86,13 @@ random_method_selection <- function() {
 #' @returns If search_term is integer, returns string and vice-versa
 #' @keywords internal
 method_hash <- function(search_term = NULL) {
+  # Reserving 90+ for methods with no residuals
   list_methods <- c(
     "normal" = 1,
     "lasso" = 2,
     "logistic" = 3,
     "GDP" = 4,
+    "WB" = 99,
     "none" = 100
   )
 
@@ -216,7 +218,7 @@ rename_post_df_columns <- function(
 #' @returns A single model-impled covariance matrix
 #' @keywords internal
 include_residuals <- function(omega_mat, params, data_list) {
-  if (data_list$method == 100) {
+  if (data_list$method >= 90) {
     # there is no residual to include for this method
     return(omega_mat)
   }
