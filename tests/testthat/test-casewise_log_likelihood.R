@@ -1,70 +1,102 @@
 mbsem_test_ll_1 <- function(fit, method) {
   residuals <- sample(c(TRUE, FALSE), 1)
-  if (method_hash(method) >= 90 && isTRUE(residuals)) {
-    warn_msg <- paste0(
-      "include_residuals = TRUE is ignored when ",
-      "minorbsem method == \"none\" or \"WB\"."
+
+  if (method_hash(method) == 90) {
+    err_msg <- paste0(
+      "Cannot compute casewise log-likelihood when ",
+      "method = \"WB\"; set method to \"WB-cond\"."
     )
-    testthat::expect_warning(
-      ll_mat <- casewise_log_likelihood(
+    testthat::expect_error(
+      casewise_log_likelihood(
         fit,
         include_residuals = residuals,
         use_armadillo = !residuals
       ),
-      warn_msg
+      err_msg
     )
   } else {
-    testthat::expect_error(
-      ll_mat <- casewise_log_likelihood(
-        fit,
-        include_residuals = residuals,
-        use_armadillo = !residuals
-      ),
-      NA
-    )
+    if (method_hash(method) >= 90 && isTRUE(residuals)) {
+      warn_msg <- paste0(
+        "include_residuals = TRUE is ignored when ",
+        "minorbsem method == \"none\", \"WB\", \"WB-cond\"."
+      )
+      testthat::expect_warning(
+        ll_mat <- casewise_log_likelihood(
+          fit,
+          include_residuals = residuals,
+          use_armadillo = !residuals
+        ),
+        warn_msg
+      )
+    } else {
+      testthat::expect_error(
+        ll_mat <- casewise_log_likelihood(
+          fit,
+          include_residuals = residuals,
+          use_armadillo = !residuals
+        ),
+        NA
+      )
+    }
+    testthat::expect_equal(ncol(ll_mat), nrow(fit@data_list$Y))
+    testthat::expect_equal(nrow(ll_mat), 500 * 3)
+    testthat::expect_true(!is.na(sum(ll_mat)))
+    testthat::expect_true(sum(abs(ll_mat)) > 0)
   }
-  testthat::expect_equal(ncol(ll_mat), nrow(fit@data_list$Y))
-  testthat::expect_equal(nrow(ll_mat), 500 * 3)
-  testthat::expect_true(!is.na(sum(ll_mat)))
-  testthat::expect_true(sum(abs(ll_mat)) > 0)
 }
 
 mbsem_test_ll_2 <- function(fit, method) {
   residuals <- sample(c(TRUE, FALSE), 1)
-  if (method_hash(method) >= 90 && isTRUE(residuals)) {
-    warn_msg <- paste0(
-      "include_residuals = TRUE is ignored when ",
-      "minorbsem method == \"none\" or \"WB\"."
+
+  if (method_hash(method) == 90) {
+    err_msg <- paste0(
+      "Cannot compute casewise log-likelihood when ",
+      "method = \"WB\"; set method to \"WB-cond\"."
     )
-    testthat::expect_warning(
+    testthat::expect_error(
+      casewise_log_likelihood(
+        fit,
+        include_residuals = residuals,
+        use_armadillo = !residuals
+      ),
+      err_msg
+    )
+  } else {
+    if (method_hash(method) >= 90 && isTRUE(residuals)) {
+      warn_msg <- paste0(
+        "include_residuals = TRUE is ignored when ",
+        "minorbsem method == \"none\", \"WB\", \"WB-cond\"."
+      )
+      testthat::expect_warning(
+        ll_mat_arma <- casewise_log_likelihood(
+          fit,
+          include_residuals = residuals,
+          use_armadillo = TRUE
+        ),
+        warn_msg
+      )
+      testthat::expect_warning(
+        ll_mat_base <- casewise_log_likelihood(
+          fit,
+          include_residuals = residuals,
+          use_armadillo = FALSE
+        ),
+        warn_msg
+      )
+      testthat::expect_true(sum(abs(ll_mat_arma - ll_mat_base)) < 1e-5)
+    } else {
       ll_mat_arma <- casewise_log_likelihood(
         fit,
         include_residuals = residuals,
         use_armadillo = TRUE
-      ),
-      warn_msg
-    )
-    testthat::expect_warning(
+      )
       ll_mat_base <- casewise_log_likelihood(
         fit,
         include_residuals = residuals,
         use_armadillo = FALSE
-      ),
-      warn_msg
-    )
-    testthat::expect_true(sum(abs(ll_mat_arma - ll_mat_base)) < 1e-5)
-  } else {
-    ll_mat_arma <- casewise_log_likelihood(
-      fit,
-      include_residuals = residuals,
-      use_armadillo = TRUE
-    )
-    ll_mat_base <- casewise_log_likelihood(
-      fit,
-      include_residuals = residuals,
-      use_armadillo = FALSE
-    )
-    testthat::expect_true(sum(abs(ll_mat_arma - ll_mat_base)) < 1e-5)
+      )
+      testthat::expect_true(sum(abs(ll_mat_arma - ll_mat_base)) < 1e-5)
+    }
   }
 }
 

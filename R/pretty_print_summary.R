@@ -46,7 +46,7 @@ pretty_print_summary <- function(
     table_to_print[2, 5:ncol(table_to_print)] <- NA_real_
   }
 
-  if (object@data_list$method == 99) {
+  if (object@data_list$method %in% 90:99) {
     # Remove RMSE index
     table_to_print[2, 2] <- "RMSEA"
   }

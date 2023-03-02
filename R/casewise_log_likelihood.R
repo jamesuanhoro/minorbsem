@@ -75,10 +75,17 @@ casewise_log_likelihood <- function(
     stop("Cannot compute casewise log-likelihood without full data.")
   }
 
-  if (object@data_list$method >= 90 && isTRUE(include_residuals)) {
+  if (data_list$method == 90) {
+    stop(paste0(
+      "Cannot compute casewise log-likelihood when ",
+      "method = \"WB\"; set method to \"WB-cond\"."
+    ))
+  }
+
+  if (data_list$method >= 90 && isTRUE(include_residuals)) {
     warn_msg <- paste0(
       "include_residuals = TRUE is ignored when ",
-      "minorbsem method == \"none\" or \"WB\"."
+      "minorbsem method == \"none\", \"WB\", \"WB-cond\"."
     )
     warning(warn_msg)
   }
