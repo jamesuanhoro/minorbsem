@@ -10,23 +10,7 @@
 #' data frame
 #' is missing and only sample covariance matrix is given.
 #' @param method (character) One of "normal", "lasso", "logistic",
-#' "GDP" or "none".
-#' Select "normal" under belief that minor factor influences are
-#' on average zero with continuous deviations away from zero.
-#' Select "lasso" under belief that minor factor influences are
-#' indeed zero with a small number of non-zero residual covariances.
-#' Select "logistic" for similar belief as normal but more readily
-#' accomodates extreme outliers.
-#' Select "GDP" to mimic a global-local approach, i.e.
-#' attempt to shrink near 0 residual covariances to 0
-#' with minimal shrinking for larger residual covariances.
-#' Select "WB" to model the covariance matrix hierarchically under
-#' assumptions of adventitiuous error; does NOT allow for computation
-#' of casewise log-likelihoods.
-#' Select "WB-cond" to model the covariance matrix hierarchically under
-#' assumptions of adventitiuous error; allows for computation
-#' of casewise log-likelihoods.
-#' Select "none" if intending to ignore the influence of minor factors.
+#' "GDP", "WB", "WB-cond", or "none". See details below.
 #' @param orthogonal (logical) constrain factors orthogonal, must be TRUE to fit
 #' bifactor models.
 #' @param simple_struc (LOGICAL) Only relevant for CFAs.
@@ -53,6 +37,26 @@
 #' @param show_messages (Logical) If TRUE, show messages from Stan sampler,
 #' if FALSE, hide messages.
 #' @returns An object of \code{\link{mbsem-class}}
+#' @details
+#' There are different methods for estimating models in this package:
+#'
+#' - \code{normal}: under belief that minor factor influences are
+#' on average zero with continuous deviations away from zero.
+#' - \code{lasso}: under belief that minor factor influences are largely
+#' zero with a small number of non-zero residual covariances.
+#' - \code{logistic}: for similar belief as normal but more readily
+#' accomodates extreme outliers.
+#' - \code{GDP}: to mimic a global-local approach, i.e.
+#' attempt to shrink near 0 residual covariances to 0
+#' with minimal shrinking for larger residual covariances.
+#' - \code{WB}: to model the covariance matrix hierarchically under
+#' assumptions of adventitiuous error
+#' [10.1007/s11336-015-9451-3](https://doi.org/10.1007/s11336-015-9451-3);
+#' does NOT allow for computation of casewise log-likelihoods and LOO-CV.
+#' - \code{WB-cond}: same as WB but estimates the
+#' "population covariance matrix",
+#' allowing for computation of casewise log-likelihoods and LOO-CV.
+#' - \code{none}: if intending to ignore the influence of minor factors.
 #' @examples
 #' \dontrun{
 #' minorbsem("# latent variable definitions
