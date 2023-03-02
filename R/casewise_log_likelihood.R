@@ -78,7 +78,7 @@ casewise_log_likelihood <- function(
   if (object@data_list$method >= 90 && isTRUE(include_residuals)) {
     warn_msg <- paste0(
       "include_residuals = TRUE is ignored when ",
-      "minorbsem method == \"none\". "
+      "minorbsem method == \"none\" or \"WB\"."
     )
     warning(warn_msg)
   }

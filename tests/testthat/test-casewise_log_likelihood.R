@@ -3,7 +3,7 @@ mbsem_test_ll_1 <- function(fit, method) {
   if (method_hash(method) >= 90 && isTRUE(residuals)) {
     warn_msg <- paste0(
       "include_residuals = TRUE is ignored when ",
-      "minorbsem method == \"none\". "
+      "minorbsem method == \"none\" or \"WB\"."
     )
     testthat::expect_warning(
       ll_mat <- casewise_log_likelihood(
@@ -34,7 +34,7 @@ mbsem_test_ll_2 <- function(fit, method) {
   if (method_hash(method) >= 90 && isTRUE(residuals)) {
     warn_msg <- paste0(
       "include_residuals = TRUE is ignored when ",
-      "minorbsem method == \"none\". "
+      "minorbsem method == \"none\" or \"WB\"."
     )
     testthat::expect_warning(
       ll_mat_arma <- casewise_log_likelihood(
