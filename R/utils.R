@@ -86,11 +86,13 @@ random_method_selection <- function() {
 #' @returns If search_term is integer, returns string and vice-versa
 #' @keywords internal
 method_hash <- function(search_term = NULL) {
+  # Reserving 90+ for methods with no residuals
   list_methods <- c(
     "normal" = 1,
     "lasso" = 2,
     "logistic" = 3,
     "GDP" = 4,
+    "WB" = 99,
     "none" = 100
   )
 
@@ -216,7 +218,7 @@ rename_post_df_columns <- function(
 #' @returns A single model-impled covariance matrix
 #' @keywords internal
 include_residuals <- function(omega_mat, params, data_list) {
-  if (data_list$method == 100) {
+  if (data_list$method >= 90) {
     # there is no residual to include for this method
     return(omega_mat)
   }
@@ -232,6 +234,28 @@ include_residuals <- function(omega_mat, params, data_list) {
       omega_mat[j, i] <- omega_mat[i, j]
     }
   }
+  return(omega_mat)
+}
+
+#' Use posterior mode of Sigma for WB, helper function
+#'
+#' @param omega_mat model implied covariance matrix to be updated
+#' @param params vector of posterior samples from a single iteration
+#' @param data_list Data list object passed to Stan
+#' @returns A single model-impled covariance matrix
+#' @keywords internal
+use_sigma_mode <- function(omega_mat, params, data_list) {
+  if (data_list$method != 99) {
+    # this is not WB
+    return(omega_mat)
+  }
+
+  rmsea <- params["rms_src_p[1]"]
+  m <- 1 / rmsea^2 + data_list$Ni - 1
+  omega_mat <- (
+    m * omega_mat + (data_list$Np - 1.0) * data_list$S
+  ) / (m + data_list$Np - 1.0)
+
   return(omega_mat)
 }
 
@@ -287,6 +311,8 @@ create_single_cfa_vcov_row <- function(
   if (include_residuals == TRUE) {
     omega_mat <- include_residuals(omega_mat, params, data_list)
   }
+
+  omega_mat <- use_sigma_mode(omega_mat, params, data_list)
 
   return(omega_mat)
 }
@@ -360,6 +386,8 @@ create_single_sem_vcov_row <- function(
   if (include_residuals == TRUE) {
     omega_mat <- include_residuals(omega_mat, params, data_list)
   }
+
+  omega_mat <- use_sigma_mode(omega_mat, params, data_list)
 
   return(omega_mat)
 }

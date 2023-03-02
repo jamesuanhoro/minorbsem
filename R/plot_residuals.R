@@ -21,7 +21,7 @@ plot_residuals <- function(object, type = "matrix") {
     stop("type must be either \"range\" or \"matrix\"")
   }
 
-  if (object@data_list$method == 100) {
+  if (object@data_list$method >= 90) {
     stop("There are no residuals to plot when method = \"none\"")
   }
 

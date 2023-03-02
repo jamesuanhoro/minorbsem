@@ -26,9 +26,10 @@ pretty_print_summary <- function(
 
   table_to_print <- object@major_parameters
   method_str <- method_hash(object@data_list$method)
+  n_obs <- object@data_list$Np
 
   if (isTRUE(simple)) {
-    if (method_str == "GDP") {
+    if (object@data_list$method == 4) {
       table_to_print[2, "mean"] <- table_to_print[2, "median"]
       table_to_print[2, "sd"] <- table_to_print[2, "mad"]
     }
@@ -40,18 +41,26 @@ pretty_print_summary <- function(
     ]
   }
 
-  if (method_str == "none") {
+  if (object@data_list$method == 100) {
     # Remove RMSE index
     table_to_print[2, 5:ncol(table_to_print)] <- NA_real_
   }
 
+  if (object@data_list$method == 99) {
+    # Remove RMSE index
+    table_to_print[2, 2] <- "RMSEA"
+  }
+
   result <- kableExtra::kbl(
     table_to_print[, -1],
-    caption = paste0("Parameter estimates (", method_str, ")"),
+    caption = paste0(
+      "Parameter estimates (method = ", method_str,
+      ", sample size = ", n_obs, ")"
+    ),
     digits = digits
   )
 
-  if (simple && method_str == "GDP") {
+  if (simple && object@data_list$method == 4) {
     result <- kableExtra::footnote(
       result,
       general = paste0(

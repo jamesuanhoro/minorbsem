@@ -1,6 +1,6 @@
 mbsem_test_ll_1 <- function(fit, method) {
   residuals <- sample(c(TRUE, FALSE), 1)
-  if (tolower(method) == "none" && isTRUE(residuals)) {
+  if (method_hash(method) >= 90 && isTRUE(residuals)) {
     warn_msg <- paste0(
       "include_residuals = TRUE is ignored when ",
       "minorbsem method == \"none\". "
@@ -31,7 +31,7 @@ mbsem_test_ll_1 <- function(fit, method) {
 
 mbsem_test_ll_2 <- function(fit, method) {
   residuals <- sample(c(TRUE, FALSE), 1)
-  if (tolower(method) == "none" && isTRUE(residuals)) {
+  if (method_hash(method) >= 90 && isTRUE(residuals)) {
     warn_msg <- paste0(
       "include_residuals = TRUE is ignored when ",
       "minorbsem method == \"none\". "

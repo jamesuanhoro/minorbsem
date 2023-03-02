@@ -12,6 +12,19 @@ functions {
       -(alpha + 1.0) * log(1.0 + abs(x) / alpha)
     ));
   }
+  real eff(int p, real x) {
+    return(
+      2 * lmgamma(p, x / 2) - x * p * log(x / 2) + x * p
+    );
+  }
+  real gen_matrix_beta_ii_lpdf(matrix S, matrix Omega, real n, real m, real ln_det_S) {
+    int p = rows(S);
+    real F_1 = eff(p, m) + eff(p, n) - eff(p, m + n);
+    real F_2 = -((n - p - 1) * ln_det_S) - (m * log_determinant_spd(Omega)) +
+      ((m + n) * log_determinant_spd((m * Omega + n * S) / (m + n)));
+    real ll = (F_1 + F_2) / -2.0;
+    return(ll);
+  }
 }
 data {
   int<lower = 0> Np;  // number persons
@@ -40,10 +53,14 @@ transformed data {
   int N_rms = 1;
   int N_alpha = 0;
   int N_complex = 0;
+  real ln_det_S = log_determinant_spd(S);
+
+  if (method >= 90) {
+    Nisqd2 = 0;
+  }
 
   if (method == 100) {
     N_rms = 0;
-    Nisqd2 = 0;
   }
 
   if (method == 4) N_alpha = 1;
@@ -103,6 +120,7 @@ model {
   res_cor_01 ~ beta(rc_par, rc_par);
 
   {
+    real m;
     matrix[Ni, Ni] Omega;
     vector[Ni] res_var = square(res_sds);
     matrix[Nf_corr, Nf_corr] phi_mat = multiply_lower_tri_self_transpose(phi_mat_chol);
@@ -147,7 +165,7 @@ model {
 
     total_var = diagonal(Omega);
 
-    if (method != 100) {
+    if (method < 90) {
       int pos = 0;
       for (i in 2:Ni) {
         for (j in 1:(i - 1)) {
@@ -158,7 +176,12 @@ model {
       }
     }
 
-    target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Omega));
+    if (method == 99) {
+      m = 1.0 / square(rms_src_p[1]) + Ni - 1;
+      target += gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
+    } else {
+      target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Omega));
+    }
   }
 }
 generated quantities {
@@ -188,7 +211,7 @@ generated quantities {
     );
   }
 
-  if (method != 100) {
+  if (method < 90) {
     int pos = 0;
     for (i in 2:Ni) {
       for (j in 1:(i - 1)) {
@@ -200,7 +223,9 @@ generated quantities {
   }
 
   {
+    real m;
     matrix[Ni, Ni] Omega;
+    matrix[Ni, Ni] Sigma;
     matrix[Ni, Ni] S_sim;
     matrix[Ni, Ni] lamb_phi_lamb;
     matrix[Ni, Nce] loading_par_exp = rep_matrix(0, Ni, Nce);
@@ -241,7 +266,7 @@ generated quantities {
 
     total_var = diagonal(Omega);
 
-    if (method != 100) {
+    if (method < 90) {
       int pos = 0;
       for (i in 2:Ni) {
         for (j in 1:(i - 1)) {
@@ -252,9 +277,17 @@ generated quantities {
       }
     }
 
-    S_sim = wishart_rng(Np - 1.0, Omega / (Np - 1.0));
-    D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Omega / (Np - 1.0));
-    D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Omega / (Np - 1.0));
+    if (method != 99) {
+      S_sim = wishart_rng(Np - 1.0, Omega / (Np - 1.0));
+      D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Omega / (Np - 1.0));
+      D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Omega / (Np - 1.0));
+    } else if (method == 99) {
+      m = 1.0 / square(rms_src_p[1]) + Ni - 1;
+      Sigma = inv_wishart_rng(m, Omega * m);
+      S_sim = wishart_rng(Np - 1.0, Sigma / (Np - 1.0));
+      D_obs = -2.0 * gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
+      D_rep = -2.0 * gen_matrix_beta_ii_lpdf(S_sim | Omega, Np - 1.0, m, ln_det_S);
+    }
     ppp = D_rep > D_obs ? 1.0 : 0.0;
   }
 

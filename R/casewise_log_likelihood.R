@@ -75,7 +75,7 @@ casewise_log_likelihood <- function(
     stop("Cannot compute casewise log-likelihood without full data.")
   }
 
-  if (object@data_list$method == 100 && isTRUE(include_residuals)) {
+  if (object@data_list$method >= 90 && isTRUE(include_residuals)) {
     warn_msg <- paste0(
       "include_residuals = TRUE is ignored when ",
       "minorbsem method == \"none\". "

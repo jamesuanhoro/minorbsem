@@ -20,6 +20,8 @@
 #' Select "GDP" to mimic a global-local approach, i.e.
 #' attempt to shrink near 0 residual covariances to 0
 #' with minimal shrinking for larger residual covariances.
+#' Select "WB" to model the covariance matrix hierarchically under assumptions
+#' of adventitiuous error.
 #' Select "none" if intending to ignore the influence of minor factors.
 #' @param orthogonal (logical) constrain factors orthogonal, must be TRUE to fit
 #' bifactor models.
