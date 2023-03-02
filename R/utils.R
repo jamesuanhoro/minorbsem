@@ -237,6 +237,28 @@ include_residuals <- function(omega_mat, params, data_list) {
   return(omega_mat)
 }
 
+#' Use posterior mode of Sigma for WB, helper function
+#'
+#' @param omega_mat model implied covariance matrix to be updated
+#' @param params vector of posterior samples from a single iteration
+#' @param data_list Data list object passed to Stan
+#' @returns A single model-impled covariance matrix
+#' @keywords internal
+use_sigma_mode <- function(omega_mat, params, data_list) {
+  if (data_list$method != 99) {
+    # this is not WB
+    return(omega_mat)
+  }
+
+  rmsea <- params["rms_src_p[1]"]
+  m <- 1 / rmsea^2 + data_list$Ni - 1
+  omega_mat <- (
+    m * omega_mat + (data_list$Np - 1.0) * data_list$S
+  ) / (m + data_list$Np - 1.0)
+
+  return(omega_mat)
+}
+
 #' Create model implied covariance matrix from CFA, helper function
 #'
 #' @param params vector of posterior samples from a single iteration
@@ -289,6 +311,8 @@ create_single_cfa_vcov_row <- function(
   if (include_residuals == TRUE) {
     omega_mat <- include_residuals(omega_mat, params, data_list)
   }
+
+  omega_mat <- use_sigma_mode(omega_mat, params, data_list)
 
   return(omega_mat)
 }
@@ -362,6 +386,8 @@ create_single_sem_vcov_row <- function(
   if (include_residuals == TRUE) {
     omega_mat <- include_residuals(omega_mat, params, data_list)
   }
+
+  omega_mat <- use_sigma_mode(omega_mat, params, data_list)
 
   return(omega_mat)
 }

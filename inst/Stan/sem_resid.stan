@@ -124,7 +124,7 @@ model {
   sigma_coefs ~ student_t(3, 0, sc_par);
 
   {
-    real m = 1.0 / square(rms_src_p[1]) + Ni - 1;
+    real m;
     matrix[Ni, Ni] Omega;
     vector[Ni] res_var = square(res_sds);
     vector[Nce] res_cor = res_cor_01 * 2 - 1;
@@ -207,6 +207,7 @@ model {
     }
 
     if (method == 99) {
+      m = 1.0 / square(rms_src_p[1]) + Ni - 1;
       target += gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
     } else {
       target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Omega));
@@ -257,7 +258,7 @@ generated quantities {
   }
 
   {
-    real m = 1.0 / square(rms_src_p[1]) + Ni - 1;
+    real m;
     matrix[Ni, Ni] Omega;
     matrix[Ni, Ni] Sigma;
     matrix[Ni, Ni] S_sim;
@@ -345,6 +346,7 @@ generated quantities {
       D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Omega / (Np - 1.0));
       D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Omega / (Np - 1.0));
     } else if (method == 99) {
+      m = 1.0 / square(rms_src_p[1]) + Ni - 1;
       Sigma = inv_wishart_rng(m, Omega * m);
       S_sim = wishart_rng(Np - 1.0, Sigma / (Np - 1.0));
       D_obs = -2.0 * gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
