@@ -54,9 +54,14 @@ transformed data {
   int N_alpha = 0;
   int N_complex = 0;
   real ln_det_S = log_determinant_spd(S);
+  int N_Sigma = 1;
 
   if (method >= 90) {
     Nisqd2 = 0;
+  }
+
+  if (method == 91) {
+    N_Sigma = Ni;
   }
 
   if (method == 100) {
@@ -87,6 +92,7 @@ parameters {
   vector[N_complex] loadings_complex;
   vector<lower = 0>[complex_struc] sigma_loadings_complex;
   vector<lower = 2.0>[complex_struc] gdp_loadings_complex;
+  cov_matrix[N_Sigma] Sigma;
 }
 model {
   rms_src_p ~ std_normal();
@@ -176,9 +182,18 @@ model {
       }
     }
 
-    if (method == 99) {
+    if (method != 91) {
+      Sigma ~ inv_wishart(1000, identity_matrix(1));
+    }
+
+    if (method >= 90 && method <= 99) {
       m = 1.0 / square(rms_src_p[1]) + Ni - 1;
-      target += gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
+      if (method == 90) {
+        target += gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
+      } else if (method == 91) {
+        Sigma ~ inv_wishart(m, m * Omega);
+        target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Sigma));
+      }
     } else {
       target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Omega));
     }
@@ -225,7 +240,7 @@ generated quantities {
   {
     real m;
     matrix[Ni, Ni] Omega;
-    matrix[Ni, Ni] Sigma;
+    matrix[Ni, Ni] Sigma_p;
     matrix[Ni, Ni] S_sim;
     matrix[Ni, Ni] lamb_phi_lamb;
     matrix[Ni, Nce] loading_par_exp = rep_matrix(0, Ni, Nce);
@@ -277,16 +292,22 @@ generated quantities {
       }
     }
 
-    if (method != 99) {
+    if (method >= 90 && method <= 99) {
+      if (method == 90) {
+        m = 1.0 / square(rms_src_p[1]) + Ni - 1;
+        Sigma_p = inv_wishart_rng(m, m * Omega);
+        S_sim = wishart_rng(Np - 1.0, Sigma_p / (Np - 1.0));
+        D_obs = -2.0 * gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
+        D_rep = -2.0 * gen_matrix_beta_ii_lpdf(S_sim | Omega, Np - 1.0, m, ln_det_S);
+      } else if (method == 91) {
+        S_sim = wishart_rng(Np - 1.0, Sigma / (Np - 1.0));
+        D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Sigma);
+        D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Sigma);
+      }
+    } else {
       S_sim = wishart_rng(Np - 1.0, Omega / (Np - 1.0));
       D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Omega / (Np - 1.0));
       D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Omega / (Np - 1.0));
-    } else if (method == 99) {
-      m = 1.0 / square(rms_src_p[1]) + Ni - 1;
-      Sigma = inv_wishart_rng(m, Omega * m);
-      S_sim = wishart_rng(Np - 1.0, Sigma / (Np - 1.0));
-      D_obs = -2.0 * gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
-      D_rep = -2.0 * gen_matrix_beta_ii_lpdf(S_sim | Omega, Np - 1.0, m, ln_det_S);
     }
     ppp = D_rep > D_obs ? 1.0 : 0.0;
   }

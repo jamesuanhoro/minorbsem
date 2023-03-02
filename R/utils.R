@@ -92,7 +92,8 @@ method_hash <- function(search_term = NULL) {
     "lasso" = 2,
     "logistic" = 3,
     "GDP" = 4,
-    "WB" = 99,
+    "WB" = 90,
+    "WB-cond" = 91,
     "none" = 100
   )
 
@@ -237,28 +238,6 @@ include_residuals <- function(omega_mat, params, data_list) {
   return(omega_mat)
 }
 
-#' Use posterior mode of Sigma for WB, helper function
-#'
-#' @param omega_mat model implied covariance matrix to be updated
-#' @param params vector of posterior samples from a single iteration
-#' @param data_list Data list object passed to Stan
-#' @returns A single model-impled covariance matrix
-#' @keywords internal
-use_sigma_mode <- function(omega_mat, params, data_list) {
-  if (data_list$method != 99) {
-    # this is not WB
-    return(omega_mat)
-  }
-
-  rmsea <- params["rms_src_p[1]"]
-  m <- 1 / rmsea^2 + data_list$Ni - 1
-  omega_mat <- (
-    m * omega_mat + (data_list$Np - 1.0) * data_list$S
-  ) / (m + data_list$Np - 1.0)
-
-  return(omega_mat)
-}
-
 #' Create model implied covariance matrix from CFA, helper function
 #'
 #' @param params vector of posterior samples from a single iteration
@@ -311,8 +290,6 @@ create_single_cfa_vcov_row <- function(
   if (include_residuals == TRUE) {
     omega_mat <- include_residuals(omega_mat, params, data_list)
   }
-
-  omega_mat <- use_sigma_mode(omega_mat, params, data_list)
 
   return(omega_mat)
 }
@@ -387,8 +364,6 @@ create_single_sem_vcov_row <- function(
     omega_mat <- include_residuals(omega_mat, params, data_list)
   }
 
-  omega_mat <- use_sigma_mode(omega_mat, params, data_list)
-
   return(omega_mat)
 }
 
@@ -419,7 +394,21 @@ create_mi_vcov_ll <- function(
   all_ph <- NULL
 
   returned_mat <- matrix()
-  if (data_list$sem_indicator == 0) {
+  if (data_list$method == 91) {
+    sigma_cols <- colnames(mat)
+    sigma_cols <- sigma_cols[which(regexpr("Sigma\\[", sigma_cols) > 0)]
+    returned_mat <- mat[, sigma_cols]
+    if (isTRUE(return_ll)) {
+      mu <- rep(0, data_list$Ni)
+      y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
+      returned_mat <- apply(returned_mat, 1, function(m) {
+        m_vcov <- matrix(m, nrow = data_list$Ni, ncol = data_list$Ni)
+        mb_ldmvn(y_dat_t, mu, m_vcov)
+      })
+    } else {
+      returned_mat <- t(returned_mat)
+    }
+  } else if (data_list$sem_indicator == 0) {
     if (data_list$corr_fac == 1) {
       all_ph <- paste0("phi_mat[", apply(which(
         diag(data_list$Nf) != 2,

@@ -15,7 +15,7 @@ create_data_list(
 \item{lavaan_object}{lavaan fit object of corresponding model}
 
 \item{method}{(character) One of "normal", "lasso",
-"logistic", "GDP", "WB", "none"}
+"logistic", "GDP", "WB", "WB-cond", "none"}
 
 \item{simple_struc}{(LOGICAL) Only relevant for CFAs.
 If TRUE: assume simple structure;

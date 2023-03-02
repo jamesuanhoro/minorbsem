@@ -51,7 +51,10 @@ methods::setMethod(
   "mbsem",
   function(object, standardized = TRUE) {
     if (object@data_list$method >= 90) {
-      warning("Residuals are 0 when `method = \"none\"`")
+      warning(paste0(
+        "There are no residuals to plot when ",
+        "method == \"none\", \"WB\", \"WB-cond\"."
+      ))
     }
 
     resid_mat <- posterior::subset_draws(

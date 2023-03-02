@@ -3,7 +3,10 @@ mbsem_test_plot_residuals <- function(fit, method) {
   if (method_hash(method) >= 90) {
     testthat::expect_error(
       gg <- plot_residuals(fit, type = type),
-      "There are no residuals to plot when method = \"none\""
+      paste0(
+        "There are no residuals to plot when ",
+        "method == \"none\", \"WB\", \"WB-cond\"."
+      )
     )
   } else {
     testthat::expect_error(

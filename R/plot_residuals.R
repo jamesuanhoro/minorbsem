@@ -22,7 +22,10 @@ plot_residuals <- function(object, type = "matrix") {
   }
 
   if (object@data_list$method >= 90) {
-    stop("There are no residuals to plot when method = \"none\"")
+    stop(paste0(
+      "There are no residuals to plot when ",
+      "method == \"none\", \"WB\", \"WB-cond\"."
+    ))
   }
 
   clean_post_df <- prepare_stan_plot_data(object)
