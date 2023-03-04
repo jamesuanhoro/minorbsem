@@ -1,2 +1,5 @@
 *.html
 *.R
+articles/
+!articles/*.Rmd
+!articles/*.pdf

@@ -39,8 +39,21 @@ figurelist        : no
 tablelist         : no
 footnotelist      : no
 
-classoption       : "doc"
+classoption       : "man"
 output            : papaja::apa6_pdf
+header-includes:
+  - \usepackage{setspace}
+  - \AtBeginEnvironment{Shaded}{\footnotesize}
+  - \AtBeginEnvironment{Shaded}{\singlespacing}
+  - \AtBeginEnvironment{verbatim}{\singlespacing}
+  - \AtBeginEnvironment{verbatim}{\tiny}
+  - \AtBeginEnvironment{tabular}{\singlespacing}
+  - \AtBeginEnvironment{lltable}{\singlespacing}
+  - \AtBeginEnvironment{tabular}{\footnotesize}
+  - \AtBeginEnvironment{lltable}{\footnotesize}
+  - \AtBeginEnvironment{tablenotes}{\singlespacing}
+  - \captionsetup[table]{font={stretch=1.5}}
+  - \captionsetup[figure]{font={stretch=1.5}}
 ---
 
 ```{r setup, include = FALSE}
@@ -167,6 +180,8 @@ This syntax implies that items `x1` -- `x3` are indicators of a `visual` constru
 hs_fit_1 <- minorbsem(model = hs_syntax_1, data = HS)
 ```
 
+\singlespacing
+
 ```{r echo = FALSE, message=1:5, cache=TRUE}
 hs_output <- capture.output(
   hs_fit_1 <- minorbsem(model = hs_syntax_1, data = HS, show = FALSE)
@@ -177,22 +192,54 @@ hs_output <- capture.output(
 writeLines(hs_output[c(1:5, 42:46)])
 ```
 
-```{r results='asis'}
+```{r echo = FALSE, results='asis'}
 hs_fit_1
 ```
 
+\doublespacing
 
-```{r echo = FALSE, eval = FALSE}
-kableExtra::save_kable(
-  pretty_print_summary(hs_fit_1),
-  file = "hs_1.png", zoom = 1.5
-)
+`r stringi::stri_rand_lipsum(3)`
+
+### Model plots
+
+`r stringi::stri_rand_lipsum(1)`
+
+```{r fig.height=4, fig.width=6, cache=TRUE}
+parameter_hist(hs_fit_1)
 ```
 
-```{r echo = FALSE}
-# knitr::include_graphics("hs_1.png")
+`r stringi::stri_rand_lipsum(1)`
+
+```{r fig.height=4, fig.width=6, cache=TRUE}
+parameter_trace(hs_fit_1)
 ```
 
+`r stringi::stri_rand_lipsum(1)`
+
+```{r fig.height=2.5, fig.width=6, cache=TRUE}
+plot_residuals(hs_fit_1)
+```
+
+### Alternative models
+
+`r stringi::stri_rand_lipsum(1)`
+
+```{r eval = FALSE}
+hs_fit_2 <- minorbsem(model = hs_syntax_1, data = HS, simple_struc = FALSE)
+```
+
+\singlespacing
+
+```{r echo = FALSE, message=FALSE, cache=TRUE, results='asis'}
+hs_output <- capture.output(hs_fit_2 <- minorbsem(
+  model = hs_syntax_1, data = HS, simple_struc = FALSE, show = FALSE
+))
+pretty_print_summary(hs_fit_2)
+```
+
+\doublespacing
+
+`r stringi::stri_rand_lipsum(5)`
 
 # Main Features and Functions
 
