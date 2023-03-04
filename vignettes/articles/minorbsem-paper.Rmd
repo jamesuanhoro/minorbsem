@@ -234,7 +234,7 @@ hs_fit_2 <- minorbsem(model = hs_syntax_1, data = HS, simple_struc = FALSE)
 hs_output <- capture.output(hs_fit_2 <- minorbsem(
   model = hs_syntax_1, data = HS, simple_struc = FALSE, show = FALSE
 ))
-pretty_print_summary(hs_fit_2)
+hs_fit_2
 ```
 
 \doublespacing
