@@ -53,6 +53,7 @@ pretty_print_summary <- function(
 
   result <- kableExtra::kbl(
     table_to_print[, -1],
+    booktabs = TRUE,
     caption = paste0(
       "Parameter estimates (method = ", method_str,
       ", sample size = ", n_obs, ")"
