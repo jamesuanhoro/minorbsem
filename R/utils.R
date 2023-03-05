@@ -262,11 +262,6 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     stan_fit = stan_fit, variable = params, interval = interval, major = TRUE
   )
 
-  duplicates <- duplicated(
-    major_parameters[, c("mean", "median", "sd", "mad", "rhat", "ess_bulk")]
-  )
-  major_parameters <- major_parameters[!duplicates, ]
-
   major_parameters[
     major_parameters$variable == "ppp", c("sd", "mad")
   ] <- NA_real_
@@ -277,6 +272,14 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     group = "Goodness of fit",
     from = c("PPP", "RMSE")
   )
+
+  # Dump duplicates here because ppp and rms_src are sometimes equal
+  non_duplicates <- !duplicated(
+    major_parameters[, c("mean", "median", "sd", "mad", "rhat", "ess_bulk")]
+  )
+  major_parameters <- major_parameters[
+    non_duplicates | major_parameters$group == "Goodness of fit",
+  ]
 
   idxs <- which(regexpr("Load\\_mat", major_parameters$variable) > 0)
   major_parameters <- modify_major_params(
