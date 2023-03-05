@@ -5,3 +5,4 @@
 ^README\.html$
 ^README\_files$
 ^codecov\.yml$
+^vignettes/articles$

@@ -4,11 +4,19 @@
 \alias{pretty_print_summary}
 \title{Pretty print model results}
 \usage{
-pretty_print_summary(object, digits = 3, simple = TRUE, save_html = NULL)
+pretty_print_summary(
+  object,
+  interval = 0.9,
+  digits = 3,
+  simple = TRUE,
+  save_html = NULL
+)
 }
 \arguments{
 \item{object}{(mbsem) An object of \code{\link{mbsem-class}}
 returned by \code{\link{minorbsem}}.}
+
+\item{interval}{(real in (0, 1)) Credible interval to return.}
 
 \item{digits}{(positive integer) Number of decimal places to print in table}
 
