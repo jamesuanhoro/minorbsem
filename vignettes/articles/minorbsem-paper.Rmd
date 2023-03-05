@@ -219,13 +219,15 @@ writeLines(hs_output[c(1:5, 42:46)])
 
 \doublespacing
 
-We show some of the printed results to expect whenever `minorbsem` is run so the user knows these messages do not signify errors. Additionally, `minorbsem` needs to compile the Stan models the first time it is run after (re-)installation. This delays execution the first the user runs a CFA and the first time the user runs an SEM. Additionally, minorbsem prints out the iterations from Stan.[^2]
+We show some of the printed results to expect whenever `minorbsem()` is run so the user knows these messages do not signify errors. Additionally, `minorbsem` needs to compile the Stan models the first time it is run after (re-)installation. This delays execution the first the user runs a CFA and the first time the user runs an SEM. Additionally, minorbsem prints out the iterations from Stan.[^2]
 
 [^2]: Sometimes, minorbsem may print warnings about divergent transitions or maximum tree depth. These warnings may be resolved by using more informative priors (see section on prior specification later), or by re-running the model and setting `adapt_delta = .99` (default = .9) for divergent transitions, and `max_treedepth = 15` (default = 10) for maximum tree depth warnings, e.g. `minorbsem(model = hs_syntax_1, data = HS, adapt_delta = .99, max_treedepth = 15)`. For more information about these warnings, see the Stan help page for `Runtime warnings and convergence problems' (https://mc-stan.org/misc/warnings.html).
 
 Similar to lavaan, minorbsem models can also be estimated with just the covariance matrix and sample size using the alternative syntax: `minorbsem(model = hs_syntax_1, sample_cov = [covariance matrix], sample_nobs = [sample size])`. The results are equivalent. Both models assume by default that the visual, verbal and speed constructs are correlated; setting `orthogonal = TRUE` would set the factors uncorrelated which can be useful for estimating bifactor models. See `?minorbsem` for elaboration of options.
 
-Model results are saved in the object, `hs_fit_1`, and automatically displayed in a window of the user's default web browser. If the user is working within RStudio, the results are displayed in the Viewer pane of RStudio. To disable this automatic viewing of results, set `show = FALSE` when calling `minorbsem()`. Another way to view parameter estimates for major parameters is: `hs_fit_1@major_parameters` which prints the model results in the console.
+Model results are saved in the object, `hs_fit_1`, and substantively important parameters (see Table \@ref(tab:tab-1)) are automatically displayed in a new window of the user's default web browser. If the user is working within RStudio, these results are displayed in the Viewer pane of RStudio. To disable this automatic viewing of results, set `show = FALSE` when calling `minorbsem()`.
+To modify what results are displayed, including an option to save the results into an html file, see `?pretty_print_summary`.
+Alternatively, one can view parameter estimates for major parameters using: `hs_fit_1@major_parameters` which prints parameter estimates in the console.
 
 \singlespacing
 
@@ -235,7 +237,7 @@ hs_fit_1
 
 \doublespacing
 
-Model results are displayed exactly as shown in Table \@ref(tab:tab-1). The parameter are divided into sections: 
+The parameter estimates in Table \@ref(tab:tab-1) are divided by type of parameter. Ideally, the percentage columns correspond to credible intervals. `rhat` ($\widehat{R}$) and `ess_bulk` columns are the potential scale reduction factor and effective sample size respectively [@vehtari2020ba]. $\widehat{R}$ should not be much larger than 1; the larger the effective sample size, the better. A final analysis in a manuscript would ideally have all parameters with $\widehat{R}$ under 1.01 and effective sample sizes above 400 for one to be sure parameter estimates have converged [@vehtari2020ba]. An easy way to meet these expectations is to increase the number of requested samples when calling `minorbsem()` via the `sampling =` argument.
 
 ### Model plots
 
