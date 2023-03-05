@@ -2,7 +2,7 @@
 # minorbsem
 
 <!-- badges: start -->
-[![Codecov test coverage](https://codecov.io/gh/stonegold546/minorbsem/branch/master/graph/badge.svg)](https://app.codecov.io/gh/stonegold546/minorbsem?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/jamesuanhoro/minorbsem/branch/master/graph/badge.svg)](https://app.codecov.io/gh/jamesuanhoro/minorbsem?branch=master)
 <!-- badges: end -->
 
 It is rare that structural equation models (SEMs) are able to reject the null
@@ -34,7 +34,7 @@ see installation instructions here: https://mc-stan.org/cmdstanr/articles/cmdsta
 You can install minorbsem using devtools:
 
 ``` r
-devtools::install_github("stonegold546/minorbsem")
+devtools::install_github("jamesuanhoro/minorbsem")
 ```
 
 ## A reasonably complete demonstration
