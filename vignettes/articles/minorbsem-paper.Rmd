@@ -187,12 +187,12 @@ if (file.exists("hs_fit_1.rds")) {
   p_res <- hs_fit_1$p_res
   hs_fit_1 <- hs_fit_1$hs_fit_1
 } else {
-  # hs_message <- capture.output(
-  #   minorbsem(
-  #     model = hs_syntax_1, data = HS, show = FALSE, show_messages = FALSE
-  #   ),
-  #   type = "message"
-  # )
+  hs_message <- capture.output(
+    minorbsem(
+      model = hs_syntax_1, data = HS, show = FALSE, show_messages = FALSE
+    ),
+    type = "message"
+  )
   hs_output <- capture.output(
     hs_fit_1 <- minorbsem(
       model = hs_syntax_1, data = HS, show = FALSE, show_messages = FALSE
@@ -214,7 +214,7 @@ writeLines(hs_message)
 ```
 
 ```{r echo = FALSE}
-writeLines(hs_output[c(1:5, 42:46)])
+writeLines(hs_output[c(1:5, 55:59)])
 ```
 
 \doublespacing
