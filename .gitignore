@@ -9,3 +9,6 @@ inst/Stan/*
 README.html
 /README_files/*
 *trial_code*
+/vignettes/articles/
+!/vignettes/articles/*.Rmd
+!/vignettes/articles/*.pdf

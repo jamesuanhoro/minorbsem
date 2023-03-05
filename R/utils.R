@@ -166,7 +166,8 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
   lo_lim <- (1.0 - interval) / 2.0
   up_lim <- 1.0 - lo_lim # nolint
   sum_stats <- posterior::summarise_draws(
-    draws, mean, median, sd, mad, ~ quantile(.x, probs = c(lo_lim, up_lim))
+    draws, "mean", "median", "sd", "mad",
+    ~ quantile(.x, probs = c(lo_lim, up_lim))
   )
   convergence_metrics <- posterior::summarise_draws(
     draws, posterior::default_convergence_measures()

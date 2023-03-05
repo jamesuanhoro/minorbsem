@@ -24,8 +24,8 @@ create_data_list <- function(
   # Set method
   data_list$method <- method_hash(method)
 
-  # Set simple structure? -- only relevant for CFAs
-  data_list$complex_struc <- as.integer(ifelse(isFALSE(simple_struc), 1, 0))
+  # Set simple structure to 0 by default, change within CFA section
+  data_list$complex_struc <- 0
 
   # Has data?
   data_list$Y <- lavaan_object@Data@X[[1]]
@@ -58,6 +58,7 @@ create_data_list <- function(
   if (is.null(param_structure$beta)) {
     # This is a CFA
     data_list$sem_indicator <- 0
+    data_list$complex_struc <- as.integer(ifelse(isFALSE(simple_struc), 1, 0))
     # Set to 0 for uncorrelated factors, 1 for correlated
     data_list$corr_fac <- ifelse(sum_off_diag_psi == 0, 0, 1)
   } else {
