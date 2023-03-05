@@ -2,6 +2,7 @@
 #' @description A function that cleans up model returned by Stan
 #' @param stan_fit Stan fit
 #' @param data_list Data list object passed to Stan
+#' @param interval (real in (0, 1)) Credible interval to return.
 #' @param priors An object of \code{\link{mbsempriors-class}}.
 #' See \code{\link{new_mbsempriors}} for more information.
 #' @returns An object of \code{\link{mbsem-class}}
@@ -9,143 +10,15 @@
 clean_up_stan_fit <- function(
     stan_fit,
     data_list,
+    interval = .9,
     priors) {
-  indicator_labels <- rownames(data_list$loading_pattern)
-  factor_labels <- colnames(data_list$loading_pattern)
-
-  rms_result <- posterior::summarise_draws(
-    posterior::as_draws(
-      stan_fit,
-      variable = c("ppp", "rms_src")
-    )
+  major_parameters <- create_major_params(
+    stan_fit = stan_fit, data_list = data_list, interval = interval
   )
-  rms_result[1, c("sd", "mad")] <- NA_real_
-  rms_result$group <- "Goodness of fit"
-  rms_result$op <- ""
-  rms_result$from <- c("PPP", "RMSE")
-  rms_result$to <- ""
 
-  load_idxs <- paste0("Load_mat[", apply(which(
-    data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
-    arr.ind = TRUE
-  ), 1, paste0, collapse = ","), "]")
-  load_result <- posterior::summarise_draws(
-    posterior::as_draws(stan_fit, variable = load_idxs)
+  minor_factor_matrix <- mbsem_post_sum(
+    stan_fit = stan_fit, variable = "Resid", interval = interval
   )
-  load_result$group <- "Factor loadings"
-  load_result$op <- "=~"
-  load_result$from <- factor_labels[as.integer(
-    gsub("Load_mat\\[\\d+,|\\]", "", load_result$variable)
-  )]
-  load_result$to <- indicator_labels[as.integer(
-    gsub("Load_mat\\[|,\\d+\\]", "", load_result$variable)
-  )]
-
-  rc_result <- matrix(nrow = 0, ncol = ncol(load_result))
-  if (data_list$Nce > 0) {
-    rc_result <- posterior::summarise_draws(
-      posterior::as_draws(stan_fit, variable = "res_cor")
-    )
-    rc_result$group <- "Error correlations"
-    rc_result$op <- "~~"
-    rc_result$from <- indicator_labels[data_list$error_mat[, 1]]
-    rc_result$to <- indicator_labels[data_list$error_mat[, 2]]
-  }
-
-  rv_result <- matrix(nrow = 0, ncol = ncol(load_result))
-  coef_result <- matrix(nrow = 0, ncol = ncol(load_result))
-  phi_result <- matrix(nrow = 0, ncol = ncol(load_result))
-  rsq_result <- matrix(nrow = 0, ncol = ncol(load_result))
-  if (data_list$sem_indicator == 0) {
-    rv_result <- posterior::summarise_draws(
-      posterior::as_draws(stan_fit, variable = "res_var")
-    )
-    rv_result$group <- "Residual variances"
-    rv_result$op <- "~~"
-    rv_result$from <- indicator_labels[as.integer(
-      gsub("res_var\\[|\\]", "", rv_result$variable)
-    )]
-    rv_result$to <- indicator_labels[as.integer(
-      gsub("res_var\\[|\\]", "", rv_result$variable)
-    )]
-
-    phi_result <- posterior::summarise_draws(
-      posterior::as_draws(stan_fit, variable = "phi_mat")
-    )
-    phi_duplicates <- duplicated(phi_result[, c("mean", "median", "sd")])
-    phi_result <- phi_result[!phi_duplicates, ]
-    phi_result$group <- "Inter-factor correlations"
-    phi_result$op <- "~~"
-    phi_result$from <- factor_labels[as.integer(
-      gsub("phi_mat\\[\\d+,|\\]", "", phi_result$variable)
-    )]
-    phi_result$to <- factor_labels[as.integer(
-      gsub("phi_mat\\[|,\\d+\\]", "", phi_result$variable)
-    )]
-    phi_result <- phi_result[phi_result$from != phi_result$to, ]
-  } else if (data_list$sem_indicator == 1) {
-    # Get interfactor correlations
-    if (data_list$Nf_corr > 0) {
-      phi_result <- posterior::summarise_draws(
-        posterior::as_draws(stan_fit, variable = "phi_cor")
-      )
-      phi_result$group <- "Inter-factor correlations"
-      phi_result$op <- "~~"
-      phi_result$from <- factor_labels[data_list$F_corr_mat[, 1]]
-      phi_result$to <- factor_labels[data_list$F_corr_mat[, 2]]
-    }
-
-    # Get R-square
-    rsq_result <- posterior::summarise_draws(
-      posterior::as_draws(stan_fit, variable = "r_square")
-    )
-    rsq_result$group <- "R square"
-    rsq_result$op <- "~~"
-    rsq_result$from <- factor_labels[as.integer(
-      gsub("r_square\\[|\\]", "", rsq_result$variable)
-    )]
-    rsq_result$to <- factor_labels[as.integer(
-      gsub("r_square\\[|\\]", "", rsq_result$variable)
-    )]
-
-    # Get factor coefficients
-    coef_idxs <- paste0("Coef_mat[", apply(which(
-      data_list$coef_pattern == 1,
-      arr.ind = TRUE
-    ), 1, paste0, collapse = ","), "]")
-    coef_result <- posterior::summarise_draws(
-      posterior::as_draws(stan_fit, variable = coef_idxs)
-    )
-    coef_result$group <- "Latent regression coefficients"
-    coef_result$op <- "~"
-    coef_result$from <- factor_labels[as.integer(
-      gsub("Coef_mat\\[|,\\d+\\]", "", coef_result$variable)
-    )]
-    coef_result$to <- factor_labels[as.integer(
-      gsub("Coef_mat\\[\\d+,|\\]", "", coef_result$variable)
-    )]
-  }
-
-  major_parameters <- as.data.frame(rbind(
-    rms_result, coef_result, rsq_result, load_result, phi_result,
-    rv_result, rc_result
-  ))
-
-  major_parameters$ess_bulk <- round(major_parameters$ess_bulk, 1)
-  major_parameters$ess_tail <- round(major_parameters$ess_tail, 1)
-  major_parameters <- major_parameters[
-    ,
-    c(
-      "group", "from", "op", "to",
-      "mean", "median",
-      "sd", "mad", "q5", "q95",
-      "rhat", "ess_bulk", "ess_tail"
-    )
-  ]
-
-  minor_factor_matrix <- as.data.frame(posterior::summarise_draws(
-    posterior::as_draws(stan_fit, variable = "Resid")
-  ))
 
   mbsem_result <- new_mbsem()
   mbsem_result <- methods::initialize(

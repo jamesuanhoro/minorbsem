@@ -76,6 +76,7 @@ random_method_selection <- function() {
     method <- toupper(method)
   }
 
+  print(method)
   return(method)
 }
 
@@ -147,6 +148,230 @@ add_row_header <- function(
     )
   }
   return(kbl_object)
+}
+
+#' Posterior summary helper function
+#' @description A function that slightly modifies the default
+#' summary function in posterior package
+#' @param stan_fit Fitted Stan object
+#' @param variable Variable(s) to search for in Stan
+#' @param interval Confidence interval to select
+#' @param major If TRUE, add some preamble for printing the major
+#' parameters table.
+#' @returns Summary of posterior draws
+#' @keywords internal
+mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
+  draws <- posterior::as_draws(stan_fit, variable = variable)
+
+  lo_lim <- (1.0 - interval) / 2.0
+  up_lim <- 1.0 - lo_lim # nolint
+  sum_stats <- posterior::summarise_draws(
+    draws, mean, median, sd, mad, ~ quantile(.x, probs = c(lo_lim, up_lim))
+  )
+  convergence_metrics <- posterior::summarise_draws(
+    draws, posterior::default_convergence_measures()
+  )
+
+  result <- as.data.frame(merge(
+    sum_stats, convergence_metrics,
+    by = "variable"
+  ))
+
+  if (isTRUE(major)) {
+    result <- cbind(
+      variable = result$variable,
+      group = "", from = "", op = "", to = "",
+      result[, -1]
+    )
+  }
+
+  return(result)
+}
+
+#' Modify major parameters table helper function
+#' @description A function that adds user friendly descriptions to the
+#' major parameters table
+#' @param major_parameters Major paramters table
+#' @param idxs Relevant rows indexes
+#' @param group Parameter group
+#' @param op lavaan style operator
+#' @param from Variable from
+#' @param to Variable to
+#' @returns Updated major parameters table
+#' @keywords internal
+modify_major_params <- function(
+  major_parameters, idxs, group = "", op = "", from = "", to = "") {
+  result <- major_parameters
+
+  if (length(idxs) > 0) {
+    result[idxs, ]$group <- group
+    result[idxs, ]$op <- op
+    result[idxs, ]$from <- from
+    result[idxs, ]$to <- to
+  }
+
+  return(result)
+}
+
+#' Create major parameters helper function
+#' @description A function that creates the table of major parameters
+#' @param stan_fit Fitted Stan object
+#' @param data_list Data list object passed to Stan
+#' @param interval Confidence interval to select
+#' @returns Summary of posterior draws
+#' @keywords internal
+create_major_params <- function(stan_fit, data_list, interval = .9) {
+  indicator_labels <- rownames(data_list$loading_pattern)
+  factor_labels <- colnames(data_list$loading_pattern)
+
+  params <- c("ppp", "rms_src")
+
+  load_idxs <- paste0("Load_mat[", apply(which(
+    data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
+    arr.ind = TRUE
+  ), 1, paste0, collapse = ","), "]")
+  params <- c(params, load_idxs)
+
+  if (data_list$Nce > 0) {
+    params <- c(params, "res_cor")
+  }
+
+  if (data_list$sem_indicator == 0) {
+    params <- c(params, "res_var")
+
+    params <- c(params, "phi_mat")
+  } else if (data_list$sem_indicator == 1) {
+    # Get interfactor correlations
+    if (data_list$Nf_corr > 0) {
+      params <- c(params, "phi_cor")
+    }
+
+    # Get R-square
+    params <- c(params, "r_square")
+
+    # Get factor coefficients
+    coef_idxs <- paste0("Coef_mat[", apply(which(
+      data_list$coef_pattern == 1,
+      arr.ind = TRUE
+    ), 1, paste0, collapse = ","), "]")
+    params <- c(params, coef_idxs)
+  }
+
+  major_parameters <- mbsem_post_sum(
+    stan_fit = stan_fit, variable = params, interval = interval, major = TRUE
+  )
+
+  duplicates <- duplicated(
+    major_parameters[, c("mean", "median", "sd", "mad", "rhat", "ess_bulk")]
+  )
+  major_parameters <- major_parameters[!duplicates, ]
+
+  major_parameters[
+    major_parameters$variable == "ppp", c("sd", "mad")
+  ] <- NA_real_
+
+  major_parameters <- modify_major_params(
+    major_parameters,
+    which(major_parameters$variable %in% c("ppp", "rms_src")),
+    group = "Goodness of fit",
+    from = c("PPP", "RMSE")
+  )
+
+  idxs <- which(regexpr("Load\\_mat", major_parameters$variable) > 0)
+  major_parameters <- modify_major_params(
+    major_parameters, idxs,
+    group = "Factor loadings", op = "=~",
+    from = factor_labels[as.integer(
+      gsub("Load_mat\\[\\d+,|\\]", "", major_parameters[idxs, ]$variable)
+    )],
+    to = indicator_labels[as.integer(
+      gsub("Load_mat\\[|,\\d+\\]", "", major_parameters[idxs, ]$variable)
+    )]
+  )
+
+  idxs <- which(regexpr("res\\_cor", major_parameters$variable) > 0)
+  major_parameters <- modify_major_params(
+    major_parameters, idxs,
+    group = "Error correlations", op = "~~",
+    from = indicator_labels[data_list$error_mat[, 1]],
+    to = indicator_labels[data_list$error_mat[, 2]]
+  )
+
+  idxs <- which(regexpr("res\\_var", major_parameters$variable) > 0)
+  major_parameters <- modify_major_params(
+    major_parameters, idxs,
+    group = "Residual variances", op = "~~",
+    from = indicator_labels[as.integer(
+      gsub("res_var\\[|\\]", "", major_parameters[idxs, ]$variable)
+    )],
+    to = indicator_labels[as.integer(
+      gsub("res_var\\[|\\]", "", major_parameters[idxs, ]$variable)
+    )]
+  )
+
+  idxs <- which(regexpr("phi\\_mat", major_parameters$variable) > 0)
+  major_parameters <- modify_major_params(
+    major_parameters, idxs,
+    group = "Inter-factor correlations", op = "~~",
+    from = factor_labels[as.integer(
+      gsub("phi_mat\\[\\d+,|\\]", "", major_parameters[idxs, ]$variable)
+    )],
+    to = factor_labels[as.integer(
+      gsub("phi_mat\\[|,\\d+\\]", "", major_parameters[idxs, ]$variable)
+    )]
+  )
+  major_parameters <- major_parameters[
+    !(major_parameters$group == "Inter-factor correlations" &
+      major_parameters$from == major_parameters$to),
+  ]
+
+  idxs <- which(regexpr("phi\\_cor", major_parameters$variable) > 0)
+  major_parameters <- modify_major_params(
+    major_parameters, idxs,
+    group = "Inter-factor correlations", op = "~~",
+    from = factor_labels[data_list$F_corr_mat[, 1]],
+    to = factor_labels[data_list$F_corr_mat[, 2]]
+  )
+
+  idxs <- which(regexpr("r\\_square", major_parameters$variable) > 0)
+  major_parameters <- modify_major_params(
+    major_parameters, idxs,
+    group = "R square", op = "~~",
+    from = factor_labels[as.integer(
+      gsub("r_square\\[|\\]", "", major_parameters[idxs, ]$variable)
+    )],
+    to = factor_labels[as.integer(
+      gsub("r_square\\[|\\]", "", major_parameters[idxs, ]$variable)
+    )]
+  )
+
+  idxs <- which(regexpr("Coef\\_mat", major_parameters$variable) > 0)
+  major_parameters <- modify_major_params(
+    major_parameters, idxs,
+    group = "Latent regression coefficients", op = "~",
+    from = factor_labels[as.integer(
+      gsub("Coef_mat\\[|,\\d+\\]", "", major_parameters[idxs, ]$variable)
+    )],
+    to = factor_labels[as.integer(
+      gsub("Coef_mat\\[\\d+,|\\]", "", major_parameters[idxs, ]$variable)
+    )]
+  )
+
+  major_parameters$ess_bulk <- round(major_parameters$ess_bulk, 1)
+  major_parameters$ess_tail <- round(major_parameters$ess_tail, 1)
+
+  target <- c(
+    "Goodness of fit", "Latent regression coefficients", "R square",
+    "Factor loadings", "Inter-factor correlations",
+    "Residual variances", "Error correlations"
+  )
+
+  new_order <- unlist(sapply(target, function(x) {
+    which(major_parameters$group == x)
+  }))
+  major_parameters <- major_parameters[new_order, -1]
+
+  return(major_parameters)
 }
 
 #' Plotting param_type validation

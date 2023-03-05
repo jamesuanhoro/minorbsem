@@ -180,7 +180,9 @@ minorbsem <- function(
     show_messages = show_messages
   )
 
-  mbsem_results <- clean_up_stan_fit(stan_fit, data_list, priors)
+  mbsem_results <- clean_up_stan_fit(
+    stan_fit = stan_fit, data_list = data_list, priors = priors
+  )
   if (show) {
     show(mbsem_results)
   }
