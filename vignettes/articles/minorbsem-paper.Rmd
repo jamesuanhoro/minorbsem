@@ -8,10 +8,10 @@ author:
     corresponding : yes    # Define only one corresponding author
     address       : "Matthews Hall, University of North Texas, Denton TX USA"
     email         : "James.Uanhoro@unt.edu"
-    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
-      - "Conceptualization"
-      - "Writing - Original Draft Preparation"
-      - "Writing - Review & Editing"
+    # role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+    #   - "Conceptualization"
+    #   - "Writing - Original Draft Preparation"
+    #   - "Writing - Review & Editing"
 
 affiliation:
   - id            : "1"
@@ -19,8 +19,6 @@ affiliation:
 
 authornote: |
   Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
-
-  Enter author note here.
 
 abstract: |
   It is commonplace for structural equation models (SEMs) to have some degree of model misspecification. We present an approach to fitting SEMs that assumes model misspecification may be attributable to the influence of minor factors. One advantage of fitting models under this assumption is that uncertainty due to model misspecification is reflected in substantively interesting model parameters. The estimation approach is Bayesian and we introduce a new R package that allows for the estimation of SEMs that reflect the influence of minor factors. The package is intended for a broad audience and its operations should be familiar to users of the popular R SEM package, lavaan. In this article, we will describe the main features and functions of minorbsem, provide examples of its use, and highlight its advantages over existing packages.
@@ -69,30 +67,30 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed, echo = TRUE)
 
 Structural equation modeling (SEM) is typically used to address measurement challenges that arise in the social sciences. Researchers are often interested in difficult to measure theoretical constructs and the interrelations between these constructs. In SEM, one identifies (or concretizes) constructs by measuring multiple reflections (items, indicators) of the construct; the better the reflections, the clearer the construct. Researchers can then study the interrelations between the constructs. A major challenge with SEMs lies in the assumption that items are simply reflections of theoretical constructs. Hypothesized constructs often fail to fully account for the interrelations between items. Hypothesis testing and goodness of fit indices are used to diagnose this form of model misspecification. If the level of misspecification is judged non-trivial, researchers may rely on modification indices (), or residual covariances (), to determine modifications to the model.
 
-An alternative approach to thinking about misspecifications in SEMs is to concede a-priori that any hypothesized configuration of the relations between separate theoretical constructs and the relations of these constructs to their assumed reflections cannot fully account for the relations in the data even at the level of the theoretical population [@maccallum_representing_1991]. Instead, there are minor factors that simultaneously influence the relations between the measured items. Minor factors are assumed numerous and their influences on items are difficult to predict prior to analysis. @Muthen2012 present a Bayesian approach to estimating SEMs under the assumption that minor factors influence relations between measured items. A practical consequence of accounting for minor factors is that hypothesized parameters have increased uncertainty (larger standard errors). This is because SEMs that do not account for minor factor influences ignore uncertainty due to model misspecification.
+An alternative approach to thinking about misspecifications in SEMs is to concede a-priori that any hypothesized configuration of the relations between separate theoretical constructs and the relations of these constructs to their assumed reflections cannot fully account for the relations in the data even at the level of the theoretical population [@maccallum_representing_1991]. Instead, there are minor factors that simultaneously influence the relations between the measured items. Minor factors are assumed numerous and their influences on items are difficult to predict prior to analysis. @Muthen2012 presented a Bayesian approach to estimating SEMs under the assumption that minor factors influence relations between measured items. A practical consequence of accounting for minor factors is that hypothesized parameters have increased uncertainty (larger standard errors). This is because SEMs that do not account for minor factor influences ignore uncertainty due to model misspecification.
 
-The **minor**-factor **B**ayesian **SEM** or minorbsem package is for estimating SEMs that account for the influence of minor factors. The ideas underlying the package are in @uanhoro_modeling_nodate. The current article provides a guide for using minorbsem. The minimum requirement for this article is a working familiarity with SEMs, and the ideal reader is one who has working knowledge of lavaan [@Rosseel2012] within R [@cite_r] and basic understanding of Bayesian data analysis.
+The **minor**-factor **B**ayesian **SEM** or minorbsem package is for estimating SEMs that account for the influence of minor factors. The ideas underlying the package are detailed in @uanhoro_modeling_nodate. The current article provides a guide for using minorbsem. The minimum requirement for this article is a working familiarity with SEMs, and the ideal reader is one who has working knowledge of lavaan [@Rosseel2012] within R [@R-base] and basic understanding of Bayesian data analysis.
 
 With regard to features of the package, minorbsem:
 
-- is free and open-source software;
+<!-- - is free and open-source software; -->
 - uses lavaan style syntax for specifying models to encourage adoption;
 - relies on the Stan open-source project [@Carpenter2017];
 - is opinionated in its priors specifications;
 - provides several methods for estimating the influence of minor factors;
-- provides a test of absolute misfit and estimates an effect size for the degree of model misfit.
+- estimates the size of the influence of minor factors.
 
 We briefly elaborate some of these features.
 
-#### Free and open-source software
+<!-- #### Free and open-source software -->
 
-That minorbsem is free and open-source means that the package can be examined for correct implementation of the concepts it is intended for. Additionally, the advanced user is free to modify the code to suit their particular needs.
+<!-- That minorbsem is free and open-source means that the package can be examined for correct implementation of the concepts it is intended for. Additionally, the advanced user is free to modify the code to suit their particular needs. -->
 
 #### Reliance on Stan
 
 Stan is a free and open-source project for Bayesian computation that has been shown to permit efficient Bayesian estimation of SEMs [@merkle2021jss], i.e. estimation that is fast and generates relatively informative posterior samples.[^1]
 
-[^1]: Bayesian models return posterior samples or multiple guesses for any given parameter in the model. Using the example of a confirmatory factor analysis, one parameter is the factor loading and the model returns thousands of guesses for each factor loading. Typically, the mean of these guesses is the estimate of the loading. The 2.5 and 97.5 percentiles of these guesses would be the 95\% credible interval of the loading, analogous to the 95\% confidence interval. A challenge in Bayesian estimation is that these guesses tend to be highly correlated, thus 1000 different of guesses of the loading may have the information value of 10 unique guesses. The typical researcher would not consider the mean or percentiles of 10 data points to be all that reliable. Similarly, it would be misleading to compute means and percentiles when the effective number of unique guesses is very low. As demonstrated by @merkle2021jss, Stan is capable of producing a relatively high effective number of uniquely different guesses for Bayesian SEM parameters.
+[^1]: Bayesian models return posterior samples or multiple guesses for any given parameter in a model. Using the example of a confirmatory factor analysis, one parameter is the factor loading and the model may return one thousand guesses for each factor loading. Typically, the mean of these guesses is the estimate of the loading. The 2.5 and 97.5 percentiles of these guesses would form the 95\% credible interval of the loading, similar to the 95\% confidence interval. A challenge in Bayesian estimation is that the 1000 guesses tend to be highly correlated, and 1000 different of guesses of the loading may have the information value of 10 unique guesses. The typical researcher would not consider the mean or percentiles of 10 data points to be all that reliable. Similarly, it would be misleading to compute means and percentiles when the effective number of unique guesses is very low. As demonstrated by @merkle2021jss, Stan is capable of producing a relatively high effective number of unique guesses for Bayesian SEM parameters.
 
 #### Opinionated prior specifications
 
@@ -100,7 +98,7 @@ A major challenge in the adoption of Bayesian methods is how users specify prior
 
 #### Methods for estimating the influence of minor factors
 
-The influence of minor factors is captured by estimating the residual covariances between all items, or relaxing the local independence assumption in SEMs. Unlike @Muthen2012, minorbsem is able to estimate both pre-specified residual covariances and the full residual covariance matrix without problems. Moreover, the influence of minor factors can be estimated under two assumptions:
+The influence of minor factors is captured by estimating the residual covariances between all items. Unlike @Muthen2012, minorbsem is able to estimate both pre-specified residual covariances and the full residual covariance matrix without problems. Moreover, the influence of minor factors can be estimated under two assumptions:
 
 \begin{enumerate}
     \item the influence of minor factors on residual covariances is practically zero, with a few exceptions;
@@ -110,13 +108,15 @@ The influence of minor factors is captured by estimating the residual covariance
 
 The first assumption is reasonable when there is reason to believe that a hypothesized structure will sufficiently explain the relations in the data. The second assumption is more realistic since it is unlikely that most residual covariances are truly zero. Each assumption is operationalized using multiple estimation methods.
 
-#### Goodness of fit
+#### Size of the influence of minor factors
 
-minorbsem returns posterior predictive p-values [PPP,@Meng1994;@Muthen2012] which replace $\chi^2$-tests of absolute fit in the Bayesian context. The ideal PPP is .5, with values closer to 0 suggesting significant misfit -- @Muthen2012 use a .05 as a threshold for inadequate fit. Additionally, each estimation method in minorbsem returns an effect size fit index that is estimated as part of the model. For most approaches implemented in minorbsem, this index is analogous to the correlation root mean square residual [CRMR,@ogasawara_standard_2001].
+<!-- minorbsem returns posterior predictive p-values [PPP,@Meng1994;@Muthen2012] which replace $\chi^2$-tests of absolute fit in the Bayesian context. The ideal PPP is .5, with values closer to 0 suggesting significant misfit -- @Muthen2012 use a .05 as a threshold for inadequate fit. -->
+
+Each estimation method in minorbsem returns a fit index that communicates the size of the influence of minor factors. For most methods implemented in minorbsem, this index is analogous to the correlation root mean square residual [CRMR,@ogasawara_standard_2001].
 
 Additionally, minorbsem produces diagnostic plots to assess whether parameter estimation has converged, plots to assess how minor factors influence the residual covariances, and permits model comparisons on the basis of approximate leave-one-out cross-validation [LOOCV,@Vehtari2017]. Finally, to ensure that the package functions as expected, the code is tested extensively and about 80\% of the package code is covered in the tests.
 
-In the next section, we demonstrate the main features and functions of minorbsem using an applied example. We then discuss how minorbsem compares to existing SEM packages that account for minor factors. Then we conclude with some planned updates for the package.
+In the next section, we demonstrate the main features and functions of minorbsem using an applied example. We next discuss how minorbsem compares to existing SEM packages that account for minor factors. Then we conclude with some planned updates for the package.
 
 # Using minorbsem
 
@@ -124,31 +124,26 @@ In the next section, we demonstrate the main features and functions of minorbsem
 
 We recommend that restarting R prior to installation. minorbsem requires that R is at least version 3.4.0. Executing the `version` command shows the installed R version. If the installed version is less than 3.4.0, then an update is required prior to installation.
 
-We will need the `devtools` package to install R packages that are hosted on GitHub instead of Cran (the default repository for R packages):
+We need the `devtools` package to install R packages that are hosted on GitHub instead of Cran (the default repository for R packages):
 
 ```{r eval=FALSE}
 install.packages("devtools")
 ```
 
-Prior to installing minorbsem, we also need to install the `cmdstanr` package which allows us interface with Stan. It is possible to run into problems at this stage, and we recommend the Getting started with CmdStanR page (https://mc-stan.org/cmdstanr/articles/cmdstanr.html) should any problems come up.
+Prior to installing minorbsem, we also need to install the `cmdstanr` package which allows us interface with Stan. It is possible to run into problems at this stage, and we recommend the `Getting started with CmdStanR' page (https://mc-stan.org/cmdstanr/articles/cmdstanr.html) should any problems come up.
 
 ```{r eval=FALSE}
 devtools::install_github("stan-dev/cmdstanr")
 ```
 
-Afterwards, the user needs to install Stan itself. First, we check that the computer is correctly set up to install Stan:
+Afterwards, we install Stan. First, we check that the computer is correctly set up to install Stan:
 
 ```{r eval=FALSE}
-cmdstanr::check_cmdstan_toolchain()
+cmdstanr::check_cmdstan_toolchain()  # ensure computer is setup to install Stan
+cmdstanr::install_cmdstan()  # install Stan
 ```
 
-Afterwards, the user can then install Stan:
-
-```{r eval=FALSE}
-cmdstanr::install_cmdstan()
-```
-
-Once Stan is installed, then the user can install minorbsem:
+Once Stan is installed, then we install minorbsem:
 
 ```{r eval=FALSE}
 devtools::install_github("stonegold546/minorbsem")
@@ -158,14 +153,14 @@ In addition to `cmdstanr`, minorbsem relies on other R packages: `ggplot2` [@ggp
 
 ## A complete example
 
-We analyze the popular Holzinger-Swineford dataset using confirmatory factor analysis (CFA) to demonstrate the features of minorbsem. First we load the package:
+We analyze the popular Holzinger-Swineford dataset $(n = 301)$ using confirmatory factor analysis (CFA) to demonstrate the features of minorbsem. First we load the package:
 
 ```{r}
 library(minorbsem)
 ```
 
 The dataset is stored in the `HS` object within the package, and the dataset's documentation (copied over from lavaan) can be accessed using the `?HS` command.
-The basic model syntax for the data is:
+The basic model syntax for the CFA is:
 
 ```{r}
 hs_syntax_1 <- "
@@ -182,45 +177,99 @@ hs_fit_1 <- minorbsem(model = hs_syntax_1, data = HS)
 
 \singlespacing
 
-```{r echo = FALSE, message=1:5, cache=TRUE}
-hs_output <- capture.output(
-  hs_fit_1 <- minorbsem(model = hs_syntax_1, data = HS, show = FALSE)
-)
+```{r echo = FALSE, message=TRUE}
+if (file.exists("hs_fit_1.rds")) {
+  hs_fit_1 <- readRDS("hs_fit_1.rds")
+  hs_output <- hs_fit_1$hs_output
+  hs_message <- hs_fit_1$hs_message
+  p_hist <- hs_fit_1$p_hist
+  p_trace <- hs_fit_1$p_trace
+  p_res <- hs_fit_1$p_res
+  hs_fit_1 <- hs_fit_1$hs_fit_1
+} else {
+  # hs_message <- capture.output(
+  #   minorbsem(
+  #     model = hs_syntax_1, data = HS, show = FALSE, show_messages = FALSE
+  #   ),
+  #   type = "message"
+  # )
+  hs_output <- capture.output(
+    hs_fit_1 <- minorbsem(
+      model = hs_syntax_1, data = HS, show = FALSE, show_messages = FALSE
+    )
+  )
+  p_hist <- parameter_hist(hs_fit_1)
+  p_trace <- parameter_trace(hs_fit_1)
+  p_res <- plot_residuals(hs_fit_1)
+  saveRDS(list(
+    hs_fit_1 = hs_fit_1,
+    hs_output = hs_output,
+    hs_message = hs_message,
+    p_hist = p_hist,
+    p_trace = p_trace,
+    p_res = p_res
+  ), "hs_fit_1.rds")
+}
+writeLines(hs_message)
 ```
 
 ```{r echo = FALSE}
 writeLines(hs_output[c(1:5, 42:46)])
 ```
 
-```{r echo = FALSE, results='asis'}
+\doublespacing
+
+We show some of the printed results to expect whenever `minorbsem` is run so the user knows these messages do not signify errors. Additionally, `minorbsem` needs to compile the Stan models the first time it is run after (re-)installation. This delays execution the first the user runs a CFA and the first time the user runs an SEM. Additionally, minorbsem prints out the iterations from Stan.[^2]
+
+[^2]: Sometimes, minorbsem may print warnings about divergent transitions or maximum tree depth. These warnings may be resolved by using more informative priors (see section on prior specification later), or by re-running the model and setting `adapt_delta = .99` (default = .9) for divergent transitions, and `max_treedepth = 15` (default = 10) for maximum tree depth warnings, e.g. `minorbsem(model = hs_syntax_1, data = HS, adapt_delta = .99, max_treedepth = 15)`. For more information about these warnings, see the Stan help page for `Runtime warnings and convergence problems' (https://mc-stan.org/misc/warnings.html).
+
+Similar to lavaan, minorbsem models can also be estimated with just the covariance matrix and sample size using the alternative syntax: `minorbsem(model = hs_syntax_1, sample_cov = [covariance matrix], sample_nobs = [sample size])`. The results are equivalent. Both models assume by default that the visual, verbal and speed constructs are correlated; setting `orthogonal = TRUE` would set the factors uncorrelated which can be useful for estimating bifactor models. See `?minorbsem` for elaboration of options.
+
+Model results are saved in the object, `hs_fit_1`, and automatically displayed in a window of the user's default web browser. If the user is working within RStudio, the results are displayed in the Viewer pane of RStudio. To disable this automatic viewing of results, set `show = FALSE` when calling `minorbsem()`. Another way to view parameter estimates for major parameters is: `hs_fit_1@major_parameters` which prints the model results in the console.
+
+\singlespacing
+
+```{r tab-1, echo = FALSE, results='asis'}
 hs_fit_1
 ```
 
 \doublespacing
 
-`r stringi::stri_rand_lipsum(3)`
+Model results are displayed exactly as shown in Table \@ref(tab:tab-1). The parameter are divided into sections: 
 
 ### Model plots
 
 `r stringi::stri_rand_lipsum(1)`
 
-```{r fig.height=4, fig.width=6, cache=TRUE}
+```{r eval = FALSE}
 parameter_hist(hs_fit_1)
 ```
 
+```{r fig.height=4, fig.width=6, echo = FALSE}
+p_hist
+```
+
 `r stringi::stri_rand_lipsum(1)`
 
-```{r fig.height=4, fig.width=6, cache=TRUE}
+```{r eval = FALSE}
 parameter_trace(hs_fit_1)
 ```
 
+```{r fig.height=4, fig.width=6, echo = FALSE}
+p_trace
+```
+
 `r stringi::stri_rand_lipsum(1)`
 
-```{r fig.height=2.5, fig.width=6, cache=TRUE}
+```{r eval = FALSE}
 plot_residuals(hs_fit_1)
 ```
 
-### Alternative models
+```{r fig.height=2.5, fig.width=6, echo = FALSE}
+p_res
+```
+
+### Alternative models and model comparison
 
 `r stringi::stri_rand_lipsum(1)`
 
@@ -230,27 +279,63 @@ hs_fit_2 <- minorbsem(model = hs_syntax_1, data = HS, simple_struc = FALSE)
 
 \singlespacing
 
-```{r echo = FALSE, message=FALSE, cache=TRUE, results='asis'}
-hs_output <- capture.output(hs_fit_2 <- minorbsem(
-  model = hs_syntax_1, data = HS, simple_struc = FALSE, show = FALSE
-))
-hs_fit_2
+```{r echo = FALSE, message=FALSE, results='asis'}
+# hs_output <- capture.output(hs_fit_2 <- minorbsem(
+#   model = hs_syntax_1, data = HS, simple_struc = FALSE, show = FALSE
+# ))
+# hs_fit_2
 ```
 
 \doublespacing
 
 `r stringi::stri_rand_lipsum(5)`
 
-# Main Features and Functions
-
 - Provide a detailed description of the main features and functions of minorbsem, including any unique or innovative aspects.
 - Provide code examples of how the package can be used to solve specific problems.
 - Discuss how the package can be customized and extended by users.
 
-# Examples of Use
-
 - Provide examples of how minorbsem can be used to solve specific problems.
 - Discuss how minorbsem compares to existing packages in terms of performance and functionality.
+
+## Additional features
+
+`r stringi::stri_rand_lipsum(1)`
+
+### Setting up priors
+
+`r stringi::stri_rand_lipsum(1)`
+
+### Different estimation methods
+
+`r stringi::stri_rand_lipsum(1)`
+
+## Comparison to other packages
+
+`r stringi::stri_rand_lipsum(1)`
+
+\begin{table}[htbp]
+  \centering
+  \caption{Comparing features of different packages}
+  \label{tab:pkg_comp}
+    \small
+\begin{threeparttable}
+\begin{tabular}{l|cc|ccccccc|cccc}
+    \toprule
+    & \multicolumn{2}{c|}{Accessibility} & \multicolumn{7}{c|}{Package features} & \multicolumn{4}{c}{Available priors} \\ \hline
+Package & \rotatebox{60}{FOSS} & \rotatebox{60}{CUS} & \rotatebox{60}{MF} & \rotatebox{60}{CLS} & \rotatebox{60}{BL} & \rotatebox{60}{MCM} & \rotatebox{60}{BO} & \rotatebox{60}{GOF-t} & \rotatebox{60}{SMF} & \rotatebox{60}{Ridge} & \rotatebox{60}{Lasso} & \rotatebox{60}{GL} & \rotatebox{60}{Add} \\
+\midrule
+minorbsem & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & & & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+Mplus & & \checkmark & \checkmark & \checkmark & & \checkmark & \checkmark & \checkmark & & \checkmark \\
+LAWBL & \checkmark & & \checkmark & \checkmark & \checkmark & & \checkmark & & & & \checkmark \\ \bottomrule
+\end{tabular}
+\vspace{.5em}
+\begin{tablenotes}
+\scriptsize{
+    Note: FOSS: Free and open-source; CUS: Commonly used syntax; MF: Minor factors; CLS: Complex loading structure; BL: Bayesian learning -- size of minor factor influences are learned from data; MCM: Many classes of models; BO: Binary or ordinal models; GOF-t: goodness of fit test; SMF: size of minor factor influences; Ridge: Automatically set priors for minor factor; Lasso: Uncorrelated random piecewise; GL: Global-local; Add: Additional.
+}
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
 
 # Conclusion
 
@@ -258,6 +343,11 @@ hs_fit_2
 - Highlight the potential impact of minorbsem on the R community.
 - Discuss future directions for the package, including planned updates and new features.
 
+`r stringi::stri_rand_lipsum(1)`
+
+## Future directions
+
+`r stringi::stri_rand_lipsum(1)`
 
 \newpage
 
