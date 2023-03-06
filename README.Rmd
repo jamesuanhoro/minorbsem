@@ -12,12 +12,12 @@ devtools::load_all()
 <!-- badges: start -->
 
 [![Project Status: Active  The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+![GitHub](https://img.shields.io/github/license/jamesuanhoro/minorbsem)
 [![Codecov test coverage](https://codecov.io/gh/jamesuanhoro/minorbsem/branch/master/graph/badge.svg)](https://app.codecov.io/gh/jamesuanhoro/minorbsem?branch=master)
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-`r minimum_r_version()`-6666ff.svg)](https://cran.r-project.org/)
+![GitHub R package version](https://img.shields.io/github/r-package/v/jamesuanhoro/minorbsem)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/minorbsem)](https://cran.r-project.org/package=minorbsem)
-[![Package version](https://img.shields.io/badge/Package%20version-`r minorbsem_version()`-orange.svg?style=flat-square)](commits/master)
-[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)
+![GitHub last commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
 <!-- badges: end -->
 
 It is rare that structural equation models (SEMs) are able to reject the null
