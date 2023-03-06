@@ -20,10 +20,10 @@ functions {
       2 * lmgamma(p, x / 2) - x * p * log(x / 2) + x * p
     );
   }
-  real gen_matrix_beta_ii_lpdf(matrix S, matrix Omega, real n, real m, real ln_det_S) {
+  real gen_matrix_beta_ii_lpdf(matrix S, matrix Omega, real n, real m) {
     int p = rows(S);
     real F_1 = eff(p, m) + eff(p, n) - eff(p, m + n);
-    real F_2 = -((n - p - 1) * ln_det_S) - (m * log_determinant_spd(Omega)) +
+    real F_2 = -((n - p - 1) * log_determinant_spd(S)) - (m * log_determinant_spd(Omega)) +
       ((m + n) * log_determinant_spd((m * Omega + n * S) / (m + n)));
     real ll = (F_1 + F_2) / -2.0;
     return(ll);
@@ -60,13 +60,11 @@ transformed data {
   real sqrt_two = sqrt(2.0);
   real pi_sqrt_three = pi() / sqrt(3.0);
   int<lower = 0> Nl = 0;  // N_non-zero loadings
-  cholesky_factor_cov[Ni] NL_S = sqrt(Np - 1) * cholesky_decompose(S);  // covariance matrix-chol
   int Nf_corr = corr_fac == 1 ? Nf : 1;
   int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
   int N_rms = 1;
   int N_alpha = 0;
   int N_complex = 0;
-  real ln_det_S = log_determinant_spd(S);
   // int N_Sigma = 1;
 
   if (method >= 90) {
@@ -246,9 +244,6 @@ model {
   }
 }
 generated quantities {
-  vector[Ng] D_obs;
-  vector[Ng] D_rep;
-  vector<lower = 0, upper = 1>[Ng] ppp;
   real<lower = 0> rms_src;  // RMSE of residuals
   matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
   matrix[Nf_corr, Nf_corr] phi_mat = multiply_lower_tri_self_transpose(phi_mat_chol);
