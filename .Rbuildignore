@@ -6,3 +6,4 @@
 ^README\_files$
 ^codecov\.yml$
 ^vignettes/articles$
+^README\.Rmd$
