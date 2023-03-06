@@ -1,27 +1,30 @@
+---
+output: github_document
+---
 
 # minorbsem
 
+```{r include=FALSE}
+devtools::load_all()
+```
+
+
 <!-- badges: start -->
 
-[![Project Status: Active The project has reached a stable, usable state
-and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: Active  The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Codecov test
-coverage](https://codecov.io/gh/jamesuanhoro/minorbsem/branch/master/graph/badge.svg)](https://app.codecov.io/gh/jamesuanhoro/minorbsem?branch=master)
-[![minimal R
-version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-project.org/)
+[![Codecov test coverage](https://codecov.io/gh/jamesuanhoro/minorbsem/branch/master/graph/badge.svg)](https://app.codecov.io/gh/jamesuanhoro/minorbsem?branch=master)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-`r minimum_r_version()`-6666ff.svg)](https://cran.r-project.org/)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/minorbsem)](https://cran.r-project.org/package=minorbsem)
-[![Package
-version](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--03--06-yellowgreen.svg)](/commits/master)
+[![Package version](https://img.shields.io/badge/Package%20version-`r minorbsem_version()`-orange.svg?style=flat-square)](commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)
 <!-- badges: end -->
 
-It is rare that structural equation models (SEMs) are able to reject the
-null hypothesis that there is no misspecification in the model. One
-explanation for this problem is that covariance structures are
-influenced by major factors which we can hypothesize about and minor
-factors which we cannot predict a-priori, e.g. MacCallum & Tucker, 1991.
+It is rare that structural equation models (SEMs) are able to reject the null
+hypothesis that there is no misspecification in the model. One explanation for
+this problem is that covariance structures are influenced by major factors which
+we can hypothesize about and minor factors which we cannot predict a-priori,
+e.g. MacCallum & Tucker, 1991.
 
 The goal of minorbsem is to let you fit Bayesian SEMs that estimate the
 influence of minor factors on the covariance matrix.
@@ -29,22 +32,19 @@ influence of minor factors on the covariance matrix.
 The package only fits a limited number of models:
 
 - CFA, allowing cross-loadings, correlated errors terms, and fully
-  oblique or orthogonal factors (useful for fitting bifactor models)
-- SEMs, allowing latent regressions (only), cross-loadings, and
-  correlated error terms.
+oblique or orthogonal factors (useful for fitting bifactor models)
+- SEMs, allowing latent regressions (only), cross-loadings, and correlated error
+terms.
 
-One cannot fit MIMIC, multi-group models, multilevel models, or models
-with specially constrained parameters (e.g. setting two parameters
-equal).
+One cannot fit MIMIC, multi-group models, multilevel models, or models with
+specially constrained parameters (e.g. setting two parameters equal).
 
-All data are assumed multivariate normal, i.e. no binary, ordinal
-models.
+All data are assumed multivariate normal, i.e. no binary, ordinal models.
 
 ## Installation
 
-The package requires that you **have CmdStan installed on your
-machine**, see installation instructions here:
-<https://mc-stan.org/cmdstanr/articles/cmdstanr.html>
+The package requires that you **have CmdStan installed on your machine**,
+see installation instructions here: https://mc-stan.org/cmdstanr/articles/cmdstanr.html
 
 You can install minorbsem using devtools:
 
@@ -110,7 +110,4 @@ print(loo::loo_compare(loo_1, loo_2), simplify = FALSE)
 
 ## Citations
 
-MacCallum, R. C., & Tucker, L. R. (1991). Representing sources of error
-in the common-factor model: Implications for theory and practice.
-*Psychological Bulletin, 109*(3), 502–511.
-<https://doi.org/10.1037/0033-2909.109.3.502>
+MacCallum, R. C., & Tucker, L. R. (1991). Representing sources of error in the common-factor model: Implications for theory and practice. _Psychological Bulletin, 109_(3), 502–511. https://doi.org/10.1037/0033-2909.109.3.502
