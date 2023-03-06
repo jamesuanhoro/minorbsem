@@ -13,6 +13,28 @@ minorbsem_version <- function() {
   return(version)
 }
 
+#' Run generic CFA and SEM function
+#' @returns NULL
+#' @export
+init_minorbsem <- function() {
+  model_syntax <- "
+  F1 =~ x1 + x2 + x3\n F2 =~ x4 + x5 + x6\n F3 =~ x7 + x8 + x9"
+  minorbsem(
+    model_syntax, minorbsem::HS,
+    warmup = 200, sampling = 200, chains = 1, show = FALSE,
+    method = "none", refresh = 0, show_messages = FALSE
+  )
+  model_syntax <- "
+  ind60 =~ x1 + x2 + x3\n dem60 =~ y1 + y2 + y3 + y4
+    dem65 =~ y5 + y6 + y7 + y8\n dem60 ~ ind60\n dem65 ~ ind60 + dem60"
+  minorbsem(
+    model_syntax, minorbsem::PD,
+    warmup = 200, sampling = 200, chains = 1, show = FALSE,
+    method = "none", refresh = 0, show_messages = FALSE
+  )
+  return(NULL)
+}
+
 #' Check user input function
 #' @description A function that checks user input for adequacy
 #' and fails on inadequate input.
@@ -167,7 +189,7 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
   up_lim <- 1.0 - lo_lim # nolint
   sum_stats <- posterior::summarise_draws(
     draws, "mean", "median", "sd", "mad",
-    ~ quantile(.x, probs = c(lo_lim, up_lim))
+    ~ quantile(.x, probs = c(lo_lim, up_lim), na.rm = TRUE)
   )
   convergence_metrics <- posterior::summarise_draws(
     draws, posterior::default_convergence_measures()
@@ -201,7 +223,12 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
 #' @returns Updated major parameters table
 #' @keywords internal
 modify_major_params <- function(
-  major_parameters, idxs, group = "", op = "", from = "", to = "") {
+  major_parameters,
+  idxs,
+  group = "",
+  op = "",
+  from = "",
+  to = "") {
   result <- major_parameters
 
   if (length(idxs) > 0) {

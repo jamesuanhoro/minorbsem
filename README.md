@@ -2,7 +2,14 @@
 # minorbsem
 
 <!-- badges: start -->
+
+[![Project Status: Active  The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Codecov test coverage](https://codecov.io/gh/jamesuanhoro/minorbsem/branch/master/graph/badge.svg)](https://app.codecov.io/gh/jamesuanhoro/minorbsem?branch=master)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-project.org/)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/minorbsem)](https://cran.r-project.org/package=minorbsem)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)
 <!-- badges: end -->
 
 It is rare that structural equation models (SEMs) are able to reject the null
@@ -25,7 +32,7 @@ One cannot fit MIMIC, multi-group models, multilevel models, or models with
 specially constrained parameters (e.g. setting two parameters equal).
 
 All data are assumed multivariate normal, i.e. no binary, ordinal models.
-    
+
 ## Installation
 
 The package requires that you **have CmdStan installed on your machine**,
