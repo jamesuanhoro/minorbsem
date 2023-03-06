@@ -13,6 +13,19 @@ minorbsem_version <- function() {
   return(version)
 }
 
+#' Get R minimum function
+#' @returns R version minimum as string
+#' @keywords internal
+minimum_r_version <- function() {
+  desc_file <- readLines(system.file("DESCRIPTION", package = "minorbsem"))
+  r_version_line <- which(sapply(
+    desc_file, function(line) regexpr(pattern = "R \\(>=", line) > 0
+  ))
+  r_version_info <- desc_file[r_version_line]
+  r_version <- trimws(gsub("R \\(>=|\\)", "", r_version_info))
+  return(r_version)
+}
+
 #' Run generic CFA and SEM function
 #' @returns NULL
 #' @export

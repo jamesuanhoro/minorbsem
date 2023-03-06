@@ -1,6 +1,6 @@
 #! /bin/sh
 
-"${R_HOME}/bin/Rscript" -e "if (system.file(package = 'cmdstanr') != '') {
+"${R_HOME}/bin/Rscript" -e "if (system.file(package = 'cmdstanr') == '') {
     stop(
       'Please install cmdstanr before installing minorbsem,
       see: https://mc-stan.org/cmdstanr/articles/cmdstanr.html'
