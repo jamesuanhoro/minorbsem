@@ -107,11 +107,22 @@ with minimal shrinking for larger residual covariances.
 }
 \examples{
 \dontrun{
-meta_mbcfa("# latent variable definitions
-            F1 =~ JP1 + JP2 + JP3
-            F2 =~ JN1 + JN2 + JN4 + JN4
-            F3 =~ TD1 + TD2",
+model_syntax <- "# latent variable definitions
+F1 =~ JP1 + JP2 + JP3
+F2 =~ JN1 + JN2 + JN4 + JN4
+F3 =~ TD1 + TD2"
+meta_mbcfa(
+  model_syntax,
   sample_cov = issp89$data, sample_nobs = issp89$n
+)
+model_syntax <- paste0(
+  "distress =~ ", paste0("x", 1:14, collapse = " + "), "\n",
+  "anxiety =~ ", paste0("x", seq(1, 14, 2), collapse = " + "), "\n",
+  "depression =~ ", paste0("x", seq(2, 14, 2), collapse = " + ")
+)
+meta_mbcfa(
+  model_syntax,
+  sample_cov = Norton13$data, sample_nobs = Norton13$n, orthogonal = TRUE
 )
 }
 }
