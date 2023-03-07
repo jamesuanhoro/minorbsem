@@ -22,7 +22,8 @@ Imports:
     lavaan,
     methods,
     posterior,
-    Rcpp
+    Rcpp,
+    Rdpack (>= 0.7)
 Remotes: 
     github::stan-dev/cmdstanr
 LazyData: true
@@ -34,3 +35,4 @@ LinkingTo:
     Rcpp,
     RcppArmadillo
 Config/testthat/edition: 3
+RdMacros: Rdpack
