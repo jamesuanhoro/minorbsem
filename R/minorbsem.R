@@ -1,6 +1,7 @@
 #' Fit Bayesian SEMs with minor factors assumed
 #'
-#' @description The major function to fit models
+#' @description The major function to fit models assuming the influence of
+#' minor factors \insertCite{uanhoro_modeling_2023}{minorbsem}.
 #' @param model A description of the user-specified model, lavaan syntax.
 #' @param data An optional data frame containing the observed variables used in
 #' the model.
@@ -41,7 +42,8 @@
 #' There are different methods for estimating models in this package:
 #'
 #' - \code{normal}: under belief that minor factor influences are
-#' on average zero with continuous deviations away from zero.
+#' on average zero with continuous deviations away from zero
+#' \insertCite{uanhoro_modeling_2023}{minorbsem}.
 #' - \code{lasso}: under belief that minor factor influences are largely
 #' zero with a small number of non-zero residual covariances.
 #' - \code{logistic}: for similar belief as normal but more readily
@@ -51,7 +53,7 @@
 #' with minimal shrinking for larger residual covariances.
 #' - \code{WB}: to model the covariance matrix hierarchically under
 #' assumptions of adventitiuous error
-#' [10.1007/s11336-015-9451-3](https://doi.org/10.1007/s11336-015-9451-3);
+#' \insertCite{wu_quantifying_2015}{minorbsem};
 #' does NOT allow for computation of casewise log-likelihoods and LOO-CV.
 #' - \code{WB-cond}: same as WB but estimates the
 #' "population covariance matrix",
@@ -71,6 +73,7 @@
 #'            dem60 ~ ind60
 #'            dem65 ~ ind60 + dem60", PD)
 #' }
+#' @references \insertAllCited{}
 #' @export
 minorbsem <- function(
     model = NULL,
@@ -97,7 +100,7 @@ minorbsem <- function(
   user_input_check("model", model)
 
   # Priors must be class mbsempriors
-  user_input_check("model", priors)
+  user_input_check("priors", priors)
 
   # method must be valid
   user_input_check("method", method)
@@ -121,6 +124,8 @@ minorbsem <- function(
       model,
       data = data,
       std.lv = TRUE,
+      se = "none",
+      test = "none",
       orthogonal = orthogonal
     )
   } else {
@@ -128,6 +133,8 @@ minorbsem <- function(
       model,
       sample.cov = sample_cov, sample.nobs = sample_nobs,
       std.lv = TRUE,
+      se = "none",
+      test = "none",
       orthogonal = orthogonal
     )
   }

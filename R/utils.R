@@ -74,11 +74,17 @@ user_input_check <- function(
     }
   }
 
-  if (type == "method") {
-    if (!tolower(object_1) %in% tolower(method_hash())) {
+  if (regexpr("method", type) > 0) {
+    accepted_methods <- method_hash()
+    if (type == "method-meta") {
+      accepted_methods <- accepted_methods[
+        which(regexpr("WB", accepted_methods) < 0)
+      ]
+    }
+    if (!tolower(object_1) %in% tolower(accepted_methods)) {
       err_msg <- paste0(
         "method must be one of the following: ",
-        paste0("\"", method_hash(), "\"", collapse = ", ")
+        paste0("\"", accepted_methods, "\"", collapse = ", ")
       )
       stop(err_msg)
     }
@@ -92,6 +98,94 @@ user_input_check <- function(
         "(ii) sample covariance and sample size"
       ))
     }
+  }
+
+  return(NULL)
+}
+
+#' Check meta-user sample covariances input function
+#' @description A function that checks meta-user sample cov for adequacy
+#' and fails on inadequate input.
+#' @inheritParams meta_mbcfa
+#' @returns NULL
+#' @keywords internal
+meta_covs_check <- function(sample_cov) {
+  # ALL THIS WILL CHANGE
+  # must be LIST of MATRICES
+  # both must have same length
+  # must be SYMMETRIC POS-DEF
+  # all must have same DIMENSIONS
+  if (!inherits(sample_cov, "list")) {
+    stop("sample_cov must be a list of sample covariance matrices.")
+  }
+
+  len_cov <- length(sample_cov)
+
+  if (len_cov < 2) {
+    stop("More than one sample is needed for meta-analysis.")
+  }
+
+  sapply(seq_len(len_cov), function(i) {
+    s_mat <- sample_cov[[i]]
+    if (!(inherits(s_mat, "matrix") || inherits(s_mat, "array"))) {
+      stop(paste0(
+        "sample covariance matrix ", i,
+        " is neither a matrix nor an array."
+      ))
+    }
+    if (isFALSE(isSymmetric(s_mat))) {
+      stop(paste0(
+        "sample covariance matrix ", i,
+        " is not symmetric."
+      ))
+    }
+  })
+
+  if (length(unique(unlist(lapply(sample_cov, nrow)))) != 1) {
+    stop("All matrices should have the same number of rows.")
+  }
+
+  return(NULL)
+}
+
+#' Check meta-user number input function
+#' @description A function that checks meta-user sample nobs for adequacy
+#' and fails on inadequate input.
+#' @inheritParams meta_mbcfa
+#' @returns NULL
+#' @keywords internal
+meta_nobs_check <- function(sample_nobs) {
+  # ALL THIS WILL CHANGE
+  # Options: Use a special class or rely on lavaan
+  if (is.null(sample_nobs)) {
+    stop(paste0(
+      "User must provide sample sizes"
+    ))
+  }
+
+  tryCatch(
+    sample_nobs <- as.integer(sample_nobs),
+    warning = function(w) {
+      stop(paste0(
+        "Error: Make sure all values in sample_nobs are whole numbers"
+      ))
+    },
+    error = function(e) {
+      stop(paste0(
+        "Error: Make sure all values in sample_nobs are whole numbers"
+      ))
+    }
+  )
+
+  if (!(
+    inherits(sample_nobs, "integer") || inherits(sample_nobs, "numeric") ||
+      inherits(sample_nobs, "array")
+  )) {
+    stop("sample_nobs must be numeric data.")
+  }
+
+  if (any(sample_nobs %% 1 != 0)) {
+    stop("sample_nobs must be whole numbers.")
   }
 
   return(NULL)
@@ -236,12 +330,12 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
 #' @returns Updated major parameters table
 #' @keywords internal
 modify_major_params <- function(
-  major_parameters,
-  idxs,
-  group = "",
-  op = "",
-  from = "",
-  to = "") {
+    major_parameters,
+    idxs,
+    group = "",
+    op = "",
+    from = "",
+    to = "") {
   result <- major_parameters
 
   if (length(idxs) > 0) {

@@ -83,13 +83,15 @@ if FALSE, hide messages.}
 An object of \code{\link{mbsem-class}}
 }
 \description{
-The major function to fit models
+The major function to fit models assuming the influence of
+minor factors \insertCite{uanhoro_modeling_2023}{minorbsem}.
 }
 \details{
 There are different methods for estimating models in this package:
 \itemize{
 \item \code{normal}: under belief that minor factor influences are
-on average zero with continuous deviations away from zero.
+on average zero with continuous deviations away from zero
+\insertCite{uanhoro_modeling_2023}{minorbsem}.
 \item \code{lasso}: under belief that minor factor influences are largely
 zero with a small number of non-zero residual covariances.
 \item \code{logistic}: for similar belief as normal but more readily
@@ -99,7 +101,7 @@ attempt to shrink near 0 residual covariances to 0
 with minimal shrinking for larger residual covariances.
 \item \code{WB}: to model the covariance matrix hierarchically under
 assumptions of adventitiuous error
-\href{https://doi.org/10.1007/s11336-015-9451-3}{10.1007/s11336-015-9451-3};
+\insertCite{wu_quantifying_2015}{minorbsem};
 does NOT allow for computation of casewise log-likelihoods and LOO-CV.
 \item \code{WB-cond}: same as WB but estimates the
 "population covariance matrix",
@@ -121,4 +123,7 @@ minorbsem("# latent variable definitions
            dem60 ~ ind60
            dem65 ~ ind60 + dem60", PD)
 }
+}
+\references{
+\insertAllCited{}
 }
