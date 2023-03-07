@@ -4,7 +4,13 @@
 \alias{user_input_check}
 \title{Check user input function}
 \usage{
-user_input_check(type, object_1 = NULL, object_2 = NULL, object_3 = NULL)
+user_input_check(
+  type,
+  object_1 = NULL,
+  object_2 = NULL,
+  object_3 = NULL,
+  object_4 = NULL
+)
 }
 \arguments{
 \item{type}{string for type of check}
@@ -14,6 +20,8 @@ user_input_check(type, object_1 = NULL, object_2 = NULL, object_3 = NULL)
 \item{object_2}{Object to check}
 
 \item{object_3}{Object to check}
+
+\item{object_4}{Object to check}
 }
 \description{
 A function that checks user input for adequacy

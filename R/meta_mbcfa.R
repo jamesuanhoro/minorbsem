@@ -3,6 +3,10 @@
 #' @description A function to fit random-effects Bayesian meta-analytic CFAs
 #' with minor factors assumed \insertCite{uanhoro_hierarchical_2022}{minorbsem}.
 #' Builds off work by \insertCite{wu_quantifying_2015;textual}{minorbsem}.
+#' @param data An optional data frame containing the observed variables used in
+#' the model.
+#' @param group An optional string identifying the grouping variable in
+#' the data object.
 #' @param model A description of the user-specified model, lavaan syntax.
 #' @param sample_cov (list of matrices) sample variance-covariance matrices.
 #' The rownames and/or colnames must contain the observed variable names.
@@ -25,10 +29,21 @@
 #' attempt to shrink near 0 residual covariances to 0
 #' with minimal shrinking for larger residual covariances.
 #' - \code{none}: if intending to ignore the influence of minor factors.
+#' @examples
+#' \dontrun{
+#' meta_mbcfa("# latent variable definitions
+#'             F1 =~ JP1 + JP2 + JP3
+#'             F2 =~ JN1 + JN2 + JN4 + JN4
+#'             F3 =~ TD1 + TD2",
+#'   sample_cov = issp89$data, sample_nobs = issp89$n
+#' )
+#' }
 #' @references \insertAllCited{}
 #' @keywords internal
 meta_mbcfa <- function(
     model = NULL,
+    data = NULL,
+    group = NULL,
     sample_cov = NULL,
     sample_nobs = NULL,
     method = "normal",
@@ -45,7 +60,6 @@ meta_mbcfa <- function(
     priors = new_mbsempriors(),
     show = TRUE,
     show_messages = TRUE) {
-  # THIS IS A WIP!!
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -57,8 +71,8 @@ meta_mbcfa <- function(
   # method must be valid
   user_input_check("method-meta", method)
 
-  # Must provide either data or sample_cov and sample_nobs
-  meta_nobs_check(sample_nobs = sample_nobs)
+  # Must provide either data and group or sample_cov and sample_nobs
+  user_input_check("data-meta", data, group, sample_cov, sample_nobs)
 
   # CmdStan path must be set
   tryCatch(cmdstanr::cmdstan_path(),
@@ -71,17 +85,28 @@ meta_mbcfa <- function(
   )
 
   # Run lavaan fit
-  lav_fit <- lavaan::cfa(
-    model,
-    sample.cov = sample_cov, sample.nobs = sample_nobs,
-    std.lv = TRUE,
-    se = "none",
-    test = "none",
-    orthogonal = orthogonal
-  )
+  if (!is.null(data)) {
+    lav_fit <- lavaan::cfa(
+      model,
+      data = data,
+      std.lv = TRUE,
+      se = "none",
+      test = "none",
+      orthogonal = orthogonal
+    )
+  } else {
+    lav_fit <- lavaan::cfa(
+      model,
+      sample.cov = sample_cov, sample.nobs = sample_nobs,
+      std.lv = TRUE,
+      se = "none",
+      test = "none",
+      orthogonal = orthogonal
+    )
+  }
 
   # Obtain data list for Stan
-  data_list <- create_data_list(
+  data_list <- create_data_list_meta(
     lavaan_object = lav_fit,
     method = method,
     simple_struc = simple_struc,
@@ -98,12 +123,12 @@ meta_mbcfa <- function(
 
   if (data_list$sem_indicator == 0) {
     mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/cfa_resid.stan", package = "minorbsem"),
+      system.file("Stan/meta_cfa_resid.stan", package = "minorbsem"),
       stanc_options = list("O1")
     )
   } else if (data_list$sem_indicator == 1) {
     mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/sem_resid.stan", package = "minorbsem"),
+      system.file("Stan/meta_sem_resid.stan", package = "minorbsem"),
       stanc_options = list("O1")
     )
   }
@@ -127,6 +152,8 @@ meta_mbcfa <- function(
     parallel_chains = ncores,
     show_messages = show_messages
   )
+
+  return(stan_fit)
 
   mbsem_results <- clean_up_stan_fit(
     stan_fit = stan_fit, data_list = data_list, priors = priors

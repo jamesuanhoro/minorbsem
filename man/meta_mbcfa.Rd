@@ -6,6 +6,8 @@
 \usage{
 meta_mbcfa(
   model = NULL,
+  data = NULL,
+  group = NULL,
   sample_cov = NULL,
   sample_nobs = NULL,
   method = "normal",
@@ -26,6 +28,12 @@ meta_mbcfa(
 }
 \arguments{
 \item{model}{A description of the user-specified model, lavaan syntax.}
+
+\item{data}{An optional data frame containing the observed variables used in
+the model.}
+
+\item{group}{An optional string identifying the grouping variable in
+the data object.}
 
 \item{sample_cov}{(list of matrices) sample variance-covariance matrices.
 The rownames and/or colnames must contain the observed variable names.}
@@ -95,6 +103,16 @@ accomodates extreme outliers.
 attempt to shrink near 0 residual covariances to 0
 with minimal shrinking for larger residual covariances.
 \item \code{none}: if intending to ignore the influence of minor factors.
+}
+}
+\examples{
+\dontrun{
+meta_mbcfa("# latent variable definitions
+            F1 =~ JP1 + JP2 + JP3
+            F2 =~ JN1 + JN2 + JN4 + JN4
+            F3 =~ TD1 + TD2",
+  sample_cov = issp89$data, sample_nobs = issp89$n
+)
 }
 }
 \references{

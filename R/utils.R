@@ -55,13 +55,15 @@ init_minorbsem <- function() {
 #' @param object_1 Object to check
 #' @param object_2 Object to check
 #' @param object_3 Object to check
+#' @param object_4 Object to check
 #' @returns NULL
 #' @keywords internal
 user_input_check <- function(
     type,
     object_1 = NULL,
     object_2 = NULL,
-    object_3 = NULL) {
+    object_3 = NULL,
+    object_4 = NULL) {
   if (type == "model") {
     if (is.null(object_1)) {
       stop("Model cannot be null")
@@ -100,95 +102,80 @@ user_input_check <- function(
     }
   }
 
+  if (type == "data-meta") {
+    if (
+      (is.null(object_1) || is.null(object_2)) &&
+        (is.null(object_3) || is.null(object_4))
+    ) {
+      stop(paste0(
+        "User must provide either:\n\t",
+        "(i) a dataset and group variable or\n\t",
+        "(ii) sample covariance and sample size"
+      ))
+    }
+  }
+
   return(NULL)
 }
 
-#' Check meta-user sample covariances input function
-#' @description A function that checks meta-user sample cov for adequacy
-#' and fails on inadequate input.
-#' @inheritParams meta_mbcfa
-#' @returns NULL
+#' Create missing data matrices function
+#' @inheritParams create_data_list_meta
+#' @returns list of missing data matrices
 #' @keywords internal
-meta_covs_check <- function(sample_cov) {
-  # ALL THIS WILL CHANGE
-  # must be LIST of MATRICES
-  # both must have same length
-  # must be SYMMETRIC POS-DEF
-  # all must have same DIMENSIONS
-  if (!inherits(sample_cov, "list")) {
-    stop("sample_cov must be a list of sample covariance matrices.")
+prepare_missing_data_list <- function(data_list = NULL) {
+  diag_list <- unique(unlist(lapply(
+    data_list$S, function(s_mat) unique(diag(s_mat))
+  )))
+
+  data_list$is_cov <- rep(1, data_list$Ng)
+  if (length(diag_list) == 1) {
+    if (diag_list == 1) {
+      data_list$is_cov <- rep(0, data_list$Ng)
+    }
   }
 
-  len_cov <- length(sample_cov)
-
-  if (len_cov < 2) {
-    stop("More than one sample is needed for meta-analysis.")
-  }
-
-  sapply(seq_len(len_cov), function(i) {
-    s_mat <- sample_cov[[i]]
-    if (!(inherits(s_mat, "matrix") || inherits(s_mat, "array"))) {
-      stop(paste0(
-        "sample covariance matrix ", i,
-        " is neither a matrix nor an array."
-      ))
+  # Basic data-preparation, don't change
+  data_list$S <- lapply(seq_along(data_list$S), function(i) {
+    s_mat <- data_list$S[[i]]
+    if (data_list$is_cov[i] == 0) {
+      diag(s_mat) <- 1
+    } else {
+      diag(s_mat)[which(is.na(diag(s_mat)))] <- 1
     }
-    if (isFALSE(isSymmetric(s_mat))) {
-      stop(paste0(
-        "sample covariance matrix ", i,
-        " is not symmetric."
-      ))
-    }
+    s_mat[is.na(s_mat)] <- 999
+    s_mat
   })
 
-  if (length(unique(unlist(lapply(sample_cov, nrow)))) != 1) {
-    stop("All matrices should have the same number of rows.")
-  }
+  # Indicators of whether a variable is present by study, don't change
+  data_list$valid_var <- do.call(cbind, lapply(data_list$S, function(s_mat) {
+    apply(s_mat, 1, function(s) 0 + !(sum((s == 999)) == data_list$Ni - 1))
+  }))
 
-  return(NULL)
-}
-
-#' Check meta-user number input function
-#' @description A function that checks meta-user sample nobs for adequacy
-#' and fails on inadequate input.
-#' @inheritParams meta_mbcfa
-#' @returns NULL
-#' @keywords internal
-meta_nobs_check <- function(sample_nobs) {
-  # ALL THIS WILL CHANGE
-  # Options: Use a special class or rely on lavaan
-  if (is.null(sample_nobs)) {
-    stop(paste0(
-      "User must provide sample sizes"
-    ))
-  }
-
-  tryCatch(
-    sample_nobs <- as.integer(sample_nobs),
-    warning = function(w) {
-      stop(paste0(
-        "Error: Make sure all values in sample_nobs are whole numbers"
-      ))
-    },
-    error = function(e) {
-      stop(paste0(
-        "Error: Make sure all values in sample_nobs are whole numbers"
-      ))
+  # Count of missing covariance/correlation elements, don't change
+  data_list$Nmiss <- sum(unlist(lapply(
+    seq_len(length(data_list$S)), function(i) {
+      idx <- which(data_list$valid_var[, i] == 1)
+      s_mat <- data_list$S[[i]][idx, idx]
+      sum(s_mat == 999) / 2
     }
-  )
+  )))
 
-  if (!(
-    inherits(sample_nobs, "integer") || inherits(sample_nobs, "numeric") ||
-      inherits(sample_nobs, "array")
-  )) {
-    stop("sample_nobs must be numeric data.")
-  }
+  # Indicator of whether a valid variable has any missing covariance
+  # elements by study, don't change
+  data_list$miss_ind <- matrix(unlist(lapply(
+    seq_len(length(data_list$S)), function(i) {
+      s_mat <- data_list$S[[i]]
+      idx <- which(data_list$valid_var[, i] == 1)
+      res <- rep(0, data_list$Ni)
+      res[idx] <- apply(s_mat[idx, idx], 2, function(s) any(s == 999) + 0)
+      res
+    }
+  )), data_list$Ni)
 
-  if (any(sample_nobs %% 1 != 0)) {
-    stop("sample_nobs must be whole numbers.")
-  }
+  # # Number of items that have missing covariance elements, don't change
+  data_list$Nitem_miss <- sum(data_list$miss_ind)
 
-  return(NULL)
+  return(data_list)
 }
 
 #' Select random method and random case function
