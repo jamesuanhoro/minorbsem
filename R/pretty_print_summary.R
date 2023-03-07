@@ -35,7 +35,7 @@ pretty_print_summary <- function(
     interval = interval
   )
   method_str <- method_hash(object@data_list$method)
-  n_obs <- object@data_list$Np
+  n_obs <- paste0(object@data_list$Np, collapse = ", ")
 
   if (isTRUE(simple)) {
     if (object@data_list$method == 4) {
@@ -62,7 +62,7 @@ pretty_print_summary <- function(
     booktabs = TRUE,
     caption = paste0(
       "Parameter estimates (method = ", method_str,
-      ", sample size = ", n_obs, ")"
+      ", sample size(s) = ", n_obs, ")"
     ),
     digits = digits
   )

@@ -116,5 +116,8 @@ create_data_list_meta <- function(
   # Handle missing data
   data_list <- prepare_missing_data_list(data_list)
 
+  # 1 for meta-analysis
+  data_list$meta <- 1
+
   return(data_list)
 }

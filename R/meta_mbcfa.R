@@ -86,23 +86,17 @@ meta_mbcfa <- function(
 
   # Run lavaan fit
   if (!is.null(data)) {
-    lav_fit <- lavaan::cfa(
+    suppressWarnings(lav_fit <- lavaan::cfa(
       model,
-      data = data,
-      std.lv = TRUE,
-      se = "none",
-      test = "none",
-      orthogonal = orthogonal
-    )
+      data = data, group = group, std.lv = TRUE,
+      se = "none", test = "none", orthogonal = orthogonal
+    ))
   } else {
-    lav_fit <- lavaan::cfa(
+    suppressWarnings(lav_fit <- lavaan::cfa(
       model,
-      sample.cov = sample_cov, sample.nobs = sample_nobs,
-      std.lv = TRUE,
-      se = "none",
-      test = "none",
-      orthogonal = orthogonal
-    )
+      sample.cov = sample_cov, sample.nobs = sample_nobs, std.lv = TRUE,
+      se = "none", test = "none", orthogonal = orthogonal
+    ))
   }
 
   # Obtain data list for Stan
@@ -152,8 +146,6 @@ meta_mbcfa <- function(
     parallel_chains = ncores,
     show_messages = show_messages
   )
-
-  return(stan_fit)
 
   mbsem_results <- clean_up_stan_fit(
     stan_fit = stan_fit, data_list = data_list, priors = priors

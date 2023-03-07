@@ -106,5 +106,7 @@ create_data_list <- function(
   }
   data_list$Nce <- nrow(data_list$error_mat)
 
+  data_list$meta <- 0
+
   return(data_list)
 }

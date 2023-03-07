@@ -347,6 +347,11 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   factor_labels <- colnames(data_list$loading_pattern)
 
   params <- c("ppp", "rms_src")
+  from_list <- c("PPP", "RMSE")
+  if (data_list$meta == 1) {
+    params[1] <- "rmsea_mn"
+    from_list[1] <- "RMSEA"
+  }
 
   load_idxs <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
@@ -397,9 +402,9 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
 
   major_parameters <- modify_major_params(
     major_parameters,
-    which(major_parameters$variable %in% c("ppp", "rms_src")),
+    which(major_parameters$variable %in% c("ppp", "rms_src", "rmsea_mn")),
     group = "Goodness of fit",
-    from = c("PPP", "RMSE")
+    from = from_list
   )
 
   idxs <- which(regexpr("Load\\_mat", major_parameters$variable) > 0)
