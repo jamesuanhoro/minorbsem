@@ -4,6 +4,7 @@
 #' optionally produces HTML document
 #' @param object (mbsem) An object of \code{\link{mbsem-class}}
 #' returned by \code{\link{minorbsem}}.
+#' @param interval (real in (0, 1)) Credible interval to return.
 #' @param digits (positive integer) Number of decimal places to print in table
 #' @param simple (Logical) TRUE to produce table with less information
 #' about parameters;
@@ -20,25 +21,29 @@
 #' }
 #' @export
 pretty_print_summary <- function(
-    object, digits = 3, simple = TRUE,
+    object, interval = .9, digits = 3, simple = TRUE,
     save_html = NULL) {
   stopifnot(inherits(object, "mbsem"))
 
-  table_to_print <- object@major_parameters
+  if (interval <= 0 || interval >= 1 || !is.numeric(interval)) {
+    stop("Interval must be a number between 0 and 1")
+  }
+
+  table_to_print <- create_major_params(
+    stan_fit = object@stan_fit,
+    data_list = object@data_list,
+    interval = interval
+  )
   method_str <- method_hash(object@data_list$method)
-  n_obs <- object@data_list$Np
+  n_obs <- paste0(object@data_list$Np, collapse = ", ")
 
   if (isTRUE(simple)) {
     if (object@data_list$method == 4) {
       table_to_print[2, "mean"] <- table_to_print[2, "median"]
       table_to_print[2, "sd"] <- table_to_print[2, "mad"]
     }
-    table_to_print <- table_to_print[
-      c(
-        "group", "from", "op", "to", "mean", "sd",
-        "q5", "q95", "rhat", "ess_bulk"
-      )
-    ]
+    # Use index because of quantile name changes
+    table_to_print <- table_to_print[, c(1:5, 7, 9:10, 11:12)]
   }
 
   if (object@data_list$method == 100) {
@@ -53,10 +58,11 @@ pretty_print_summary <- function(
 
   result <- kableExtra::kbl(
     table_to_print[, -1],
+    row.names = FALSE,
     booktabs = TRUE,
     caption = paste0(
       "Parameter estimates (method = ", method_str,
-      ", sample size = ", n_obs, ")"
+      ", sample size(s) = ", n_obs, ")"
     ),
     digits = digits
   )

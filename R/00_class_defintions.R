@@ -19,6 +19,14 @@ methods::setClassUnion("stan_fit_classes", c("CmdStanMCMC", "CmdStanFit", "R6"))
 #' deviations of coefficients; SD(coefs) vary by outcome.
 #' @slot fc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
 #' prior on the inter-factor correlations in latent regression models.
+#' @slot mln_par (positive real) The scale parameter of the
+#' Student-t(df = 3, loc = 0) prior on the
+#' log-scale meta-regression intercept.
+#' Relevant only for meta-analysis.
+#' @slot mlb_par (positive real) The scale parameter of the
+#' Student-t(df = 3, loc = 0) prior on the
+#' log-scale meta-regression coefficients.
+#' Relevant only for meta-analysis.
 #'
 #' @name mbsempriors-class
 #' @rdname mbsempriors-class
@@ -31,7 +39,9 @@ methods::setClass(
     rs_par = "numeric",
     rc_par = "numeric",
     sc_par = "numeric",
-    fc_par = "numeric"
+    fc_par = "numeric",
+    mln_par = "numeric",
+    mlb_par = "numeric"
   ),
   prototype = list(
     lkj_shape = 2.0,
@@ -39,7 +49,9 @@ methods::setClass(
     rs_par = 2.5,
     rc_par = 2.0,
     sc_par = 1.0,
-    fc_par = 2.0
+    fc_par = 2.0,
+    mln_par = 2.5,
+    mlb_par = 1.0
   )
 )
 
@@ -60,6 +72,14 @@ methods::setClass(
 #' deviations of coefficients; SD(coefs) vary by outcome.
 #' @param fc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
 #' prior on the inter-factor correlations in latent regression models.
+#' @param mln_par (positive real) The scale parameter of the
+#' Student-t(df = 3, loc = 0) prior on the
+#' log-scale meta-regression intercept.
+#' Relevant only for meta-analysis.
+#' @param mlb_par (positive real) The scale parameter of the
+#' Student-t(df = 3, loc = 0) prior on the
+#' log-scale meta-regression coefficients.
+#' Relevant only for meta-analysis.
 #' @returns An object of \code{\link{mbsempriors-class}}
 #' @examples
 #' # Change LKJ shape parameter only
@@ -78,7 +98,9 @@ new_mbsempriors <- function(
     rs_par = 2.5,
     rc_par = 2.0,
     sc_par = 1.0,
-    fc_par = 2.0) {
+    fc_par = 2.0,
+    mln_par = 2.5,
+    mlb_par = 1.0) {
   mb_priors_object <- methods::new("mbsempriors")
   mb_priors_object <- methods::initialize(
     mb_priors_object,
@@ -87,7 +109,9 @@ new_mbsempriors <- function(
     rs_par = rs_par,
     rc_par = rc_par,
     sc_par = sc_par,
-    fc_par = fc_par
+    fc_par = fc_par,
+    mln_par = mln_par,
+    mlb_par = mlb_par
   )
   return(mb_priors_object)
 }

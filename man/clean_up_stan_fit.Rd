@@ -4,12 +4,14 @@
 \alias{clean_up_stan_fit}
 \title{Clean up Stan fit helper function}
 \usage{
-clean_up_stan_fit(stan_fit, data_list, priors)
+clean_up_stan_fit(stan_fit, data_list, interval = 0.9, priors)
 }
 \arguments{
 \item{stan_fit}{Stan fit}
 
 \item{data_list}{Data list object passed to Stan}
+
+\item{interval}{(real in (0, 1)) Credible interval to return.}
 
 \item{priors}{An object of \code{\link{mbsempriors-class}}.
 See \code{\link{new_mbsempriors}} for more information.}

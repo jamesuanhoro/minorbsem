@@ -1,5 +1,6 @@
 ## usethis namespace: start
-#' @useDynLib minorbsem, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
+#' @importFrom Rdpack reprompt
+#' @useDynLib minorbsem, .registration = TRUE
 ## usethis namespace: end
 NULL

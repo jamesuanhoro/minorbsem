@@ -31,6 +31,7 @@ containing log-likelihood
 \description{
 Get casewise log-likelihood for complete data,
 useful for WAIC, LOOIC, ...
+Does not work meta-analysis models.
 }
 \details{
 If comparing two models fit using the same method in
