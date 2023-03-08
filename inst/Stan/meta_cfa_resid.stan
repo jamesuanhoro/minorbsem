@@ -279,7 +279,7 @@ generated quantities {
     }
   }
 
-  {
+  if (method < 90) {
     int pos = 0;
 
     for (i in 2:Ni) {

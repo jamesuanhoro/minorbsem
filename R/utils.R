@@ -173,10 +173,18 @@ prepare_missing_data_list <- function(data_list = NULL) {
 
 #' Select random method and random case function
 #'
+#' @param meta IF TRUE, assume meta-analysis
 #' @returns randomly selected method and case
 #' @keywords internal
-random_method_selection <- function() {
-  method <- sample(method_hash(), 1)
+random_method_selection <- function(meta = FALSE) {
+  accepted_methods <- method_hash()
+  if (isTRUE(meta)) {
+    accepted_methods <- accepted_methods[
+      which(regexpr("WB", accepted_methods) < 0)
+    ]
+  }
+
+  method <- sample(accepted_methods, 1)
 
   case_fun <- sample(1:2, 1)
   if (case_fun == 1) {
@@ -395,9 +403,15 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
 
   major_parameters <- modify_major_params(
     major_parameters,
-    which(major_parameters$variable %in% c("ppp", "rms_src", "rmsea_mn")),
+    which(major_parameters$variable %in% c("ppp", "rmsea_mn")),
     group = "Goodness of fit",
-    from = from_list
+    from = from_list[1]
+  )
+  major_parameters <- modify_major_params(
+    major_parameters,
+    which(major_parameters$variable == "rms_src"),
+    group = "Goodness of fit",
+    from = from_list[2]
   )
 
   idxs <- which(regexpr("Load\\_mat", major_parameters$variable) > 0)
@@ -493,6 +507,10 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     which(major_parameters$group == x)
   }))
   major_parameters <- major_parameters[new_order, -1]
+  new_order <- unlist(sapply(c("PPP", "RMSEA", "RMSE"), function(x) {
+    which(major_parameters$from[1:2] == x)
+  }))
+  major_parameters[1:2, ] <- major_parameters[new_order, ]
 
   return(major_parameters)
 }

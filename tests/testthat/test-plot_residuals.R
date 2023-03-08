@@ -1,22 +1,3 @@
-mbsem_test_plot_residuals <- function(fit, method) {
-  type <- sample(c("matrix", "range"), 1)
-  if (method_hash(method) >= 90) {
-    testthat::expect_error(
-      gg <- plot_residuals(fit, type = type),
-      paste0(
-        "There are no residuals to plot when ",
-        "method == \"none\", \"WB\", \"WB-cond\"."
-      )
-    )
-  } else {
-    testthat::expect_error(
-      gg <- plot_residuals(fit, type = type),
-      NA
-    )
-    testthat::expect_true(inherits(gg, "ggplot"))
-  }
-}
-
 test_that("Random method (any case) works for CFA", {
   method <- random_method_selection()
   model_syntaxes <- c(

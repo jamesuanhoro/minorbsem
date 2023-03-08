@@ -4,7 +4,10 @@
 \alias{random_method_selection}
 \title{Select random method and random case function}
 \usage{
-random_method_selection()
+random_method_selection(meta = FALSE)
+}
+\arguments{
+\item{meta}{IF TRUE, assume meta-analysis}
 }
 \value{
 randomly selected method and case

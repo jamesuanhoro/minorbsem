@@ -2,7 +2,7 @@
 #'
 #' @description Produce traceplots of parameter posterior distribution,
 #' option to limit plot by type of parameter.
-#' @inheritParams minorbsem
+#' @inheritParams parameter_hist
 #' @returns ggplot object
 #' @examples
 #' \dontrun{

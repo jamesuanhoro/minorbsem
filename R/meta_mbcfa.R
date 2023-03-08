@@ -3,6 +3,8 @@
 #' @description A function to fit random-effects Bayesian meta-analytic CFAs
 #' with minor factors assumed \insertCite{uanhoro_hierarchical_2022}{minorbsem}.
 #' Builds off work by \insertCite{wu_quantifying_2015;textual}{minorbsem}.
+#' Does not yet accomodate moderators, and covariance matrices must be complete.
+#' This will change in the near future.
 #' @param data An optional data frame containing the observed variables used in
 #' the model.
 #' @param group An optional string identifying the grouping variable in
