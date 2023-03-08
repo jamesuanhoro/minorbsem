@@ -6,7 +6,8 @@
 #' returned by \code{\link{minorbsem}}.
 #' @param param_type (string vector) Choose from a list of options:
 #' "all" = all structural parameters;
-#' "rm" = Root Mean square error of standardized residual covariances;
+#' "rm" = Root Mean square error of standardized residual covariances
+#' and RMSEA when doing meta-analysis;
 #' "lo" = LOadings;
 #' "ev" = Error Variances;
 #' "rc" = Residual Correlations;

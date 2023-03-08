@@ -18,6 +18,14 @@ prepare_stan_plot_data <- function(object) {
   )
   colnames(rms_result)[1] <- "rm: rms_src"
 
+  rmsea_result <- matrix(nrow = nrow(rms_result), ncol = 0)
+  if (data_list$meta == 1) {
+    rmsea_result <- posterior::as_draws_df(
+      posterior::as_draws(stan_fit, variable = "rmsea_mn")
+    )
+    colnames(rmsea_result)[1] <- "rm: rmsea"
+  }
+
   load_idxs <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
     arr.ind = TRUE
@@ -106,8 +114,8 @@ prepare_stan_plot_data <- function(object) {
   )
 
   result <- cbind(
-    rms_result, coef_result, load_result, phi_result, rsq_result,
-    rv_result, rc_result, resid_result
+    rmsea_result, rms_result, coef_result, load_result, phi_result,
+    rsq_result, rv_result, rc_result, resid_result
   )
 
   # Drop duplicated columns
