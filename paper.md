@@ -18,51 +18,34 @@ authors:
 bibliography: inst/REFERENCES.bib
 ---
 
-The minorbsem (**minor B**ayesian **s**tructural **e**quation **m**odels) R package is a solution to a common issue in structural equation modeling (SEM).
-SEMs are hypothesized models that capture the inter-relations between factors (latent variables) and the
-relations between these factors and observed items.
-However, covariance structures in SEM are may be influenced by minor factors, which we cannot predict a priori [@maccallum_representing_1991].
-This can result in SEMs being unable to reject the null hypothesis of no model misspecification. To address this issue, minorbsem estimates all residual covariances between observed items to account for the influence of minor factors [@uanhoro_modeling_2023].
-minorbsem implements a variety of shrinkage options to estimate these residual covariances.
-Additionally, the minorbsem returns the magnitude of the influence of minor factors.
-By estimating both minor and major factors simultaneously, minorbsem provides a more accurate reflection of the uncertainty due to the influence of minor factors on the parameters of interest in SEMs.
+# Summary
 
-## Available models and supported data types
+minorbsem is an R package that allows users to fit structural equation models (SEMs) under the assumption that minor factors influence the relationship between observed indicators. SEMs are models that capture the inter-relations between factors (latent variables) and the relations between these factors and observed items. However, SEMs are rarely able to reject the null hypothesis that there is no misspecification in the hypothesized model. One explanation for this problem is that covariance structures are influenced by major factors that we can hypothesize about, and minor factors that we cannot predict a-priori [@maccallum_representing_1991].
 
-minorbsem also fits random-effects meta-analytic confirmatory factor analysis (CFA) models that capture the influence of minor factors [@uanhoro_hierarchical_2022].
+minorbsem accounts for the influence of minor factors by estimating all residual covariances between the observed items [@uanhoro_modeling_2023]. These residual covariances are estimated with priors that shrink the residual covariances towards zero. Additionally, the model returns the magnitude of the influence of minor factors. By estimating the influence of minor factors simultaneously with major factors, the parameters of interest (related to major factors) in the SEM will reflect the uncertainty due to the influence of minor factors.
 
-However, minorbsem has some limitations, such as assuming multivariate normal data and fitting a limited number of model configurations:
+minorbsem also fits random-effects meta-analytic confirmatory factor analysis models (CFAs) that capture the influence of minor factors [@uanhoro_hierarchical_2022].
 
-- CFA, allowing cross-loadings (which may be automatically estimated),
-correlated errors terms, and fully oblique or orthogonal factors
-(useful for fitting bifactor models)
-- SEMs allowing latent regressions (only), cross-loadings, and correlated error
-terms.
+# Features
 
-At the moment, minorbsem cannot be used to fit
-multiple-indicator multiple-cause models, multi-group models,
-multilevel models, or models with specially constrained parameters
-(e.g. setting two parameters equal).
+- Fits SEMs allowing latent regressions, cross-loadings, and correlated error terms.
+- Fits CFAs allowing cross-loadings, correlated error terms, and fully oblique or orthogonal factors.
+- Can estimate the size of the influence of minor factors on the SEM.
+- Provides several priors to shrink residual covariances towards zero.
+- Fits random-effects meta-analytic CFAs that capture the influence of minor factors.
 
-## Key dependencies
+## Limitations
 
-minorbsem relies on the Stan project [@Carpenter2017] for fitting Bayesian models,
-and interfaces with Stan via the `cmdstanr` package.
-Installation instructions for both Stan and minorbsem are available in the minorbsem [README file](README.md/#installation).
+minorbsem assumes multivariate normal data and only fits a limited number of model configurations. At the moment, it does not support multiple-indicator multiple-cause models, multi-group models, multilevel models, or models with specially constrained parameters.
 
-minorbsem relies on the `lavaan` package [@Rosseel2012] for data processing.
-Moreover, minorbsem models are specified using lavaan-style syntax which allows for easy model specification.
+# Statement of need
 
-minorbsem also relies on `Rcpp` to speed up costly operations [@rcpp],
-the `kableExtra` package for printing results [@kable_ex],
-the `posterior` package for accessing Stan model results [@posterior],
-and `ggplot2` for plotting [@ggplot2].
+Since @Muthen2012 showed the flexibility of Bayesian SEMs for estimating models that account for the influence of minor factors,
+there has been an interest in estimating Bayesian SEMs that account for the influence of minor factors.
+The work of @wu_quantifying_2015 in frequentist SEMs also addresses the same substantive problem from a different angle.
+However, there are limited software implementations of these ideas.
 
-## Software with similar functionality
-
-The Mplus package [@muthen8] is also able to estimate Bayesian models that account for the
-influence of minor factors. Mplus can estimate a large number of model configurations, but it requires users to manually specify the size of the influence of minor factors, which can lead to inadequate uncertainty estimates for parameters of interest [@uanhoro_modeling_2023].
-Additionally, Mplus is not a free software option.
+Mplus [@muthen8] is a proprietary software package that is also able to estimate Bayesian models that account for the influence of minor factors. While Mplus can estimate a very large number of model configurations, the user has to specify the size of the influence of minor factors manually, which can lead to inadequate uncertainty estimates for parameters of interest [@uanhoro_modeling_2023]. Additionally, Mplus is not a free software option.
 
 `LAWBL` [@LAWBL] is an R package with similar functionality to minorbsem. LAWBL accommodates more data types
 than minorbsem e.g. binary data models are available. However, LAWBL only estimates CFA models and
@@ -72,5 +55,19 @@ influence of minor factors.
 Finally, neither Mplus nor LAWBL allow the range of options for modeling the influence of minor factors
 that are implemented in minorbsem. Nor do they offer options for fitting random-effects meta-analytic SEMs that also capture the
 influence of minor factors.
+
+# Dependencies
+
+minorbsem relies on the Stan project [@Carpenter2017] for fitting Bayesian models,
+and interfaces with Stan via the `cmdstanr` package.
+Installation instructions for both Stan and minorbsem are available in the minorbsem [README](README.md/#installation).
+
+minorbsem relies on the `lavaan` package [@Rosseel2012] for data processing.
+Moreover, minorbsem models are specified using lavaan-style syntax which allows for easy model specification.
+
+Additionally, it relies on `Rcpp` to speed up costly operations [@rcpp],
+the `kableExtra` package for printing results [@kable_ex],
+the `posterior` package for accessing Stan model results [@posterior],
+and `ggplot2` for plotting [@ggplot2].
 
 # References
