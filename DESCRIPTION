@@ -7,8 +7,8 @@ Authors@R: c(
 Description: It is rare that structural equation models (SEMs) are able to reject the null
     hypothesis that there is no misspecification in the model. One explanation for this problem
     is that covariance structures are influenced by major factors which we can hypothesize about
-    and minor factors which we cannot predict a-priori. This package lets you fit Bayesian SEMs
-    that estimate the influence of minor factors on the covariance matrix.
+    and minor factors which we cannot predict a-priori. This package lets you fit regular and
+    meta-analytic Bayesian SEMs that estimate the influence of minor factors.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
