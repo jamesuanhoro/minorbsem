@@ -165,11 +165,15 @@ model {
 
       {
         int pos = 0;
+        int pos_complex = 0;
         for (i in 1:Ni) {
           for (j in 1:Nf) {
             if (loading_pattern[i, j] != 0) {
               pos += 1;
               Load_mat[i, j] = loadings[pos];
+            } else if (complex_struc == 1) {
+              pos_complex += 1;
+              Load_mat[i, j] = sigma_loadings_complex[1] * loadings_complex[pos_complex];
             }
           }
         }
@@ -293,11 +297,15 @@ generated quantities {
 
   {
     int pos = 0;
+    int pos_complex = 0;
     for (i in 1:Ni) {
       for (j in 1:Nf) {
         if (loading_pattern[i, j] != 0) {
           pos += 1;
           Load_mat[i, j] = loadings[pos];
+        } else if (complex_struc == 1) {
+          pos_complex += 1;
+          Load_mat[i, j] = sigma_loadings_complex[1] * loadings_complex[pos_complex];
         }
       }
     }
