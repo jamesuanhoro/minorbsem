@@ -48,7 +48,7 @@ multilevel models, or models with specially constrained parameters
 
 minorbsem relies on the Stan project [@Carpenter2017] for fitting Bayesian models,
 and interfaces with Stan via the `cmdstanr` package.
-Installation instructions for both Stan and minorbsem are available [here](README/#installation).
+Installation instructions for both Stan and minorbsem are available [here](README.md/#installation).
 
 minorbsem relies on the `lavaan` package [@Rosseel2012] for data processing.
 Moreover, minorbsem models are specified using lavaan-style syntax which allows for easy model specification.
