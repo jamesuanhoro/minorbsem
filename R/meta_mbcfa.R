@@ -53,7 +53,7 @@
 #' )
 #' }
 #' @references \insertAllCited{}
-#' @keywords internal
+#' @export
 meta_mbcfa <- function(
     model = NULL,
     data = NULL,
