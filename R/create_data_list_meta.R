@@ -1,35 +1,34 @@
 #' Stan data helper function
 #' @description A function that creates data list object passed to Stan
 #' @param lavaan_object lavaan fit object of corresponding model
-#' @param method (character) One of "normal", "lasso",
-#' "logistic", "GDP", "WB", "WB-cond", "none"
-#' @param simple_struc (LOGICAL) Only relevant for CFAs.
-#' If TRUE: assume simple structure;
-#' If FALSE: estimate all cross-loadings using generalized
-#' double Pareto priors.
-#' @param priors An object of \code{\link{mbsempriors-class}}.
-#' See \code{\link{new_mbsempriors}} for more information.
+#' @inheritParams minorbsem
 #' @returns Data list object used in fitting Stan model
 #' @keywords internal
-create_data_list <- function(
+create_data_list_meta <- function(
     lavaan_object = NULL,
     method = "normal",
     simple_struc = TRUE,
     priors = NULL) {
   data_list <- list()
 
+  # Get number of groups
+  data_list$Ng <- lavaan::lavInspect(lavaan_object, "ngroups")
+
+  if (data_list$Ng < 2) {
+    stop(paste0(
+      "Only one group found. ",
+      "Meta-analysis requires multiple samples."
+    ))
+  }
+
   # Retrieve parameter structure from lavaan
-  param_structure <- lavaan::lavInspect(lavaan_object)
+  param_structure <- lavaan::lavInspect(lavaan_object)[[1]]
 
   # Set method
   data_list$method <- method_hash(method)
 
   # Set simple structure to 0 by default, change within CFA section
   data_list$complex_struc <- 0
-
-  # Has data?
-  data_list$Y <- lavaan_object@Data@X[[1]]
-  data_list$has_data <- ifelse(is.null(data_list$Y), 0, 1)
 
   methods::validObject(priors) # validate priors
   # Shape parameter for LKJ of interfactor corr
@@ -39,13 +38,17 @@ create_data_list <- function(
   data_list$rc_par <- priors@rc_par # residual corr parameter
   data_list$sc_par <- priors@sc_par # sigma coefficients parameter
   data_list$fc_par <- priors@fc_par # factor correlation parameter
+  data_list$mln_par <- priors@mln_par # meta-reg intercept
+  data_list$mlb_par <- priors@mlb_par # meta-reg coefficient
 
   # Sample cov
-  data_list$S <- lavaan_object@SampleStats@cov[[1]]
+  data_list$S <- lapply(lavaan::lavInspect(
+    lavaan_object, "SampStat"
+  ), "[[", "cov")
   # Number of items
-  data_list$Ni <- nrow(data_list$S)
+  data_list$Ni <- nrow(data_list$S[[1]])
   # Sample size
-  data_list$Np <- lavaan_object@SampleStats@nobs[[1]]
+  data_list$Np <- lavaan::lavInspect(lavaan_object, "nobs")
 
   # Loading pattern, 0s and 1s
   data_list$loading_pattern <- (param_structure$lambda > 0) * 1
@@ -62,6 +65,7 @@ create_data_list <- function(
     # Set to 0 for uncorrelated factors, 1 for correlated
     data_list$corr_fac <- ifelse(sum_off_diag_psi == 0, 0, 1)
   } else {
+    stop("Only CFAs are implemented right now.")
     # This is an SEM
     data_list$sem_indicator <- 1
     # Factor correlation matrix
@@ -106,7 +110,15 @@ create_data_list <- function(
   }
   data_list$Nce <- nrow(data_list$error_mat)
 
-  data_list$meta <- 0
+  # For now, no moderators
+  data_list$p <- 0
+  data_list$X <- matrix(nrow = data_list$Ng, ncol = data_list$p)
+
+  # Handle missing data
+  data_list <- prepare_missing_data_list(data_list)
+
+  # 1 for meta-analysis
+  data_list$meta <- 1
 
   return(data_list)
 }

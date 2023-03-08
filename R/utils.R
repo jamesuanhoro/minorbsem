@@ -55,13 +55,15 @@ init_minorbsem <- function() {
 #' @param object_1 Object to check
 #' @param object_2 Object to check
 #' @param object_3 Object to check
+#' @param object_4 Object to check
 #' @returns NULL
 #' @keywords internal
 user_input_check <- function(
     type,
     object_1 = NULL,
     object_2 = NULL,
-    object_3 = NULL) {
+    object_3 = NULL,
+    object_4 = NULL) {
   if (type == "model") {
     if (is.null(object_1)) {
       stop("Model cannot be null")
@@ -100,15 +102,89 @@ user_input_check <- function(
     }
   }
 
+  if (type == "data-meta") {
+    if (
+      (is.null(object_1) || is.null(object_2)) &&
+        (is.null(object_3) || is.null(object_4))
+    ) {
+      stop(paste0(
+        "User must provide either:\n\t",
+        "(i) a dataset and group variable or\n\t",
+        "(ii) sample covariance and sample size"
+      ))
+    }
+  }
+
   return(NULL)
+}
+
+#' Fill in missing values in sample covs function
+#' @inheritParams meta_mbcfa
+#' @returns list of filled in sample covs
+#' @keywords internal
+fill_in_missing_covs <- function(sample_cov) {
+  sample_cov <- lapply(seq_along(sample_cov), function(i) {
+    s_mat <- sample_cov[[i]]
+    diag(s_mat)[is.na(diag(s_mat))] <- 1
+    s_mat[is.na(s_mat)] <- 999
+    s_mat
+  })
+  return(sample_cov)
+}
+
+#' Create missing data matrices function
+#' @inheritParams create_data_list_meta
+#' @returns list of missing data matrices
+#' @keywords internal
+prepare_missing_data_list <- function(data_list = NULL) {
+  data_list$S <- fill_in_missing_covs(data_list$S)
+
+  # Indicators of whether a variable is present by study
+  data_list$valid_var <- do.call(cbind, lapply(data_list$S, function(s_mat) {
+    apply(s_mat, 1, function(s) 0 + !(sum((s == 999)) == data_list$Ni - 1))
+  }))
+
+  # Count of missing covariance/correlation elements
+  data_list$Nmiss <- sum(unlist(lapply(
+    seq_len(length(data_list$S)), function(i) {
+      idx <- which(data_list$valid_var[, i] == 1)
+      s_mat <- data_list$S[[i]][idx, idx]
+      sum(s_mat == 999) / 2
+    }
+  )))
+
+  # Indicator of whether a valid variable has any missing covariance
+  # elements by study
+  data_list$miss_ind <- matrix(unlist(lapply(
+    seq_len(length(data_list$S)), function(i) {
+      s_mat <- data_list$S[[i]]
+      idx <- which(data_list$valid_var[, i] == 1)
+      res <- rep(0, data_list$Ni)
+      res[idx] <- apply(s_mat[idx, idx], 2, function(s) any(s == 999) + 0)
+      res
+    }
+  )), data_list$Ni)
+
+  # Number of items that have missing covariance elements
+  data_list$Nitem_miss <- sum(data_list$miss_ind)
+
+  return(data_list)
 }
 
 #' Select random method and random case function
 #'
+#' @param meta IF TRUE, assume meta-analysis
 #' @returns randomly selected method and case
 #' @keywords internal
-random_method_selection <- function() {
-  method <- sample(method_hash(), 1)
+random_method_selection <- function(meta = FALSE) {
+  accepted_methods <- method_hash()
+  if (isTRUE(meta)) {
+    accepted_methods <- accepted_methods[
+      which(regexpr("WB", accepted_methods) < 0)
+    ]
+  }
+
+  method <- sample(accepted_methods, 1)
 
   case_fun <- sample(1:2, 1)
   if (case_fun == 1) {
@@ -272,6 +348,11 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   factor_labels <- colnames(data_list$loading_pattern)
 
   params <- c("ppp", "rms_src")
+  from_list <- c("PPP", "RMSE")
+  if (data_list$meta == 1) {
+    params[1] <- "rmsea_mn"
+    from_list[1] <- "RMSEA"
+  }
 
   load_idxs <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
@@ -322,9 +403,15 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
 
   major_parameters <- modify_major_params(
     major_parameters,
-    which(major_parameters$variable %in% c("ppp", "rms_src")),
+    which(major_parameters$variable %in% c("ppp", "rmsea_mn")),
     group = "Goodness of fit",
-    from = c("PPP", "RMSE")
+    from = from_list[1]
+  )
+  major_parameters <- modify_major_params(
+    major_parameters,
+    which(major_parameters$variable == "rms_src"),
+    group = "Goodness of fit",
+    from = from_list[2]
   )
 
   idxs <- which(regexpr("Load\\_mat", major_parameters$variable) > 0)
@@ -420,6 +507,10 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     which(major_parameters$group == x)
   }))
   major_parameters <- major_parameters[new_order, -1]
+  new_order <- unlist(sapply(c("PPP", "RMSEA", "RMSE"), function(x) {
+    which(major_parameters$from[1:2] == x)
+  }))
+  major_parameters[1:2, ] <- major_parameters[new_order, ]
 
   return(major_parameters)
 }
