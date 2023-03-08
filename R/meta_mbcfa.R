@@ -10,6 +10,7 @@
 #' @param model A description of the user-specified model, lavaan syntax.
 #' @param sample_cov (list of matrices) sample variance-covariance matrices.
 #' The rownames and/or colnames must contain the observed variable names.
+#' For now, assumes there are no missing elements in the covariance matrices.
 #' @param sample_nobs (vector of positive integer) Number of observations
 #' for each study.
 #' @param method (character) One of "normal", "lasso", "logistic",
@@ -97,17 +98,17 @@ meta_mbcfa <- function(
 
   # Run lavaan fit
   if (!is.null(data)) {
-    suppressWarnings(lav_fit <- lavaan::cfa(
+    lav_fit <- lavaan::cfa(
       model,
       data = data, group = group, std.lv = TRUE,
-      se = "none", test = "none", orthogonal = orthogonal
-    ))
+      do.fit = FALSE, se = "none", test = "none", orthogonal = orthogonal
+    )
   } else {
-    suppressWarnings(lav_fit <- lavaan::cfa(
+    lav_fit <- lavaan::cfa(
       model,
       sample.cov = sample_cov, sample.nobs = sample_nobs, std.lv = TRUE,
-      se = "none", test = "none", orthogonal = orthogonal
-    ))
+      do.fit = FALSE, se = "none", test = "none", orthogonal = orthogonal
+    )
   }
 
   # Obtain data list for Stan

@@ -65,6 +65,7 @@ create_data_list_meta <- function(
     # Set to 0 for uncorrelated factors, 1 for correlated
     data_list$corr_fac <- ifelse(sum_off_diag_psi == 0, 0, 1)
   } else {
+    stop("Only CFAs are implemented right now.")
     # This is an SEM
     data_list$sem_indicator <- 1
     # Factor correlation matrix

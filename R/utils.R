@@ -118,40 +118,33 @@ user_input_check <- function(
   return(NULL)
 }
 
+#' Fill in missing values in sample covs function
+#' @inheritParams meta_mbcfa
+#' @returns list of filled in sample covs
+#' @keywords internal
+fill_in_missing_covs <- function(sample_cov) {
+  sample_cov <- lapply(seq_along(sample_cov), function(i) {
+    s_mat <- sample_cov[[i]]
+    diag(s_mat)[is.na(diag(s_mat))] <- 1
+    s_mat[is.na(s_mat)] <- 999
+    s_mat
+  })
+  return(sample_cov)
+}
+
 #' Create missing data matrices function
 #' @inheritParams create_data_list_meta
 #' @returns list of missing data matrices
 #' @keywords internal
 prepare_missing_data_list <- function(data_list = NULL) {
-  diag_list <- unique(unlist(lapply(
-    data_list$S, function(s_mat) unique(diag(s_mat))
-  )))
+  data_list$S <- fill_in_missing_covs(data_list$S)
 
-  data_list$is_cov <- rep(1, data_list$Ng)
-  if (length(diag_list) == 1) {
-    if (diag_list == 1) {
-      data_list$is_cov <- rep(0, data_list$Ng)
-    }
-  }
-
-  # Basic data-preparation, don't change
-  data_list$S <- lapply(seq_along(data_list$S), function(i) {
-    s_mat <- data_list$S[[i]]
-    if (data_list$is_cov[i] == 0) {
-      diag(s_mat) <- 1
-    } else {
-      diag(s_mat)[which(is.na(diag(s_mat)))] <- 1
-    }
-    s_mat[is.na(s_mat)] <- 999
-    s_mat
-  })
-
-  # Indicators of whether a variable is present by study, don't change
+  # Indicators of whether a variable is present by study
   data_list$valid_var <- do.call(cbind, lapply(data_list$S, function(s_mat) {
     apply(s_mat, 1, function(s) 0 + !(sum((s == 999)) == data_list$Ni - 1))
   }))
 
-  # Count of missing covariance/correlation elements, don't change
+  # Count of missing covariance/correlation elements
   data_list$Nmiss <- sum(unlist(lapply(
     seq_len(length(data_list$S)), function(i) {
       idx <- which(data_list$valid_var[, i] == 1)
@@ -161,7 +154,7 @@ prepare_missing_data_list <- function(data_list = NULL) {
   )))
 
   # Indicator of whether a valid variable has any missing covariance
-  # elements by study, don't change
+  # elements by study
   data_list$miss_ind <- matrix(unlist(lapply(
     seq_len(length(data_list$S)), function(i) {
       s_mat <- data_list$S[[i]]
@@ -172,7 +165,7 @@ prepare_missing_data_list <- function(data_list = NULL) {
     }
   )), data_list$Ni)
 
-  # # Number of items that have missing covariance elements, don't change
+  # Number of items that have missing covariance elements
   data_list$Nitem_miss <- sum(data_list$miss_ind)
 
   return(data_list)
