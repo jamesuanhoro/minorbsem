@@ -64,7 +64,7 @@ The Mplus package [@muthen8] is also able to estimate Bayesian models that accou
 influence of minor factors. Mplus can estimate a large number of model configurations, but it requires users to manually specify the size of the influence of minor factors, which can lead to inadequate uncertainty estimates for parameters of interest [@uanhoro_modeling_2023].
 Additionally, Mplus is not a free software option.
 
-`LAWBL` [@LAWBL] is an R package with similar functionality. LAWBL accommodates more data types
+`LAWBL` [@LAWBL] is an R package with similar functionality to minorbsem. LAWBL accommodates more data types
 than minorbsem e.g. binary data models are available. However, LAWBL only estimates CFA models and
 its syntax is not a commonly used syntax. Additionally, LAWBL does not return the magnitude of the
 influence of minor factors.
