@@ -5,7 +5,8 @@ tags:
 - "Bayesian-statistics"
 - "latent-variable-models"
 - "structural-equation-modeling"
-- psychometrics
+- "psychometrics"
+- "meta-analytic-SEM"
 date: "05/03/2022"
 affiliations:
 - name: Department of Educational Psychology, University or North Texas, USA
