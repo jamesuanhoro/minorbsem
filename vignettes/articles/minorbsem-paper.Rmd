@@ -149,7 +149,7 @@ Once Stan is installed, then we install minorbsem:
 devtools::install_github("stonegold546/minorbsem")
 ```
 
-In addition to `cmdstanr`, minorbsem relies on other R packages: `ggplot2` [@ggplot2], `kableExtra` [@kable_ex], `lavaan`, `methods`, `posterior` [@posterior] and `Rcpp` [@rcpp]. So R may prompt the user to install/update these packages. It is reasonable to accept R's prompts.
+In addition to `cmdstanr`, minorbsem relies on other R packages. So R may prompt the user to install/update these packages. It is reasonable to accept R's prompts.
 
 ## A complete example
 
