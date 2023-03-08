@@ -70,8 +70,7 @@ its syntax is not a commonly used syntax. Additionally, LAWBL does not return th
 influence of minor factors.
 
 Finally, neither Mplus nor LAWBL allow the range of options for modeling the influence of minor factors
-that are implemented in minorbsem.
-Nor do they offer options for fitting random-effects meta-analytic SEMs that also capture the
+that are implemented in minorbsem. Nor do they offer options for fitting random-effects meta-analytic SEMs that also capture the
 influence of minor factors.
 
 # References
