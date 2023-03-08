@@ -52,7 +52,6 @@ data {
   array[Ni, Ng] int miss_ind;  // items with missing correlations
   int p;  // number of moderators
   matrix[Ng, p] X;  // moderator matrix
-  real<lower = 0, upper = 1> limit; // resid dist limit
   real<lower = 0> mln_par;  // meta-reg int hyper-parameter
   real<lower = 0> mlb_par;  // meta-reg beta hyper-parameter
 }
@@ -280,7 +279,7 @@ generated quantities {
     }
   }
 
-  {
+  if (method < 90) {
     int pos = 0;
 
     for (i in 2:Ni) {

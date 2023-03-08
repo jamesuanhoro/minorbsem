@@ -10,7 +10,9 @@ new_mbsempriors(
   rs_par = 2.5,
   rc_par = 2,
   sc_par = 1,
-  fc_par = 2
+  fc_par = 2,
+  mln_par = 2.5,
+  mlb_par = 1
 )
 }
 \arguments{
@@ -33,6 +35,16 @@ deviations of coefficients; SD(coefs) vary by outcome.}
 
 \item{fc_par}{(positive real) The shape parameter of the Beta(rc_par, rc_par)
 prior on the inter-factor correlations in latent regression models.}
+
+\item{mln_par}{(positive real) The scale parameter of the
+Student-t(df = 3, loc = 0) prior on the
+log-scale meta-regression intercept.
+Relevant only for meta-analysis.}
+
+\item{mlb_par}{(positive real) The scale parameter of the
+Student-t(df = 3, loc = 0) prior on the
+log-scale meta-regression coefficients.
+Relevant only for meta-analysis.}
 }
 \value{
 An object of \code{\link{mbsempriors-class}}

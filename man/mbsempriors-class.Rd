@@ -29,5 +29,15 @@ deviations of coefficients; SD(coefs) vary by outcome.}
 
 \item{\code{fc_par}}{(positive real) The shape parameter of the Beta(rc_par, rc_par)
 prior on the inter-factor correlations in latent regression models.}
+
+\item{\code{mln_par}}{(positive real) The scale parameter of the
+Student-t(df = 3, loc = 0) prior on the
+log-scale meta-regression intercept.
+Relevant only for meta-analysis.}
+
+\item{\code{mlb_par}}{(positive real) The scale parameter of the
+Student-t(df = 3, loc = 0) prior on the
+log-scale meta-regression coefficients.
+Relevant only for meta-analysis.}
 }}
 

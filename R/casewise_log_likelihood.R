@@ -2,6 +2,7 @@
 #'
 #' @description Get casewise log-likelihood for complete data,
 #' useful for WAIC, LOOIC, ...
+#' Does not work meta-analysis models.
 #' @param object (mbsem) An object of \code{\link{mbsem-class}}
 #' returned by \code{\link{minorbsem}}.
 #' @param include_residuals (LOGICAL) TRUE: Include minor factor
@@ -70,6 +71,10 @@ casewise_log_likelihood <- function(
     use_armadillo = TRUE) {
   # data list must have full data
   data_list <- object@data_list
+
+  if (data_list$meta == 1) {
+    stop("Not yet implemented for meta-analysis models.")
+  }
 
   if (data_list$has_data != 1) {
     stop("Cannot compute casewise log-likelihood without full data.")

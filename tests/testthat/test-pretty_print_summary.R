@@ -1,12 +1,3 @@
-mbsem_test_kbls_shared <- function(kbl, method) {
-  testthat::expect_true(inherits(kbl, "kableExtra"))
-  testthat::expect_true(regexpr(method, kbl, ignore.case = TRUE) > 0)
-  testthat::expect_true(regexpr("Goodness of fit", kbl, ignore.case = TRUE) > 0)
-  testthat::expect_true(regexpr("RMSE", kbl, ignore.case = TRUE) > 0)
-  testthat::expect_true(regexpr("PPP", kbl, ignore.case = TRUE) > 0)
-  testthat::expect_true(regexpr("Factor loadings", kbl, ignore.case = TRUE) > 0)
-}
-
 test_that("Random method (any case) works for CFA", {
   method <- random_method_selection()
   model_syntaxes <- c(

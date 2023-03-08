@@ -1,17 +1,3 @@
-mbsem_test_hist <- function(fit) {
-  testthat::expect_error(
-    gg <- parameter_hist(
-      fit,
-      param_type = c(
-        "rm", "lo", "ev", "co", "rc", "fc", "rsq",
-        "re"
-      )
-    ),
-    NA
-  )
-  testthat::expect_true(inherits(gg, "ggplot"))
-}
-
 test_that("Random method (any case) works for CFA", {
   method <- random_method_selection()
   model_syntaxes <- c(
