@@ -9,7 +9,7 @@ tags:
 - "meta-analytic-SEM"
 date: "05/03/2022"
 affiliations:
-- name: Department of Educational Psychology, University or North Texas, USA
+- name: Department of Educational Psychology, University of North Texas, USA
   index: 1
 authors:
 - name: James Ohisei Uanhoro
@@ -40,8 +40,8 @@ minorbsem assumes multivariate normal data and only fits a limited number of mod
 
 # Statement of need
 
-Since @Muthen2012 showed the flexibility of Bayesian SEMs for estimating models that account for the influence of minor factors,
-there has been an interest in estimating Bayesian SEMs that account for the influence of minor factors.
+@Muthen2012 showed the flexibility of Bayesian SEMs,
+and sparked interest in Bayesian SEMs that account for the influence of minor factors.
 The work of @wu_quantifying_2015 in frequentist SEMs also addresses the same substantive problem from a different angle.
 However, there are limited software implementations of these ideas.
 
