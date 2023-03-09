@@ -37,3 +37,4 @@ LinkingTo:
     RcppArmadillo
 Config/testthat/edition: 3
 RdMacros: Rdpack
+URL: https://jamesuanhoro.github.io/minorbsem/
