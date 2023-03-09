@@ -18,6 +18,8 @@ version](https://img.shields.io/github/r-package/v/jamesuanhoro/minorbsem)
 commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
 <!-- badges: end -->
 
+#### Table of Contents
+
 - [Package overview](#package-overview)
   - [Goals](#goals)
   - [Permitted models and supported data
