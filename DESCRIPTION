@@ -2,7 +2,8 @@ Package: minorbsem
 Title: Fit Bayesian structural equation models under the assumption that minor factors exist
 Version: 0.1.0
 Authors@R: c(
-    person("James", "Uanhoro", , "james.uanhoro@unt.edu", role = c("aut", "cre"),
+    person(given = c("James", "O."), family = "Uanhoro",
+           email = "james.uanhoro@unt.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4843-927X")))
 Description: It is rare that structural equation models (SEMs) are able to reject the null
     hypothesis that there is no misspecification in the model. One explanation for this problem

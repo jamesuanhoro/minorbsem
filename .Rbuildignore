@@ -7,3 +7,6 @@
 ^codecov\.yml$
 ^vignettes/articles$
 ^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

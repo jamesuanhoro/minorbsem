@@ -1,0 +1,34 @@
+citHeader("There are two publications about the methods in minorbsem.")
+
+bibentry(
+  "Article",
+  title    = "Modeling misspecification as a parameter in Bayesian structural equation modeling",
+  author   = person(given = c("James", "O."), family = "Uanhoro",
+                    email = "James.Uanhoro@unt.edu"),
+  journal  = "Educational and Psychological Measurement",
+  year     = "forthcoming",
+  volume   = "",
+  number   = "",
+  pages    = "",
+  doi      = "",
+  header   = paste0(
+    "For the methods for standard SEMs including the SRMR, ",
+    "the normal method and aspects like LOO, cite:"
+  )
+)
+
+bibentry(
+  "Article",
+  title    = "Hierarchical Covariance Estimation Approach to Meta-Analytic Structural Equation Modeling",
+  author   = person(given = c("James", "O."), family = "Uanhoro",
+                    email = "James.Uanhoro@unt.edu"),
+  journal  = "Structural Equation Modeling: A Multidisciplinary Journal",
+  year     = 2022,
+  volume   = "",
+  number   = "",
+  pages    = "1--15",
+  doi      = "10.1080/10705511.2022.2142128",
+  header   = paste0(
+    "For the random-effects meta-analytic CFA, cite:"
+  )
+)
