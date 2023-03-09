@@ -12,4 +12,3 @@ README.html
 /vignettes/articles/
 !/vignettes/articles/*.Rmd
 !/vignettes/articles/*.pdf
-docs
