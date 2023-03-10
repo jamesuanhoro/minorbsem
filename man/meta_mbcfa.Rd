@@ -94,6 +94,9 @@ Does not yet accomodate moderators, and covariance matrices must be complete.
 This will change in the near future.
 }
 \details{
+CFAs assume standardized factors.
+Latent variable regression models are not yet implemented.
+
 There are different methods for estimating models in this package:
 \itemize{
 \item \code{normal}: under belief that minor factor influences are
@@ -104,7 +107,8 @@ zero with a small number of non-zero residual covariances.
 accomodates extreme outliers.
 \item \code{GDP}: to mimic a global-local approach, i.e.
 attempt to shrink near 0 residual covariances to 0
-with minimal shrinking for larger residual covariances.
+with minimal shrinking for larger residual covariances
+\insertCite{armagan_generalized_2013}{minorbsem}.
 \item \code{none}: if intending to ignore the influence of minor factors.
 }
 }

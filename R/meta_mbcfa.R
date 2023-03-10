@@ -20,6 +20,9 @@
 #' @inheritParams minorbsem
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
+#' CFAs assume standardized factors.
+#' Latent variable regression models are not yet implemented.
+#'
 #' There are different methods for estimating models in this package:
 #'
 #' - \code{normal}: under belief that minor factor influences are
@@ -30,7 +33,8 @@
 #' accomodates extreme outliers.
 #' - \code{GDP}: to mimic a global-local approach, i.e.
 #' attempt to shrink near 0 residual covariances to 0
-#' with minimal shrinking for larger residual covariances.
+#' with minimal shrinking for larger residual covariances
+#' \insertCite{armagan_generalized_2013}{minorbsem}.
 #' - \code{none}: if intending to ignore the influence of minor factors.
 #' @examples
 #' \dontrun{

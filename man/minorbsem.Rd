@@ -87,6 +87,9 @@ The major function to fit models assuming the influence of
 minor factors \insertCite{uanhoro_modeling_2023}{minorbsem}.
 }
 \details{
+CFAs assume standardized factors.
+Latent variable regression models print results with standardized loadings.
+
 There are different methods for estimating models in this package:
 \itemize{
 \item \code{normal}: under belief that minor factor influences are
@@ -98,7 +101,8 @@ zero with a small number of non-zero residual covariances.
 accomodates extreme outliers.
 \item \code{GDP}: to mimic a global-local approach, i.e.
 attempt to shrink near 0 residual covariances to 0
-with minimal shrinking for larger residual covariances.
+with minimal shrinking for larger residual covariances
+\insertCite{armagan_generalized_2013}{minorbsem}.
 \item \code{WB}: to model the covariance matrix hierarchically under
 assumptions of adventitiuous error
 \insertCite{wu_quantifying_2015}{minorbsem};
