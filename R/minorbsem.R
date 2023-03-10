@@ -37,7 +37,7 @@
 #' show table of results. As an example, use FALSE for simulation studies.
 #' @param show_messages (Logical) If TRUE, show messages from Stan sampler,
 #' if FALSE, hide messages.
-#' @returns An object of \code{\link{mbsem-class}}.
+#' @returns An object of \code{\link{mbsem-class}}
 #' @details
 #' CFAs assume standardized factors.
 #' Latent variable regression models print results with standardized loadings.

@@ -80,7 +80,7 @@ show table of results. As an example, use FALSE for simulation studies.}
 if FALSE, hide messages.}
 }
 \value{
-An object of \code{\link{mbsem-class}}.
+An object of \code{\link{mbsem-class}}
 }
 \description{
 The major function to fit models assuming the influence of
