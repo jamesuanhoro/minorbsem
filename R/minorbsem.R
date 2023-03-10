@@ -37,7 +37,9 @@
 #' show table of results. As an example, use FALSE for simulation studies.
 #' @param show_messages (Logical) If TRUE, show messages from Stan sampler,
 #' if FALSE, hide messages.
-#' @returns An object of \code{\link{mbsem-class}}
+#' @returns An object of \code{\link{mbsem-class}}.
+#' Note: CFAs assume standardized factors.
+#' Latent variable regression models print results with standardized loadings.
 #' @details
 #' There are different methods for estimating models in this package:
 #'
@@ -50,7 +52,8 @@
 #' accomodates extreme outliers.
 #' - \code{GDP}: to mimic a global-local approach, i.e.
 #' attempt to shrink near 0 residual covariances to 0
-#' with minimal shrinking for larger residual covariances.
+#' with minimal shrinking for larger residual covariances
+#' \insertCite{armagan_generalized_2013}{minorbsem}.
 #' - \code{WB}: to model the covariance matrix hierarchically under
 #' assumptions of adventitiuous error
 #' \insertCite{wu_quantifying_2015}{minorbsem};

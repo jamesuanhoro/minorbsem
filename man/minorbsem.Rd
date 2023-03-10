@@ -80,7 +80,9 @@ show table of results. As an example, use FALSE for simulation studies.}
 if FALSE, hide messages.}
 }
 \value{
-An object of \code{\link{mbsem-class}}
+An object of \code{\link{mbsem-class}}.
+Note: CFAs assume standardized factors.
+Latent variable regression models print results with standardized loadings.
 }
 \description{
 The major function to fit models assuming the influence of
@@ -98,7 +100,8 @@ zero with a small number of non-zero residual covariances.
 accomodates extreme outliers.
 \item \code{GDP}: to mimic a global-local approach, i.e.
 attempt to shrink near 0 residual covariances to 0
-with minimal shrinking for larger residual covariances.
+with minimal shrinking for larger residual covariances
+\insertCite{armagan_generalized_2013}{minorbsem}.
 \item \code{WB}: to model the covariance matrix hierarchically under
 assumptions of adventitiuous error
 \insertCite{wu_quantifying_2015}{minorbsem};

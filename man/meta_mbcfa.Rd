@@ -85,6 +85,8 @@ if FALSE, hide messages.}
 }
 \value{
 An object of \code{\link{mbsem-class}}
+Note: CFAs assume standardized factors.
+Will not fit latent variable regression models.
 }
 \description{
 A function to fit random-effects Bayesian meta-analytic CFAs
@@ -104,7 +106,8 @@ zero with a small number of non-zero residual covariances.
 accomodates extreme outliers.
 \item \code{GDP}: to mimic a global-local approach, i.e.
 attempt to shrink near 0 residual covariances to 0
-with minimal shrinking for larger residual covariances.
+with minimal shrinking for larger residual covariances
+\insertCite{armagan_generalized_2013}{minorbsem}.
 \item \code{none}: if intending to ignore the influence of minor factors.
 }
 }
