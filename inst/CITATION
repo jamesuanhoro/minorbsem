@@ -12,7 +12,7 @@ bibentry(
   pages    = "",
   doi      = "",
   header   = paste0(
-    "For the methods for standard SEMs including the SRMR, ",
+    "For the methods for standard SEMs including the RMSE, ",
     "the normal method and aspects like LOO, cite:"
   )
 )
