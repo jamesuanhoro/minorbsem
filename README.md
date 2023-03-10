@@ -18,6 +18,25 @@ version](https://img.shields.io/github/r-package/v/jamesuanhoro/minorbsem)
 commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
 <!-- badges: end -->
 
+#### Table of Contents
+
+- [Package overview](#package-overview)
+  - [Goals](#goals)
+  - [Permitted models and supported data
+    types](#permitted-models-and-supported-data-types)
+- [Installation](#installation)
+  - [Install devtools](#install-devtools)
+  - [Install CmdStanR and CmdStan](#install-cmdstanr-and-cmdstan)
+  - [Install minorbsem](#install-minorbsem)
+- [A reasonably complete
+  demonstration](#a-reasonably-complete-demonstration)
+  - [Model comparisons](#model-comparisons)
+- [Additional examples](#additional-examples)
+  - [Different methods to capture the influence of minor
+    factors](#different-methods-to-capture-the-influence-of-minor-factors)
+  - [Meta-analytic CFA](#meta-analytic-cfa)
+- [Citations](#citations)
+
 ## Package overview
 
 It is rare that structural equation models (SEMs) are able to reject the
@@ -102,7 +121,7 @@ cmdstanr::install_cmdstan()  # install Stan
 Install minorbsem:
 
 ``` r
-devtools::install_github("stonegold546/minorbsem")
+devtools::install_github("jamesuanhoro/minorbsem")
 ```
 
 ## A reasonably complete demonstration
