@@ -1,4 +1,12 @@
 url: https://jamesuanhoro.github.io/minorbsem/
 template:
   bootstrap: 5
-
+repo:
+  url:
+    home: https://github.com/jamesuanhoro/minorbsem/
+home:
+  links:
+  - text: Report a bug
+    href: https://github.com/jamesuanhoro/minorbsem/issues/
+  - text: Ask a question / Make a suggestion
+    href: mailto:James.Uanhoro@unt.edu
