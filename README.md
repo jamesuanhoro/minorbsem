@@ -121,7 +121,7 @@ cmdstanr::install_cmdstan()  # install Stan
 Install minorbsem:
 
 ``` r
-devtools::install_github("stonegold546/minorbsem")
+devtools::install_github("jamesuanhoro/minorbsem")
 ```
 
 ## A reasonably complete demonstration
