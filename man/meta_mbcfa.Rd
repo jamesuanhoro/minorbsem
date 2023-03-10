@@ -85,8 +85,6 @@ if FALSE, hide messages.}
 }
 \value{
 An object of \code{\link{mbsem-class}}
-Note: CFAs assume standardized factors.
-Will not fit latent variable regression models.
 }
 \description{
 A function to fit random-effects Bayesian meta-analytic CFAs
@@ -96,6 +94,9 @@ Does not yet accomodate moderators, and covariance matrices must be complete.
 This will change in the near future.
 }
 \details{
+CFAs assume standardized factors.
+Latent variable regression models are not yet implemented.
+
 There are different methods for estimating models in this package:
 \itemize{
 \item \code{normal}: under belief that minor factor influences are

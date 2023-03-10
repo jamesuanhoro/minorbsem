@@ -19,9 +19,10 @@
 #' "GDP", or "none". See details below.
 #' @inheritParams minorbsem
 #' @returns An object of \code{\link{mbsem-class}}
-#' Note: CFAs assume standardized factors.
-#' Will not fit latent variable regression models.
 #' @details
+#' CFAs assume standardized factors.
+#' Latent variable regression models are not yet implemented.
+#'
 #' There are different methods for estimating models in this package:
 #'
 #' - \code{normal}: under belief that minor factor influences are

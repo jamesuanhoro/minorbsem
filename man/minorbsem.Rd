@@ -81,14 +81,15 @@ if FALSE, hide messages.}
 }
 \value{
 An object of \code{\link{mbsem-class}}.
-Note: CFAs assume standardized factors.
-Latent variable regression models print results with standardized loadings.
 }
 \description{
 The major function to fit models assuming the influence of
 minor factors \insertCite{uanhoro_modeling_2023}{minorbsem}.
 }
 \details{
+CFAs assume standardized factors.
+Latent variable regression models print results with standardized loadings.
+
 There are different methods for estimating models in this package:
 \itemize{
 \item \code{normal}: under belief that minor factor influences are
