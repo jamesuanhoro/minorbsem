@@ -198,7 +198,9 @@ if FALSE, hide messages.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>There are different methods for estimating models in this package:</p><ul><li><p><code>normal</code>: under belief that minor factor influences are
+    <p>CFAs assume standardized factors.
+Latent variable regression models are not yet implemented.</p>
+<p>There are different methods for estimating models in this package:</p><ul><li><p><code>normal</code>: under belief that minor factor influences are
 on average zero with continuous deviations away from zero.</p></li>
 <li><p><code>lasso</code>: under belief that minor factor influences are largely
 zero with a small number of non-zero residual covariances.</p></li>
@@ -206,12 +208,17 @@ zero with a small number of non-zero residual covariances.</p></li>
 accomodates extreme outliers.</p></li>
 <li><p><code>GDP</code>: to mimic a global-local approach, i.e.
 attempt to shrink near 0 residual covariances to 0
-with minimal shrinking for larger residual covariances.</p></li>
+with minimal shrinking for larger residual covariances
+(Armagan et al. 2013)
+.</p></li>
 <li><p><code>none</code>: if intending to ignore the influence of minor factors.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Uanhoro JO (2022).
+    <p>Armagan A, Dunson DB, Lee J (2013).
+“Generalized double Pareto shrinkage.”
+<em>Statistica Sinica</em>, <b>23</b>(1), 119--143.
+ISSN 1017-0405, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/" class="external-link">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/</a>.<br><br> Uanhoro JO (2022).
 “Hierarchical Covariance Estimation Approach to Meta-Analytic Structural Equation Modeling.”
 <em>Structural Equation Modeling: A Multidisciplinary Journal</em>, <b>0</b>(0), 1--15.
 ISSN 1070-5511, <a href="https://doi.org/10.1080/10705511.2022.2142128" class="external-link">doi:10.1080/10705511.2022.2142128</a>

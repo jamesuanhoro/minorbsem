@@ -180,7 +180,9 @@ if FALSE, hide messages.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>There are different methods for estimating models in this package:</p><ul><li><p><code>normal</code>: under belief that minor factor influences are
+    <p>CFAs assume standardized factors.
+Latent variable regression models print results with standardized loadings.</p>
+<p>There are different methods for estimating models in this package:</p><ul><li><p><code>normal</code>: under belief that minor factor influences are
 on average zero with continuous deviations away from zero
 (Uanhoro forthcoming)
 .</p></li>
@@ -190,7 +192,9 @@ zero with a small number of non-zero residual covariances.</p></li>
 accomodates extreme outliers.</p></li>
 <li><p><code>GDP</code>: to mimic a global-local approach, i.e.
 attempt to shrink near 0 residual covariances to 0
-with minimal shrinking for larger residual covariances.</p></li>
+with minimal shrinking for larger residual covariances
+(Armagan et al. 2013)
+.</p></li>
 <li><p><code>WB</code>: to model the covariance matrix hierarchically under
 assumptions of adventitiuous error
 (Wu and Browne 2015)
@@ -203,7 +207,10 @@ allowing for computation of casewise log-likelihoods and LOO-CV.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Uanhoro JO (forthcoming).
+    <p>Armagan A, Dunson DB, Lee J (2013).
+“Generalized double Pareto shrinkage.”
+<em>Statistica Sinica</em>, <b>23</b>(1), 119--143.
+ISSN 1017-0405, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/" class="external-link">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/</a>.<br><br> Uanhoro JO (forthcoming).
 “Modeling misspecification as a parameter in Bayesian structural equation modeling.”
 <em>Educational and Psychological Measurement</em>.<br><br> Wu H, Browne MW (2015).
 “Quantifying Adventitious Error in a Covariance Structure as a Random Effect.”
