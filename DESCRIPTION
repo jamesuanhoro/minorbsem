@@ -27,6 +27,7 @@ Imports:
     Rdpack (>= 0.7)
 Remotes: 
     github::stan-dev/cmdstanr
+    github::stan-dev/posterior
 LazyData: true
 Suggests: 
     covr,
