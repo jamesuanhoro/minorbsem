@@ -13,29 +13,29 @@ coverage](https://codecov.io/gh/jamesuanhoro/minorbsem/branch/master/graph/badge
 version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-project.org/)
 ![GitHub R package
 version](https://img.shields.io/github/r-package/v/jamesuanhoro/minorbsem)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/minorbsem)](https://cran.r-project.org/package=minorbsem)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/minorbsem)](https://cran.r-project.org/package=minorbsem)
 ![GitHub last
 commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
 <!-- badges: end -->
 
 #### Table of Contents
 
-- [Package overview](#package-overview)
-  - [Goals](#goals)
-  - [Permitted models and supported data
-    types](#permitted-models-and-supported-data-types)
-- [Installation](#installation)
-  - [Install devtools](#install-devtools)
-  - [Install CmdStanR and CmdStan](#install-cmdstanr-and-cmdstan)
-  - [Install minorbsem](#install-minorbsem)
-- [A reasonably complete
-  demonstration](#a-reasonably-complete-demonstration)
-  - [Model comparisons](#model-comparisons)
-- [Additional examples](#additional-examples)
-  - [Different methods to capture the influence of minor
-    factors](#different-methods-to-capture-the-influence-of-minor-factors)
-  - [Meta-analytic CFA](#meta-analytic-cfa)
-- [Citations](#citations)
+  - [Package overview](#package-overview)
+      - [Goals](#goals)
+      - [Permitted models and supported data
+        types](#permitted-models-and-supported-data-types)
+  - [Installation](#installation)
+      - [Install remotes](#install-remotes)
+      - [Install CmdStanR and CmdStan](#install-cmdstanr-and-cmdstan)
+      - [Install minorbsem](#install-minorbsem)
+  - [A reasonably complete
+    demonstration](#a-reasonably-complete-demonstration)
+      - [Model comparisons](#model-comparisons)
+  - [Additional examples](#additional-examples)
+      - [Different methods to capture the influence of minor
+        factors](#different-methods-to-capture-the-influence-of-minor-factors)
+      - [Meta-analytic CFA](#meta-analytic-cfa)
+  - [Citations](#citations)
 
 ## Package overview
 
@@ -43,14 +43,14 @@ It is rare that structural equation models (SEMs) are able to reject the
 null hypothesis that there is no misspecification in the model. One
 explanation for this problem is that covariance structures are
 influenced by major factors which we can hypothesize about and minor
-factors which we cannot predict a-priori, e.g. MacCallum and Tucker
+factors which we cannot predict a-priori, e.g. MacCallum and Tucker
 (1991).
 
 ### Goals
 
 The goal of minorbsem is to let you fit Bayesian SEMs that estimate the
 influence of minor factors on the covariance matrix following the
-approach in Uanhoro (forthcoming). Briefly, all residual covariances are
+approach in Uanhoro (n.d.). Briefly, all residual covariances are
 estimated with priors that shrink them towards zero, and the model
 returns the magnitude of the influence of minor factors.
 
@@ -61,11 +61,11 @@ influence of minor factors following the approach in Uanhoro (2022).
 
 The package only fits a limited number of model configurations:
 
-- CFA, allowing cross-loadings (which may be automatically estimated),
-  correlated errors terms, and fully oblique or orthogonal factors
-  (useful for fitting bifactor models)
-- SEMs allowing latent regressions (only), cross-loadings, and
-  correlated error terms.
+  - CFA, allowing cross-loadings (which may be automatically estimated),
+    correlated errors terms, and fully oblique or orthogonal factors
+    (useful for fitting bifactor models)
+  - SEMs allowing latent regressions (only), cross-loadings, and
+    correlated error terms.
 
 One cannot fit MIMIC, multi-group models, multilevel models, or models
 with specially constrained parameters (e.g. setting two parameters
@@ -85,17 +85,17 @@ machine**, see installation instructions here:
 If you have CmdStan installed and working, go to: [Install
 minorbsem](#install-minorbsem).
 
-### Install devtools
+### Install remotes
 
 Restart R prior to installation. minorbsem requires that R is at least
 version 3.4.0. `version` command shows the installed R version. If the
 installed version is less than 3.4.0, then update R before proceeding.
 
-Install `devtools` to allow installation of R packages that are hosted
-on GitHub instead of Cran (the default repository for R packages):
+Install `remotes` to allow installation of R packages that are hosted on
+GitHub instead of Cran (the default repository for R packages):
 
 ``` r
-install.packages("devtools")
+install.packages("remotes")
 ```
 
 ### Install CmdStanR and CmdStan
@@ -105,7 +105,7 @@ If any problems come up at this stage, see: [Getting started with
 CmdStanR](https://mc-stan.org/cmdstanr/articles/cmdstanr.html).
 
 ``` r
-devtools::install_github("stan-dev/cmdstanr")
+remotes::install_github("stan-dev/cmdstanr")
 ```
 
 Install Stan. First, we check that the computer is correctly set up to
@@ -121,7 +121,7 @@ cmdstanr::install_cmdstan()  # install Stan
 Install minorbsem:
 
 ``` r
-devtools::install_github("jamesuanhoro/minorbsem")
+remotes::install_github("jamesuanhoro/minorbsem")
 ```
 
 ## A reasonably complete demonstration
@@ -248,9 +248,9 @@ data in input covariances – these are not yet implemented.
 
 ## Citations
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references">
 
-<div id="ref-maccallum_representing_1991" class="csl-entry">
+<div id="ref-maccallum_representing_1991">
 
 MacCallum, Robert C., and Ledyard R. Tucker. 1991. “Representing Sources
 of Error in the Common-Factor Model: Implications for Theory and
@@ -259,20 +259,20 @@ Practice.” *Psychological Bulletin* 109 (3): 502–11.
 
 </div>
 
-<div id="ref-uanhoro_modeling_2023" class="csl-entry">
+<div id="ref-uanhoro_hierarchical_2022">
 
-Uanhoro, James Ohisei. forthcoming. “Modeling Misspecification as a
-Parameter in Bayesian Structural Equation Modeling.” *Educational and
-Psychological Measurement*, forthcoming.
+Uanhoro, James Ohisei. 2022. “Hierarchical Covariance Estimation
+Approach to Meta-Analytic Structural Equation Modeling.” *Structural
+Equation Modeling: A Multidisciplinary Journal* 0 (0): 1–15.
+<https://doi.org/10.1080/10705511.2022.2142128>.
 
 </div>
 
-<div id="ref-uanhoro_hierarchical_2022" class="csl-entry">
+<div id="ref-uanhoro_modeling_2023">
 
-———. 2022. “Hierarchical Covariance Estimation Approach to Meta-Analytic
-Structural Equation Modeling.” *Structural Equation Modeling: A
-Multidisciplinary Journal* 0 (0): 1–15.
-<https://doi.org/10.1080/10705511.2022.2142128>.
+———. n.d. “Modeling Misspecification as a Parameter in Bayesian
+Structural Equation Modeling.” *Educational and Psychological
+Measurement*.
 
 </div>
 
