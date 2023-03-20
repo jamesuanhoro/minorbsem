@@ -1,15 +1,31 @@
 # Helper functions in package
 
+#' Package on attach message
+#' @returns R version minimum as string
+#' @keywords internal
+.onAttach <- function(libname, pkgname) {
+  version <- minorbsem_version()
+  packageStartupMessage(" ")
+  packageStartupMessage(strrep("#", 79))
+  packageStartupMessage("This is ", paste(pkgname, version))
+  packageStartupMessage(
+    "Please ensure CmdStanR is installed and working."
+  )
+  packageStartupMessage(
+    "All users of R (or SEM) are invited to submit functions ",
+    "or ideas for functions."
+  )
+  packageStartupMessage(strrep("#", 79))
+}
+
 #' Get package version function
 #' @returns Package version as string
 #' @keywords internal
 minorbsem_version <- function() {
-  desc_file <- readLines(system.file("DESCRIPTION", package = "minorbsem"))
-  version_line <- which(sapply(
-    desc_file, function(line) regexpr(pattern = "Version\\:", line) > 0
-  ))
-  version_info <- desc_file[version_line]
-  version <- trimws(gsub("Version\\:", "", version_info))
+  version <- read.dcf(
+    system.file("DESCRIPTION", package = "minorbsem"),
+    fields = "Version"
+  )[1]
   return(version)
 }
 
@@ -17,11 +33,10 @@ minorbsem_version <- function() {
 #' @returns R version minimum as string
 #' @keywords internal
 minimum_r_version <- function() {
-  desc_file <- readLines(system.file("DESCRIPTION", package = "minorbsem"))
-  r_version_line <- which(sapply(
-    desc_file, function(line) regexpr(pattern = "R \\(>=", line) > 0
-  ))
-  r_version_info <- desc_file[r_version_line]
+  r_version_info <- read.dcf(
+    system.file("DESCRIPTION", package = "minorbsem"),
+    fields = "Depends"
+  )[1]
   r_version <- trimws(gsub("R \\(>=|\\)", "", r_version_info))
   return(r_version)
 }
