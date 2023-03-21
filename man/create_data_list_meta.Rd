@@ -16,7 +16,10 @@ create_data_list_meta(
 \item{lavaan_object}{lavaan fit object of corresponding model}
 
 \item{method}{(character) One of "normal", "lasso", "logistic",
-"GDP", "WB", "WB-cond", or "none". See details below.}
+"GDP", or "none". See details below.}
+
+\item{type}{(character) One of "fe" or "re" for fixed-effects MASEM
+or random-effects MASEM respectively.}
 
 \item{simple_struc}{(LOGICAL) Only relevant for CFAs.
 If TRUE: assume simple structure;
