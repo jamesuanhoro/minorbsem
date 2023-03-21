@@ -9,8 +9,10 @@ test_that("Random method (any case) works for CFA", {
   syntax_idx <- sample(length(model_syntaxes), 1)
   model_syntax <- model_syntaxes[syntax_idx]
   orthogonal <- sample(c(TRUE, FALSE), 1)
+  input <- dat_cov("HS")
   fit <- minorbsem(
-    model_syntax, HS,
+    model_syntax,
+    data = input$dat, sample_cov = input$cov, sample_nobs = input$nobs,
     orthogonal = orthogonal,
     simple_struc = sample(c(TRUE, FALSE), 1),
     warmup = 500, sampling = 500, chains = 3,
@@ -50,8 +52,10 @@ test_that("Random method (any case) works for SEM", {
     y1 ~~ y5\n  y4 ~~ y8"
   )
   model_syntax <- sample(model_syntaxes, 1)
+  input <- dat_cov("PD")
   fit <- minorbsem(
-    model_syntax, PD,
+    model_syntax,
+    data = input$dat, sample_cov = input$cov, sample_nobs = input$nobs,
     orthogonal = sample(c(TRUE, FALSE), 1),
     simple_struc = sample(c(TRUE, FALSE), 1),
     warmup = 500, sampling = 500, chains = 3,
