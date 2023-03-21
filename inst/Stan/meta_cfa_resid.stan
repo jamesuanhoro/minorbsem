@@ -54,6 +54,7 @@ data {
   matrix[Ng, p] X;  // moderator matrix
   real<lower = 0> mln_par;  // meta-reg int hyper-parameter
   real<lower = 0> mlb_par;  // meta-reg beta hyper-parameter
+  int<lower = 1, upper = 3> type; // which type
 }
 transformed data {
   real sqrt_two = sqrt(2.0);
@@ -64,21 +65,19 @@ transformed data {
   int N_rms = 1;
   int N_alpha = 0;
   int N_complex = 0;
-  // int N_Sigma = 1;
+  int N_type = 1;
 
   if (method >= 90) {
     Nisqd2 = 0;
   }
-
-  // if (method == 91) {
-  //   N_Sigma = Ni;
-  // }
 
   if (method == 100) {
     N_rms = 0;
   }
 
   if (method == 4) N_alpha = 1;
+
+  if (type < 2) N_type = 0;
 
   for (i in 1:Ni) {
     for (j in 1:Nf) {
@@ -102,15 +101,12 @@ parameters {
   vector[N_complex] loadings_complex;
   vector<lower = 0>[complex_struc] sigma_loadings_complex;
   vector<lower = 2.0>[complex_struc] gdp_loadings_complex;
-  // cov_matrix[N_Sigma] Sigma;
-  real m_ln_int;
+  vector[N_type] m_ln_int;
   vector[p] m_ln_beta;
   vector<lower = 0, upper = 1>[Nmiss] miss_cor_01;
   vector<lower = 0>[Nitem_miss] var_shifts;
 }
 model {
-  vector[Ng] m_s = exp(m_ln_int + X * m_ln_beta) + Ni - 1;
-
   rms_src_p ~ std_normal();
   if (method == 1) {
     // normal
@@ -209,6 +205,7 @@ model {
 
     for (i in 1:Ng) {
       array[sum(valid_var[, i])] int idxs;
+      real m_val;
 
       pos_valid = 0;
       for (j in 1:Ni) {
@@ -241,8 +238,14 @@ model {
         }
       }
 
-      target += gen_matrix_beta_ii_lpdf(
-        S_impute[idxs, idxs] | Omega[idxs, idxs], Np[i] - 1.0, m_s[i]);
+      if (type == 1) {
+        target += wishart_lpdf(
+          S_impute[idxs, idxs] | Np[i] - 1.0, Omega[idxs, idxs] / (Np[i] - 1.0));
+      } else if (type == 2) {
+        m_val = exp(m_ln_int[1] + X[i, ] * m_ln_beta) + Ni - 1;
+        target += gen_matrix_beta_ii_lpdf(
+          S_impute[idxs, idxs] | Omega[idxs, idxs], Np[i] - 1.0, m_val);
+      }
     }
   }
 }
@@ -255,8 +258,8 @@ generated quantities {
   vector[Nce] res_cov;
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
   vector[Nmiss] miss_cor = miss_cor_01 * 2 - 1;
-  vector[Ng] m_s = exp(m_ln_int + X * m_ln_beta) + Ni - 1;
-  real v_mn = mean(1.0 ./ m_s);
+  vector[Ng] m_s;
+  real v_mn = 0.0;
   real rmsea_mn = sqrt(v_mn);
   vector[p] rmsea_beta;
 
@@ -275,8 +278,12 @@ generated quantities {
     );
   }
 
-  {
-    vector[Ng] ebx = exp(m_ln_int + X * m_ln_beta);
+  if (type == 2) {
+    vector[Ng] ebx = exp(m_ln_int[1] + X * m_ln_beta);
+
+    m_s = exp(m_ln_int[1] + X * m_ln_beta) + Ni - 1;
+    v_mn = mean(1.0 ./ m_s);
+    rmsea_mn = sqrt(v_mn);
 
     for (i in 1:p) {
       rmsea_beta[i] = -m_ln_beta[i] * mean(ebx ./ (2 * (ebx + p - 1) ^ (3.0 / 2)));

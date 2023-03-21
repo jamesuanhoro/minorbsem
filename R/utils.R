@@ -79,10 +79,8 @@ user_input_check <- function(
     object_2 = NULL,
     object_3 = NULL,
     object_4 = NULL) {
-  if (type == "model") {
-    if (is.null(object_1)) {
-      stop("Model cannot be null")
-    }
+  if (type == "model" && is.null(object_1)) {
+    stop("Model cannot be null")
   }
 
   if (type == "priors") {
@@ -128,6 +126,18 @@ user_input_check <- function(
         "(ii) sample covariance and sample size"
       ))
     }
+  }
+
+  if (type == "type-meta") {
+    accepted_types <- type_hash()
+    err_msg <- paste0(
+      "type must be one of the following: ",
+      paste0(
+        "\"", accepted_types, "\"", collapse = ", "
+      )
+    )
+    if (is.null(object_1)) stop(err_msg)
+    if (!tolower(object_1) %in% accepted_types) stop(err_msg)
   }
 
   return(NULL)
@@ -212,10 +222,31 @@ random_method_selection <- function(meta = FALSE) {
   return(method)
 }
 
+#' converter function
+#' @description A function that swaps type from string to integer
+#' and vice-versa
+#' @param search_term Integer or string or NULL
+#' @param str_list Character vector of accepted values
+#' @returns If search_term is integer, returns string and vice-versa
+#' @keywords internal
+converter_helper <- function(search_term, str_list) {
+  if (is.null(search_term)) {
+    converted_value <- names(str_list)
+  } else if (is.integer(search_term) || is.numeric(search_term)) {
+    search_term <- as.integer(search_term)
+    converted_value <- names(str_list)[which(search_term == str_list)]
+  } else if (is.character(search_term)) {
+    idx <- which(tolower(search_term) == tolower(names(str_list)))
+    converted_value <- as.integer(str_list[idx])
+  }
+
+  return(converted_value)
+}
+
 #' Method hash function
 #' @description A function that swaps method from string to integer
 #' and vice-versa
-#' @param search_term Integer or string or NULL
+#' @inheritParams converter_helper
 #' @returns If search_term is integer, returns string and vice-versa
 #' @keywords internal
 method_hash <- function(search_term = NULL) {
@@ -229,17 +260,33 @@ method_hash <- function(search_term = NULL) {
     "WB-cond" = 91,
     "none" = 100
   )
+  converted_value <- converter_helper(search_term, list_methods)
+  return(converted_value)
+}
 
-  if (is.null(search_term)) {
-    converted_value <- names(list_methods)
-  } else if (is.integer(search_term) || is.numeric(search_term)) {
-    search_term <- as.integer(search_term)
-    converted_value <- names(list_methods)[which(search_term == list_methods)]
-  } else if (is.character(search_term)) {
-    idx <- which(tolower(search_term) == tolower(names(list_methods)))
-    converted_value <- as.integer(list_methods[idx])
+#' Type-meta hash function
+#' @description A function that swaps type from string to integer
+#' and vice-versa
+#' @param elaborate (LOGICAL) If TRUE, print full names, otherwise
+#' print abbreviations
+#' @inheritParams converter_helper
+#' @returns If search_term is integer, returns string and vice-versa
+#' @keywords internal
+type_hash <- function(search_term = NULL, elaborate = FALSE) {
+  list_types <- c(
+    "fe" = 1,
+    "re" = 2
+    # Add "dep" = 3 when ready
+  )
+  if (isTRUE(elaborate)) {
+    # Only use when feeding integers
+    list_types <- c(
+      "Fixed-effects" = 1,
+      "Random-effects" = 2
+      # Add "Dependent-samples" = 3 when ready
+    )
   }
-
+  converted_value <- converter_helper(search_term, list_types)
   return(converted_value)
 }
 

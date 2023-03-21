@@ -1,4 +1,5 @@
 test_that("Random method works for meta-CFA on issp89", {
+  print(type <- sample(type_hash(), 1))
   method <- random_method_selection(meta = TRUE)
   model_syntax <- "# latent variable definitions
     F1 =~ JP1 + JP2 + JP3
@@ -11,7 +12,8 @@ test_that("Random method works for meta-CFA on issp89", {
     orthogonal = sample(c(TRUE, FALSE), 1),
     simple_struc = sample(c(TRUE, FALSE), 1),
     warmup = 500, sampling = 500, chains = 3,
-    method = method, refresh = 0, show_messages = FALSE
+    method = method, type = type,
+    refresh = 0, show_messages = FALSE
   ), NA)
   expect_true(all(slotNames(fit) %in% c(
     "major_parameters", "minor_factor_matrix", "data_list",
@@ -33,6 +35,7 @@ test_that("Random method works for meta-CFA on issp89", {
 })
 
 test_that("Random method works for meta-CFA on Norton13", {
+  print(type <- sample(type_hash(), 1))
   method <- random_method_selection(meta = TRUE)
   model_syntax <- paste0(
     "distress =~ ", paste0("x", 1:14, collapse = " + "), "\n",
@@ -45,7 +48,8 @@ test_that("Random method works for meta-CFA on Norton13", {
     sample_cov = Norton13$data[1:3], sample_nobs = Norton13$n[1:3],
     orthogonal = TRUE, simple_struc = TRUE,
     warmup = 500, sampling = 500, chains = 3,
-    method = method, refresh = 0, show_messages = FALSE
+    method = method, type = type,
+    refresh = 0, show_messages = FALSE
   ), NA)
   expect_true(all(slotNames(fit) %in% c(
     "major_parameters", "minor_factor_matrix", "data_list",

@@ -1,15 +1,16 @@
 #' Fit random-effects Bayesian meta-analytic CFAs with minor factors assumed.
 #'
-#' @description A function to fit random-effects Bayesian meta-analytic CFAs
+#' @description A function to fit fixed- or
+#' random-effects Bayesian meta-analytic CFAs
 #' with minor factors assumed \insertCite{uanhoro_hierarchical_2022}{minorbsem}.
 #' Builds off work by \insertCite{wu_quantifying_2015;textual}{minorbsem}.
 #' Does not yet accomodate moderators, and covariance matrices must be complete.
 #' This will change in the near future.
+#' @param model A description of the user-specified model, lavaan syntax.
 #' @param data An optional data frame containing the observed variables used in
 #' the model.
 #' @param group An optional string identifying the grouping variable in
 #' the data object.
-#' @param model A description of the user-specified model, lavaan syntax.
 #' @param sample_cov (list of matrices) sample variance-covariance matrices.
 #' The rownames and/or colnames must contain the observed variable names.
 #' For now, assumes there are no missing elements in the covariance matrices.
@@ -17,6 +18,8 @@
 #' for each study.
 #' @param method (character) One of "normal", "lasso", "logistic",
 #' "GDP", or "none". See details below.
+#' @param type (character) One of "fe" or "re" for fixed-effects MASEM
+#' or random-effects MASEM respectively.
 #' @inheritParams minorbsem
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
@@ -65,6 +68,7 @@ meta_mbcfa <- function(
     sample_cov = NULL,
     sample_nobs = NULL,
     method = "normal",
+    type = "re",
     orthogonal = FALSE,
     simple_struc = TRUE,
     seed = 12345,
@@ -88,6 +92,11 @@ meta_mbcfa <- function(
 
   # method must be valid
   user_input_check("method-meta", method)
+
+  # type must be valid
+  # Future: when moderators are added, warn user that fixed-effects
+  # ignores moderators.
+  user_input_check("type-meta", type)
 
   # Must provide either data and group or sample_cov and sample_nobs
   user_input_check("data-meta", data, group, sample_cov, sample_nobs)
@@ -121,6 +130,7 @@ meta_mbcfa <- function(
   data_list <- create_data_list_meta(
     lavaan_object = lav_fit,
     method = method,
+    type = type,
     simple_struc = simple_struc,
     priors = priors
   )

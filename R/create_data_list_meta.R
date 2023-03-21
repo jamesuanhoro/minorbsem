@@ -1,12 +1,13 @@
 #' Stan data helper function
 #' @description A function that creates data list object passed to Stan
 #' @param lavaan_object lavaan fit object of corresponding model
-#' @inheritParams minorbsem
+#' @inheritParams meta_mbcfa
 #' @returns Data list object used in fitting Stan model
 #' @keywords internal
 create_data_list_meta <- function(
     lavaan_object = NULL,
     method = "normal",
+    type = "re",
     simple_struc = TRUE,
     priors = NULL) {
   data_list <- list()
@@ -26,6 +27,11 @@ create_data_list_meta <- function(
 
   # Set method
   data_list$method <- method_hash(method)
+
+  # Set type
+  data_list$type <- 2  # assume random-effects by default
+  if (type == "fe") data_list$type <- 1
+  else if (type == "dep") data_list$type <- 3
 
   # Set simple structure to 0 by default, change within CFA section
   data_list$complex_struc <- 0
