@@ -11,6 +11,7 @@ meta_mbcfa(
   sample_cov = NULL,
   sample_nobs = NULL,
   method = "normal",
+  type = "re",
   orthogonal = FALSE,
   simple_struc = TRUE,
   seed = 12345,
@@ -44,6 +45,9 @@ for each study.}
 
 \item{method}{(character) One of "normal", "lasso", "logistic",
 "GDP", or "none". See details below.}
+
+\item{type}{(character) One of "fe" or "re" for fixed-effects MASEM
+or random-effects MASEM respectively.}
 
 \item{orthogonal}{(logical) constrain factors orthogonal, must be TRUE to fit
 bifactor models.}
@@ -87,7 +91,8 @@ if FALSE, hide messages.}
 An object of \code{\link{mbsem-class}}
 }
 \description{
-A function to fit random-effects Bayesian meta-analytic CFAs
+A function to fit fixed- or
+random-effects Bayesian meta-analytic CFAs
 with minor factors assumed \insertCite{uanhoro_hierarchical_2022}{minorbsem}.
 Builds off work by \insertCite{wu_quantifying_2015;textual}{minorbsem}.
 Does not yet accomodate moderators, and covariance matrices must be complete.

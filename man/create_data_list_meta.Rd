@@ -7,6 +7,7 @@
 create_data_list_meta(
   lavaan_object = NULL,
   method = "normal",
+  type = "re",
   simple_struc = TRUE,
   priors = NULL
 )

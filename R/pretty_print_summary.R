@@ -56,12 +56,22 @@ pretty_print_summary <- function(
     table_to_print[2, 2] <- "RMSEA"
   }
 
+  type_str <- ""
+  if (object@data_list$meta == 1) {
+    type_str <- paste0(
+      type_hash(object@data_list$type, elaborate = TRUE),
+      ", "
+    )
+  }
+
   result <- kableExtra::kbl(
     table_to_print[, -1],
     row.names = FALSE,
     booktabs = TRUE,
     caption = paste0(
-      "Parameter estimates (method = ", method_str,
+      "Parameter estimates (",
+      type_str,
+      "method = ", method_str,
       ", sample size(s) = ", n_obs, ")"
     ),
     digits = digits
