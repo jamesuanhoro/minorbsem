@@ -1,3 +1,7 @@
+# minorbsem (development version)
+
+* Fixed row order of variables printed
+
 # minorbsem 0.1.1
 
 * Added Wishart-based fixed-effects meta-analytic SEM (also permits minor factors)
