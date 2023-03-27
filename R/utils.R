@@ -357,6 +357,10 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
     by = "variable"
   ))
 
+  var_order <- sum_stats$variable
+  # Without this, the row order within param type changes after merging
+  result <- result[match(var_order, result$variable), ]
+
   if (isTRUE(major)) {
     result <- cbind(
       variable = result$variable,
