@@ -1,12 +1,16 @@
 Package: minorbsem
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Title: Fit Bayesian structural equation models under the assumption that minor factors exist
+Version: 0.1.1.9001
+Authors@R: c(
+    person(given = c("James", "O."), family = "Uanhoro",
+           email = "james.uanhoro@unt.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-4843-927X")))
+Description: It is rare that structural equation models (SEMs) are able to reject the null
+    hypothesis that there is no misspecification in the model. One explanation for this problem
+    is that covariance structures are influenced by major factors which we can hypothesize about
+    and minor factors which we cannot predict a-priori. This package lets you fit regular and
+    meta-analytic Bayesian SEMs that estimate the influence of minor factors.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
@@ -27,3 +31,8 @@ LinkingTo:
     rstan (>= 2.18.1),
     StanHeaders (>= 2.18.0)
 SystemRequirements: GNU make
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RdMacros: Rdpack
+URL: https://jamesuanhoro.github.io/minorbsem/

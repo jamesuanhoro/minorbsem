@@ -11,6 +11,7 @@
 #' @importFrom rstan sampling
 #'
 #' @references
-#' Stan Development Team (NA). RStan: the R interface to Stan. R package version 2.26.21. https://mc-stan.org
+#' Stan Development Team (NA). RStan: the R interface to Stan.
+#' R package version 2.26.21. https://mc-stan.org
 #'
 NULL
