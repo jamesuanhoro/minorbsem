@@ -118,10 +118,20 @@ prepare_stan_plot_data <- function(object) {
     rsq_result, rv_result, rc_result, resid_result
   )
 
-  # Drop duplicated columns
-  result <- result[!duplicated(as.list(result))]
+  # ID first set of chain/iter/draw
+  keep_cols <- c(
+    which(colnames(result) == ".chain")[1],
+    which(colnames(result) == ".iteration")[1],
+    which(colnames(result) == ".draw")[1]
+  )
+
+  # Drop duplicated columns except for chain/iter/draw
+  dup_list <- duplicated(as.list(result))
   # Drop unchanging columns
-  result <- result[apply(result, 2, stats::var) > 0]
+  no_change <- apply(result, 2, stats::var) < .Machine$double.eps
+  dup_change_list <- dup_list | no_change
+  dup_change_list[keep_cols] <- FALSE
+  result <- result[!dup_change_list]
 
   varying <- colnames(result)[
     which(regexpr("\\:", colnames(result)) > 0)
