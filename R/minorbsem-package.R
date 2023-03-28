@@ -1,18 +1,9 @@
-#' The 'minorbsem' package.
-#'
-#' @description A DESCRIPTION OF THE PACKAGE
-#'
-#' @docType package
-#' @name minorbsem-package
-#' @aliases minorbsem
+## usethis namespace: start
 #' @useDynLib minorbsem, .registration = TRUE
 #' @import methods
 #' @import Rcpp
 #' @importFrom rstan sampling
+#' @importFrom Rcpp sourceCpp
 #' @importFrom Rdpack reprompt
-#'
-#' @references
-#' Stan Development Team (NA). RStan: the R interface to Stan.
-#' R package version 2.26.21. https://mc-stan.org
-#'
+## usethis namespace: end
 NULL

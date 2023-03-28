@@ -145,12 +145,11 @@ minorbsem <- function(
 
   message("User input fully processed :)\n Now to modeling.")
 
-  mod_resid <- list()
-  # if (data_list$sem_indicator == 0) {
-  #   mod_resid <- stanmodels$cfa_resid_rs
-  # } else if (data_list$sem_indicator == 1) {
-  #   mod_resid <- stanmodels$sem_resid_rs
-  # }
+  if (data_list$sem_indicator == 0) {
+    mod_resid <- stanmodels$cfa_resid_rs
+  } else if (data_list$sem_indicator == 1) {
+    mod_resid <- stanmodels$sem_resid_rs
+  }
 
   message("Fitting Stan model ...")
 

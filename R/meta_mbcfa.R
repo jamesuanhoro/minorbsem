@@ -128,8 +128,7 @@ meta_mbcfa <- function(
   message("User input fully processed :)\n Now to modeling.")
 
   if (data_list$sem_indicator == 0) {
-    # mod_resid <- stanmodels$meta_cfa_resid_rs
-    mod_resid <- list()
+    mod_resid <- stanmodels$meta_cfa_resid_rs
   }
 
   message("Fitting Stan model ...")
