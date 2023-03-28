@@ -9,9 +9,6 @@
   packageStartupMessage(strrep("#", 79))
   packageStartupMessage("This is ", paste(pkgname, version))
   packageStartupMessage(
-    "Please ensure CmdStanR is installed and working."
-  )
-  packageStartupMessage(
     "All users of R (or SEM) are invited to submit functions ",
     "or ideas for functions."
   )
@@ -340,7 +337,10 @@ add_row_header <- function(
 #' @returns Summary of posterior draws
 #' @keywords internal
 mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
-  draws <- posterior::as_draws(stan_fit, variable = variable)
+  draws <- posterior::subset_draws(
+    posterior::as_draws(stan_fit),
+    variable = variable
+  )
 
   lo_lim <- (1.0 - interval) / 2.0
   up_lim <- 1.0 - lo_lim # nolint

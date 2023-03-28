@@ -9,19 +9,20 @@ prepare_stan_plot_data <- function(object) {
 
   data_list <- object@data_list
   stan_fit <- object@stan_fit
+  param_draws <- posterior::as_draws(stan_fit)
 
   indicator_labels <- rownames(data_list$loading_pattern)
   factor_labels <- colnames(data_list$loading_pattern)
 
   rms_result <- posterior::as_draws_df(
-    posterior::as_draws(stan_fit, variable = "rms_src")
+    posterior::subset_draws(param_draws, variable = "rms_src")
   )
   colnames(rms_result)[1] <- "rm: rms_src"
 
   rmsea_result <- matrix(nrow = nrow(rms_result), ncol = 0)
   if (data_list$meta == 1) {
     rmsea_result <- posterior::as_draws_df(
-      posterior::as_draws(stan_fit, variable = "rmsea_mn")
+      posterior::subset_draws(param_draws, variable = "rmsea_mn")
     )
     colnames(rmsea_result)[1] <- "rm: rmsea"
   }
@@ -31,7 +32,7 @@ prepare_stan_plot_data <- function(object) {
     arr.ind = TRUE
   ), 1, paste0, collapse = ","), "]")
   load_result <- posterior::as_draws_df(
-    posterior::as_draws(stan_fit, variable = load_idxs)
+    posterior::subset_draws(param_draws, variable = load_idxs)
   )
   load_result <- rename_post_df_columns(
     load_result, factor_labels, indicator_labels, "lo:", "=~",
@@ -39,7 +40,7 @@ prepare_stan_plot_data <- function(object) {
   )
 
   rv_result <- posterior::as_draws_df(
-    posterior::as_draws(stan_fit, variable = "res_var")
+    posterior::subset_draws(param_draws, variable = "res_var")
   )
   rv_result <- rename_post_df_columns(
     rv_result, indicator_labels, indicator_labels, "ev:", "~~",
@@ -49,7 +50,7 @@ prepare_stan_plot_data <- function(object) {
   rc_result <- matrix(nrow = nrow(rv_result), ncol = 0)
   if (data_list$Nce > 0) {
     rc_result <- posterior::as_draws_df(
-      posterior::as_draws(stan_fit, variable = "res_cor")
+      posterior::subset_draws(param_draws, variable = "res_cor")
     )
     rc_result <- rename_post_df_columns(
       rc_result, indicator_labels, indicator_labels, "rc:", "~~",
@@ -62,7 +63,7 @@ prepare_stan_plot_data <- function(object) {
   rsq_result <- matrix(nrow = nrow(rv_result), ncol = 0)
   if (data_list$sem_indicator == 0) {
     phi_result <- posterior::as_draws_df(
-      posterior::as_draws(stan_fit, variable = "phi_mat")
+      posterior::subset_draws(param_draws, variable = "phi_mat")
     )
     phi_duplicates <- duplicated(as.list(phi_result))
     phi_result <- phi_result[!phi_duplicates]
@@ -74,7 +75,7 @@ prepare_stan_plot_data <- function(object) {
     # Get interfactor correlations
     if (data_list$Nf_corr > 0) {
       phi_result <- posterior::as_draws_df(
-        posterior::as_draws(stan_fit, variable = "phi_cor")
+        posterior::subset_draws(param_draws, variable = "phi_cor")
       )
       phi_result <- rename_post_df_columns(
         phi_result, factor_labels, factor_labels, "fc:", "~~",
@@ -84,7 +85,7 @@ prepare_stan_plot_data <- function(object) {
 
     # Get factor variances
     rsq_result <- posterior::as_draws_df(
-      posterior::as_draws(stan_fit, variable = "r_square")
+      posterior::subset_draws(param_draws, variable = "r_square")
     )
     rsq_result <- rename_post_df_columns(
       rsq_result, factor_labels, factor_labels, "rsq:", "~~",
@@ -97,7 +98,7 @@ prepare_stan_plot_data <- function(object) {
       arr.ind = TRUE
     ), 1, paste0, collapse = ","), "]")
     coef_result <- posterior::as_draws_df(
-      posterior::as_draws(stan_fit, variable = coef_idxs)
+      posterior::subset_draws(param_draws, variable = coef_idxs)
     )
     coef_result <- rename_post_df_columns(
       coef_result, factor_labels, factor_labels, "co:", "~",
@@ -106,7 +107,7 @@ prepare_stan_plot_data <- function(object) {
   }
 
   resid_result <- posterior::as_draws_df(
-    posterior::as_draws(stan_fit, variable = "Resid")
+    posterior::subset_draws(param_draws, variable = "Resid")
   )
   resid_result <- rename_post_df_columns(
     resid_result, indicator_labels, indicator_labels, "re:", "~~",

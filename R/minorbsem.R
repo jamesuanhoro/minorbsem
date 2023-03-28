@@ -112,16 +112,6 @@ minorbsem <- function(
   # Must provide either data or sample_cov and sample_nobs
   user_input_check("data", data, sample_cov, sample_nobs)
 
-  # CmdStan path must be set
-  tryCatch(cmdstanr::cmdstan_path(),
-    error = function(e) {
-      stop(paste0(
-        "Error: CmdStan path has not been set yet.", " ",
-        "See ?cmdstanr::set_cmdstan_path()."
-      ))
-    }
-  )
-
   # Run lavaan fit
   if (!is.null(data)) {
     lav_fit <- lavaan::cfa(
@@ -155,41 +145,32 @@ minorbsem <- function(
 
   message("User input fully processed :)\n Now to modeling.")
 
-  message(paste0(
-    "Compiling Stan code ...\n",
-    "This takes a while the first time you run a CFA ",
-    "and the first time you run an SEM"
-  ))
-
   if (data_list$sem_indicator == 0) {
-    mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/cfa_resid.stan", package = "minorbsem"),
-      stanc_options = list("O1")
-    )
+    mod_resid <- stanmodels$cfa_resid_rs
   } else if (data_list$sem_indicator == 1) {
-    mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/sem_resid.stan", package = "minorbsem"),
-      stanc_options = list("O1")
-    )
+    mod_resid <- stanmodels$sem_resid_rs
   }
 
   message("Fitting Stan model ...")
 
-  stan_fit <- mod_resid$sample(
+  stan_fit <- rstan::sampling(
+    mod_resid,
     data = data_list,
+    chains = chains,
+    cores = ncores,
     seed = seed,
-    iter_warmup = warmup,
-    iter_sampling = sampling,
+    warmup = warmup,
+    iter = warmup + sampling,
     refresh = refresh,
     init = function() {
       list(
-        resids = rep(1e-3, data_list$Ni^2 - data_list$Ni)
+        resids = rep(1e-3, (data_list$Ni^2 - data_list$Ni) / 2)
       )
     },
-    adapt_delta = adapt_delta,
-    max_treedepth = max_treedepth,
-    chains = chains,
-    parallel_chains = ncores,
+    control = list(
+      adapt_delta = adapt_delta,
+      max_treedepth = max_treedepth
+    ),
     show_messages = show_messages
   )
 
