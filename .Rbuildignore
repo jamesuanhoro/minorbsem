@@ -1,3 +1,13 @@
 ^minorbsem\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^\.vscode$
+^README\.html$
+^README\_files$
+^codecov\.yml$
+^vignettes/articles$
+^README\.Rmd$
+^_pkgdown\.yml$
+^pkgdown$
+^\.github$
+^docs$
