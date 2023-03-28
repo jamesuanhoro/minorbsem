@@ -1,6 +1,7 @@
 # minorbsem (development version)
 
 * Fixed row order of variables printed
+* Fixed an undiscovered error when user fits model with single chain
 
 # minorbsem 0.1.1
 
