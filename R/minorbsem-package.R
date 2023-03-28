@@ -9,6 +9,7 @@
 #' @import methods
 #' @import Rcpp
 #' @importFrom rstan sampling
+#' @importFrom Rdpack reprompt
 #'
 #' @references
 #' Stan Development Team (NA). RStan: the R interface to Stan.
