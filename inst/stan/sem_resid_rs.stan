@@ -56,7 +56,7 @@ transformed data {
   matrix[Ni, Ni] N_S = (Np - 1) * S;  // covariance matrix
   int coef_count = 0;
   int outcome_count = 0;
-  int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
+  int Nisqd2 = (Ni * (Ni - 1)) / 2;
   int N_rms = 1;
   int N_alpha = 0;
   real ln_det_S = ln_det_spd(S);

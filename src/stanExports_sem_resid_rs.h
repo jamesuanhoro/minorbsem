@@ -405,7 +405,7 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'sem_resid_rs', line 56, column 2 to column 36)",
                                                       " (in 'sem_resid_rs', line 57, column 2 to column 21)",
                                                       " (in 'sem_resid_rs', line 58, column 2 to column 24)",
-                                                      " (in 'sem_resid_rs', line 59, column 2 to column 37)",
+                                                      " (in 'sem_resid_rs', line 59, column 2 to column 35)",
                                                       " (in 'sem_resid_rs', line 60, column 2 to column 16)",
                                                       " (in 'sem_resid_rs', line 61, column 2 to column 18)",
                                                       " (in 'sem_resid_rs', line 62, column 2 to column 32)",

@@ -352,7 +352,7 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'cfa_resid_rs', line 54, column 13 to column 15)",
                                                       " (in 'cfa_resid_rs', line 54, column 2 to column 36)",
                                                       " (in 'cfa_resid_rs', line 55, column 2 to column 39)",
-                                                      " (in 'cfa_resid_rs', line 56, column 2 to column 37)",
+                                                      " (in 'cfa_resid_rs', line 56, column 2 to column 35)",
                                                       " (in 'cfa_resid_rs', line 57, column 2 to column 16)",
                                                       " (in 'cfa_resid_rs', line 58, column 2 to column 18)",
                                                       " (in 'cfa_resid_rs', line 59, column 2 to column 20)",

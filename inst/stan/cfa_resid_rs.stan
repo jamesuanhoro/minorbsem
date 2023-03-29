@@ -53,7 +53,7 @@ transformed data {
   // cholesky_factor_cov[Ni] NL_S = sqrt(Np - 1) * cholesky_decompose(S);  // covariance matrix-chol
   matrix[Ni, Ni] N_S = (Np - 1) * S;  // covariance matrix
   int Nf_corr = corr_fac == 1 ? Nf : 1;
-  int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
+  int Nisqd2 = (Ni * (Ni - 1)) / 2;
   int N_rms = 1;
   int N_alpha = 0;
   int N_complex = 0;

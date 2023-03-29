@@ -64,7 +64,7 @@ transformed data {
   real pi_sqrt_three = pi() / sqrt(3.0);
   int<lower = 0> Nl = 0;  // N_non-zero loadings
   int Nf_corr = corr_fac == 1 ? Nf : 1;
-  int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
+  int Nisqd2 = (Ni * (Ni - 1)) / 2;
   int N_rms = 1;
   int N_alpha = 0;
   int N_complex = 0;
