@@ -29,7 +29,7 @@ Imports:
     rstan (>= 2.26.21),
     rstantools (>= 2.3.0)
 Remotes: 
-    github::stan-dev/rstan
+    github::stan-dev/rstan@v2.26.21
 LinkingTo: 
     BH (>= 1.66.0),
     Rcpp (>= 0.12.0),
