@@ -87,165 +87,165 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'sem_resid_rs', line 96, column 2 to column 27)",
                                                       " (in 'sem_resid_rs', line 97, column 2 to column 47)",
                                                       " (in 'sem_resid_rs', line 98, column 2 to column 28)",
-                                                      " (in 'sem_resid_rs', line 216, column 2 to column 13)",
                                                       " (in 'sem_resid_rs', line 217, column 2 to column 13)",
-                                                      " (in 'sem_resid_rs', line 218, column 2 to column 33)",
-                                                      " (in 'sem_resid_rs', line 219, column 2 to column 26)",
-                                                      " (in 'sem_resid_rs', line 220, column 2 to column 52)",
+                                                      " (in 'sem_resid_rs', line 218, column 2 to column 13)",
+                                                      " (in 'sem_resid_rs', line 219, column 2 to column 33)",
+                                                      " (in 'sem_resid_rs', line 220, column 2 to column 26)",
                                                       " (in 'sem_resid_rs', line 221, column 2 to column 52)",
-                                                      " (in 'sem_resid_rs', line 222, column 2 to column 50)",
+                                                      " (in 'sem_resid_rs', line 222, column 2 to column 52)",
                                                       " (in 'sem_resid_rs', line 223, column 2 to column 50)",
-                                                      " (in 'sem_resid_rs', line 224, column 2 to column 38)",
-                                                      " (in 'sem_resid_rs', line 225, column 2 to column 22)",
-                                                      " (in 'sem_resid_rs', line 226, column 2 to column 47)",
-                                                      " (in 'sem_resid_rs', line 227, column 2 to column 39)",
-                                                      " (in 'sem_resid_rs', line 228, column 2 to column 43)",
-                                                      " (in 'sem_resid_rs', line 229, column 2 to column 22)",
-                                                      " (in 'sem_resid_rs', line 230, column 2 to column 49)",
-                                                      " (in 'sem_resid_rs', line 234, column 4 to column 18)",
-                                                      " (in 'sem_resid_rs', line 233, column 9 to line 235, column 3)",
-                                                      " (in 'sem_resid_rs', line 232, column 4 to column 27)",
-                                                      " (in 'sem_resid_rs', line 231, column 21 to line 233, column 3)",
-                                                      " (in 'sem_resid_rs', line 231, column 2 to line 235, column 3)",
-                                                      " (in 'sem_resid_rs', line 241, column 4 to line 243, column 6)",
-                                                      " (in 'sem_resid_rs', line 240, column 26 to line 244, column 3)",
-                                                      " (in 'sem_resid_rs', line 240, column 9 to line 244, column 3)",
-                                                      " (in 'sem_resid_rs', line 239, column 4 to column 29)",
-                                                      " (in 'sem_resid_rs', line 238, column 26 to line 240, column 3)",
-                                                      " (in 'sem_resid_rs', line 238, column 9 to line 244, column 3)",
-                                                      " (in 'sem_resid_rs', line 237, column 4 to column 24)",
-                                                      " (in 'sem_resid_rs', line 236, column 19 to line 238, column 3)",
-                                                      " (in 'sem_resid_rs', line 236, column 2 to line 244, column 3)",
-                                                      " (in 'sem_resid_rs', line 246, column 4 to column 16)",
-                                                      " (in 'sem_resid_rs', line 249, column 8 to column 17)",
-                                                      " (in 'sem_resid_rs', line 250, column 8 to column 49)",
-                                                      " (in 'sem_resid_rs', line 251, column 8 to column 34)",
-                                                      " (in 'sem_resid_rs', line 248, column 27 to line 252, column 7)",
-                                                      " (in 'sem_resid_rs', line 248, column 6 to line 252, column 7)",
-                                                      " (in 'sem_resid_rs', line 247, column 20 to line 253, column 5)",
-                                                      " (in 'sem_resid_rs', line 247, column 4 to line 253, column 5)",
-                                                      " (in 'sem_resid_rs', line 245, column 19 to line 254, column 3)",
-                                                      " (in 'sem_resid_rs', line 245, column 2 to line 254, column 3)",
-                                                      " (in 'sem_resid_rs', line 256, column 4 to column 11)",
-                                                      " (in 'sem_resid_rs', line 257, column 11 to column 13)",
-                                                      " (in 'sem_resid_rs', line 257, column 15 to column 17)",
-                                                      " (in 'sem_resid_rs', line 257, column 4 to column 25)",
+                                                      " (in 'sem_resid_rs', line 224, column 2 to column 50)",
+                                                      " (in 'sem_resid_rs', line 225, column 2 to column 38)",
+                                                      " (in 'sem_resid_rs', line 226, column 2 to column 22)",
+                                                      " (in 'sem_resid_rs', line 227, column 2 to column 47)",
+                                                      " (in 'sem_resid_rs', line 228, column 2 to column 39)",
+                                                      " (in 'sem_resid_rs', line 229, column 2 to column 43)",
+                                                      " (in 'sem_resid_rs', line 230, column 2 to column 22)",
+                                                      " (in 'sem_resid_rs', line 231, column 2 to column 49)",
+                                                      " (in 'sem_resid_rs', line 235, column 4 to column 18)",
+                                                      " (in 'sem_resid_rs', line 234, column 9 to line 236, column 3)",
+                                                      " (in 'sem_resid_rs', line 233, column 4 to column 27)",
+                                                      " (in 'sem_resid_rs', line 232, column 21 to line 234, column 3)",
+                                                      " (in 'sem_resid_rs', line 232, column 2 to line 236, column 3)",
+                                                      " (in 'sem_resid_rs', line 242, column 4 to line 244, column 6)",
+                                                      " (in 'sem_resid_rs', line 241, column 26 to line 245, column 3)",
+                                                      " (in 'sem_resid_rs', line 241, column 9 to line 245, column 3)",
+                                                      " (in 'sem_resid_rs', line 240, column 4 to column 29)",
+                                                      " (in 'sem_resid_rs', line 239, column 26 to line 241, column 3)",
+                                                      " (in 'sem_resid_rs', line 239, column 9 to line 245, column 3)",
+                                                      " (in 'sem_resid_rs', line 238, column 4 to column 24)",
+                                                      " (in 'sem_resid_rs', line 237, column 19 to line 239, column 3)",
+                                                      " (in 'sem_resid_rs', line 237, column 2 to line 245, column 3)",
+                                                      " (in 'sem_resid_rs', line 247, column 4 to column 16)",
+                                                      " (in 'sem_resid_rs', line 250, column 8 to column 17)",
+                                                      " (in 'sem_resid_rs', line 251, column 8 to column 49)",
+                                                      " (in 'sem_resid_rs', line 252, column 8 to column 34)",
+                                                      " (in 'sem_resid_rs', line 249, column 27 to line 253, column 7)",
+                                                      " (in 'sem_resid_rs', line 249, column 6 to line 253, column 7)",
+                                                      " (in 'sem_resid_rs', line 248, column 20 to line 254, column 5)",
+                                                      " (in 'sem_resid_rs', line 248, column 4 to line 254, column 5)",
+                                                      " (in 'sem_resid_rs', line 246, column 19 to line 255, column 3)",
+                                                      " (in 'sem_resid_rs', line 246, column 2 to line 255, column 3)",
+                                                      " (in 'sem_resid_rs', line 257, column 4 to column 11)",
                                                       " (in 'sem_resid_rs', line 258, column 11 to column 13)",
                                                       " (in 'sem_resid_rs', line 258, column 15 to column 17)",
-                                                      " (in 'sem_resid_rs', line 258, column 4 to column 27)",
+                                                      " (in 'sem_resid_rs', line 258, column 4 to column 25)",
                                                       " (in 'sem_resid_rs', line 259, column 11 to column 13)",
                                                       " (in 'sem_resid_rs', line 259, column 15 to column 17)",
-                                                      " (in 'sem_resid_rs', line 259, column 4 to column 25)",
+                                                      " (in 'sem_resid_rs', line 259, column 4 to column 27)",
                                                       " (in 'sem_resid_rs', line 260, column 11 to column 13)",
-                                                      " (in 'sem_resid_rs', line 260, column 15 to column 22)",
-                                                      " (in 'sem_resid_rs', line 260, column 4 to column 63)",
+                                                      " (in 'sem_resid_rs', line 260, column 15 to column 17)",
+                                                      " (in 'sem_resid_rs', line 260, column 4 to column 25)",
                                                       " (in 'sem_resid_rs', line 261, column 11 to column 13)",
-                                                      " (in 'sem_resid_rs', line 261, column 15 to column 17)",
-                                                      " (in 'sem_resid_rs', line 261, column 4 to column 29)",
+                                                      " (in 'sem_resid_rs', line 261, column 15 to column 22)",
+                                                      " (in 'sem_resid_rs', line 261, column 4 to column 63)",
                                                       " (in 'sem_resid_rs', line 262, column 11 to column 13)",
-                                                      " (in 'sem_resid_rs', line 262, column 4 to column 27)",
+                                                      " (in 'sem_resid_rs', line 262, column 15 to column 17)",
+                                                      " (in 'sem_resid_rs', line 262, column 4 to column 29)",
                                                       " (in 'sem_resid_rs', line 263, column 11 to column 13)",
-                                                      " (in 'sem_resid_rs', line 263, column 15 to column 18)",
-                                                      " (in 'sem_resid_rs', line 263, column 4 to column 61)",
+                                                      " (in 'sem_resid_rs', line 263, column 4 to column 27)",
                                                       " (in 'sem_resid_rs', line 264, column 11 to column 13)",
-                                                      " (in 'sem_resid_rs', line 264, column 15 to column 17)",
-                                                      " (in 'sem_resid_rs', line 264, column 4 to column 37)",
+                                                      " (in 'sem_resid_rs', line 264, column 15 to column 18)",
+                                                      " (in 'sem_resid_rs', line 264, column 4 to column 61)",
                                                       " (in 'sem_resid_rs', line 265, column 11 to column 13)",
                                                       " (in 'sem_resid_rs', line 265, column 15 to column 17)",
-                                                      " (in 'sem_resid_rs', line 265, column 4 to column 36)",
+                                                      " (in 'sem_resid_rs', line 265, column 4 to column 37)",
                                                       " (in 'sem_resid_rs', line 266, column 11 to column 13)",
                                                       " (in 'sem_resid_rs', line 266, column 15 to column 17)",
-                                                      " (in 'sem_resid_rs', line 266, column 4 to column 43)",
+                                                      " (in 'sem_resid_rs', line 266, column 4 to column 36)",
                                                       " (in 'sem_resid_rs', line 267, column 11 to column 13)",
-                                                      " (in 'sem_resid_rs', line 267, column 4 to column 29)",
+                                                      " (in 'sem_resid_rs', line 267, column 15 to column 17)",
+                                                      " (in 'sem_resid_rs', line 267, column 4 to column 43)",
                                                       " (in 'sem_resid_rs', line 268, column 11 to column 13)",
-                                                      " (in 'sem_resid_rs', line 268, column 4 to column 25)",
+                                                      " (in 'sem_resid_rs', line 268, column 4 to column 29)",
                                                       " (in 'sem_resid_rs', line 269, column 11 to column 13)",
-                                                      " (in 'sem_resid_rs', line 269, column 4 to column 26)",
-                                                      " (in 'sem_resid_rs', line 271, column 6 to column 37)",
-                                                      " (in 'sem_resid_rs', line 273, column 40 to column 54)",
-                                                      " (in 'sem_resid_rs', line 273, column 8 to column 54)",
-                                                      " (in 'sem_resid_rs', line 276, column 12 to column 26)",
-                                                      " (in 'sem_resid_rs', line 277, column 12 to column 69)",
-                                                      " (in 'sem_resid_rs', line 275, column 39 to line 278, column 11)",
-                                                      " (in 'sem_resid_rs', line 275, column 10 to line 278, column 11)",
-                                                      " (in 'sem_resid_rs', line 274, column 24 to line 279, column 9)",
-                                                      " (in 'sem_resid_rs', line 274, column 8 to line 279, column 9)",
-                                                      " (in 'sem_resid_rs', line 272, column 22 to line 280, column 7)",
-                                                      " (in 'sem_resid_rs', line 272, column 6 to line 280, column 7)",
-                                                      " (in 'sem_resid_rs', line 286, column 14 to column 28)",
-                                                      " (in 'sem_resid_rs', line 287, column 14 to column 50)",
-                                                      " (in 'sem_resid_rs', line 285, column 17 to line 288, column 13)",
-                                                      " (in 'sem_resid_rs', line 284, column 33 to column 52)",
-                                                      " (in 'sem_resid_rs', line 284, column 12 to line 288, column 13)",
-                                                      " (in 'sem_resid_rs', line 283, column 42 to line 289, column 11)",
-                                                      " (in 'sem_resid_rs', line 283, column 10 to line 289, column 11)",
-                                                      " (in 'sem_resid_rs', line 282, column 24 to line 290, column 9)",
-                                                      " (in 'sem_resid_rs', line 282, column 8 to line 290, column 9)",
-                                                      " (in 'sem_resid_rs', line 281, column 22 to line 291, column 7)",
-                                                      " (in 'sem_resid_rs', line 281, column 6 to line 291, column 7)",
-                                                      " (in 'sem_resid_rs', line 270, column 4 to line 292, column 5)",
-                                                      " (in 'sem_resid_rs', line 293, column 4 to column 26)",
+                                                      " (in 'sem_resid_rs', line 269, column 4 to column 25)",
+                                                      " (in 'sem_resid_rs', line 270, column 11 to column 13)",
+                                                      " (in 'sem_resid_rs', line 270, column 4 to column 26)",
+                                                      " (in 'sem_resid_rs', line 272, column 6 to column 37)",
+                                                      " (in 'sem_resid_rs', line 274, column 40 to column 54)",
+                                                      " (in 'sem_resid_rs', line 274, column 8 to column 54)",
+                                                      " (in 'sem_resid_rs', line 277, column 12 to column 26)",
+                                                      " (in 'sem_resid_rs', line 278, column 12 to column 69)",
+                                                      " (in 'sem_resid_rs', line 276, column 39 to line 279, column 11)",
+                                                      " (in 'sem_resid_rs', line 276, column 10 to line 279, column 11)",
+                                                      " (in 'sem_resid_rs', line 275, column 24 to line 280, column 9)",
+                                                      " (in 'sem_resid_rs', line 275, column 8 to line 280, column 9)",
+                                                      " (in 'sem_resid_rs', line 273, column 22 to line 281, column 7)",
+                                                      " (in 'sem_resid_rs', line 273, column 6 to line 281, column 7)",
+                                                      " (in 'sem_resid_rs', line 287, column 14 to column 28)",
+                                                      " (in 'sem_resid_rs', line 288, column 14 to column 50)",
+                                                      " (in 'sem_resid_rs', line 286, column 17 to line 289, column 13)",
+                                                      " (in 'sem_resid_rs', line 285, column 33 to column 52)",
+                                                      " (in 'sem_resid_rs', line 285, column 12 to line 289, column 13)",
+                                                      " (in 'sem_resid_rs', line 284, column 42 to line 290, column 11)",
+                                                      " (in 'sem_resid_rs', line 284, column 10 to line 290, column 11)",
+                                                      " (in 'sem_resid_rs', line 283, column 24 to line 291, column 9)",
+                                                      " (in 'sem_resid_rs', line 283, column 8 to line 291, column 9)",
+                                                      " (in 'sem_resid_rs', line 282, column 22 to line 292, column 7)",
+                                                      " (in 'sem_resid_rs', line 282, column 6 to line 292, column 7)",
+                                                      " (in 'sem_resid_rs', line 271, column 4 to line 293, column 5)",
                                                       " (in 'sem_resid_rs', line 294, column 4 to column 26)",
-                                                      " (in 'sem_resid_rs', line 295, column 4 to column 74)",
-                                                      " (in 'sem_resid_rs', line 296, column 4 to column 58)",
-                                                      " (in 'sem_resid_rs', line 298, column 6 to line 299, column 53)",
-                                                      " (in 'sem_resid_rs', line 300, column 6 to line 301, column 53)",
-                                                      " (in 'sem_resid_rs', line 297, column 25 to line 302, column 5)",
-                                                      " (in 'sem_resid_rs', line 297, column 4 to line 302, column 5)",
-                                                      " (in 'sem_resid_rs', line 303, column 4 to column 38)",
-                                                      " (in 'sem_resid_rs', line 304, column 4 to column 48)",
-                                                      " (in 'sem_resid_rs', line 306, column 6 to line 307, column 52)",
-                                                      " (in 'sem_resid_rs', line 308, column 6 to line 309, column 52)",
-                                                      " (in 'sem_resid_rs', line 305, column 21 to line 310, column 5)",
-                                                      " (in 'sem_resid_rs', line 305, column 4 to line 310, column 5)",
-                                                      " (in 'sem_resid_rs', line 311, column 4 to column 52)",
-                                                      " (in 'sem_resid_rs', line 312, column 4 to column 58)",
-                                                      " (in 'sem_resid_rs', line 313, column 4 to line 317, column 21)",
-                                                      " (in 'sem_resid_rs', line 318, column 4 to column 32)",
-                                                      " (in 'sem_resid_rs', line 320, column 6 to column 18)",
-                                                      " (in 'sem_resid_rs', line 323, column 10 to column 19)",
-                                                      " (in 'sem_resid_rs', line 324, column 10 to column 88)",
-                                                      " (in 'sem_resid_rs', line 325, column 10 to column 36)",
-                                                      " (in 'sem_resid_rs', line 322, column 29 to line 326, column 9)",
-                                                      " (in 'sem_resid_rs', line 322, column 8 to line 326, column 9)",
-                                                      " (in 'sem_resid_rs', line 321, column 22 to line 327, column 7)",
-                                                      " (in 'sem_resid_rs', line 321, column 6 to line 327, column 7)",
-                                                      " (in 'sem_resid_rs', line 319, column 21 to line 328, column 5)",
-                                                      " (in 'sem_resid_rs', line 319, column 4 to line 328, column 5)",
-                                                      " (in 'sem_resid_rs', line 342, column 6 to column 56)",
-                                                      " (in 'sem_resid_rs', line 343, column 6 to column 68)",
-                                                      " (in 'sem_resid_rs', line 344, column 6 to column 72)",
-                                                      " (in 'sem_resid_rs', line 341, column 11 to line 345, column 5)",
-                                                      " (in 'sem_resid_rs', line 337, column 8 to column 58)",
-                                                      " (in 'sem_resid_rs', line 338, column 8 to column 57)",
-                                                      " (in 'sem_resid_rs', line 339, column 8 to column 61)",
-                                                      " (in 'sem_resid_rs', line 336, column 31 to line 340, column 7)",
-                                                      " (in 'sem_resid_rs', line 336, column 13 to line 340, column 7)",
-                                                      " (in 'sem_resid_rs', line 331, column 8 to column 48)",
+                                                      " (in 'sem_resid_rs', line 295, column 4 to column 26)",
+                                                      " (in 'sem_resid_rs', line 296, column 4 to column 74)",
+                                                      " (in 'sem_resid_rs', line 297, column 4 to column 58)",
+                                                      " (in 'sem_resid_rs', line 299, column 6 to line 300, column 53)",
+                                                      " (in 'sem_resid_rs', line 301, column 6 to line 302, column 53)",
+                                                      " (in 'sem_resid_rs', line 298, column 25 to line 303, column 5)",
+                                                      " (in 'sem_resid_rs', line 298, column 4 to line 303, column 5)",
+                                                      " (in 'sem_resid_rs', line 304, column 4 to column 38)",
+                                                      " (in 'sem_resid_rs', line 305, column 4 to column 48)",
+                                                      " (in 'sem_resid_rs', line 307, column 6 to line 308, column 52)",
+                                                      " (in 'sem_resid_rs', line 309, column 6 to line 310, column 52)",
+                                                      " (in 'sem_resid_rs', line 306, column 21 to line 311, column 5)",
+                                                      " (in 'sem_resid_rs', line 306, column 4 to line 311, column 5)",
+                                                      " (in 'sem_resid_rs', line 312, column 4 to column 52)",
+                                                      " (in 'sem_resid_rs', line 313, column 4 to column 58)",
+                                                      " (in 'sem_resid_rs', line 314, column 4 to line 318, column 21)",
+                                                      " (in 'sem_resid_rs', line 319, column 4 to column 32)",
+                                                      " (in 'sem_resid_rs', line 321, column 6 to column 18)",
+                                                      " (in 'sem_resid_rs', line 324, column 10 to column 19)",
+                                                      " (in 'sem_resid_rs', line 325, column 10 to column 88)",
+                                                      " (in 'sem_resid_rs', line 326, column 10 to column 36)",
+                                                      " (in 'sem_resid_rs', line 323, column 29 to line 327, column 9)",
+                                                      " (in 'sem_resid_rs', line 323, column 8 to line 327, column 9)",
+                                                      " (in 'sem_resid_rs', line 322, column 22 to line 328, column 7)",
+                                                      " (in 'sem_resid_rs', line 322, column 6 to line 328, column 7)",
+                                                      " (in 'sem_resid_rs', line 320, column 21 to line 329, column 5)",
+                                                      " (in 'sem_resid_rs', line 320, column 4 to line 329, column 5)",
+                                                      " (in 'sem_resid_rs', line 343, column 6 to column 56)",
+                                                      " (in 'sem_resid_rs', line 344, column 6 to column 68)",
+                                                      " (in 'sem_resid_rs', line 345, column 6 to column 72)",
+                                                      " (in 'sem_resid_rs', line 342, column 11 to line 346, column 5)",
+                                                      " (in 'sem_resid_rs', line 338, column 8 to column 58)",
+                                                      " (in 'sem_resid_rs', line 339, column 8 to column 57)",
+                                                      " (in 'sem_resid_rs', line 340, column 8 to column 61)",
+                                                      " (in 'sem_resid_rs', line 337, column 31 to line 341, column 7)",
+                                                      " (in 'sem_resid_rs', line 337, column 13 to line 341, column 7)",
                                                       " (in 'sem_resid_rs', line 332, column 8 to column 48)",
-                                                      " (in 'sem_resid_rs', line 333, column 8 to column 60)",
-                                                      " (in 'sem_resid_rs', line 334, column 8 to column 81)",
-                                                      " (in 'sem_resid_rs', line 335, column 8 to column 85)",
-                                                      " (in 'sem_resid_rs', line 330, column 24 to line 336, column 7)",
-                                                      " (in 'sem_resid_rs', line 330, column 6 to line 340, column 7)",
-                                                      " (in 'sem_resid_rs', line 329, column 38 to line 341, column 5)",
-                                                      " (in 'sem_resid_rs', line 329, column 4 to line 345, column 5)",
-                                                      " (in 'sem_resid_rs', line 346, column 4 to column 36)",
-                                                      " (in 'sem_resid_rs', line 348, column 4 to line 351, column 8)",
-                                                      " (in 'sem_resid_rs', line 353, column 6 to column 37)",
+                                                      " (in 'sem_resid_rs', line 333, column 8 to column 48)",
+                                                      " (in 'sem_resid_rs', line 334, column 8 to column 60)",
+                                                      " (in 'sem_resid_rs', line 335, column 8 to column 81)",
+                                                      " (in 'sem_resid_rs', line 336, column 8 to column 85)",
+                                                      " (in 'sem_resid_rs', line 331, column 24 to line 337, column 7)",
+                                                      " (in 'sem_resid_rs', line 331, column 6 to line 341, column 7)",
+                                                      " (in 'sem_resid_rs', line 330, column 38 to line 342, column 5)",
+                                                      " (in 'sem_resid_rs', line 330, column 4 to line 346, column 5)",
+                                                      " (in 'sem_resid_rs', line 347, column 4 to column 36)",
+                                                      " (in 'sem_resid_rs', line 349, column 4 to line 352, column 8)",
                                                       " (in 'sem_resid_rs', line 354, column 6 to column 37)",
                                                       " (in 'sem_resid_rs', line 355, column 6 to column 37)",
-                                                      " (in 'sem_resid_rs', line 356, column 6 to column 61)",
-                                                      " (in 'sem_resid_rs', line 352, column 20 to line 357, column 5)",
-                                                      " (in 'sem_resid_rs', line 352, column 4 to line 357, column 5)",
-                                                      " (in 'sem_resid_rs', line 359, column 6 to column 42)",
-                                                      " (in 'sem_resid_rs', line 358, column 20 to line 360, column 5)",
-                                                      " (in 'sem_resid_rs', line 358, column 4 to line 360, column 5)",
-                                                      " (in 'sem_resid_rs', line 255, column 2 to line 361, column 3)",
-                                                      " (in 'sem_resid_rs', line 363, column 4 to column 60)",
-                                                      " (in 'sem_resid_rs', line 362, column 19 to line 364, column 3)",
-                                                      " (in 'sem_resid_rs', line 362, column 2 to line 364, column 3)",
+                                                      " (in 'sem_resid_rs', line 356, column 6 to column 37)",
+                                                      " (in 'sem_resid_rs', line 357, column 6 to column 61)",
+                                                      " (in 'sem_resid_rs', line 353, column 20 to line 358, column 5)",
+                                                      " (in 'sem_resid_rs', line 353, column 4 to line 358, column 5)",
+                                                      " (in 'sem_resid_rs', line 360, column 6 to column 42)",
+                                                      " (in 'sem_resid_rs', line 359, column 20 to line 361, column 5)",
+                                                      " (in 'sem_resid_rs', line 359, column 4 to line 361, column 5)",
+                                                      " (in 'sem_resid_rs', line 256, column 2 to line 362, column 3)",
+                                                      " (in 'sem_resid_rs', line 364, column 4 to column 60)",
+                                                      " (in 'sem_resid_rs', line 363, column 19 to line 365, column 3)",
+                                                      " (in 'sem_resid_rs', line 363, column 2 to line 365, column 3)",
                                                       " (in 'sem_resid_rs', line 101, column 2 to column 27)",
                                                       " (in 'sem_resid_rs', line 113, column 4 to column 32)",
                                                       " (in 'sem_resid_rs', line 114, column 4 to line 115, column 29)",
@@ -307,70 +307,71 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'sem_resid_rs', line 141, column 4 to column 29)",
                                                       " (in 'sem_resid_rs', line 142, column 11 to column 13)",
                                                       " (in 'sem_resid_rs', line 142, column 4 to column 25)",
-                                                      " (in 'sem_resid_rs', line 144, column 6 to column 37)",
-                                                      " (in 'sem_resid_rs', line 146, column 40 to column 54)",
-                                                      " (in 'sem_resid_rs', line 146, column 8 to column 54)",
-                                                      " (in 'sem_resid_rs', line 149, column 12 to column 26)",
-                                                      " (in 'sem_resid_rs', line 150, column 12 to column 69)",
-                                                      " (in 'sem_resid_rs', line 148, column 39 to line 151, column 11)",
-                                                      " (in 'sem_resid_rs', line 148, column 10 to line 151, column 11)",
-                                                      " (in 'sem_resid_rs', line 147, column 24 to line 152, column 9)",
-                                                      " (in 'sem_resid_rs', line 147, column 8 to line 152, column 9)",
-                                                      " (in 'sem_resid_rs', line 145, column 22 to line 153, column 7)",
-                                                      " (in 'sem_resid_rs', line 145, column 6 to line 153, column 7)",
-                                                      " (in 'sem_resid_rs', line 159, column 14 to column 28)",
-                                                      " (in 'sem_resid_rs', line 160, column 14 to column 50)",
-                                                      " (in 'sem_resid_rs', line 158, column 17 to line 161, column 13)",
-                                                      " (in 'sem_resid_rs', line 157, column 33 to column 52)",
-                                                      " (in 'sem_resid_rs', line 157, column 12 to line 161, column 13)",
-                                                      " (in 'sem_resid_rs', line 156, column 42 to line 162, column 11)",
-                                                      " (in 'sem_resid_rs', line 156, column 10 to line 162, column 11)",
-                                                      " (in 'sem_resid_rs', line 155, column 24 to line 163, column 9)",
-                                                      " (in 'sem_resid_rs', line 155, column 8 to line 163, column 9)",
-                                                      " (in 'sem_resid_rs', line 154, column 22 to line 164, column 7)",
-                                                      " (in 'sem_resid_rs', line 154, column 6 to line 164, column 7)",
-                                                      " (in 'sem_resid_rs', line 143, column 4 to line 165, column 5)",
-                                                      " (in 'sem_resid_rs', line 166, column 4 to column 92)",
-                                                      " (in 'sem_resid_rs', line 168, column 6 to line 169, column 53)",
-                                                      " (in 'sem_resid_rs', line 170, column 6 to line 171, column 53)",
-                                                      " (in 'sem_resid_rs', line 167, column 25 to line 172, column 5)",
-                                                      " (in 'sem_resid_rs', line 167, column 4 to line 172, column 5)",
-                                                      " (in 'sem_resid_rs', line 173, column 4 to column 38)",
-                                                      " (in 'sem_resid_rs', line 174, column 4 to column 48)",
-                                                      " (in 'sem_resid_rs', line 176, column 6 to line 177, column 52)",
-                                                      " (in 'sem_resid_rs', line 178, column 6 to line 179, column 52)",
-                                                      " (in 'sem_resid_rs', line 175, column 21 to line 180, column 5)",
-                                                      " (in 'sem_resid_rs', line 175, column 4 to line 180, column 5)",
-                                                      " (in 'sem_resid_rs', line 181, column 4 to column 52)",
-                                                      " (in 'sem_resid_rs', line 182, column 4 to column 58)",
-                                                      " (in 'sem_resid_rs', line 183, column 4 to line 187, column 21)",
-                                                      " (in 'sem_resid_rs', line 188, column 4 to column 32)",
-                                                      " (in 'sem_resid_rs', line 190, column 6 to column 18)",
-                                                      " (in 'sem_resid_rs', line 193, column 10 to column 19)",
-                                                      " (in 'sem_resid_rs', line 194, column 10 to column 88)",
-                                                      " (in 'sem_resid_rs', line 195, column 10 to column 36)",
-                                                      " (in 'sem_resid_rs', line 192, column 29 to line 196, column 9)",
-                                                      " (in 'sem_resid_rs', line 192, column 8 to line 196, column 9)",
-                                                      " (in 'sem_resid_rs', line 191, column 22 to line 197, column 7)",
-                                                      " (in 'sem_resid_rs', line 191, column 6 to line 197, column 7)",
-                                                      " (in 'sem_resid_rs', line 189, column 21 to line 198, column 5)",
-                                                      " (in 'sem_resid_rs', line 189, column 4 to line 198, column 5)",
-                                                      " (in 'sem_resid_rs', line 200, column 6 to column 52)",
-                                                      " (in 'sem_resid_rs', line 199, column 22 to line 201, column 5)",
-                                                      " (in 'sem_resid_rs', line 199, column 4 to line 201, column 5)",
-                                                      " (in 'sem_resid_rs', line 211, column 6 to column 50)",
-                                                      " (in 'sem_resid_rs', line 210, column 11 to line 212, column 5)",
-                                                      " (in 'sem_resid_rs', line 203, column 6 to column 46)",
-                                                      " (in 'sem_resid_rs', line 207, column 8 to column 42)",
-                                                      " (in 'sem_resid_rs', line 208, column 8 to column 52)",
-                                                      " (in 'sem_resid_rs', line 206, column 31 to line 209, column 7)",
-                                                      " (in 'sem_resid_rs', line 206, column 13 to line 209, column 7)",
-                                                      " (in 'sem_resid_rs', line 205, column 8 to column 76)",
-                                                      " (in 'sem_resid_rs', line 204, column 24 to line 206, column 7)",
-                                                      " (in 'sem_resid_rs', line 204, column 6 to line 209, column 7)",
-                                                      " (in 'sem_resid_rs', line 202, column 38 to line 210, column 5)",
-                                                      " (in 'sem_resid_rs', line 202, column 4 to line 212, column 5)",
-                                                      " (in 'sem_resid_rs', line 126, column 2 to line 213, column 3)",
+                                                      " (in 'sem_resid_rs', line 143, column 4 to column 46)",
+                                                      " (in 'sem_resid_rs', line 145, column 6 to column 37)",
+                                                      " (in 'sem_resid_rs', line 147, column 40 to column 54)",
+                                                      " (in 'sem_resid_rs', line 147, column 8 to column 54)",
+                                                      " (in 'sem_resid_rs', line 150, column 12 to column 26)",
+                                                      " (in 'sem_resid_rs', line 151, column 12 to column 69)",
+                                                      " (in 'sem_resid_rs', line 149, column 39 to line 152, column 11)",
+                                                      " (in 'sem_resid_rs', line 149, column 10 to line 152, column 11)",
+                                                      " (in 'sem_resid_rs', line 148, column 24 to line 153, column 9)",
+                                                      " (in 'sem_resid_rs', line 148, column 8 to line 153, column 9)",
+                                                      " (in 'sem_resid_rs', line 146, column 22 to line 154, column 7)",
+                                                      " (in 'sem_resid_rs', line 146, column 6 to line 154, column 7)",
+                                                      " (in 'sem_resid_rs', line 160, column 14 to column 28)",
+                                                      " (in 'sem_resid_rs', line 161, column 14 to column 50)",
+                                                      " (in 'sem_resid_rs', line 159, column 17 to line 162, column 13)",
+                                                      " (in 'sem_resid_rs', line 158, column 33 to column 52)",
+                                                      " (in 'sem_resid_rs', line 158, column 12 to line 162, column 13)",
+                                                      " (in 'sem_resid_rs', line 157, column 42 to line 163, column 11)",
+                                                      " (in 'sem_resid_rs', line 157, column 10 to line 163, column 11)",
+                                                      " (in 'sem_resid_rs', line 156, column 24 to line 164, column 9)",
+                                                      " (in 'sem_resid_rs', line 156, column 8 to line 164, column 9)",
+                                                      " (in 'sem_resid_rs', line 155, column 22 to line 165, column 7)",
+                                                      " (in 'sem_resid_rs', line 155, column 6 to line 165, column 7)",
+                                                      " (in 'sem_resid_rs', line 144, column 4 to line 166, column 5)",
+                                                      " (in 'sem_resid_rs', line 167, column 4 to column 92)",
+                                                      " (in 'sem_resid_rs', line 169, column 6 to line 170, column 53)",
+                                                      " (in 'sem_resid_rs', line 171, column 6 to line 172, column 53)",
+                                                      " (in 'sem_resid_rs', line 168, column 25 to line 173, column 5)",
+                                                      " (in 'sem_resid_rs', line 168, column 4 to line 173, column 5)",
+                                                      " (in 'sem_resid_rs', line 174, column 4 to column 38)",
+                                                      " (in 'sem_resid_rs', line 175, column 4 to column 48)",
+                                                      " (in 'sem_resid_rs', line 177, column 6 to line 178, column 52)",
+                                                      " (in 'sem_resid_rs', line 179, column 6 to line 180, column 52)",
+                                                      " (in 'sem_resid_rs', line 176, column 21 to line 181, column 5)",
+                                                      " (in 'sem_resid_rs', line 176, column 4 to line 181, column 5)",
+                                                      " (in 'sem_resid_rs', line 182, column 4 to column 52)",
+                                                      " (in 'sem_resid_rs', line 183, column 4 to column 58)",
+                                                      " (in 'sem_resid_rs', line 184, column 4 to line 188, column 21)",
+                                                      " (in 'sem_resid_rs', line 189, column 4 to column 32)",
+                                                      " (in 'sem_resid_rs', line 191, column 6 to column 18)",
+                                                      " (in 'sem_resid_rs', line 194, column 10 to column 19)",
+                                                      " (in 'sem_resid_rs', line 195, column 10 to column 88)",
+                                                      " (in 'sem_resid_rs', line 196, column 10 to column 36)",
+                                                      " (in 'sem_resid_rs', line 193, column 29 to line 197, column 9)",
+                                                      " (in 'sem_resid_rs', line 193, column 8 to line 197, column 9)",
+                                                      " (in 'sem_resid_rs', line 192, column 22 to line 198, column 7)",
+                                                      " (in 'sem_resid_rs', line 192, column 6 to line 198, column 7)",
+                                                      " (in 'sem_resid_rs', line 190, column 21 to line 199, column 5)",
+                                                      " (in 'sem_resid_rs', line 190, column 4 to line 199, column 5)",
+                                                      " (in 'sem_resid_rs', line 201, column 6 to column 40)",
+                                                      " (in 'sem_resid_rs', line 200, column 22 to line 202, column 5)",
+                                                      " (in 'sem_resid_rs', line 200, column 4 to line 202, column 5)",
+                                                      " (in 'sem_resid_rs', line 212, column 6 to column 50)",
+                                                      " (in 'sem_resid_rs', line 211, column 11 to line 213, column 5)",
+                                                      " (in 'sem_resid_rs', line 204, column 6 to column 46)",
+                                                      " (in 'sem_resid_rs', line 208, column 8 to column 42)",
+                                                      " (in 'sem_resid_rs', line 209, column 8 to column 52)",
+                                                      " (in 'sem_resid_rs', line 207, column 31 to line 210, column 7)",
+                                                      " (in 'sem_resid_rs', line 207, column 13 to line 210, column 7)",
+                                                      " (in 'sem_resid_rs', line 206, column 8 to column 76)",
+                                                      " (in 'sem_resid_rs', line 205, column 24 to line 207, column 7)",
+                                                      " (in 'sem_resid_rs', line 205, column 6 to line 210, column 7)",
+                                                      " (in 'sem_resid_rs', line 203, column 38 to line 211, column 5)",
+                                                      " (in 'sem_resid_rs', line 203, column 4 to line 213, column 5)",
+                                                      " (in 'sem_resid_rs', line 126, column 2 to line 214, column 3)",
                                                       " (in 'sem_resid_rs', line 33, column 2 to column 9)",
                                                       " (in 'sem_resid_rs', line 34, column 2 to column 9)",
                                                       " (in 'sem_resid_rs', line 35, column 9 to column 11)",
@@ -446,8 +447,6 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'sem_resid_rs', line 96, column 9 to column 19)",
                                                       " (in 'sem_resid_rs', line 97, column 20 to column 33)",
                                                       " (in 'sem_resid_rs', line 98, column 13 to column 20)",
-                                                      " (in 'sem_resid_rs', line 220, column 9 to column 11)",
-                                                      " (in 'sem_resid_rs', line 220, column 13 to column 15)",
                                                       " (in 'sem_resid_rs', line 221, column 9 to column 11)",
                                                       " (in 'sem_resid_rs', line 221, column 13 to column 15)",
                                                       " (in 'sem_resid_rs', line 222, column 9 to column 11)",
@@ -455,13 +454,15 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'sem_resid_rs', line 223, column 9 to column 11)",
                                                       " (in 'sem_resid_rs', line 223, column 13 to column 15)",
                                                       " (in 'sem_resid_rs', line 224, column 9 to column 11)",
+                                                      " (in 'sem_resid_rs', line 224, column 13 to column 15)",
                                                       " (in 'sem_resid_rs', line 225, column 9 to column 11)",
-                                                      " (in 'sem_resid_rs', line 226, column 9 to column 16)",
-                                                      " (in 'sem_resid_rs', line 227, column 9 to column 11)",
-                                                      " (in 'sem_resid_rs', line 228, column 9 to column 12)",
+                                                      " (in 'sem_resid_rs', line 226, column 9 to column 11)",
+                                                      " (in 'sem_resid_rs', line 227, column 9 to column 16)",
+                                                      " (in 'sem_resid_rs', line 228, column 9 to column 11)",
                                                       " (in 'sem_resid_rs', line 229, column 9 to column 12)",
-                                                      " (in 'sem_resid_rs', line 230, column 9 to column 11)",
-                                                      " (in 'sem_resid_rs', line 230, column 13 to column 15)",
+                                                      " (in 'sem_resid_rs', line 230, column 9 to column 12)",
+                                                      " (in 'sem_resid_rs', line 231, column 9 to column 11)",
+                                                      " (in 'sem_resid_rs', line 231, column 13 to column 15)",
                                                       " (in 'sem_resid_rs', line 6, column 6 to column 16)",
                                                       " (in 'sem_resid_rs', line 4, column 6 to column 15)",
                                                       " (in 'sem_resid_rs', line 3, column 4 to line 6, column 16)",
@@ -488,12 +489,12 @@ sign(const T0__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 390;
+    current_statement__ = 391;
     if (logical_gt(x, 0)) {
-      current_statement__ = 389;
+      current_statement__ = 390;
       return 1;
     } else {
-      current_statement__ = 388;
+      current_statement__ = 389;
       return -1;
     }
   } catch (const std::exception& e) {
@@ -523,7 +524,7 @@ generalized_double_pareto_lpdf(const T0__& x_arg__, const T1__& alpha,
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 392;
+    current_statement__ = 393;
     return sum(
              multiply(-(alpha + 1.0),
                stan::math::log(add(1.0, divide(stan::math::fabs(x), alpha)))));
@@ -553,7 +554,7 @@ eff(const int& p, const T1__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 394;
+    current_statement__ = 395;
     return (((2 * lmgamma(p, (x / 2))) -
               ((x * p) * stan::math::log((x / 2)))) + (x * p));
   } catch (const std::exception& e) {
@@ -582,7 +583,7 @@ ln_det_spd(const T0__& S_arg__, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 396;
+    current_statement__ = 397;
     return (2 * sum(stan::math::log(diagonal(cholesky_decompose(S)))));
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -621,18 +622,18 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     int p;
     p = std::numeric_limits<int>::min();
     
-    current_statement__ = 398;
+    current_statement__ = 399;
     p = rows(S);
     local_scalar_t__ F_1;
     F_1 = DUMMY_VAR__;
     
-    current_statement__ = 399;
+    current_statement__ = 400;
     F_1 = ((eff(p, m, pstream__) + eff(p, n, pstream__)) -
             eff(p, (m + n), pstream__));
     local_scalar_t__ F_2;
     F_2 = DUMMY_VAR__;
     
-    current_statement__ = 400;
+    current_statement__ = 401;
     F_2 = ((-(((n - p) - 1) * ln_det_S) - (m * ln_det_spd(Omega, pstream__)))
             +
             ((m + n) *
@@ -641,9 +642,9 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     local_scalar_t__ ll;
     ll = DUMMY_VAR__;
     
-    current_statement__ = 401;
-    ll = ((F_1 + F_2) / -2.0);
     current_statement__ = 402;
+    ll = ((F_1 + F_2) / -2.0);
+    current_statement__ = 403;
     return ll;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -723,25 +724,25 @@ public:
       pos__ = std::numeric_limits<int>::min();
       
       pos__ = 1;
-      current_statement__ = 297;
+      current_statement__ = 298;
       context__.validate_dims("data initialization","Np","int",
           context__.to_vec());
       Np = std::numeric_limits<int>::min();
       
-      current_statement__ = 297;
-      Np = context__.vals_i("Np")[(1 - 1)];
       current_statement__ = 298;
+      Np = context__.vals_i("Np")[(1 - 1)];
+      current_statement__ = 299;
       context__.validate_dims("data initialization","Ni","int",
           context__.to_vec());
       Ni = std::numeric_limits<int>::min();
       
-      current_statement__ = 298;
-      Ni = context__.vals_i("Ni")[(1 - 1)];
       current_statement__ = 299;
-      validate_non_negative_index("S", "Ni", Ni);
+      Ni = context__.vals_i("Ni")[(1 - 1)];
       current_statement__ = 300;
       validate_non_negative_index("S", "Ni", Ni);
       current_statement__ = 301;
+      validate_non_negative_index("S", "Ni", Ni);
+      current_statement__ = 302;
       context__.validate_dims("data initialization","S","double",
           context__.to_vec(Ni, Ni));
       S = Eigen::Matrix<double, -1, -1>(Ni, Ni);
@@ -749,69 +750,69 @@ public:
       
       {
         std::vector<local_scalar_t__> S_flat__;
-        current_statement__ = 301;
+        current_statement__ = 302;
         assign(S_flat__, nil_index_list(), context__.vals_r("S"),
           "assigning variable S_flat__");
-        current_statement__ = 301;
+        current_statement__ = 302;
         pos__ = 1;
-        current_statement__ = 301;
+        current_statement__ = 302;
         for (int sym1__ = 1; sym1__ <= Ni; ++sym1__) {
-          current_statement__ = 301;
+          current_statement__ = 302;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 301;
+            current_statement__ = 302;
             assign(S,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               S_flat__[(pos__ - 1)], "assigning variable S");
-            current_statement__ = 301;
+            current_statement__ = 302;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 302;
+      current_statement__ = 303;
       context__.validate_dims("data initialization","Nf","int",
           context__.to_vec());
       Nf = std::numeric_limits<int>::min();
       
-      current_statement__ = 302;
-      Nf = context__.vals_i("Nf")[(1 - 1)];
       current_statement__ = 303;
+      Nf = context__.vals_i("Nf")[(1 - 1)];
+      current_statement__ = 304;
       context__.validate_dims("data initialization","Nce","int",
           context__.to_vec());
       Nce = std::numeric_limits<int>::min();
       
-      current_statement__ = 303;
-      Nce = context__.vals_i("Nce")[(1 - 1)];
       current_statement__ = 304;
-      validate_non_negative_index("error_mat", "Nce", Nce);
+      Nce = context__.vals_i("Nce")[(1 - 1)];
       current_statement__ = 305;
+      validate_non_negative_index("error_mat", "Nce", Nce);
+      current_statement__ = 306;
       context__.validate_dims("data initialization","error_mat","int",
           context__.to_vec(Nce, 2));
       error_mat = std::vector<std::vector<int>>(Nce, std::vector<int>(2, std::numeric_limits<int>::min()));
       
       {
         std::vector<int> error_mat_flat__;
-        current_statement__ = 305;
+        current_statement__ = 306;
         assign(error_mat_flat__, nil_index_list(),
           context__.vals_i("error_mat"),
           "assigning variable error_mat_flat__");
-        current_statement__ = 305;
+        current_statement__ = 306;
         pos__ = 1;
-        current_statement__ = 305;
+        current_statement__ = 306;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 305;
+          current_statement__ = 306;
           for (int sym2__ = 1; sym2__ <= Nce; ++sym2__) {
-            current_statement__ = 305;
+            current_statement__ = 306;
             assign(error_mat,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               error_mat_flat__[(pos__ - 1)], "assigning variable error_mat");
-            current_statement__ = 305;
+            current_statement__ = 306;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 306;
-      validate_non_negative_index("loading_pattern", "Ni", Ni);
       current_statement__ = 307;
-      validate_non_negative_index("loading_pattern", "Nf", Nf);
+      validate_non_negative_index("loading_pattern", "Ni", Ni);
       current_statement__ = 308;
+      validate_non_negative_index("loading_pattern", "Nf", Nf);
+      current_statement__ = 309;
       context__.validate_dims("data initialization","loading_pattern",
           "double",context__.to_vec(Ni, Nf));
       loading_pattern = Eigen::Matrix<double, -1, -1>(Ni, Nf);
@@ -819,339 +820,339 @@ public:
       
       {
         std::vector<local_scalar_t__> loading_pattern_flat__;
-        current_statement__ = 308;
+        current_statement__ = 309;
         assign(loading_pattern_flat__, nil_index_list(),
           context__.vals_r("loading_pattern"),
           "assigning variable loading_pattern_flat__");
-        current_statement__ = 308;
+        current_statement__ = 309;
         pos__ = 1;
-        current_statement__ = 308;
+        current_statement__ = 309;
         for (int sym1__ = 1; sym1__ <= Nf; ++sym1__) {
-          current_statement__ = 308;
+          current_statement__ = 309;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 308;
+            current_statement__ = 309;
             assign(loading_pattern,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               loading_pattern_flat__[(pos__ - 1)],
               "assigning variable loading_pattern");
-            current_statement__ = 308;
+            current_statement__ = 309;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 309;
-      validate_non_negative_index("markers", "Nf", Nf);
       current_statement__ = 310;
+      validate_non_negative_index("markers", "Nf", Nf);
+      current_statement__ = 311;
       context__.validate_dims("data initialization","markers","int",
           context__.to_vec(Nf));
       markers = std::vector<int>(Nf, std::numeric_limits<int>::min());
       
-      current_statement__ = 310;
+      current_statement__ = 311;
       assign(markers, nil_index_list(), context__.vals_i("markers"),
         "assigning variable markers");
-      current_statement__ = 311;
+      current_statement__ = 312;
       context__.validate_dims("data initialization","Nf_corr","int",
           context__.to_vec());
       Nf_corr = std::numeric_limits<int>::min();
       
-      current_statement__ = 311;
-      Nf_corr = context__.vals_i("Nf_corr")[(1 - 1)];
       current_statement__ = 312;
-      validate_non_negative_index("F_corr_mat", "Nf_corr", Nf_corr);
+      Nf_corr = context__.vals_i("Nf_corr")[(1 - 1)];
       current_statement__ = 313;
+      validate_non_negative_index("F_corr_mat", "Nf_corr", Nf_corr);
+      current_statement__ = 314;
       context__.validate_dims("data initialization","F_corr_mat","int",
           context__.to_vec(Nf_corr, 2));
       F_corr_mat = std::vector<std::vector<int>>(Nf_corr, std::vector<int>(2, std::numeric_limits<int>::min()));
       
       {
         std::vector<int> F_corr_mat_flat__;
-        current_statement__ = 313;
+        current_statement__ = 314;
         assign(F_corr_mat_flat__, nil_index_list(),
           context__.vals_i("F_corr_mat"),
           "assigning variable F_corr_mat_flat__");
-        current_statement__ = 313;
+        current_statement__ = 314;
         pos__ = 1;
-        current_statement__ = 313;
+        current_statement__ = 314;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 313;
+          current_statement__ = 314;
           for (int sym2__ = 1; sym2__ <= Nf_corr; ++sym2__) {
-            current_statement__ = 313;
+            current_statement__ = 314;
             assign(F_corr_mat,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               F_corr_mat_flat__[(pos__ - 1)], "assigning variable F_corr_mat");
-            current_statement__ = 313;
+            current_statement__ = 314;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 314;
-      validate_non_negative_index("coef_pattern", "Nf", Nf);
       current_statement__ = 315;
       validate_non_negative_index("coef_pattern", "Nf", Nf);
       current_statement__ = 316;
+      validate_non_negative_index("coef_pattern", "Nf", Nf);
+      current_statement__ = 317;
       context__.validate_dims("data initialization","coef_pattern","int",
           context__.to_vec(Nf, Nf));
       coef_pattern = std::vector<std::vector<int>>(Nf, std::vector<int>(Nf, std::numeric_limits<int>::min()));
       
       {
         std::vector<int> coef_pattern_flat__;
-        current_statement__ = 316;
+        current_statement__ = 317;
         assign(coef_pattern_flat__, nil_index_list(),
           context__.vals_i("coef_pattern"),
           "assigning variable coef_pattern_flat__");
-        current_statement__ = 316;
+        current_statement__ = 317;
         pos__ = 1;
-        current_statement__ = 316;
+        current_statement__ = 317;
         for (int sym1__ = 1; sym1__ <= Nf; ++sym1__) {
-          current_statement__ = 316;
+          current_statement__ = 317;
           for (int sym2__ = 1; sym2__ <= Nf; ++sym2__) {
-            current_statement__ = 316;
+            current_statement__ = 317;
             assign(coef_pattern,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               coef_pattern_flat__[(pos__ - 1)],
               "assigning variable coef_pattern");
-            current_statement__ = 316;
+            current_statement__ = 317;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 317;
+      current_statement__ = 318;
       context__.validate_dims("data initialization","sc_par","double",
           context__.to_vec());
       sc_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 317;
-      sc_par = context__.vals_r("sc_par")[(1 - 1)];
-      current_statement__ = 317;
-      current_statement__ = 317;
-      check_greater_or_equal(function__, "sc_par", sc_par, 0);
       current_statement__ = 318;
+      sc_par = context__.vals_r("sc_par")[(1 - 1)];
+      current_statement__ = 318;
+      current_statement__ = 318;
+      check_greater_or_equal(function__, "sc_par", sc_par, 0);
+      current_statement__ = 319;
       context__.validate_dims("data initialization","sl_par","double",
           context__.to_vec());
       sl_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 318;
-      sl_par = context__.vals_r("sl_par")[(1 - 1)];
-      current_statement__ = 318;
-      current_statement__ = 318;
-      check_greater_or_equal(function__, "sl_par", sl_par, 0);
       current_statement__ = 319;
+      sl_par = context__.vals_r("sl_par")[(1 - 1)];
+      current_statement__ = 319;
+      current_statement__ = 319;
+      check_greater_or_equal(function__, "sl_par", sl_par, 0);
+      current_statement__ = 320;
       context__.validate_dims("data initialization","rs_par","double",
           context__.to_vec());
       rs_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 319;
-      rs_par = context__.vals_r("rs_par")[(1 - 1)];
-      current_statement__ = 319;
-      current_statement__ = 319;
-      check_greater_or_equal(function__, "rs_par", rs_par, 0);
       current_statement__ = 320;
+      rs_par = context__.vals_r("rs_par")[(1 - 1)];
+      current_statement__ = 320;
+      current_statement__ = 320;
+      check_greater_or_equal(function__, "rs_par", rs_par, 0);
+      current_statement__ = 321;
       context__.validate_dims("data initialization","rc_par","double",
           context__.to_vec());
       rc_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 320;
-      rc_par = context__.vals_r("rc_par")[(1 - 1)];
-      current_statement__ = 320;
-      current_statement__ = 320;
-      check_greater_or_equal(function__, "rc_par", rc_par, 1);
       current_statement__ = 321;
+      rc_par = context__.vals_r("rc_par")[(1 - 1)];
+      current_statement__ = 321;
+      current_statement__ = 321;
+      check_greater_or_equal(function__, "rc_par", rc_par, 1);
+      current_statement__ = 322;
       context__.validate_dims("data initialization","fc_par","double",
           context__.to_vec());
       fc_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 321;
-      fc_par = context__.vals_r("fc_par")[(1 - 1)];
-      current_statement__ = 321;
-      current_statement__ = 321;
-      check_greater_or_equal(function__, "fc_par", fc_par, 1);
       current_statement__ = 322;
+      fc_par = context__.vals_r("fc_par")[(1 - 1)];
+      current_statement__ = 322;
+      current_statement__ = 322;
+      check_greater_or_equal(function__, "fc_par", fc_par, 1);
+      current_statement__ = 323;
       context__.validate_dims("data initialization","method","int",
           context__.to_vec());
       method = std::numeric_limits<int>::min();
       
-      current_statement__ = 322;
-      method = context__.vals_i("method")[(1 - 1)];
-      current_statement__ = 322;
-      current_statement__ = 322;
-      check_greater_or_equal(function__, "method", method, 1);
-      current_statement__ = 322;
-      current_statement__ = 322;
-      check_less_or_equal(function__, "method", method, 100);
       current_statement__ = 323;
+      method = context__.vals_i("method")[(1 - 1)];
+      current_statement__ = 323;
+      current_statement__ = 323;
+      check_greater_or_equal(function__, "method", method, 1);
+      current_statement__ = 323;
+      current_statement__ = 323;
+      check_less_or_equal(function__, "method", method, 100);
+      current_statement__ = 324;
       sqrt_two = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 323;
-      sqrt_two = stan::math::sqrt(2.0);
       current_statement__ = 324;
+      sqrt_two = stan::math::sqrt(2.0);
+      current_statement__ = 325;
       pi_sqrt_three = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 324;
-      pi_sqrt_three = (stan::math::pi() / stan::math::sqrt(3.0));
       current_statement__ = 325;
+      pi_sqrt_three = (stan::math::pi() / stan::math::sqrt(3.0));
+      current_statement__ = 326;
       Nl = std::numeric_limits<int>::min();
       
-      current_statement__ = 325;
-      Nl = 0;
       current_statement__ = 326;
-      validate_non_negative_index("N_S", "Ni", Ni);
+      Nl = 0;
       current_statement__ = 327;
       validate_non_negative_index("N_S", "Ni", Ni);
       current_statement__ = 328;
+      validate_non_negative_index("N_S", "Ni", Ni);
+      current_statement__ = 329;
       N_S = Eigen::Matrix<double, -1, -1>(Ni, Ni);
       stan::math::fill(N_S, std::numeric_limits<double>::quiet_NaN());
       
-      current_statement__ = 328;
+      current_statement__ = 329;
       assign(N_S, nil_index_list(), multiply((Np - 1), S),
         "assigning variable N_S");
-      current_statement__ = 329;
+      current_statement__ = 330;
       coef_count = std::numeric_limits<int>::min();
       
-      current_statement__ = 329;
-      coef_count = 0;
       current_statement__ = 330;
+      coef_count = 0;
+      current_statement__ = 331;
       outcome_count = std::numeric_limits<int>::min();
       
-      current_statement__ = 330;
-      outcome_count = 0;
       current_statement__ = 331;
+      outcome_count = 0;
+      current_statement__ = 332;
       Nisqd2 = std::numeric_limits<int>::min();
       
-      current_statement__ = 331;
-      Nisqd2 = ((Ni * (Ni - 1)) / 2);
       current_statement__ = 332;
+      Nisqd2 = ((Ni * (Ni - 1)) / 2);
+      current_statement__ = 333;
       N_rms = std::numeric_limits<int>::min();
       
-      current_statement__ = 332;
-      N_rms = 1;
       current_statement__ = 333;
+      N_rms = 1;
+      current_statement__ = 334;
       N_alpha = std::numeric_limits<int>::min();
       
-      current_statement__ = 333;
-      N_alpha = 0;
       current_statement__ = 334;
+      N_alpha = 0;
+      current_statement__ = 335;
       ln_det_S = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 334;
-      ln_det_S = ln_det_spd(S, pstream__);
       current_statement__ = 335;
+      ln_det_S = ln_det_spd(S, pstream__);
+      current_statement__ = 336;
       N_Sigma = std::numeric_limits<int>::min();
       
-      current_statement__ = 335;
+      current_statement__ = 336;
       N_Sigma = 1;
-      current_statement__ = 338;
+      current_statement__ = 339;
       if (logical_gte(method, 90)) {
-        current_statement__ = 336;
+        current_statement__ = 337;
         Nisqd2 = 0;
       } 
-      current_statement__ = 341;
+      current_statement__ = 342;
       if (logical_eq(method, 91)) {
-        current_statement__ = 339;
+        current_statement__ = 340;
         N_Sigma = Ni;
       } 
-      current_statement__ = 344;
+      current_statement__ = 345;
       if (logical_eq(method, 100)) {
-        current_statement__ = 342;
+        current_statement__ = 343;
         N_rms = 0;
       } 
-      current_statement__ = 346;
+      current_statement__ = 347;
       if (logical_eq(method, 4)) {
-        current_statement__ = 345;
+        current_statement__ = 346;
         N_alpha = 1;
       } 
-      current_statement__ = 354;
+      current_statement__ = 355;
       for (int i = 1; i <= Nf; ++i) {
-        current_statement__ = 348;
+        current_statement__ = 349;
         if (logical_gt(
               sum(
                 rvalue(coef_pattern,
                   cons_list(index_uni(i),
                     cons_list(index_omni(), nil_index_list())),
                   "coef_pattern")), 0)) {
-          current_statement__ = 347;
+          current_statement__ = 348;
           outcome_count = (outcome_count + 1);
         } 
-        current_statement__ = 352;
+        current_statement__ = 353;
         for (int j = 1; j <= Nf; ++j) {
-          current_statement__ = 350;
+          current_statement__ = 351;
           if (logical_eq(coef_pattern[(i - 1)][(j - 1)], 1)) {
-            current_statement__ = 349;
+            current_statement__ = 350;
             coef_count = (coef_count + 1);
           } }}
-      current_statement__ = 360;
+      current_statement__ = 361;
       for (int i = 1; i <= Ni; ++i) {
-        current_statement__ = 358;
+        current_statement__ = 359;
         for (int j = 1; j <= Nf; ++j) {
-          current_statement__ = 356;
+          current_statement__ = 357;
           if (logical_eq(
                 rvalue(loading_pattern,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())),
                   "loading_pattern"), 1)) {
-            current_statement__ = 355;
+            current_statement__ = 356;
             Nl = (Nl + 1);
           } }}
-      current_statement__ = 325;
-      current_statement__ = 325;
+      current_statement__ = 326;
+      current_statement__ = 326;
       check_greater_or_equal(function__, "Nl", Nl, 0);
-      current_statement__ = 361;
-      validate_non_negative_index("rms_src_p", "N_rms", N_rms);
       current_statement__ = 362;
-      validate_non_negative_index("gdp_alpha", "N_alpha", N_alpha);
+      validate_non_negative_index("rms_src_p", "N_rms", N_rms);
       current_statement__ = 363;
-      validate_non_negative_index("resids", "Nisqd2", Nisqd2);
+      validate_non_negative_index("gdp_alpha", "N_alpha", N_alpha);
       current_statement__ = 364;
+      validate_non_negative_index("resids", "Nisqd2", Nisqd2);
+      current_statement__ = 365;
       loadings_1dim__ = std::numeric_limits<int>::min();
       
-      current_statement__ = 364;
-      loadings_1dim__ = (Nl - Nf);
-      current_statement__ = 364;
-      validate_non_negative_index("loadings", "Nl - Nf", loadings_1dim__);
       current_statement__ = 365;
-      validate_non_negative_index("phi_sd", "Nf", Nf);
+      loadings_1dim__ = (Nl - Nf);
+      current_statement__ = 365;
+      validate_non_negative_index("loadings", "Nl - Nf", loadings_1dim__);
       current_statement__ = 366;
-      validate_non_negative_index("res_sds", "Ni", Ni);
+      validate_non_negative_index("phi_sd", "Nf", Nf);
       current_statement__ = 367;
-      validate_non_negative_index("phi_cor_01", "Nf_corr", Nf_corr);
+      validate_non_negative_index("res_sds", "Ni", Ni);
       current_statement__ = 368;
-      validate_non_negative_index("res_cor_01", "Nce", Nce);
+      validate_non_negative_index("phi_cor_01", "Nf_corr", Nf_corr);
       current_statement__ = 369;
-      validate_non_negative_index("coefs", "coef_count", coef_count);
+      validate_non_negative_index("res_cor_01", "Nce", Nce);
       current_statement__ = 370;
+      validate_non_negative_index("coefs", "coef_count", coef_count);
+      current_statement__ = 371;
       validate_non_negative_index("sigma_coefs", "outcome_count",
                                   outcome_count);
-      current_statement__ = 371;
-      validate_non_negative_index("Sigma", "N_Sigma", N_Sigma);
-      current_statement__ = 371;
+      current_statement__ = 372;
       validate_non_negative_index("Sigma", "N_Sigma", N_Sigma);
       current_statement__ = 372;
-      validate_non_negative_index("Load_mat_u", "Ni", Ni);
+      validate_non_negative_index("Sigma", "N_Sigma", N_Sigma);
       current_statement__ = 373;
-      validate_non_negative_index("Load_mat_u", "Nf", Nf);
+      validate_non_negative_index("Load_mat_u", "Ni", Ni);
       current_statement__ = 374;
-      validate_non_negative_index("Coef_mat_u", "Nf", Nf);
+      validate_non_negative_index("Load_mat_u", "Nf", Nf);
       current_statement__ = 375;
       validate_non_negative_index("Coef_mat_u", "Nf", Nf);
       current_statement__ = 376;
-      validate_non_negative_index("Load_mat", "Ni", Ni);
+      validate_non_negative_index("Coef_mat_u", "Nf", Nf);
       current_statement__ = 377;
-      validate_non_negative_index("Load_mat", "Nf", Nf);
+      validate_non_negative_index("Load_mat", "Ni", Ni);
       current_statement__ = 378;
-      validate_non_negative_index("Coef_mat", "Nf", Nf);
+      validate_non_negative_index("Load_mat", "Nf", Nf);
       current_statement__ = 379;
       validate_non_negative_index("Coef_mat", "Nf", Nf);
       current_statement__ = 380;
-      validate_non_negative_index("phi_var", "Nf", Nf);
+      validate_non_negative_index("Coef_mat", "Nf", Nf);
       current_statement__ = 381;
-      validate_non_negative_index("r_square", "Nf", Nf);
+      validate_non_negative_index("phi_var", "Nf", Nf);
       current_statement__ = 382;
-      validate_non_negative_index("phi_cor", "Nf_corr", Nf_corr);
+      validate_non_negative_index("r_square", "Nf", Nf);
       current_statement__ = 383;
-      validate_non_negative_index("res_var", "Ni", Ni);
+      validate_non_negative_index("phi_cor", "Nf_corr", Nf_corr);
       current_statement__ = 384;
-      validate_non_negative_index("res_cor", "Nce", Nce);
+      validate_non_negative_index("res_var", "Ni", Ni);
       current_statement__ = 385;
-      validate_non_negative_index("res_cov", "Nce", Nce);
+      validate_non_negative_index("res_cor", "Nce", Nce);
       current_statement__ = 386;
-      validate_non_negative_index("Resid", "Ni", Ni);
+      validate_non_negative_index("res_cov", "Nce", Nce);
       current_statement__ = 387;
+      validate_non_negative_index("Resid", "Ni", Ni);
+      current_statement__ = 388;
       validate_non_negative_index("Resid", "Ni", Ni);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1586,34 +1587,41 @@ public:
           total_var = Eigen::Matrix<local_scalar_t__, -1, 1>(Ni);
           stan::math::fill(total_var, DUMMY_VAR__);
           
+          Eigen::Matrix<local_scalar_t__, -1, -1> id_mat;
+          id_mat = Eigen::Matrix<local_scalar_t__, -1, -1>(1, 1);
+          stan::math::fill(id_mat, DUMMY_VAR__);
+          
+          current_statement__ = 233;
+          assign(id_mat, nil_index_list(), rep_matrix(1, 1, 1),
+            "assigning variable id_mat");
           {
             std::vector<int> pos_3;
             pos_3 = std::vector<int>(3, std::numeric_limits<int>::min());
             
-            current_statement__ = 233;
+            current_statement__ = 234;
             assign(pos_3, nil_index_list(), rep_array(0, 3),
               "assigning variable pos_3");
-            current_statement__ = 243;
+            current_statement__ = 244;
             for (int i = 1; i <= Nf; ++i) {
-              current_statement__ = 235;
+              current_statement__ = 236;
               if (logical_gt(
                     sum(
                       rvalue(coef_pattern,
                         cons_list(index_uni(i),
                           cons_list(index_omni(), nil_index_list())),
                         "coef_pattern")), 0)) {
-                current_statement__ = 234;
+                current_statement__ = 235;
                 assign(pos_3, cons_list(index_uni(1), nil_index_list()),
                   (pos_3[(1 - 1)] + 1), "assigning variable pos_3");
               } 
-              current_statement__ = 241;
+              current_statement__ = 242;
               for (int j = 1; j <= Nf; ++j) {
-                current_statement__ = 239;
+                current_statement__ = 240;
                 if (logical_eq(coef_pattern[(i - 1)][(j - 1)], 1)) {
-                  current_statement__ = 236;
+                  current_statement__ = 237;
                   assign(pos_3, cons_list(index_uni(2), nil_index_list()),
                     (pos_3[(2 - 1)] + 1), "assigning variable pos_3");
-                  current_statement__ = 237;
+                  current_statement__ = 238;
                   assign(Coef_mat,
                     cons_list(index_uni(i),
                       cons_list(index_uni(j), nil_index_list())),
@@ -1621,28 +1629,28 @@ public:
                       coefs[(pos_3[(2 - 1)] - 1)]),
                     "assigning variable Coef_mat");
                 } }}
-            current_statement__ = 254;
+            current_statement__ = 255;
             for (int i = 1; i <= Ni; ++i) {
-              current_statement__ = 252;
+              current_statement__ = 253;
               for (int j = 1; j <= Nf; ++j) {
-                current_statement__ = 250;
+                current_statement__ = 251;
                 if (logical_neq(
                       rvalue(loading_pattern,
                         cons_list(index_uni(i),
                           cons_list(index_uni(j), nil_index_list())),
                         "loading_pattern"), 0)) {
-                  current_statement__ = 248;
+                  current_statement__ = 249;
                   if (logical_eq(i, markers[(j - 1)])) {
-                    current_statement__ = 247;
+                    current_statement__ = 248;
                     assign(Load_mat,
                       cons_list(index_uni(i),
                         cons_list(index_uni(j), nil_index_list())), 1,
                       "assigning variable Load_mat");
                   } else {
-                    current_statement__ = 244;
+                    current_statement__ = 245;
                     assign(pos_3, cons_list(index_uni(3), nil_index_list()),
                       (pos_3[(3 - 1)] + 1), "assigning variable pos_3");
-                    current_statement__ = 245;
+                    current_statement__ = 246;
                     assign(Load_mat,
                       cons_list(index_uni(i),
                         cons_list(index_uni(j), nil_index_list())),
@@ -1651,14 +1659,14 @@ public:
                   }
                 } }}
           }
-          current_statement__ = 256;
+          current_statement__ = 257;
           assign(Lambda_One_min_Beta_inv, nil_index_list(),
             multiply(Load_mat,
               inverse(subtract(diag_matrix(rep_vector(1, Nf)), Coef_mat))),
             "assigning variable Lambda_One_min_Beta_inv");
-          current_statement__ = 260;
+          current_statement__ = 261;
           for (int i = 1; i <= Nf_corr; ++i) {
-            current_statement__ = 257;
+            current_statement__ = 258;
             assign(F_corr_pe,
               cons_list(index_uni(F_corr_mat[(i - 1)][(1 - 1)]),
                 cons_list(index_uni(i), nil_index_list())),
@@ -1666,7 +1674,7 @@ public:
                 (stan::math::abs(phi_cor[(i - 1)]) *
                   phi_var[(F_corr_mat[(i - 1)][(1 - 1)] - 1)])),
               "assigning variable F_corr_pe");
-            current_statement__ = 258;
+            current_statement__ = 259;
             assign(F_corr_pe,
               cons_list(index_uni(F_corr_mat[(i - 1)][(2 - 1)]),
                 cons_list(index_uni(i), nil_index_list())),
@@ -1675,16 +1683,16 @@ public:
                   (stan::math::abs(phi_cor[(i - 1)]) *
                     phi_var[(F_corr_mat[(i - 1)][(2 - 1)] - 1)]))),
               "assigning variable F_corr_pe");}
-          current_statement__ = 261;
+          current_statement__ = 262;
           assign(F_cov_mat, nil_index_list(), tcrossprod(F_corr_pe),
             "assigning variable F_cov_mat");
-          current_statement__ = 262;
+          current_statement__ = 263;
           assign(F_var_resid, nil_index_list(),
             subtract(phi_var, diagonal(F_cov_mat)),
             "assigning variable F_var_resid");
-          current_statement__ = 266;
+          current_statement__ = 267;
           for (int i = 1; i <= Nce; ++i) {
-            current_statement__ = 263;
+            current_statement__ = 264;
             assign(loading_par_exp,
               cons_list(index_uni(error_mat[(i - 1)][(1 - 1)]),
                 cons_list(index_uni(i), nil_index_list())),
@@ -1692,7 +1700,7 @@ public:
                 (stan::math::abs(res_cor[(i - 1)]) *
                   res_var[(error_mat[(i - 1)][(1 - 1)] - 1)])),
               "assigning variable loading_par_exp");
-            current_statement__ = 264;
+            current_statement__ = 265;
             assign(loading_par_exp,
               cons_list(index_uni(error_mat[(i - 1)][(2 - 1)]),
                 cons_list(index_uni(i), nil_index_list())),
@@ -1701,38 +1709,38 @@ public:
                   (stan::math::abs(res_cor[(i - 1)]) *
                     res_var[(error_mat[(i - 1)][(2 - 1)] - 1)]))),
               "assigning variable loading_par_exp");}
-          current_statement__ = 267;
+          current_statement__ = 268;
           assign(loading_par_exp_2, nil_index_list(),
             tcrossprod(loading_par_exp),
             "assigning variable loading_par_exp_2");
-          current_statement__ = 268;
+          current_statement__ = 269;
           assign(delta_mat_ast, nil_index_list(),
             subtract(res_var, diagonal(loading_par_exp_2)),
             "assigning variable delta_mat_ast");
-          current_statement__ = 269;
+          current_statement__ = 270;
           assign(Omega, nil_index_list(),
             add_diag(
               add(
                 quad_form(add_diag(F_cov_mat, F_var_resid),
                   transpose(Lambda_One_min_Beta_inv)), loading_par_exp_2),
               delta_mat_ast), "assigning variable Omega");
-          current_statement__ = 270;
+          current_statement__ = 271;
           assign(total_var, nil_index_list(), diagonal(Omega),
             "assigning variable total_var");
-          current_statement__ = 280;
+          current_statement__ = 281;
           if (logical_lt(method, 90)) {
             int pos;
             pos = std::numeric_limits<int>::min();
             
-            current_statement__ = 271;
+            current_statement__ = 272;
             pos = 0;
-            current_statement__ = 278;
+            current_statement__ = 279;
             for (int i = 2; i <= Ni; ++i) {
-              current_statement__ = 276;
+              current_statement__ = 277;
               for (int j = 1; j <= (i - 1); ++j) {
-                current_statement__ = 272;
-                pos = (pos + 1);
                 current_statement__ = 273;
+                pos = (pos + 1);
+                current_statement__ = 274;
                 assign(Omega,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())),
@@ -1743,7 +1751,7 @@ public:
                       stan::math::sqrt(
                         (total_var[(i - 1)] * total_var[(j - 1)])))),
                   "assigning variable Omega");
-                current_statement__ = 274;
+                current_statement__ = 275;
                 assign(Omega,
                   cons_list(index_uni(j),
                     cons_list(index_uni(i), nil_index_list())),
@@ -1752,35 +1760,34 @@ public:
                       cons_list(index_uni(j), nil_index_list())), "Omega"),
                   "assigning variable Omega");}}
           } 
-          current_statement__ = 283;
+          current_statement__ = 284;
           if (logical_neq(method, 91)) {
-            current_statement__ = 281;
-            lp_accum__.add(
-              inv_wishart_lpdf<propto__>(Sigma, 1000, identity_matrix(1)));
+            current_statement__ = 282;
+            lp_accum__.add(inv_wishart_lpdf<propto__>(Sigma, 1000, id_mat));
           } 
-          current_statement__ = 295;
+          current_statement__ = 296;
           if ((primitive_value(logical_gte(method, 90)) && primitive_value(
               logical_lte(method, 99)))) {
-            current_statement__ = 286;
+            current_statement__ = 287;
             m = (((1.0 / square(rms_src_p[(1 - 1)])) + Ni) - 1);
-            current_statement__ = 293;
+            current_statement__ = 294;
             if (logical_eq(method, 90)) {
-              current_statement__ = 291;
+              current_statement__ = 292;
               lp_accum__.add(
                 gen_matrix_beta_ii_lpdf<false>(S, Omega, (Np - 1.0), m,
                   ln_det_S, pstream__));
             } else {
-              current_statement__ = 290;
+              current_statement__ = 291;
               if (logical_eq(method, 91)) {
-                current_statement__ = 287;
+                current_statement__ = 288;
                 lp_accum__.add(
                   inv_wishart_lpdf<propto__>(Sigma, m, multiply(m, Omega)));
-                current_statement__ = 288;
+                current_statement__ = 289;
                 lp_accum__.add(wishart_lpdf<false>(N_S, (Np - 1), Sigma));
               } 
             }
           } else {
-            current_statement__ = 284;
+            current_statement__ = 285;
             lp_accum__.add(wishart_lpdf<false>(N_S, (Np - 1), Omega));
           }
         }

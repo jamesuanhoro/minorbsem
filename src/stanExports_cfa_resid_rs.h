@@ -87,140 +87,140 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'cfa_resid_rs', line 91, column 2 to column 58)",
                                                       " (in 'cfa_resid_rs', line 92, column 2 to column 58)",
                                                       " (in 'cfa_resid_rs', line 93, column 2 to column 28)",
-                                                      " (in 'cfa_resid_rs', line 189, column 2 to column 13)",
                                                       " (in 'cfa_resid_rs', line 190, column 2 to column 13)",
-                                                      " (in 'cfa_resid_rs', line 191, column 2 to column 33)",
-                                                      " (in 'cfa_resid_rs', line 192, column 2 to column 26)",
-                                                      " (in 'cfa_resid_rs', line 193, column 2 to column 50)",
-                                                      " (in 'cfa_resid_rs', line 194, column 2 to column 85)",
-                                                      " (in 'cfa_resid_rs', line 195, column 2 to column 39)",
-                                                      " (in 'cfa_resid_rs', line 196, column 2 to column 43)",
-                                                      " (in 'cfa_resid_rs', line 197, column 2 to column 22)",
-                                                      " (in 'cfa_resid_rs', line 198, column 2 to column 49)",
-                                                      " (in 'cfa_resid_rs', line 202, column 4 to column 18)",
-                                                      " (in 'cfa_resid_rs', line 201, column 9 to line 203, column 3)",
-                                                      " (in 'cfa_resid_rs', line 200, column 4 to column 27)",
-                                                      " (in 'cfa_resid_rs', line 199, column 21 to line 201, column 3)",
-                                                      " (in 'cfa_resid_rs', line 199, column 2 to line 203, column 3)",
-                                                      " (in 'cfa_resid_rs', line 209, column 4 to line 211, column 6)",
-                                                      " (in 'cfa_resid_rs', line 208, column 26 to line 212, column 3)",
-                                                      " (in 'cfa_resid_rs', line 208, column 9 to line 212, column 3)",
-                                                      " (in 'cfa_resid_rs', line 207, column 4 to column 29)",
-                                                      " (in 'cfa_resid_rs', line 206, column 26 to line 208, column 3)",
-                                                      " (in 'cfa_resid_rs', line 206, column 9 to line 212, column 3)",
-                                                      " (in 'cfa_resid_rs', line 205, column 4 to column 24)",
-                                                      " (in 'cfa_resid_rs', line 204, column 19 to line 206, column 3)",
-                                                      " (in 'cfa_resid_rs', line 204, column 2 to line 212, column 3)",
-                                                      " (in 'cfa_resid_rs', line 214, column 4 to column 16)",
-                                                      " (in 'cfa_resid_rs', line 217, column 8 to column 17)",
-                                                      " (in 'cfa_resid_rs', line 218, column 8 to column 49)",
-                                                      " (in 'cfa_resid_rs', line 219, column 8 to column 34)",
-                                                      " (in 'cfa_resid_rs', line 216, column 27 to line 220, column 7)",
-                                                      " (in 'cfa_resid_rs', line 216, column 6 to line 220, column 7)",
-                                                      " (in 'cfa_resid_rs', line 215, column 20 to line 221, column 5)",
-                                                      " (in 'cfa_resid_rs', line 215, column 4 to line 221, column 5)",
-                                                      " (in 'cfa_resid_rs', line 213, column 19 to line 222, column 3)",
-                                                      " (in 'cfa_resid_rs', line 213, column 2 to line 222, column 3)",
-                                                      " (in 'cfa_resid_rs', line 224, column 4 to column 11)",
-                                                      " (in 'cfa_resid_rs', line 225, column 11 to column 13)",
-                                                      " (in 'cfa_resid_rs', line 225, column 15 to column 17)",
-                                                      " (in 'cfa_resid_rs', line 225, column 4 to column 25)",
+                                                      " (in 'cfa_resid_rs', line 191, column 2 to column 13)",
+                                                      " (in 'cfa_resid_rs', line 192, column 2 to column 33)",
+                                                      " (in 'cfa_resid_rs', line 193, column 2 to column 26)",
+                                                      " (in 'cfa_resid_rs', line 194, column 2 to column 50)",
+                                                      " (in 'cfa_resid_rs', line 195, column 2 to column 85)",
+                                                      " (in 'cfa_resid_rs', line 196, column 2 to column 39)",
+                                                      " (in 'cfa_resid_rs', line 197, column 2 to column 43)",
+                                                      " (in 'cfa_resid_rs', line 198, column 2 to column 22)",
+                                                      " (in 'cfa_resid_rs', line 199, column 2 to column 49)",
+                                                      " (in 'cfa_resid_rs', line 203, column 4 to column 18)",
+                                                      " (in 'cfa_resid_rs', line 202, column 9 to line 204, column 3)",
+                                                      " (in 'cfa_resid_rs', line 201, column 4 to column 27)",
+                                                      " (in 'cfa_resid_rs', line 200, column 21 to line 202, column 3)",
+                                                      " (in 'cfa_resid_rs', line 200, column 2 to line 204, column 3)",
+                                                      " (in 'cfa_resid_rs', line 210, column 4 to line 212, column 6)",
+                                                      " (in 'cfa_resid_rs', line 209, column 26 to line 213, column 3)",
+                                                      " (in 'cfa_resid_rs', line 209, column 9 to line 213, column 3)",
+                                                      " (in 'cfa_resid_rs', line 208, column 4 to column 29)",
+                                                      " (in 'cfa_resid_rs', line 207, column 26 to line 209, column 3)",
+                                                      " (in 'cfa_resid_rs', line 207, column 9 to line 213, column 3)",
+                                                      " (in 'cfa_resid_rs', line 206, column 4 to column 24)",
+                                                      " (in 'cfa_resid_rs', line 205, column 19 to line 207, column 3)",
+                                                      " (in 'cfa_resid_rs', line 205, column 2 to line 213, column 3)",
+                                                      " (in 'cfa_resid_rs', line 215, column 4 to column 16)",
+                                                      " (in 'cfa_resid_rs', line 218, column 8 to column 17)",
+                                                      " (in 'cfa_resid_rs', line 219, column 8 to column 49)",
+                                                      " (in 'cfa_resid_rs', line 220, column 8 to column 34)",
+                                                      " (in 'cfa_resid_rs', line 217, column 27 to line 221, column 7)",
+                                                      " (in 'cfa_resid_rs', line 217, column 6 to line 221, column 7)",
+                                                      " (in 'cfa_resid_rs', line 216, column 20 to line 222, column 5)",
+                                                      " (in 'cfa_resid_rs', line 216, column 4 to line 222, column 5)",
+                                                      " (in 'cfa_resid_rs', line 214, column 19 to line 223, column 3)",
+                                                      " (in 'cfa_resid_rs', line 214, column 2 to line 223, column 3)",
+                                                      " (in 'cfa_resid_rs', line 225, column 4 to column 11)",
                                                       " (in 'cfa_resid_rs', line 226, column 11 to column 13)",
                                                       " (in 'cfa_resid_rs', line 226, column 15 to column 17)",
-                                                      " (in 'cfa_resid_rs', line 226, column 4 to column 27)",
+                                                      " (in 'cfa_resid_rs', line 226, column 4 to column 25)",
                                                       " (in 'cfa_resid_rs', line 227, column 11 to column 13)",
                                                       " (in 'cfa_resid_rs', line 227, column 15 to column 17)",
-                                                      " (in 'cfa_resid_rs', line 227, column 4 to column 25)",
+                                                      " (in 'cfa_resid_rs', line 227, column 4 to column 27)",
                                                       " (in 'cfa_resid_rs', line 228, column 11 to column 13)",
                                                       " (in 'cfa_resid_rs', line 228, column 15 to column 17)",
-                                                      " (in 'cfa_resid_rs', line 228, column 4 to column 33)",
+                                                      " (in 'cfa_resid_rs', line 228, column 4 to column 25)",
                                                       " (in 'cfa_resid_rs', line 229, column 11 to column 13)",
-                                                      " (in 'cfa_resid_rs', line 229, column 15 to column 18)",
-                                                      " (in 'cfa_resid_rs', line 229, column 4 to column 61)",
+                                                      " (in 'cfa_resid_rs', line 229, column 15 to column 17)",
+                                                      " (in 'cfa_resid_rs', line 229, column 4 to column 33)",
                                                       " (in 'cfa_resid_rs', line 230, column 11 to column 13)",
-                                                      " (in 'cfa_resid_rs', line 230, column 15 to column 17)",
-                                                      " (in 'cfa_resid_rs', line 230, column 4 to column 37)",
+                                                      " (in 'cfa_resid_rs', line 230, column 15 to column 18)",
+                                                      " (in 'cfa_resid_rs', line 230, column 4 to column 61)",
                                                       " (in 'cfa_resid_rs', line 231, column 11 to column 13)",
-                                                      " (in 'cfa_resid_rs', line 231, column 4 to column 29)",
+                                                      " (in 'cfa_resid_rs', line 231, column 15 to column 17)",
+                                                      " (in 'cfa_resid_rs', line 231, column 4 to column 37)",
                                                       " (in 'cfa_resid_rs', line 232, column 11 to column 13)",
-                                                      " (in 'cfa_resid_rs', line 232, column 4 to column 25)",
-                                                      " (in 'cfa_resid_rs', line 234, column 6 to column 18)",
-                                                      " (in 'cfa_resid_rs', line 235, column 6 to column 26)",
-                                                      " (in 'cfa_resid_rs', line 242, column 12 to column 29)",
-                                                      " (in 'cfa_resid_rs', line 243, column 12 to column 87)",
-                                                      " (in 'cfa_resid_rs', line 241, column 41 to line 244, column 11)",
-                                                      " (in 'cfa_resid_rs', line 241, column 17 to line 244, column 11)",
-                                                      " (in 'cfa_resid_rs', line 239, column 12 to column 21)",
-                                                      " (in 'cfa_resid_rs', line 240, column 12 to column 43)",
-                                                      " (in 'cfa_resid_rs', line 238, column 42 to line 241, column 11)",
-                                                      " (in 'cfa_resid_rs', line 238, column 10 to line 244, column 11)",
-                                                      " (in 'cfa_resid_rs', line 237, column 24 to line 245, column 9)",
-                                                      " (in 'cfa_resid_rs', line 237, column 8 to line 245, column 9)",
-                                                      " (in 'cfa_resid_rs', line 236, column 22 to line 246, column 7)",
-                                                      " (in 'cfa_resid_rs', line 236, column 6 to line 246, column 7)",
-                                                      " (in 'cfa_resid_rs', line 233, column 4 to line 247, column 5)",
-                                                      " (in 'cfa_resid_rs', line 249, column 9 to column 46)",
-                                                      " (in 'cfa_resid_rs', line 248, column 23 to column 73)",
-                                                      " (in 'cfa_resid_rs', line 248, column 4 to line 249, column 46)",
-                                                      " (in 'cfa_resid_rs', line 251, column 6 to line 252, column 52)",
-                                                      " (in 'cfa_resid_rs', line 253, column 6 to line 254, column 52)",
-                                                      " (in 'cfa_resid_rs', line 250, column 21 to line 255, column 5)",
-                                                      " (in 'cfa_resid_rs', line 250, column 4 to line 255, column 5)",
-                                                      " (in 'cfa_resid_rs', line 256, column 4 to column 52)",
-                                                      " (in 'cfa_resid_rs', line 257, column 4 to column 58)",
-                                                      " (in 'cfa_resid_rs', line 258, column 4 to column 71)",
-                                                      " (in 'cfa_resid_rs', line 259, column 4 to column 32)",
-                                                      " (in 'cfa_resid_rs', line 261, column 6 to column 18)",
-                                                      " (in 'cfa_resid_rs', line 264, column 10 to column 19)",
-                                                      " (in 'cfa_resid_rs', line 265, column 10 to column 88)",
-                                                      " (in 'cfa_resid_rs', line 266, column 10 to column 36)",
-                                                      " (in 'cfa_resid_rs', line 263, column 29 to line 267, column 9)",
-                                                      " (in 'cfa_resid_rs', line 263, column 8 to line 267, column 9)",
-                                                      " (in 'cfa_resid_rs', line 262, column 22 to line 268, column 7)",
-                                                      " (in 'cfa_resid_rs', line 262, column 6 to line 268, column 7)",
-                                                      " (in 'cfa_resid_rs', line 260, column 21 to line 269, column 5)",
-                                                      " (in 'cfa_resid_rs', line 260, column 4 to line 269, column 5)",
-                                                      " (in 'cfa_resid_rs', line 283, column 6 to column 56)",
-                                                      " (in 'cfa_resid_rs', line 284, column 6 to column 68)",
-                                                      " (in 'cfa_resid_rs', line 285, column 6 to column 72)",
-                                                      " (in 'cfa_resid_rs', line 282, column 11 to line 286, column 5)",
-                                                      " (in 'cfa_resid_rs', line 278, column 8 to column 58)",
-                                                      " (in 'cfa_resid_rs', line 279, column 8 to column 57)",
-                                                      " (in 'cfa_resid_rs', line 280, column 8 to column 61)",
-                                                      " (in 'cfa_resid_rs', line 277, column 31 to line 281, column 7)",
-                                                      " (in 'cfa_resid_rs', line 277, column 13 to line 281, column 7)",
-                                                      " (in 'cfa_resid_rs', line 272, column 8 to column 48)",
+                                                      " (in 'cfa_resid_rs', line 232, column 4 to column 29)",
+                                                      " (in 'cfa_resid_rs', line 233, column 11 to column 13)",
+                                                      " (in 'cfa_resid_rs', line 233, column 4 to column 25)",
+                                                      " (in 'cfa_resid_rs', line 235, column 6 to column 18)",
+                                                      " (in 'cfa_resid_rs', line 236, column 6 to column 26)",
+                                                      " (in 'cfa_resid_rs', line 243, column 12 to column 29)",
+                                                      " (in 'cfa_resid_rs', line 244, column 12 to column 87)",
+                                                      " (in 'cfa_resid_rs', line 242, column 41 to line 245, column 11)",
+                                                      " (in 'cfa_resid_rs', line 242, column 17 to line 245, column 11)",
+                                                      " (in 'cfa_resid_rs', line 240, column 12 to column 21)",
+                                                      " (in 'cfa_resid_rs', line 241, column 12 to column 43)",
+                                                      " (in 'cfa_resid_rs', line 239, column 42 to line 242, column 11)",
+                                                      " (in 'cfa_resid_rs', line 239, column 10 to line 245, column 11)",
+                                                      " (in 'cfa_resid_rs', line 238, column 24 to line 246, column 9)",
+                                                      " (in 'cfa_resid_rs', line 238, column 8 to line 246, column 9)",
+                                                      " (in 'cfa_resid_rs', line 237, column 22 to line 247, column 7)",
+                                                      " (in 'cfa_resid_rs', line 237, column 6 to line 247, column 7)",
+                                                      " (in 'cfa_resid_rs', line 234, column 4 to line 248, column 5)",
+                                                      " (in 'cfa_resid_rs', line 250, column 9 to column 46)",
+                                                      " (in 'cfa_resid_rs', line 249, column 23 to column 73)",
+                                                      " (in 'cfa_resid_rs', line 249, column 4 to line 250, column 46)",
+                                                      " (in 'cfa_resid_rs', line 252, column 6 to line 253, column 52)",
+                                                      " (in 'cfa_resid_rs', line 254, column 6 to line 255, column 52)",
+                                                      " (in 'cfa_resid_rs', line 251, column 21 to line 256, column 5)",
+                                                      " (in 'cfa_resid_rs', line 251, column 4 to line 256, column 5)",
+                                                      " (in 'cfa_resid_rs', line 257, column 4 to column 52)",
+                                                      " (in 'cfa_resid_rs', line 258, column 4 to column 58)",
+                                                      " (in 'cfa_resid_rs', line 259, column 4 to column 71)",
+                                                      " (in 'cfa_resid_rs', line 260, column 4 to column 32)",
+                                                      " (in 'cfa_resid_rs', line 262, column 6 to column 18)",
+                                                      " (in 'cfa_resid_rs', line 265, column 10 to column 19)",
+                                                      " (in 'cfa_resid_rs', line 266, column 10 to column 88)",
+                                                      " (in 'cfa_resid_rs', line 267, column 10 to column 36)",
+                                                      " (in 'cfa_resid_rs', line 264, column 29 to line 268, column 9)",
+                                                      " (in 'cfa_resid_rs', line 264, column 8 to line 268, column 9)",
+                                                      " (in 'cfa_resid_rs', line 263, column 22 to line 269, column 7)",
+                                                      " (in 'cfa_resid_rs', line 263, column 6 to line 269, column 7)",
+                                                      " (in 'cfa_resid_rs', line 261, column 21 to line 270, column 5)",
+                                                      " (in 'cfa_resid_rs', line 261, column 4 to line 270, column 5)",
+                                                      " (in 'cfa_resid_rs', line 284, column 6 to column 56)",
+                                                      " (in 'cfa_resid_rs', line 285, column 6 to column 68)",
+                                                      " (in 'cfa_resid_rs', line 286, column 6 to column 72)",
+                                                      " (in 'cfa_resid_rs', line 283, column 11 to line 287, column 5)",
+                                                      " (in 'cfa_resid_rs', line 279, column 8 to column 58)",
+                                                      " (in 'cfa_resid_rs', line 280, column 8 to column 57)",
+                                                      " (in 'cfa_resid_rs', line 281, column 8 to column 61)",
+                                                      " (in 'cfa_resid_rs', line 278, column 31 to line 282, column 7)",
+                                                      " (in 'cfa_resid_rs', line 278, column 13 to line 282, column 7)",
                                                       " (in 'cfa_resid_rs', line 273, column 8 to column 48)",
-                                                      " (in 'cfa_resid_rs', line 274, column 8 to column 60)",
-                                                      " (in 'cfa_resid_rs', line 275, column 8 to column 81)",
-                                                      " (in 'cfa_resid_rs', line 276, column 8 to column 85)",
-                                                      " (in 'cfa_resid_rs', line 271, column 24 to line 277, column 7)",
-                                                      " (in 'cfa_resid_rs', line 271, column 6 to line 281, column 7)",
-                                                      " (in 'cfa_resid_rs', line 270, column 38 to line 282, column 5)",
-                                                      " (in 'cfa_resid_rs', line 270, column 4 to line 286, column 5)",
-                                                      " (in 'cfa_resid_rs', line 287, column 4 to column 36)",
-                                                      " (in 'cfa_resid_rs', line 223, column 2 to line 288, column 3)",
-                                                      " (in 'cfa_resid_rs', line 291, column 6 to column 28)",
-                                                      " (in 'cfa_resid_rs', line 293, column 8 to column 29)",
+                                                      " (in 'cfa_resid_rs', line 274, column 8 to column 48)",
+                                                      " (in 'cfa_resid_rs', line 275, column 8 to column 60)",
+                                                      " (in 'cfa_resid_rs', line 276, column 8 to column 81)",
+                                                      " (in 'cfa_resid_rs', line 277, column 8 to column 85)",
+                                                      " (in 'cfa_resid_rs', line 272, column 24 to line 278, column 7)",
+                                                      " (in 'cfa_resid_rs', line 272, column 6 to line 282, column 7)",
+                                                      " (in 'cfa_resid_rs', line 271, column 38 to line 283, column 5)",
+                                                      " (in 'cfa_resid_rs', line 271, column 4 to line 287, column 5)",
+                                                      " (in 'cfa_resid_rs', line 288, column 4 to column 36)",
+                                                      " (in 'cfa_resid_rs', line 224, column 2 to line 289, column 3)",
+                                                      " (in 'cfa_resid_rs', line 292, column 6 to column 28)",
                                                       " (in 'cfa_resid_rs', line 294, column 8 to column 29)",
-                                                      " (in 'cfa_resid_rs', line 292, column 25 to line 295, column 7)",
-                                                      " (in 'cfa_resid_rs', line 292, column 6 to line 295, column 7)",
-                                                      " (in 'cfa_resid_rs', line 296, column 6 to line 303, column 7)",
-                                                      " (in 'cfa_resid_rs', line 299, column 38 to column 57)",
-                                                      " (in 'cfa_resid_rs', line 299, column 12 to column 57)",
+                                                      " (in 'cfa_resid_rs', line 295, column 8 to column 29)",
+                                                      " (in 'cfa_resid_rs', line 293, column 25 to line 296, column 7)",
+                                                      " (in 'cfa_resid_rs', line 293, column 6 to line 296, column 7)",
+                                                      " (in 'cfa_resid_rs', line 297, column 6 to line 304, column 7)",
                                                       " (in 'cfa_resid_rs', line 300, column 38 to column 57)",
                                                       " (in 'cfa_resid_rs', line 300, column 12 to column 57)",
-                                                      " (in 'cfa_resid_rs', line 298, column 27 to line 301, column 11)",
-                                                      " (in 'cfa_resid_rs', line 298, column 10 to line 301, column 11)",
-                                                      " (in 'cfa_resid_rs', line 297, column 20 to line 302, column 9)",
-                                                      " (in 'cfa_resid_rs', line 297, column 8 to line 302, column 9)",
-                                                      " (in 'cfa_resid_rs', line 290, column 37 to line 304, column 5)",
-                                                      " (in 'cfa_resid_rs', line 290, column 4 to line 304, column 5)",
-                                                      " (in 'cfa_resid_rs', line 289, column 18 to line 305, column 3)",
-                                                      " (in 'cfa_resid_rs', line 289, column 2 to line 305, column 3)",
-                                                      " (in 'cfa_resid_rs', line 307, column 4 to column 60)",
-                                                      " (in 'cfa_resid_rs', line 306, column 19 to line 308, column 3)",
-                                                      " (in 'cfa_resid_rs', line 306, column 2 to line 308, column 3)",
+                                                      " (in 'cfa_resid_rs', line 301, column 38 to column 57)",
+                                                      " (in 'cfa_resid_rs', line 301, column 12 to column 57)",
+                                                      " (in 'cfa_resid_rs', line 299, column 27 to line 302, column 11)",
+                                                      " (in 'cfa_resid_rs', line 299, column 10 to line 302, column 11)",
+                                                      " (in 'cfa_resid_rs', line 298, column 20 to line 303, column 9)",
+                                                      " (in 'cfa_resid_rs', line 298, column 8 to line 303, column 9)",
+                                                      " (in 'cfa_resid_rs', line 291, column 37 to line 305, column 5)",
+                                                      " (in 'cfa_resid_rs', line 291, column 4 to line 305, column 5)",
+                                                      " (in 'cfa_resid_rs', line 290, column 18 to line 306, column 3)",
+                                                      " (in 'cfa_resid_rs', line 290, column 2 to line 306, column 3)",
+                                                      " (in 'cfa_resid_rs', line 308, column 4 to column 60)",
+                                                      " (in 'cfa_resid_rs', line 307, column 19 to line 309, column 3)",
+                                                      " (in 'cfa_resid_rs', line 307, column 2 to line 309, column 3)",
                                                       " (in 'cfa_resid_rs', line 96, column 2 to column 27)",
                                                       " (in 'cfa_resid_rs', line 108, column 4 to column 32)",
                                                       " (in 'cfa_resid_rs', line 109, column 4 to line 110, column 29)",
@@ -272,58 +272,59 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'cfa_resid_rs', line 133, column 4 to column 29)",
                                                       " (in 'cfa_resid_rs', line 134, column 11 to column 13)",
                                                       " (in 'cfa_resid_rs', line 134, column 4 to column 25)",
-                                                      " (in 'cfa_resid_rs', line 136, column 6 to column 18)",
-                                                      " (in 'cfa_resid_rs', line 137, column 6 to column 26)",
-                                                      " (in 'cfa_resid_rs', line 144, column 12 to column 29)",
-                                                      " (in 'cfa_resid_rs', line 145, column 12 to column 87)",
-                                                      " (in 'cfa_resid_rs', line 143, column 41 to line 146, column 11)",
-                                                      " (in 'cfa_resid_rs', line 143, column 17 to line 146, column 11)",
-                                                      " (in 'cfa_resid_rs', line 141, column 12 to column 21)",
-                                                      " (in 'cfa_resid_rs', line 142, column 12 to column 43)",
-                                                      " (in 'cfa_resid_rs', line 140, column 42 to line 143, column 11)",
-                                                      " (in 'cfa_resid_rs', line 140, column 10 to line 146, column 11)",
-                                                      " (in 'cfa_resid_rs', line 139, column 24 to line 147, column 9)",
-                                                      " (in 'cfa_resid_rs', line 139, column 8 to line 147, column 9)",
-                                                      " (in 'cfa_resid_rs', line 138, column 22 to line 148, column 7)",
-                                                      " (in 'cfa_resid_rs', line 138, column 6 to line 148, column 7)",
-                                                      " (in 'cfa_resid_rs', line 135, column 4 to line 149, column 5)",
-                                                      " (in 'cfa_resid_rs', line 151, column 9 to column 46)",
-                                                      " (in 'cfa_resid_rs', line 150, column 23 to column 73)",
-                                                      " (in 'cfa_resid_rs', line 150, column 4 to line 151, column 46)",
-                                                      " (in 'cfa_resid_rs', line 153, column 6 to line 154, column 52)",
-                                                      " (in 'cfa_resid_rs', line 155, column 6 to line 156, column 52)",
-                                                      " (in 'cfa_resid_rs', line 152, column 21 to line 157, column 5)",
-                                                      " (in 'cfa_resid_rs', line 152, column 4 to line 157, column 5)",
-                                                      " (in 'cfa_resid_rs', line 158, column 4 to column 52)",
-                                                      " (in 'cfa_resid_rs', line 159, column 4 to column 58)",
-                                                      " (in 'cfa_resid_rs', line 160, column 4 to column 71)",
-                                                      " (in 'cfa_resid_rs', line 161, column 4 to column 32)",
-                                                      " (in 'cfa_resid_rs', line 163, column 6 to column 18)",
-                                                      " (in 'cfa_resid_rs', line 166, column 10 to column 19)",
-                                                      " (in 'cfa_resid_rs', line 167, column 10 to column 88)",
-                                                      " (in 'cfa_resid_rs', line 168, column 10 to column 36)",
-                                                      " (in 'cfa_resid_rs', line 165, column 29 to line 169, column 9)",
-                                                      " (in 'cfa_resid_rs', line 165, column 8 to line 169, column 9)",
-                                                      " (in 'cfa_resid_rs', line 164, column 22 to line 170, column 7)",
-                                                      " (in 'cfa_resid_rs', line 164, column 6 to line 170, column 7)",
-                                                      " (in 'cfa_resid_rs', line 162, column 21 to line 171, column 5)",
-                                                      " (in 'cfa_resid_rs', line 162, column 4 to line 171, column 5)",
-                                                      " (in 'cfa_resid_rs', line 173, column 6 to column 52)",
-                                                      " (in 'cfa_resid_rs', line 172, column 22 to line 174, column 5)",
-                                                      " (in 'cfa_resid_rs', line 172, column 4 to line 174, column 5)",
-                                                      " (in 'cfa_resid_rs', line 184, column 6 to column 50)",
-                                                      " (in 'cfa_resid_rs', line 183, column 11 to line 185, column 5)",
-                                                      " (in 'cfa_resid_rs', line 176, column 6 to column 46)",
-                                                      " (in 'cfa_resid_rs', line 180, column 8 to column 42)",
-                                                      " (in 'cfa_resid_rs', line 181, column 8 to column 52)",
-                                                      " (in 'cfa_resid_rs', line 179, column 31 to line 182, column 7)",
-                                                      " (in 'cfa_resid_rs', line 179, column 13 to line 182, column 7)",
-                                                      " (in 'cfa_resid_rs', line 178, column 8 to column 76)",
-                                                      " (in 'cfa_resid_rs', line 177, column 24 to line 179, column 7)",
-                                                      " (in 'cfa_resid_rs', line 177, column 6 to line 182, column 7)",
-                                                      " (in 'cfa_resid_rs', line 175, column 38 to line 183, column 5)",
-                                                      " (in 'cfa_resid_rs', line 175, column 4 to line 185, column 5)",
-                                                      " (in 'cfa_resid_rs', line 123, column 2 to line 186, column 3)",
+                                                      " (in 'cfa_resid_rs', line 135, column 4 to column 46)",
+                                                      " (in 'cfa_resid_rs', line 137, column 6 to column 18)",
+                                                      " (in 'cfa_resid_rs', line 138, column 6 to column 26)",
+                                                      " (in 'cfa_resid_rs', line 145, column 12 to column 29)",
+                                                      " (in 'cfa_resid_rs', line 146, column 12 to column 87)",
+                                                      " (in 'cfa_resid_rs', line 144, column 41 to line 147, column 11)",
+                                                      " (in 'cfa_resid_rs', line 144, column 17 to line 147, column 11)",
+                                                      " (in 'cfa_resid_rs', line 142, column 12 to column 21)",
+                                                      " (in 'cfa_resid_rs', line 143, column 12 to column 43)",
+                                                      " (in 'cfa_resid_rs', line 141, column 42 to line 144, column 11)",
+                                                      " (in 'cfa_resid_rs', line 141, column 10 to line 147, column 11)",
+                                                      " (in 'cfa_resid_rs', line 140, column 24 to line 148, column 9)",
+                                                      " (in 'cfa_resid_rs', line 140, column 8 to line 148, column 9)",
+                                                      " (in 'cfa_resid_rs', line 139, column 22 to line 149, column 7)",
+                                                      " (in 'cfa_resid_rs', line 139, column 6 to line 149, column 7)",
+                                                      " (in 'cfa_resid_rs', line 136, column 4 to line 150, column 5)",
+                                                      " (in 'cfa_resid_rs', line 152, column 9 to column 46)",
+                                                      " (in 'cfa_resid_rs', line 151, column 23 to column 73)",
+                                                      " (in 'cfa_resid_rs', line 151, column 4 to line 152, column 46)",
+                                                      " (in 'cfa_resid_rs', line 154, column 6 to line 155, column 52)",
+                                                      " (in 'cfa_resid_rs', line 156, column 6 to line 157, column 52)",
+                                                      " (in 'cfa_resid_rs', line 153, column 21 to line 158, column 5)",
+                                                      " (in 'cfa_resid_rs', line 153, column 4 to line 158, column 5)",
+                                                      " (in 'cfa_resid_rs', line 159, column 4 to column 52)",
+                                                      " (in 'cfa_resid_rs', line 160, column 4 to column 58)",
+                                                      " (in 'cfa_resid_rs', line 161, column 4 to column 71)",
+                                                      " (in 'cfa_resid_rs', line 162, column 4 to column 32)",
+                                                      " (in 'cfa_resid_rs', line 164, column 6 to column 18)",
+                                                      " (in 'cfa_resid_rs', line 167, column 10 to column 19)",
+                                                      " (in 'cfa_resid_rs', line 168, column 10 to column 88)",
+                                                      " (in 'cfa_resid_rs', line 169, column 10 to column 36)",
+                                                      " (in 'cfa_resid_rs', line 166, column 29 to line 170, column 9)",
+                                                      " (in 'cfa_resid_rs', line 166, column 8 to line 170, column 9)",
+                                                      " (in 'cfa_resid_rs', line 165, column 22 to line 171, column 7)",
+                                                      " (in 'cfa_resid_rs', line 165, column 6 to line 171, column 7)",
+                                                      " (in 'cfa_resid_rs', line 163, column 21 to line 172, column 5)",
+                                                      " (in 'cfa_resid_rs', line 163, column 4 to line 172, column 5)",
+                                                      " (in 'cfa_resid_rs', line 174, column 6 to column 40)",
+                                                      " (in 'cfa_resid_rs', line 173, column 22 to line 175, column 5)",
+                                                      " (in 'cfa_resid_rs', line 173, column 4 to line 175, column 5)",
+                                                      " (in 'cfa_resid_rs', line 185, column 6 to column 50)",
+                                                      " (in 'cfa_resid_rs', line 184, column 11 to line 186, column 5)",
+                                                      " (in 'cfa_resid_rs', line 177, column 6 to column 46)",
+                                                      " (in 'cfa_resid_rs', line 181, column 8 to column 42)",
+                                                      " (in 'cfa_resid_rs', line 182, column 8 to column 52)",
+                                                      " (in 'cfa_resid_rs', line 180, column 31 to line 183, column 7)",
+                                                      " (in 'cfa_resid_rs', line 180, column 13 to line 183, column 7)",
+                                                      " (in 'cfa_resid_rs', line 179, column 8 to column 76)",
+                                                      " (in 'cfa_resid_rs', line 178, column 24 to line 180, column 7)",
+                                                      " (in 'cfa_resid_rs', line 178, column 6 to line 183, column 7)",
+                                                      " (in 'cfa_resid_rs', line 176, column 38 to line 184, column 5)",
+                                                      " (in 'cfa_resid_rs', line 176, column 4 to line 186, column 5)",
+                                                      " (in 'cfa_resid_rs', line 123, column 2 to line 187, column 3)",
                                                       " (in 'cfa_resid_rs', line 33, column 2 to column 20)",
                                                       " (in 'cfa_resid_rs', line 34, column 2 to column 20)",
                                                       " (in 'cfa_resid_rs', line 35, column 9 to column 11)",
@@ -389,15 +390,15 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'cfa_resid_rs', line 91, column 20 to column 33)",
                                                       " (in 'cfa_resid_rs', line 92, column 22 to column 35)",
                                                       " (in 'cfa_resid_rs', line 93, column 13 to column 20)",
-                                                      " (in 'cfa_resid_rs', line 193, column 9 to column 11)",
-                                                      " (in 'cfa_resid_rs', line 193, column 13 to column 15)",
-                                                      " (in 'cfa_resid_rs', line 194, column 9 to column 16)",
-                                                      " (in 'cfa_resid_rs', line 194, column 18 to column 25)",
-                                                      " (in 'cfa_resid_rs', line 195, column 9 to column 11)",
-                                                      " (in 'cfa_resid_rs', line 196, column 9 to column 12)",
+                                                      " (in 'cfa_resid_rs', line 194, column 9 to column 11)",
+                                                      " (in 'cfa_resid_rs', line 194, column 13 to column 15)",
+                                                      " (in 'cfa_resid_rs', line 195, column 9 to column 16)",
+                                                      " (in 'cfa_resid_rs', line 195, column 18 to column 25)",
+                                                      " (in 'cfa_resid_rs', line 196, column 9 to column 11)",
                                                       " (in 'cfa_resid_rs', line 197, column 9 to column 12)",
-                                                      " (in 'cfa_resid_rs', line 198, column 9 to column 11)",
-                                                      " (in 'cfa_resid_rs', line 198, column 13 to column 15)",
+                                                      " (in 'cfa_resid_rs', line 198, column 9 to column 12)",
+                                                      " (in 'cfa_resid_rs', line 199, column 9 to column 11)",
+                                                      " (in 'cfa_resid_rs', line 199, column 13 to column 15)",
                                                       " (in 'cfa_resid_rs', line 6, column 6 to column 16)",
                                                       " (in 'cfa_resid_rs', line 4, column 6 to column 15)",
                                                       " (in 'cfa_resid_rs', line 3, column 4 to line 6, column 16)",
@@ -424,12 +425,12 @@ sign(const T0__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 326;
+    current_statement__ = 327;
     if (logical_gt(x, 0)) {
-      current_statement__ = 325;
+      current_statement__ = 326;
       return 1;
     } else {
-      current_statement__ = 324;
+      current_statement__ = 325;
       return -1;
     }
   } catch (const std::exception& e) {
@@ -459,7 +460,7 @@ generalized_double_pareto_lpdf(const T0__& x_arg__, const T1__& alpha,
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 328;
+    current_statement__ = 329;
     return sum(
              multiply(-(alpha + 1.0),
                stan::math::log(add(1.0, divide(stan::math::fabs(x), alpha)))));
@@ -489,7 +490,7 @@ eff(const int& p, const T1__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 330;
+    current_statement__ = 331;
     return (((2 * lmgamma(p, (x / 2))) -
               ((x * p) * stan::math::log((x / 2)))) + (x * p));
   } catch (const std::exception& e) {
@@ -518,7 +519,7 @@ ln_det_spd(const T0__& S_arg__, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 332;
+    current_statement__ = 333;
     return (2 * sum(stan::math::log(diagonal(cholesky_decompose(S)))));
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -557,18 +558,18 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     int p;
     p = std::numeric_limits<int>::min();
     
-    current_statement__ = 334;
+    current_statement__ = 335;
     p = rows(S);
     local_scalar_t__ F_1;
     F_1 = DUMMY_VAR__;
     
-    current_statement__ = 335;
+    current_statement__ = 336;
     F_1 = ((eff(p, m, pstream__) + eff(p, n, pstream__)) -
             eff(p, (m + n), pstream__));
     local_scalar_t__ F_2;
     F_2 = DUMMY_VAR__;
     
-    current_statement__ = 336;
+    current_statement__ = 337;
     F_2 = ((-(((n - p) - 1) * ln_det_S) - (m * ln_det_spd(Omega, pstream__)))
             +
             ((m + n) *
@@ -577,9 +578,9 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     local_scalar_t__ ll;
     ll = DUMMY_VAR__;
     
-    current_statement__ = 337;
-    ll = ((F_1 + F_2) / -2.0);
     current_statement__ = 338;
+    ll = ((F_1 + F_2) / -2.0);
+    current_statement__ = 339;
     return ll;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -656,31 +657,31 @@ public:
       pos__ = std::numeric_limits<int>::min();
       
       pos__ = 1;
-      current_statement__ = 250;
+      current_statement__ = 251;
       context__.validate_dims("data initialization","Np","int",
           context__.to_vec());
       Np = std::numeric_limits<int>::min();
       
-      current_statement__ = 250;
-      Np = context__.vals_i("Np")[(1 - 1)];
-      current_statement__ = 250;
-      current_statement__ = 250;
-      check_greater_or_equal(function__, "Np", Np, 0);
       current_statement__ = 251;
+      Np = context__.vals_i("Np")[(1 - 1)];
+      current_statement__ = 251;
+      current_statement__ = 251;
+      check_greater_or_equal(function__, "Np", Np, 0);
+      current_statement__ = 252;
       context__.validate_dims("data initialization","Ni","int",
           context__.to_vec());
       Ni = std::numeric_limits<int>::min();
       
-      current_statement__ = 251;
-      Ni = context__.vals_i("Ni")[(1 - 1)];
-      current_statement__ = 251;
-      current_statement__ = 251;
-      check_greater_or_equal(function__, "Ni", Ni, 0);
       current_statement__ = 252;
-      validate_non_negative_index("S", "Ni", Ni);
+      Ni = context__.vals_i("Ni")[(1 - 1)];
+      current_statement__ = 252;
+      current_statement__ = 252;
+      check_greater_or_equal(function__, "Ni", Ni, 0);
       current_statement__ = 253;
       validate_non_negative_index("S", "Ni", Ni);
       current_statement__ = 254;
+      validate_non_negative_index("S", "Ni", Ni);
+      current_statement__ = 255;
       context__.validate_dims("data initialization","S","double",
           context__.to_vec(Ni, Ni));
       S = Eigen::Matrix<double, -1, -1>(Ni, Ni);
@@ -688,75 +689,75 @@ public:
       
       {
         std::vector<local_scalar_t__> S_flat__;
-        current_statement__ = 254;
+        current_statement__ = 255;
         assign(S_flat__, nil_index_list(), context__.vals_r("S"),
           "assigning variable S_flat__");
-        current_statement__ = 254;
+        current_statement__ = 255;
         pos__ = 1;
-        current_statement__ = 254;
+        current_statement__ = 255;
         for (int sym1__ = 1; sym1__ <= Ni; ++sym1__) {
-          current_statement__ = 254;
+          current_statement__ = 255;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 254;
+            current_statement__ = 255;
             assign(S,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               S_flat__[(pos__ - 1)], "assigning variable S");
-            current_statement__ = 254;
+            current_statement__ = 255;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 255;
+      current_statement__ = 256;
       context__.validate_dims("data initialization","Nf","int",
           context__.to_vec());
       Nf = std::numeric_limits<int>::min();
       
-      current_statement__ = 255;
-      Nf = context__.vals_i("Nf")[(1 - 1)];
-      current_statement__ = 255;
-      current_statement__ = 255;
-      check_greater_or_equal(function__, "Nf", Nf, 0);
       current_statement__ = 256;
+      Nf = context__.vals_i("Nf")[(1 - 1)];
+      current_statement__ = 256;
+      current_statement__ = 256;
+      check_greater_or_equal(function__, "Nf", Nf, 0);
+      current_statement__ = 257;
       context__.validate_dims("data initialization","Nce","int",
           context__.to_vec());
       Nce = std::numeric_limits<int>::min();
       
-      current_statement__ = 256;
-      Nce = context__.vals_i("Nce")[(1 - 1)];
-      current_statement__ = 256;
-      current_statement__ = 256;
-      check_greater_or_equal(function__, "Nce", Nce, 0);
       current_statement__ = 257;
-      validate_non_negative_index("error_mat", "Nce", Nce);
+      Nce = context__.vals_i("Nce")[(1 - 1)];
+      current_statement__ = 257;
+      current_statement__ = 257;
+      check_greater_or_equal(function__, "Nce", Nce, 0);
       current_statement__ = 258;
+      validate_non_negative_index("error_mat", "Nce", Nce);
+      current_statement__ = 259;
       context__.validate_dims("data initialization","error_mat","int",
           context__.to_vec(Nce, 2));
       error_mat = std::vector<std::vector<int>>(Nce, std::vector<int>(2, std::numeric_limits<int>::min()));
       
       {
         std::vector<int> error_mat_flat__;
-        current_statement__ = 258;
+        current_statement__ = 259;
         assign(error_mat_flat__, nil_index_list(),
           context__.vals_i("error_mat"),
           "assigning variable error_mat_flat__");
-        current_statement__ = 258;
+        current_statement__ = 259;
         pos__ = 1;
-        current_statement__ = 258;
+        current_statement__ = 259;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 258;
+          current_statement__ = 259;
           for (int sym2__ = 1; sym2__ <= Nce; ++sym2__) {
-            current_statement__ = 258;
+            current_statement__ = 259;
             assign(error_mat,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               error_mat_flat__[(pos__ - 1)], "assigning variable error_mat");
-            current_statement__ = 258;
+            current_statement__ = 259;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 259;
-      validate_non_negative_index("loading_pattern", "Ni", Ni);
       current_statement__ = 260;
-      validate_non_negative_index("loading_pattern", "Nf", Nf);
+      validate_non_negative_index("loading_pattern", "Ni", Ni);
       current_statement__ = 261;
+      validate_non_negative_index("loading_pattern", "Nf", Nf);
+      current_statement__ = 262;
       context__.validate_dims("data initialization","loading_pattern",
           "double",context__.to_vec(Ni, Nf));
       loading_pattern = Eigen::Matrix<double, -1, -1>(Ni, Nf);
@@ -764,261 +765,261 @@ public:
       
       {
         std::vector<local_scalar_t__> loading_pattern_flat__;
-        current_statement__ = 261;
+        current_statement__ = 262;
         assign(loading_pattern_flat__, nil_index_list(),
           context__.vals_r("loading_pattern"),
           "assigning variable loading_pattern_flat__");
-        current_statement__ = 261;
+        current_statement__ = 262;
         pos__ = 1;
-        current_statement__ = 261;
+        current_statement__ = 262;
         for (int sym1__ = 1; sym1__ <= Nf; ++sym1__) {
-          current_statement__ = 261;
+          current_statement__ = 262;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 261;
+            current_statement__ = 262;
             assign(loading_pattern,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               loading_pattern_flat__[(pos__ - 1)],
               "assigning variable loading_pattern");
-            current_statement__ = 261;
+            current_statement__ = 262;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 262;
-      validate_non_negative_index("markers", "Nf", Nf);
       current_statement__ = 263;
+      validate_non_negative_index("markers", "Nf", Nf);
+      current_statement__ = 264;
       context__.validate_dims("data initialization","markers","int",
           context__.to_vec(Nf));
       markers = std::vector<int>(Nf, std::numeric_limits<int>::min());
       
-      current_statement__ = 263;
+      current_statement__ = 264;
       assign(markers, nil_index_list(), context__.vals_i("markers"),
         "assigning variable markers");
-      current_statement__ = 264;
+      current_statement__ = 265;
       context__.validate_dims("data initialization","corr_fac","int",
           context__.to_vec());
       corr_fac = std::numeric_limits<int>::min();
       
-      current_statement__ = 264;
-      corr_fac = context__.vals_i("corr_fac")[(1 - 1)];
-      current_statement__ = 264;
-      current_statement__ = 264;
-      check_greater_or_equal(function__, "corr_fac", corr_fac, 0);
-      current_statement__ = 264;
-      current_statement__ = 264;
-      check_less_or_equal(function__, "corr_fac", corr_fac, 1);
       current_statement__ = 265;
+      corr_fac = context__.vals_i("corr_fac")[(1 - 1)];
+      current_statement__ = 265;
+      current_statement__ = 265;
+      check_greater_or_equal(function__, "corr_fac", corr_fac, 0);
+      current_statement__ = 265;
+      current_statement__ = 265;
+      check_less_or_equal(function__, "corr_fac", corr_fac, 1);
+      current_statement__ = 266;
       context__.validate_dims("data initialization","shape_phi_c","double",
           context__.to_vec());
       shape_phi_c = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 265;
-      shape_phi_c = context__.vals_r("shape_phi_c")[(1 - 1)];
-      current_statement__ = 265;
-      current_statement__ = 265;
-      check_greater_or_equal(function__, "shape_phi_c", shape_phi_c, 1);
       current_statement__ = 266;
+      shape_phi_c = context__.vals_r("shape_phi_c")[(1 - 1)];
+      current_statement__ = 266;
+      current_statement__ = 266;
+      check_greater_or_equal(function__, "shape_phi_c", shape_phi_c, 1);
+      current_statement__ = 267;
       context__.validate_dims("data initialization","sl_par","double",
           context__.to_vec());
       sl_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 266;
-      sl_par = context__.vals_r("sl_par")[(1 - 1)];
-      current_statement__ = 266;
-      current_statement__ = 266;
-      check_greater_or_equal(function__, "sl_par", sl_par, 0);
       current_statement__ = 267;
+      sl_par = context__.vals_r("sl_par")[(1 - 1)];
+      current_statement__ = 267;
+      current_statement__ = 267;
+      check_greater_or_equal(function__, "sl_par", sl_par, 0);
+      current_statement__ = 268;
       context__.validate_dims("data initialization","rs_par","double",
           context__.to_vec());
       rs_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 267;
-      rs_par = context__.vals_r("rs_par")[(1 - 1)];
-      current_statement__ = 267;
-      current_statement__ = 267;
-      check_greater_or_equal(function__, "rs_par", rs_par, 0);
       current_statement__ = 268;
+      rs_par = context__.vals_r("rs_par")[(1 - 1)];
+      current_statement__ = 268;
+      current_statement__ = 268;
+      check_greater_or_equal(function__, "rs_par", rs_par, 0);
+      current_statement__ = 269;
       context__.validate_dims("data initialization","rc_par","double",
           context__.to_vec());
       rc_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 268;
-      rc_par = context__.vals_r("rc_par")[(1 - 1)];
-      current_statement__ = 268;
-      current_statement__ = 268;
-      check_greater_or_equal(function__, "rc_par", rc_par, 1);
       current_statement__ = 269;
+      rc_par = context__.vals_r("rc_par")[(1 - 1)];
+      current_statement__ = 269;
+      current_statement__ = 269;
+      check_greater_or_equal(function__, "rc_par", rc_par, 1);
+      current_statement__ = 270;
       context__.validate_dims("data initialization","method","int",
           context__.to_vec());
       method = std::numeric_limits<int>::min();
       
-      current_statement__ = 269;
-      method = context__.vals_i("method")[(1 - 1)];
-      current_statement__ = 269;
-      current_statement__ = 269;
-      check_greater_or_equal(function__, "method", method, 1);
-      current_statement__ = 269;
-      current_statement__ = 269;
-      check_less_or_equal(function__, "method", method, 100);
       current_statement__ = 270;
+      method = context__.vals_i("method")[(1 - 1)];
+      current_statement__ = 270;
+      current_statement__ = 270;
+      check_greater_or_equal(function__, "method", method, 1);
+      current_statement__ = 270;
+      current_statement__ = 270;
+      check_less_or_equal(function__, "method", method, 100);
+      current_statement__ = 271;
       context__.validate_dims("data initialization","complex_struc","int",
           context__.to_vec());
       complex_struc = std::numeric_limits<int>::min();
       
-      current_statement__ = 270;
-      complex_struc = context__.vals_i("complex_struc")[(1 - 1)];
-      current_statement__ = 270;
-      current_statement__ = 270;
-      check_greater_or_equal(function__, "complex_struc", complex_struc, 0);
-      current_statement__ = 270;
-      current_statement__ = 270;
-      check_less_or_equal(function__, "complex_struc", complex_struc, 1);
       current_statement__ = 271;
+      complex_struc = context__.vals_i("complex_struc")[(1 - 1)];
+      current_statement__ = 271;
+      current_statement__ = 271;
+      check_greater_or_equal(function__, "complex_struc", complex_struc, 0);
+      current_statement__ = 271;
+      current_statement__ = 271;
+      check_less_or_equal(function__, "complex_struc", complex_struc, 1);
+      current_statement__ = 272;
       sqrt_two = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 271;
-      sqrt_two = stan::math::sqrt(2.0);
       current_statement__ = 272;
+      sqrt_two = stan::math::sqrt(2.0);
+      current_statement__ = 273;
       pi_sqrt_three = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 272;
-      pi_sqrt_three = (stan::math::pi() / stan::math::sqrt(3.0));
       current_statement__ = 273;
+      pi_sqrt_three = (stan::math::pi() / stan::math::sqrt(3.0));
+      current_statement__ = 274;
       Nl = std::numeric_limits<int>::min();
       
-      current_statement__ = 273;
-      Nl = 0;
       current_statement__ = 274;
-      validate_non_negative_index("N_S", "Ni", Ni);
+      Nl = 0;
       current_statement__ = 275;
       validate_non_negative_index("N_S", "Ni", Ni);
       current_statement__ = 276;
+      validate_non_negative_index("N_S", "Ni", Ni);
+      current_statement__ = 277;
       N_S = Eigen::Matrix<double, -1, -1>(Ni, Ni);
       stan::math::fill(N_S, std::numeric_limits<double>::quiet_NaN());
       
-      current_statement__ = 276;
+      current_statement__ = 277;
       assign(N_S, nil_index_list(), multiply((Np - 1), S),
         "assigning variable N_S");
-      current_statement__ = 277;
+      current_statement__ = 278;
       Nf_corr = std::numeric_limits<int>::min();
       
-      current_statement__ = 277;
-      Nf_corr = (logical_eq(corr_fac, 1) ? Nf : 1);
       current_statement__ = 278;
+      Nf_corr = (logical_eq(corr_fac, 1) ? Nf : 1);
+      current_statement__ = 279;
       Nisqd2 = std::numeric_limits<int>::min();
       
-      current_statement__ = 278;
-      Nisqd2 = ((Ni * (Ni - 1)) / 2);
       current_statement__ = 279;
+      Nisqd2 = ((Ni * (Ni - 1)) / 2);
+      current_statement__ = 280;
       N_rms = std::numeric_limits<int>::min();
       
-      current_statement__ = 279;
-      N_rms = 1;
       current_statement__ = 280;
+      N_rms = 1;
+      current_statement__ = 281;
       N_alpha = std::numeric_limits<int>::min();
       
-      current_statement__ = 280;
-      N_alpha = 0;
       current_statement__ = 281;
+      N_alpha = 0;
+      current_statement__ = 282;
       N_complex = std::numeric_limits<int>::min();
       
-      current_statement__ = 281;
-      N_complex = 0;
       current_statement__ = 282;
+      N_complex = 0;
+      current_statement__ = 283;
       ln_det_S = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 282;
-      ln_det_S = ln_det_spd(S, pstream__);
       current_statement__ = 283;
+      ln_det_S = ln_det_spd(S, pstream__);
+      current_statement__ = 284;
       N_Sigma = std::numeric_limits<int>::min();
       
-      current_statement__ = 283;
+      current_statement__ = 284;
       N_Sigma = 1;
-      current_statement__ = 286;
+      current_statement__ = 287;
       if (logical_gte(method, 90)) {
-        current_statement__ = 284;
+        current_statement__ = 285;
         Nisqd2 = 0;
       } 
-      current_statement__ = 289;
+      current_statement__ = 290;
       if (logical_eq(method, 91)) {
-        current_statement__ = 287;
+        current_statement__ = 288;
         N_Sigma = Ni;
       } 
-      current_statement__ = 292;
+      current_statement__ = 293;
       if (logical_eq(method, 100)) {
-        current_statement__ = 290;
+        current_statement__ = 291;
         N_rms = 0;
       } 
-      current_statement__ = 294;
+      current_statement__ = 295;
       if (logical_eq(method, 4)) {
-        current_statement__ = 293;
+        current_statement__ = 294;
         N_alpha = 1;
       } 
-      current_statement__ = 300;
+      current_statement__ = 301;
       for (int i = 1; i <= Ni; ++i) {
-        current_statement__ = 298;
+        current_statement__ = 299;
         for (int j = 1; j <= Nf; ++j) {
-          current_statement__ = 296;
+          current_statement__ = 297;
           if (logical_eq(
                 rvalue(loading_pattern,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())),
                   "loading_pattern"), 1)) {
-            current_statement__ = 295;
+            current_statement__ = 296;
             Nl = (Nl + 1);
           } }}
-      current_statement__ = 303;
+      current_statement__ = 304;
       if (logical_eq(complex_struc, 1)) {
-        current_statement__ = 301;
+        current_statement__ = 302;
         N_complex = ((Ni * Nf) - Nl);
       } 
-      current_statement__ = 273;
-      current_statement__ = 273;
+      current_statement__ = 274;
+      current_statement__ = 274;
       check_greater_or_equal(function__, "Nl", Nl, 0);
-      current_statement__ = 304;
-      validate_non_negative_index("rms_src_p", "N_rms", N_rms);
       current_statement__ = 305;
-      validate_non_negative_index("gdp_alpha", "N_alpha", N_alpha);
+      validate_non_negative_index("rms_src_p", "N_rms", N_rms);
       current_statement__ = 306;
-      validate_non_negative_index("resids", "Nisqd2", Nisqd2);
+      validate_non_negative_index("gdp_alpha", "N_alpha", N_alpha);
       current_statement__ = 307;
-      validate_non_negative_index("loadings", "Nl", Nl);
+      validate_non_negative_index("resids", "Nisqd2", Nisqd2);
       current_statement__ = 308;
+      validate_non_negative_index("loadings", "Nl", Nl);
+      current_statement__ = 309;
       validate_non_negative_index("res_sds", "Ni", Ni);
-      current_statement__ = 309;
-      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
-      current_statement__ = 309;
+      current_statement__ = 310;
       validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
       current_statement__ = 310;
-      validate_non_negative_index("res_cor_01", "Nce", Nce);
+      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
       current_statement__ = 311;
-      validate_non_negative_index("loadings_complex", "N_complex", N_complex);
+      validate_non_negative_index("res_cor_01", "Nce", Nce);
       current_statement__ = 312;
+      validate_non_negative_index("loadings_complex", "N_complex", N_complex);
+      current_statement__ = 313;
       validate_non_negative_index("sigma_loadings_complex", "complex_struc",
                                   complex_struc);
-      current_statement__ = 313;
+      current_statement__ = 314;
       validate_non_negative_index("gdp_loadings_complex", "complex_struc",
                                   complex_struc);
-      current_statement__ = 314;
-      validate_non_negative_index("Sigma", "N_Sigma", N_Sigma);
-      current_statement__ = 314;
+      current_statement__ = 315;
       validate_non_negative_index("Sigma", "N_Sigma", N_Sigma);
       current_statement__ = 315;
-      validate_non_negative_index("Load_mat", "Ni", Ni);
+      validate_non_negative_index("Sigma", "N_Sigma", N_Sigma);
       current_statement__ = 316;
-      validate_non_negative_index("Load_mat", "Nf", Nf);
+      validate_non_negative_index("Load_mat", "Ni", Ni);
       current_statement__ = 317;
-      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
+      validate_non_negative_index("Load_mat", "Nf", Nf);
       current_statement__ = 318;
       validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
       current_statement__ = 319;
-      validate_non_negative_index("res_var", "Ni", Ni);
+      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
       current_statement__ = 320;
-      validate_non_negative_index("res_cor", "Nce", Nce);
+      validate_non_negative_index("res_var", "Ni", Ni);
       current_statement__ = 321;
-      validate_non_negative_index("res_cov", "Nce", Nce);
+      validate_non_negative_index("res_cor", "Nce", Nce);
       current_statement__ = 322;
-      validate_non_negative_index("Resid", "Ni", Ni);
+      validate_non_negative_index("res_cov", "Nce", Nce);
       current_statement__ = 323;
+      validate_non_negative_index("Resid", "Ni", Ni);
+      current_statement__ = 324;
       validate_non_negative_index("Resid", "Ni", Ni);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1411,40 +1412,47 @@ public:
           total_var = Eigen::Matrix<local_scalar_t__, -1, 1>(Ni);
           stan::math::fill(total_var, DUMMY_VAR__);
           
+          Eigen::Matrix<local_scalar_t__, -1, -1> id_mat;
+          id_mat = Eigen::Matrix<local_scalar_t__, -1, -1>(1, 1);
+          stan::math::fill(id_mat, DUMMY_VAR__);
+          
+          current_statement__ = 198;
+          assign(id_mat, nil_index_list(), rep_matrix(1, 1, 1),
+            "assigning variable id_mat");
           {
             int pos;
             pos = std::numeric_limits<int>::min();
             
-            current_statement__ = 198;
+            current_statement__ = 199;
             pos = 0;
             int pos_complex;
             pos_complex = std::numeric_limits<int>::min();
             
-            current_statement__ = 199;
+            current_statement__ = 200;
             pos_complex = 0;
-            current_statement__ = 211;
+            current_statement__ = 212;
             for (int i = 1; i <= Ni; ++i) {
-              current_statement__ = 209;
+              current_statement__ = 210;
               for (int j = 1; j <= Nf; ++j) {
-                current_statement__ = 207;
+                current_statement__ = 208;
                 if (logical_neq(
                       rvalue(loading_pattern,
                         cons_list(index_uni(i),
                           cons_list(index_uni(j), nil_index_list())),
                         "loading_pattern"), 0)) {
-                  current_statement__ = 204;
-                  pos = (pos + 1);
                   current_statement__ = 205;
+                  pos = (pos + 1);
+                  current_statement__ = 206;
                   assign(Load_mat,
                     cons_list(index_uni(i),
                       cons_list(index_uni(j), nil_index_list())),
                     loadings[(pos - 1)], "assigning variable Load_mat");
                 } else {
-                  current_statement__ = 203;
+                  current_statement__ = 204;
                   if (logical_eq(complex_struc, 1)) {
-                    current_statement__ = 200;
-                    pos_complex = (pos_complex + 1);
                     current_statement__ = 201;
+                    pos_complex = (pos_complex + 1);
+                    current_statement__ = 202;
                     assign(Load_mat,
                       cons_list(index_uni(i),
                         cons_list(index_uni(j), nil_index_list())),
@@ -1454,20 +1462,20 @@ public:
                   } 
                 }}}
           }
-          current_statement__ = 215;
+          current_statement__ = 216;
           if (logical_eq(corr_fac, 1)) {
-            current_statement__ = 214;
+            current_statement__ = 215;
             assign(lamb_phi_lamb, nil_index_list(),
               quad_form_sym(phi_mat, transpose(Load_mat)),
               "assigning variable lamb_phi_lamb");
           } else {
-            current_statement__ = 213;
+            current_statement__ = 214;
             assign(lamb_phi_lamb, nil_index_list(), tcrossprod(Load_mat),
               "assigning variable lamb_phi_lamb");
           }
-          current_statement__ = 219;
+          current_statement__ = 220;
           for (int i = 1; i <= Nce; ++i) {
-            current_statement__ = 216;
+            current_statement__ = 217;
             assign(loading_par_exp,
               cons_list(index_uni(error_mat[(i - 1)][(1 - 1)]),
                 cons_list(index_uni(i), nil_index_list())),
@@ -1475,7 +1483,7 @@ public:
                 (stan::math::abs(res_cor[(i - 1)]) *
                   res_var[(error_mat[(i - 1)][(1 - 1)] - 1)])),
               "assigning variable loading_par_exp");
-            current_statement__ = 217;
+            current_statement__ = 218;
             assign(loading_par_exp,
               cons_list(index_uni(error_mat[(i - 1)][(2 - 1)]),
                 cons_list(index_uni(i), nil_index_list())),
@@ -1484,35 +1492,35 @@ public:
                   (stan::math::abs(res_cor[(i - 1)]) *
                     res_var[(error_mat[(i - 1)][(2 - 1)] - 1)]))),
               "assigning variable loading_par_exp");}
-          current_statement__ = 220;
+          current_statement__ = 221;
           assign(loading_par_exp_2, nil_index_list(),
             tcrossprod(loading_par_exp),
             "assigning variable loading_par_exp_2");
-          current_statement__ = 221;
+          current_statement__ = 222;
           assign(delta_mat_ast, nil_index_list(),
             subtract(res_var, diagonal(loading_par_exp_2)),
             "assigning variable delta_mat_ast");
-          current_statement__ = 222;
+          current_statement__ = 223;
           assign(Omega, nil_index_list(),
             add_diag(add(lamb_phi_lamb, loading_par_exp_2), delta_mat_ast),
             "assigning variable Omega");
-          current_statement__ = 223;
+          current_statement__ = 224;
           assign(total_var, nil_index_list(), diagonal(Omega),
             "assigning variable total_var");
-          current_statement__ = 233;
+          current_statement__ = 234;
           if (logical_lt(method, 90)) {
             int pos;
             pos = std::numeric_limits<int>::min();
             
-            current_statement__ = 224;
+            current_statement__ = 225;
             pos = 0;
-            current_statement__ = 231;
+            current_statement__ = 232;
             for (int i = 2; i <= Ni; ++i) {
-              current_statement__ = 229;
+              current_statement__ = 230;
               for (int j = 1; j <= (i - 1); ++j) {
-                current_statement__ = 225;
-                pos = (pos + 1);
                 current_statement__ = 226;
+                pos = (pos + 1);
+                current_statement__ = 227;
                 assign(Omega,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())),
@@ -1523,7 +1531,7 @@ public:
                       stan::math::sqrt(
                         (total_var[(i - 1)] * total_var[(j - 1)])))),
                   "assigning variable Omega");
-                current_statement__ = 227;
+                current_statement__ = 228;
                 assign(Omega,
                   cons_list(index_uni(j),
                     cons_list(index_uni(i), nil_index_list())),
@@ -1532,35 +1540,34 @@ public:
                       cons_list(index_uni(j), nil_index_list())), "Omega"),
                   "assigning variable Omega");}}
           } 
-          current_statement__ = 236;
+          current_statement__ = 237;
           if (logical_neq(method, 91)) {
-            current_statement__ = 234;
-            lp_accum__.add(
-              inv_wishart_lpdf<propto__>(Sigma, 1000, identity_matrix(1)));
+            current_statement__ = 235;
+            lp_accum__.add(inv_wishart_lpdf<propto__>(Sigma, 1000, id_mat));
           } 
-          current_statement__ = 248;
+          current_statement__ = 249;
           if ((primitive_value(logical_gte(method, 90)) && primitive_value(
               logical_lte(method, 99)))) {
-            current_statement__ = 239;
+            current_statement__ = 240;
             m = (((1.0 / square(rms_src_p[(1 - 1)])) + Ni) - 1);
-            current_statement__ = 246;
+            current_statement__ = 247;
             if (logical_eq(method, 90)) {
-              current_statement__ = 244;
+              current_statement__ = 245;
               lp_accum__.add(
                 gen_matrix_beta_ii_lpdf<false>(S, Omega, (Np - 1.0), m,
                   ln_det_S, pstream__));
             } else {
-              current_statement__ = 243;
+              current_statement__ = 244;
               if (logical_eq(method, 91)) {
-                current_statement__ = 240;
+                current_statement__ = 241;
                 lp_accum__.add(
                   inv_wishart_lpdf<propto__>(Sigma, m, multiply(m, Omega)));
-                current_statement__ = 241;
+                current_statement__ = 242;
                 lp_accum__.add(wishart_lpdf<false>(N_S, (Np - 1), Sigma));
               } 
             }
           } else {
-            current_statement__ = 237;
+            current_statement__ = 238;
             lp_accum__.add(wishart_lpdf<false>(N_S, (Np - 1), Omega));
           }
         }

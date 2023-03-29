@@ -141,6 +141,7 @@ model {
     matrix[Ni, Ni] loading_par_exp_2;
     vector[Ni] delta_mat_ast;
     vector[Ni] total_var;
+    matrix[1, 1] id_mat = rep_matrix(1, 1, 1);
 
     {
       int pos = 0;
@@ -187,7 +188,7 @@ model {
     }
 
     if (method != 91) {
-      Sigma ~ inv_wishart(1000, identity_matrix(1));
+      Sigma ~ inv_wishart(1000, id_mat);
     }
 
     if (method >= 90 && method <= 99) {

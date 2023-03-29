@@ -150,6 +150,7 @@ model {
     matrix[Ni, Nf] Lambda_One_min_Beta_inv;
     vector[Ni] delta_mat_ast;
     vector[Ni] total_var;
+    matrix[1, 1] id_mat = rep_matrix(1, 1, 1);
 
     {
       int pos_3[3] = rep_array(0, 3);
@@ -217,7 +218,7 @@ model {
     }
 
     if (method != 91) {
-      Sigma ~ inv_wishart(1000, identity_matrix(1));
+      Sigma ~ inv_wishart(1000, id_mat);
     }
 
     if (method >= 90 && method <= 99) {
