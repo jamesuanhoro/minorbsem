@@ -283,14 +283,18 @@ generated quantities {
 
   if (type == 2) {
     vector[Ng] ebx = exp(m_ln_int[1] + X * m_ln_beta);
+    real mn_ebx = 0.0;
 
     m_s = exp(m_ln_int[1] + X * m_ln_beta) + Ni - 1;
     v_mn = mean(1.0 ./ m_s);
     rmsea_mn = sqrt(v_mn);
 
-    for (i in 1:p) {
-      rmsea_beta[i] = -m_ln_beta[i] * mean(ebx ./ (2 * (ebx + p - 1) ^ (3.0 / 2)));
+    for (i in 1:Ng) {
+      mn_ebx += ebx[i] / (2 * (ebx[i] + p - 1) ^ (3.0 / 2));
     }
+    mn_ebx = mn_ebx / (Ng * 1.0);
+
+    rmsea_beta = -m_ln_beta * mn_ebx;
   }
 
   if (method < 90) {

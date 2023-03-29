@@ -118,60 +118,63 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'meta_cfa_resid_rs', line 251, column 2 to line 259, column 3)",
                                                       " (in 'meta_cfa_resid_rs', line 261, column 11 to column 13)",
                                                       " (in 'meta_cfa_resid_rs', line 261, column 4 to column 54)",
-                                                      " (in 'meta_cfa_resid_rs', line 262, column 4 to column 52)",
-                                                      " (in 'meta_cfa_resid_rs', line 263, column 4 to column 28)",
-                                                      " (in 'meta_cfa_resid_rs', line 264, column 4 to column 26)",
-                                                      " (in 'meta_cfa_resid_rs', line 266, column 6 to column 83)",
-                                                      " (in 'meta_cfa_resid_rs', line 265, column 19 to line 267, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 265, column 4 to line 267, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 260, column 17 to line 268, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 260, column 2 to line 268, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 270, column 4 to column 16)",
-                                                      " (in 'meta_cfa_resid_rs', line 273, column 8 to column 17)",
-                                                      " (in 'meta_cfa_resid_rs', line 274, column 8 to column 49)",
-                                                      " (in 'meta_cfa_resid_rs', line 275, column 8 to column 34)",
-                                                      " (in 'meta_cfa_resid_rs', line 272, column 27 to line 276, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 272, column 6 to line 276, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 271, column 20 to line 277, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 271, column 4 to line 277, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 269, column 19 to line 278, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 269, column 2 to line 278, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 280, column 4 to column 16)",
-                                                      " (in 'meta_cfa_resid_rs', line 281, column 4 to column 24)",
-                                                      " (in 'meta_cfa_resid_rs', line 288, column 10 to column 27)",
-                                                      " (in 'meta_cfa_resid_rs', line 289, column 10 to column 85)",
-                                                      " (in 'meta_cfa_resid_rs', line 287, column 39 to line 290, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 287, column 15 to line 290, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 285, column 10 to column 19)",
-                                                      " (in 'meta_cfa_resid_rs', line 286, column 10 to column 41)",
-                                                      " (in 'meta_cfa_resid_rs', line 284, column 40 to line 287, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 284, column 8 to line 290, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 283, column 22 to line 291, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 283, column 6 to line 291, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 282, column 20 to line 292, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 282, column 4 to line 292, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 279, column 2 to line 293, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 296, column 6 to column 28)",
-                                                      " (in 'meta_cfa_resid_rs', line 298, column 8 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 299, column 8 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 297, column 25 to line 300, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 297, column 6 to line 300, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 301, column 6 to line 308, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 304, column 38 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 304, column 12 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 305, column 38 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 305, column 12 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 303, column 27 to line 306, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 303, column 10 to line 306, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 302, column 20 to line 307, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 302, column 8 to line 307, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 295, column 37 to line 309, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 295, column 4 to line 309, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 294, column 18 to line 310, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 294, column 2 to line 310, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 312, column 4 to column 60)",
-                                                      " (in 'meta_cfa_resid_rs', line 311, column 19 to line 313, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 311, column 2 to line 313, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 262, column 4 to column 22)",
+                                                      " (in 'meta_cfa_resid_rs', line 263, column 4 to column 52)",
+                                                      " (in 'meta_cfa_resid_rs', line 264, column 4 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 265, column 4 to column 26)",
+                                                      " (in 'meta_cfa_resid_rs', line 267, column 6 to column 60)",
+                                                      " (in 'meta_cfa_resid_rs', line 266, column 20 to line 268, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 266, column 4 to line 268, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 269, column 4 to column 33)",
+                                                      " (in 'meta_cfa_resid_rs', line 270, column 4 to column 37)",
+                                                      " (in 'meta_cfa_resid_rs', line 260, column 17 to line 271, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 260, column 2 to line 271, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 273, column 4 to column 16)",
+                                                      " (in 'meta_cfa_resid_rs', line 276, column 8 to column 17)",
+                                                      " (in 'meta_cfa_resid_rs', line 277, column 8 to column 49)",
+                                                      " (in 'meta_cfa_resid_rs', line 278, column 8 to column 34)",
+                                                      " (in 'meta_cfa_resid_rs', line 275, column 27 to line 279, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 275, column 6 to line 279, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 274, column 20 to line 280, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 274, column 4 to line 280, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 272, column 19 to line 281, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 272, column 2 to line 281, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 283, column 4 to column 16)",
+                                                      " (in 'meta_cfa_resid_rs', line 284, column 4 to column 24)",
+                                                      " (in 'meta_cfa_resid_rs', line 291, column 10 to column 27)",
+                                                      " (in 'meta_cfa_resid_rs', line 292, column 10 to column 85)",
+                                                      " (in 'meta_cfa_resid_rs', line 290, column 39 to line 293, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 290, column 15 to line 293, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 288, column 10 to column 19)",
+                                                      " (in 'meta_cfa_resid_rs', line 289, column 10 to column 41)",
+                                                      " (in 'meta_cfa_resid_rs', line 287, column 40 to line 290, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 287, column 8 to line 293, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 286, column 22 to line 294, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 286, column 6 to line 294, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 285, column 20 to line 295, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 285, column 4 to line 295, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 282, column 2 to line 296, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 299, column 6 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 301, column 8 to column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 302, column 8 to column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 300, column 25 to line 303, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 300, column 6 to line 303, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 304, column 6 to line 311, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 307, column 38 to column 57)",
+                                                      " (in 'meta_cfa_resid_rs', line 307, column 12 to column 57)",
+                                                      " (in 'meta_cfa_resid_rs', line 308, column 38 to column 57)",
+                                                      " (in 'meta_cfa_resid_rs', line 308, column 12 to column 57)",
+                                                      " (in 'meta_cfa_resid_rs', line 306, column 27 to line 309, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 306, column 10 to line 309, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 305, column 20 to line 310, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 305, column 8 to line 310, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 298, column 37 to line 312, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 298, column 4 to line 312, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 297, column 18 to line 313, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 297, column 2 to line 313, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 315, column 4 to column 60)",
+                                                      " (in 'meta_cfa_resid_rs', line 314, column 19 to line 316, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 314, column 2 to line 316, column 3)",
                                                       " (in 'meta_cfa_resid_rs', line 107, column 2 to column 27)",
                                                       " (in 'meta_cfa_resid_rs', line 119, column 4 to column 32)",
                                                       " (in 'meta_cfa_resid_rs', line 120, column 4 to line 121, column 29)",
@@ -427,12 +430,12 @@ sign(const T0__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 329;
+    current_statement__ = 332;
     if (logical_gt(x, 0)) {
-      current_statement__ = 328;
+      current_statement__ = 331;
       return 1;
     } else {
-      current_statement__ = 327;
+      current_statement__ = 330;
       return -1;
     }
   } catch (const std::exception& e) {
@@ -462,7 +465,7 @@ generalized_double_pareto_lpdf(const T0__& x_arg__, const T1__& alpha,
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 331;
+    current_statement__ = 334;
     return sum(
              multiply(-(alpha + 1.0),
                stan::math::log(add(1.0, divide(stan::math::fabs(x), alpha)))));
@@ -492,7 +495,7 @@ eff(const int& p, const T1__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 333;
+    current_statement__ = 336;
     return (((2 * lmgamma(p, (x / 2))) -
               ((x * p) * stan::math::log((x / 2)))) + (x * p));
   } catch (const std::exception& e) {
@@ -521,7 +524,7 @@ ln_det_spd(const T0__& S_arg__, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 335;
+    current_statement__ = 338;
     return (2 * sum(stan::math::log(diagonal(cholesky_decompose(S)))));
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -558,18 +561,18 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     int p;
     p = std::numeric_limits<int>::min();
     
-    current_statement__ = 337;
+    current_statement__ = 340;
     p = rows(S);
     local_scalar_t__ F_1;
     F_1 = DUMMY_VAR__;
     
-    current_statement__ = 338;
+    current_statement__ = 341;
     F_1 = ((eff(p, m, pstream__) + eff(p, n, pstream__)) -
             eff(p, (m + n), pstream__));
     local_scalar_t__ F_2;
     F_2 = DUMMY_VAR__;
     
-    current_statement__ = 339;
+    current_statement__ = 342;
     F_2 = ((-(((n - p) - 1) * ln_det_spd(S, pstream__)) -
              (m * ln_det_spd(Omega, pstream__))) +
             ((m + n) *
@@ -578,9 +581,9 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     local_scalar_t__ ll;
     ll = DUMMY_VAR__;
     
-    current_statement__ = 340;
+    current_statement__ = 343;
     ll = ((F_1 + F_2) / -2.0);
-    current_statement__ = 341;
+    current_statement__ = 344;
     return ll;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -665,49 +668,49 @@ public:
       pos__ = std::numeric_limits<int>::min();
       
       pos__ = 1;
-      current_statement__ = 234;
+      current_statement__ = 237;
       context__.validate_dims("data initialization","Ng","int",
           context__.to_vec());
       Ng = std::numeric_limits<int>::min();
       
-      current_statement__ = 234;
+      current_statement__ = 237;
       Ng = context__.vals_i("Ng")[(1 - 1)];
-      current_statement__ = 234;
-      current_statement__ = 234;
+      current_statement__ = 237;
+      current_statement__ = 237;
       check_greater_or_equal(function__, "Ng", Ng, 0);
-      current_statement__ = 235;
+      current_statement__ = 238;
       validate_non_negative_index("Np", "Ng", Ng);
-      current_statement__ = 236;
+      current_statement__ = 239;
       context__.validate_dims("data initialization","Np","int",
           context__.to_vec(Ng));
       Np = std::vector<int>(Ng, std::numeric_limits<int>::min());
       
-      current_statement__ = 236;
+      current_statement__ = 239;
       assign(Np, nil_index_list(), context__.vals_i("Np"),
         "assigning variable Np");
-      current_statement__ = 236;
+      current_statement__ = 239;
       for (int sym1__ = 1; sym1__ <= Ng; ++sym1__) {
-        current_statement__ = 236;
-        current_statement__ = 236;
+        current_statement__ = 239;
+        current_statement__ = 239;
         check_greater_or_equal(function__, "Np[sym1__]", Np[(sym1__ - 1)], 0);
       }
-      current_statement__ = 237;
+      current_statement__ = 240;
       context__.validate_dims("data initialization","Ni","int",
           context__.to_vec());
       Ni = std::numeric_limits<int>::min();
       
-      current_statement__ = 237;
-      Ni = context__.vals_i("Ni")[(1 - 1)];
-      current_statement__ = 237;
-      current_statement__ = 237;
-      check_greater_or_equal(function__, "Ni", Ni, 0);
-      current_statement__ = 238;
-      validate_non_negative_index("S", "Ng", Ng);
-      current_statement__ = 239;
-      validate_non_negative_index("S", "Ni", Ni);
       current_statement__ = 240;
-      validate_non_negative_index("S", "Ni", Ni);
+      Ni = context__.vals_i("Ni")[(1 - 1)];
+      current_statement__ = 240;
+      current_statement__ = 240;
+      check_greater_or_equal(function__, "Ni", Ni, 0);
       current_statement__ = 241;
+      validate_non_negative_index("S", "Ng", Ng);
+      current_statement__ = 242;
+      validate_non_negative_index("S", "Ni", Ni);
+      current_statement__ = 243;
+      validate_non_negative_index("S", "Ni", Ni);
+      current_statement__ = 244;
       context__.validate_dims("data initialization","S","double",
           context__.to_vec(Ng, Ni, Ni));
       S = std::vector<Eigen::Matrix<double, -1, -1>>(Ng, Eigen::Matrix<double, -1, -1>(Ni, Ni));
@@ -715,78 +718,78 @@ public:
       
       {
         std::vector<local_scalar_t__> S_flat__;
-        current_statement__ = 241;
+        current_statement__ = 244;
         assign(S_flat__, nil_index_list(), context__.vals_r("S"),
           "assigning variable S_flat__");
-        current_statement__ = 241;
+        current_statement__ = 244;
         pos__ = 1;
-        current_statement__ = 241;
+        current_statement__ = 244;
         for (int sym1__ = 1; sym1__ <= Ni; ++sym1__) {
-          current_statement__ = 241;
+          current_statement__ = 244;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 241;
+            current_statement__ = 244;
             for (int sym3__ = 1; sym3__ <= Ng; ++sym3__) {
-              current_statement__ = 241;
+              current_statement__ = 244;
               assign(S,
                 cons_list(index_uni(sym3__),
                   cons_list(index_uni(sym2__),
                     cons_list(index_uni(sym1__), nil_index_list()))),
                 S_flat__[(pos__ - 1)], "assigning variable S");
-              current_statement__ = 241;
+              current_statement__ = 244;
               pos__ = (pos__ + 1);}}}
       }
-      current_statement__ = 242;
+      current_statement__ = 245;
       context__.validate_dims("data initialization","Nf","int",
           context__.to_vec());
       Nf = std::numeric_limits<int>::min();
       
-      current_statement__ = 242;
+      current_statement__ = 245;
       Nf = context__.vals_i("Nf")[(1 - 1)];
-      current_statement__ = 242;
-      current_statement__ = 242;
+      current_statement__ = 245;
+      current_statement__ = 245;
       check_greater_or_equal(function__, "Nf", Nf, 0);
-      current_statement__ = 243;
+      current_statement__ = 246;
       context__.validate_dims("data initialization","Nce","int",
           context__.to_vec());
       Nce = std::numeric_limits<int>::min();
       
-      current_statement__ = 243;
+      current_statement__ = 246;
       Nce = context__.vals_i("Nce")[(1 - 1)];
-      current_statement__ = 243;
-      current_statement__ = 243;
+      current_statement__ = 246;
+      current_statement__ = 246;
       check_greater_or_equal(function__, "Nce", Nce, 0);
-      current_statement__ = 244;
+      current_statement__ = 247;
       validate_non_negative_index("error_mat", "Nce", Nce);
-      current_statement__ = 245;
+      current_statement__ = 248;
       context__.validate_dims("data initialization","error_mat","int",
           context__.to_vec(Nce, 2));
       error_mat = std::vector<std::vector<int>>(Nce, std::vector<int>(2, std::numeric_limits<int>::min()));
       
       {
         std::vector<int> error_mat_flat__;
-        current_statement__ = 245;
+        current_statement__ = 248;
         assign(error_mat_flat__, nil_index_list(),
           context__.vals_i("error_mat"),
           "assigning variable error_mat_flat__");
-        current_statement__ = 245;
+        current_statement__ = 248;
         pos__ = 1;
-        current_statement__ = 245;
+        current_statement__ = 248;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 245;
+          current_statement__ = 248;
           for (int sym2__ = 1; sym2__ <= Nce; ++sym2__) {
-            current_statement__ = 245;
+            current_statement__ = 248;
             assign(error_mat,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               error_mat_flat__[(pos__ - 1)], "assigning variable error_mat");
-            current_statement__ = 245;
+            current_statement__ = 248;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 246;
+      current_statement__ = 249;
       validate_non_negative_index("loading_pattern", "Ni", Ni);
-      current_statement__ = 247;
+      current_statement__ = 250;
       validate_non_negative_index("loading_pattern", "Nf", Nf);
-      current_statement__ = 248;
+      current_statement__ = 251;
       context__.validate_dims("data initialization","loading_pattern",
           "double",context__.to_vec(Ni, Nf));
       loading_pattern = Eigen::Matrix<double, -1, -1>(Ni, Nf);
@@ -794,171 +797,143 @@ public:
       
       {
         std::vector<local_scalar_t__> loading_pattern_flat__;
-        current_statement__ = 248;
+        current_statement__ = 251;
         assign(loading_pattern_flat__, nil_index_list(),
           context__.vals_r("loading_pattern"),
           "assigning variable loading_pattern_flat__");
-        current_statement__ = 248;
+        current_statement__ = 251;
         pos__ = 1;
-        current_statement__ = 248;
+        current_statement__ = 251;
         for (int sym1__ = 1; sym1__ <= Nf; ++sym1__) {
-          current_statement__ = 248;
+          current_statement__ = 251;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 248;
+            current_statement__ = 251;
             assign(loading_pattern,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               loading_pattern_flat__[(pos__ - 1)],
               "assigning variable loading_pattern");
-            current_statement__ = 248;
+            current_statement__ = 251;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 249;
+      current_statement__ = 252;
       validate_non_negative_index("markers", "Nf", Nf);
-      current_statement__ = 250;
+      current_statement__ = 253;
       context__.validate_dims("data initialization","markers","int",
           context__.to_vec(Nf));
       markers = std::vector<int>(Nf, std::numeric_limits<int>::min());
       
-      current_statement__ = 250;
+      current_statement__ = 253;
       assign(markers, nil_index_list(), context__.vals_i("markers"),
         "assigning variable markers");
-      current_statement__ = 251;
+      current_statement__ = 254;
       context__.validate_dims("data initialization","corr_fac","int",
           context__.to_vec());
       corr_fac = std::numeric_limits<int>::min();
       
-      current_statement__ = 251;
+      current_statement__ = 254;
       corr_fac = context__.vals_i("corr_fac")[(1 - 1)];
-      current_statement__ = 251;
-      current_statement__ = 251;
+      current_statement__ = 254;
+      current_statement__ = 254;
       check_greater_or_equal(function__, "corr_fac", corr_fac, 0);
-      current_statement__ = 251;
-      current_statement__ = 251;
+      current_statement__ = 254;
+      current_statement__ = 254;
       check_less_or_equal(function__, "corr_fac", corr_fac, 1);
-      current_statement__ = 252;
+      current_statement__ = 255;
       context__.validate_dims("data initialization","shape_phi_c","double",
           context__.to_vec());
       shape_phi_c = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 252;
+      current_statement__ = 255;
       shape_phi_c = context__.vals_r("shape_phi_c")[(1 - 1)];
-      current_statement__ = 252;
-      current_statement__ = 252;
+      current_statement__ = 255;
+      current_statement__ = 255;
       check_greater_or_equal(function__, "shape_phi_c", shape_phi_c, 1);
-      current_statement__ = 253;
+      current_statement__ = 256;
       context__.validate_dims("data initialization","sl_par","double",
           context__.to_vec());
       sl_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 253;
+      current_statement__ = 256;
       sl_par = context__.vals_r("sl_par")[(1 - 1)];
-      current_statement__ = 253;
-      current_statement__ = 253;
+      current_statement__ = 256;
+      current_statement__ = 256;
       check_greater_or_equal(function__, "sl_par", sl_par, 0);
-      current_statement__ = 254;
+      current_statement__ = 257;
       context__.validate_dims("data initialization","rs_par","double",
           context__.to_vec());
       rs_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 254;
+      current_statement__ = 257;
       rs_par = context__.vals_r("rs_par")[(1 - 1)];
-      current_statement__ = 254;
-      current_statement__ = 254;
+      current_statement__ = 257;
+      current_statement__ = 257;
       check_greater_or_equal(function__, "rs_par", rs_par, 0);
-      current_statement__ = 255;
+      current_statement__ = 258;
       context__.validate_dims("data initialization","rc_par","double",
           context__.to_vec());
       rc_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 255;
+      current_statement__ = 258;
       rc_par = context__.vals_r("rc_par")[(1 - 1)];
-      current_statement__ = 255;
-      current_statement__ = 255;
+      current_statement__ = 258;
+      current_statement__ = 258;
       check_greater_or_equal(function__, "rc_par", rc_par, 1);
-      current_statement__ = 256;
+      current_statement__ = 259;
       context__.validate_dims("data initialization","method","int",
           context__.to_vec());
       method = std::numeric_limits<int>::min();
       
-      current_statement__ = 256;
+      current_statement__ = 259;
       method = context__.vals_i("method")[(1 - 1)];
-      current_statement__ = 256;
-      current_statement__ = 256;
+      current_statement__ = 259;
+      current_statement__ = 259;
       check_greater_or_equal(function__, "method", method, 1);
-      current_statement__ = 256;
-      current_statement__ = 256;
+      current_statement__ = 259;
+      current_statement__ = 259;
       check_less_or_equal(function__, "method", method, 100);
-      current_statement__ = 257;
+      current_statement__ = 260;
       context__.validate_dims("data initialization","complex_struc","int",
           context__.to_vec());
       complex_struc = std::numeric_limits<int>::min();
       
-      current_statement__ = 257;
+      current_statement__ = 260;
       complex_struc = context__.vals_i("complex_struc")[(1 - 1)];
-      current_statement__ = 257;
-      current_statement__ = 257;
+      current_statement__ = 260;
+      current_statement__ = 260;
       check_greater_or_equal(function__, "complex_struc", complex_struc, 0);
-      current_statement__ = 257;
-      current_statement__ = 257;
+      current_statement__ = 260;
+      current_statement__ = 260;
       check_less_or_equal(function__, "complex_struc", complex_struc, 1);
-      current_statement__ = 258;
+      current_statement__ = 261;
       context__.validate_dims("data initialization","Nmiss","int",
           context__.to_vec());
       Nmiss = std::numeric_limits<int>::min();
       
-      current_statement__ = 258;
+      current_statement__ = 261;
       Nmiss = context__.vals_i("Nmiss")[(1 - 1)];
-      current_statement__ = 259;
+      current_statement__ = 262;
       context__.validate_dims("data initialization","Nitem_miss","int",
           context__.to_vec());
       Nitem_miss = std::numeric_limits<int>::min();
       
-      current_statement__ = 259;
-      Nitem_miss = context__.vals_i("Nitem_miss")[(1 - 1)];
-      current_statement__ = 260;
-      validate_non_negative_index("valid_var", "Ni", Ni);
-      current_statement__ = 261;
-      validate_non_negative_index("valid_var", "Ng", Ng);
       current_statement__ = 262;
+      Nitem_miss = context__.vals_i("Nitem_miss")[(1 - 1)];
+      current_statement__ = 263;
+      validate_non_negative_index("valid_var", "Ni", Ni);
+      current_statement__ = 264;
+      validate_non_negative_index("valid_var", "Ng", Ng);
+      current_statement__ = 265;
       context__.validate_dims("data initialization","valid_var","int",
           context__.to_vec(Ni, Ng));
       valid_var = std::vector<std::vector<int>>(Ni, std::vector<int>(Ng, std::numeric_limits<int>::min()));
       
       {
         std::vector<int> valid_var_flat__;
-        current_statement__ = 262;
+        current_statement__ = 265;
         assign(valid_var_flat__, nil_index_list(),
           context__.vals_i("valid_var"),
           "assigning variable valid_var_flat__");
-        current_statement__ = 262;
-        pos__ = 1;
-        current_statement__ = 262;
-        for (int sym1__ = 1; sym1__ <= Ng; ++sym1__) {
-          current_statement__ = 262;
-          for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 262;
-            assign(valid_var,
-              cons_list(index_uni(sym2__),
-                cons_list(index_uni(sym1__), nil_index_list())),
-              valid_var_flat__[(pos__ - 1)], "assigning variable valid_var");
-            current_statement__ = 262;
-            pos__ = (pos__ + 1);}}
-      }
-      current_statement__ = 263;
-      validate_non_negative_index("miss_ind", "Ni", Ni);
-      current_statement__ = 264;
-      validate_non_negative_index("miss_ind", "Ng", Ng);
-      current_statement__ = 265;
-      context__.validate_dims("data initialization","miss_ind","int",
-          context__.to_vec(Ni, Ng));
-      miss_ind = std::vector<std::vector<int>>(Ni, std::vector<int>(Ng, std::numeric_limits<int>::min()));
-      
-      {
-        std::vector<int> miss_ind_flat__;
-        current_statement__ = 265;
-        assign(miss_ind_flat__, nil_index_list(),
-          context__.vals_i("miss_ind"), "assigning variable miss_ind_flat__");
         current_statement__ = 265;
         pos__ = 1;
         current_statement__ = 265;
@@ -966,25 +941,53 @@ public:
           current_statement__ = 265;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
             current_statement__ = 265;
-            assign(miss_ind,
+            assign(valid_var,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
-              miss_ind_flat__[(pos__ - 1)], "assigning variable miss_ind");
+              valid_var_flat__[(pos__ - 1)], "assigning variable valid_var");
             current_statement__ = 265;
             pos__ = (pos__ + 1);}}
       }
       current_statement__ = 266;
+      validate_non_negative_index("miss_ind", "Ni", Ni);
+      current_statement__ = 267;
+      validate_non_negative_index("miss_ind", "Ng", Ng);
+      current_statement__ = 268;
+      context__.validate_dims("data initialization","miss_ind","int",
+          context__.to_vec(Ni, Ng));
+      miss_ind = std::vector<std::vector<int>>(Ni, std::vector<int>(Ng, std::numeric_limits<int>::min()));
+      
+      {
+        std::vector<int> miss_ind_flat__;
+        current_statement__ = 268;
+        assign(miss_ind_flat__, nil_index_list(),
+          context__.vals_i("miss_ind"), "assigning variable miss_ind_flat__");
+        current_statement__ = 268;
+        pos__ = 1;
+        current_statement__ = 268;
+        for (int sym1__ = 1; sym1__ <= Ng; ++sym1__) {
+          current_statement__ = 268;
+          for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
+            current_statement__ = 268;
+            assign(miss_ind,
+              cons_list(index_uni(sym2__),
+                cons_list(index_uni(sym1__), nil_index_list())),
+              miss_ind_flat__[(pos__ - 1)], "assigning variable miss_ind");
+            current_statement__ = 268;
+            pos__ = (pos__ + 1);}}
+      }
+      current_statement__ = 269;
       context__.validate_dims("data initialization","p","int",
           context__.to_vec());
       p = std::numeric_limits<int>::min();
       
-      current_statement__ = 266;
-      p = context__.vals_i("p")[(1 - 1)];
-      current_statement__ = 267;
-      validate_non_negative_index("X", "Ng", Ng);
-      current_statement__ = 268;
-      validate_non_negative_index("X", "p", p);
       current_statement__ = 269;
+      p = context__.vals_i("p")[(1 - 1)];
+      current_statement__ = 270;
+      validate_non_negative_index("X", "Ng", Ng);
+      current_statement__ = 271;
+      validate_non_negative_index("X", "p", p);
+      current_statement__ = 272;
       context__.validate_dims("data initialization","X","double",
           context__.to_vec(Ng, p));
       X = Eigen::Matrix<double, -1, -1>(Ng, p);
@@ -992,197 +995,197 @@ public:
       
       {
         std::vector<local_scalar_t__> X_flat__;
-        current_statement__ = 269;
+        current_statement__ = 272;
         assign(X_flat__, nil_index_list(), context__.vals_r("X"),
           "assigning variable X_flat__");
-        current_statement__ = 269;
+        current_statement__ = 272;
         pos__ = 1;
-        current_statement__ = 269;
+        current_statement__ = 272;
         for (int sym1__ = 1; sym1__ <= p; ++sym1__) {
-          current_statement__ = 269;
+          current_statement__ = 272;
           for (int sym2__ = 1; sym2__ <= Ng; ++sym2__) {
-            current_statement__ = 269;
+            current_statement__ = 272;
             assign(X,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               X_flat__[(pos__ - 1)], "assigning variable X");
-            current_statement__ = 269;
+            current_statement__ = 272;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 270;
+      current_statement__ = 273;
       context__.validate_dims("data initialization","mln_par","double",
           context__.to_vec());
       mln_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 270;
+      current_statement__ = 273;
       mln_par = context__.vals_r("mln_par")[(1 - 1)];
-      current_statement__ = 270;
-      current_statement__ = 270;
+      current_statement__ = 273;
+      current_statement__ = 273;
       check_greater_or_equal(function__, "mln_par", mln_par, 0);
-      current_statement__ = 271;
+      current_statement__ = 274;
       context__.validate_dims("data initialization","mlb_par","double",
           context__.to_vec());
       mlb_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 271;
+      current_statement__ = 274;
       mlb_par = context__.vals_r("mlb_par")[(1 - 1)];
-      current_statement__ = 271;
-      current_statement__ = 271;
+      current_statement__ = 274;
+      current_statement__ = 274;
       check_greater_or_equal(function__, "mlb_par", mlb_par, 0);
-      current_statement__ = 272;
+      current_statement__ = 275;
       context__.validate_dims("data initialization","type","int",
           context__.to_vec());
       type = std::numeric_limits<int>::min();
       
-      current_statement__ = 272;
+      current_statement__ = 275;
       type = context__.vals_i("type")[(1 - 1)];
-      current_statement__ = 272;
-      current_statement__ = 272;
+      current_statement__ = 275;
+      current_statement__ = 275;
       check_greater_or_equal(function__, "type", type, 1);
-      current_statement__ = 272;
-      current_statement__ = 272;
+      current_statement__ = 275;
+      current_statement__ = 275;
       check_less_or_equal(function__, "type", type, 3);
-      current_statement__ = 273;
+      current_statement__ = 276;
       sqrt_two = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 273;
+      current_statement__ = 276;
       sqrt_two = stan::math::sqrt(2.0);
-      current_statement__ = 274;
+      current_statement__ = 277;
       pi_sqrt_three = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 274;
+      current_statement__ = 277;
       pi_sqrt_three = (stan::math::pi() / stan::math::sqrt(3.0));
-      current_statement__ = 275;
+      current_statement__ = 278;
       Nl = std::numeric_limits<int>::min();
       
-      current_statement__ = 275;
+      current_statement__ = 278;
       Nl = 0;
-      current_statement__ = 276;
+      current_statement__ = 279;
       Nf_corr = std::numeric_limits<int>::min();
       
-      current_statement__ = 276;
+      current_statement__ = 279;
       Nf_corr = (logical_eq(corr_fac, 1) ? Nf : 1);
-      current_statement__ = 277;
+      current_statement__ = 280;
       Nisqd2 = std::numeric_limits<int>::min();
       
-      current_statement__ = 277;
+      current_statement__ = 280;
       Nisqd2 = ((Ni * (Ni - 1)) / 2);
-      current_statement__ = 278;
+      current_statement__ = 281;
       N_rms = std::numeric_limits<int>::min();
       
-      current_statement__ = 278;
+      current_statement__ = 281;
       N_rms = 1;
-      current_statement__ = 279;
+      current_statement__ = 282;
       N_alpha = std::numeric_limits<int>::min();
       
-      current_statement__ = 279;
+      current_statement__ = 282;
       N_alpha = 0;
-      current_statement__ = 280;
+      current_statement__ = 283;
       N_complex = std::numeric_limits<int>::min();
       
-      current_statement__ = 280;
+      current_statement__ = 283;
       N_complex = 0;
-      current_statement__ = 281;
+      current_statement__ = 284;
       N_type = std::numeric_limits<int>::min();
       
-      current_statement__ = 281;
-      N_type = 1;
       current_statement__ = 284;
+      N_type = 1;
+      current_statement__ = 287;
       if (logical_gte(method, 90)) {
-        current_statement__ = 282;
+        current_statement__ = 285;
         Nisqd2 = 0;
       } 
-      current_statement__ = 287;
+      current_statement__ = 290;
       if (logical_eq(method, 100)) {
-        current_statement__ = 285;
+        current_statement__ = 288;
         N_rms = 0;
       } 
-      current_statement__ = 289;
+      current_statement__ = 292;
       if (logical_eq(method, 4)) {
-        current_statement__ = 288;
+        current_statement__ = 291;
         N_alpha = 1;
       } 
-      current_statement__ = 291;
+      current_statement__ = 294;
       if (logical_lt(type, 2)) {
-        current_statement__ = 290;
+        current_statement__ = 293;
         N_type = 0;
       } 
-      current_statement__ = 297;
+      current_statement__ = 300;
       for (int i = 1; i <= Ni; ++i) {
-        current_statement__ = 295;
+        current_statement__ = 298;
         for (int j = 1; j <= Nf; ++j) {
-          current_statement__ = 293;
+          current_statement__ = 296;
           if (logical_eq(
                 rvalue(loading_pattern,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())),
                   "loading_pattern"), 1)) {
-            current_statement__ = 292;
+            current_statement__ = 295;
             Nl = (Nl + 1);
           } }}
-      current_statement__ = 300;
+      current_statement__ = 303;
       if (logical_eq(complex_struc, 1)) {
-        current_statement__ = 298;
+        current_statement__ = 301;
         N_complex = ((Ni * Nf) - Nl);
       } 
-      current_statement__ = 275;
-      current_statement__ = 275;
+      current_statement__ = 278;
+      current_statement__ = 278;
       check_greater_or_equal(function__, "Nl", Nl, 0);
-      current_statement__ = 301;
-      validate_non_negative_index("rms_src_p", "N_rms", N_rms);
-      current_statement__ = 302;
-      validate_non_negative_index("gdp_alpha", "N_alpha", N_alpha);
-      current_statement__ = 303;
-      validate_non_negative_index("resids", "Nisqd2", Nisqd2);
       current_statement__ = 304;
-      validate_non_negative_index("loadings", "Nl", Nl);
+      validate_non_negative_index("rms_src_p", "N_rms", N_rms);
       current_statement__ = 305;
-      validate_non_negative_index("res_sds", "Ni", Ni);
+      validate_non_negative_index("gdp_alpha", "N_alpha", N_alpha);
       current_statement__ = 306;
-      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
-      current_statement__ = 306;
-      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
+      validate_non_negative_index("resids", "Nisqd2", Nisqd2);
       current_statement__ = 307;
-      validate_non_negative_index("res_cor_01", "Nce", Nce);
+      validate_non_negative_index("loadings", "Nl", Nl);
       current_statement__ = 308;
-      validate_non_negative_index("loadings_complex", "N_complex", N_complex);
+      validate_non_negative_index("res_sds", "Ni", Ni);
       current_statement__ = 309;
+      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
+      current_statement__ = 309;
+      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
+      current_statement__ = 310;
+      validate_non_negative_index("res_cor_01", "Nce", Nce);
+      current_statement__ = 311;
+      validate_non_negative_index("loadings_complex", "N_complex", N_complex);
+      current_statement__ = 312;
       validate_non_negative_index("sigma_loadings_complex", "complex_struc",
                                   complex_struc);
-      current_statement__ = 310;
+      current_statement__ = 313;
       validate_non_negative_index("gdp_loadings_complex", "complex_struc",
                                   complex_struc);
-      current_statement__ = 311;
-      validate_non_negative_index("m_ln_int", "N_type", N_type);
-      current_statement__ = 312;
-      validate_non_negative_index("m_ln_beta", "p", p);
-      current_statement__ = 313;
-      validate_non_negative_index("miss_cor_01", "Nmiss", Nmiss);
       current_statement__ = 314;
-      validate_non_negative_index("var_shifts", "Nitem_miss", Nitem_miss);
+      validate_non_negative_index("m_ln_int", "N_type", N_type);
       current_statement__ = 315;
-      validate_non_negative_index("Load_mat", "Ni", Ni);
+      validate_non_negative_index("m_ln_beta", "p", p);
       current_statement__ = 316;
-      validate_non_negative_index("Load_mat", "Nf", Nf);
+      validate_non_negative_index("miss_cor_01", "Nmiss", Nmiss);
       current_statement__ = 317;
-      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
+      validate_non_negative_index("var_shifts", "Nitem_miss", Nitem_miss);
       current_statement__ = 318;
-      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
+      validate_non_negative_index("Load_mat", "Ni", Ni);
       current_statement__ = 319;
-      validate_non_negative_index("res_var", "Ni", Ni);
+      validate_non_negative_index("Load_mat", "Nf", Nf);
       current_statement__ = 320;
-      validate_non_negative_index("res_cor", "Nce", Nce);
+      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
       current_statement__ = 321;
-      validate_non_negative_index("res_cov", "Nce", Nce);
+      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
       current_statement__ = 322;
-      validate_non_negative_index("Resid", "Ni", Ni);
+      validate_non_negative_index("res_var", "Ni", Ni);
       current_statement__ = 323;
-      validate_non_negative_index("Resid", "Ni", Ni);
+      validate_non_negative_index("res_cor", "Nce", Nce);
       current_statement__ = 324;
-      validate_non_negative_index("miss_cor", "Nmiss", Nmiss);
+      validate_non_negative_index("res_cov", "Nce", Nce);
       current_statement__ = 325;
-      validate_non_negative_index("m_s", "Ng", Ng);
+      validate_non_negative_index("Resid", "Ni", Ni);
       current_statement__ = 326;
+      validate_non_negative_index("Resid", "Ni", Ni);
+      current_statement__ = 327;
+      validate_non_negative_index("miss_cor", "Nmiss", Nmiss);
+      current_statement__ = 328;
+      validate_non_negative_index("m_s", "Ng", Ng);
+      current_statement__ = 329;
       validate_non_negative_index("rmsea_beta", "p", p);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1461,28 +1464,28 @@ public:
             "assigning variable var_shifts");
         }}
       {
-        current_statement__ = 98;
+        current_statement__ = 101;
         lp_accum__.add(std_normal_lpdf<propto__>(rms_src_p));
-        current_statement__ = 111;
+        current_statement__ = 114;
         if (logical_eq(method, 1)) {
-          current_statement__ = 109;
+          current_statement__ = 112;
           lp_accum__.add(std_normal_lpdf<propto__>(resids));
         } else {
-          current_statement__ = 108;
+          current_statement__ = 111;
           if (logical_eq(method, 2)) {
-            current_statement__ = 106;
+            current_statement__ = 109;
             lp_accum__.add(double_exponential_lpdf<propto__>(resids, 0, 1));
           } else {
-            current_statement__ = 105;
+            current_statement__ = 108;
             if (logical_eq(method, 3)) {
-              current_statement__ = 103;
+              current_statement__ = 106;
               lp_accum__.add(logistic_lpdf<propto__>(resids, 0, 1));
             } else {
-              current_statement__ = 102;
+              current_statement__ = 105;
               if (logical_eq(method, 4)) {
-                current_statement__ = 99;
+                current_statement__ = 102;
                 lp_accum__.add(lognormal_lpdf<propto__>(gdp_alpha, 1, 1));
-                current_statement__ = 100;
+                current_statement__ = 103;
                 lp_accum__.add(
                   generalized_double_pareto_lpdf<false>(resids,
                     gdp_alpha[(1 - 1)], pstream__));
@@ -1490,38 +1493,38 @@ public:
             }
           }
         }
-        current_statement__ = 116;
+        current_statement__ = 119;
         if (logical_eq(complex_struc, 1)) {
-          current_statement__ = 112;
+          current_statement__ = 115;
           lp_accum__.add(std_normal_lpdf<propto__>(sigma_loadings_complex));
-          current_statement__ = 113;
+          current_statement__ = 116;
           lp_accum__.add(lognormal_lpdf<propto__>(gdp_loadings_complex, 1, 1));
-          current_statement__ = 114;
+          current_statement__ = 117;
           lp_accum__.add(
             generalized_double_pareto_lpdf<false>(loadings_complex,
               gdp_loadings_complex[(1 - 1)], pstream__));
         } 
-        current_statement__ = 117;
-        lp_accum__.add(normal_lpdf<propto__>(loadings, 0, sigma_loadings));
-        current_statement__ = 118;
-        lp_accum__.add(student_t_lpdf<propto__>(sigma_loadings, 3, 0, sl_par));
-        current_statement__ = 119;
-        lp_accum__.add(student_t_lpdf<propto__>(res_sds, 3, 0, rs_par));
         current_statement__ = 120;
+        lp_accum__.add(normal_lpdf<propto__>(loadings, 0, sigma_loadings));
+        current_statement__ = 121;
+        lp_accum__.add(student_t_lpdf<propto__>(sigma_loadings, 3, 0, sl_par));
+        current_statement__ = 122;
+        lp_accum__.add(student_t_lpdf<propto__>(res_sds, 3, 0, rs_par));
+        current_statement__ = 123;
         lp_accum__.add(
           lkj_corr_cholesky_lpdf<propto__>(phi_mat_chol, shape_phi_c));
-        current_statement__ = 121;
-        lp_accum__.add(beta_lpdf<propto__>(res_cor_01, rc_par, rc_par));
-        current_statement__ = 122;
-        lp_accum__.add(student_t_lpdf<propto__>(m_ln_int, 3, 0, mln_par));
-        current_statement__ = 123;
-        lp_accum__.add(student_t_lpdf<propto__>(m_ln_beta, 3, 0, mlb_par));
         current_statement__ = 124;
+        lp_accum__.add(beta_lpdf<propto__>(res_cor_01, rc_par, rc_par));
+        current_statement__ = 125;
+        lp_accum__.add(student_t_lpdf<propto__>(m_ln_int, 3, 0, mln_par));
+        current_statement__ = 126;
+        lp_accum__.add(student_t_lpdf<propto__>(m_ln_beta, 3, 0, mlb_par));
+        current_statement__ = 127;
         lp_accum__.add(std_normal_lpdf<propto__>(var_shifts));
         {
-          current_statement__ = 125;
+          current_statement__ = 128;
           validate_non_negative_index("S_impute", "Ni", Ni);
-          current_statement__ = 126;
+          current_statement__ = 129;
           validate_non_negative_index("S_impute", "Ni", Ni);
           Eigen::Matrix<local_scalar_t__, -1, -1> S_impute;
           S_impute = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Ni);
@@ -1530,101 +1533,101 @@ public:
           int pos_miss_c;
           pos_miss_c = std::numeric_limits<int>::min();
           
-          current_statement__ = 128;
+          current_statement__ = 131;
           pos_miss_c = 0;
           int pos_miss_i;
           pos_miss_i = std::numeric_limits<int>::min();
           
-          current_statement__ = 129;
+          current_statement__ = 132;
           pos_miss_i = 0;
           int pos_valid;
           pos_valid = std::numeric_limits<int>::min();
           
-          current_statement__ = 131;
+          current_statement__ = 134;
           validate_non_negative_index("Omega", "Ni", Ni);
-          current_statement__ = 132;
+          current_statement__ = 135;
           validate_non_negative_index("Omega", "Ni", Ni);
           Eigen::Matrix<local_scalar_t__, -1, -1> Omega;
           Omega = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Ni);
           stan::math::fill(Omega, DUMMY_VAR__);
           
-          current_statement__ = 134;
+          current_statement__ = 137;
           validate_non_negative_index("total_var", "Ni", Ni);
           Eigen::Matrix<local_scalar_t__, -1, 1> total_var;
           total_var = Eigen::Matrix<local_scalar_t__, -1, 1>(Ni);
           stan::math::fill(total_var, DUMMY_VAR__);
           
           {
-            current_statement__ = 136;
+            current_statement__ = 139;
             validate_non_negative_index("res_var", "Ni", Ni);
             Eigen::Matrix<local_scalar_t__, -1, 1> res_var;
             res_var = Eigen::Matrix<local_scalar_t__, -1, 1>(Ni);
             stan::math::fill(res_var, DUMMY_VAR__);
             
-            current_statement__ = 137;
+            current_statement__ = 140;
             assign(res_var, nil_index_list(), square(res_sds),
               "assigning variable res_var");
-            current_statement__ = 138;
+            current_statement__ = 141;
             validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
-            current_statement__ = 139;
+            current_statement__ = 142;
             validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
             Eigen::Matrix<local_scalar_t__, -1, -1> phi_mat;
             phi_mat = Eigen::Matrix<local_scalar_t__, -1, -1>(Nf_corr, Nf_corr);
             stan::math::fill(phi_mat, DUMMY_VAR__);
             
-            current_statement__ = 140;
+            current_statement__ = 143;
             assign(phi_mat, nil_index_list(),
               multiply_lower_tri_self_transpose(phi_mat_chol),
               "assigning variable phi_mat");
-            current_statement__ = 141;
+            current_statement__ = 144;
             validate_non_negative_index("res_cor", "Nce", Nce);
             Eigen::Matrix<local_scalar_t__, -1, 1> res_cor;
             res_cor = Eigen::Matrix<local_scalar_t__, -1, 1>(Nce);
             stan::math::fill(res_cor, DUMMY_VAR__);
             
-            current_statement__ = 142;
+            current_statement__ = 145;
             assign(res_cor, nil_index_list(),
               subtract(multiply(res_cor_01, 2), 1),
               "assigning variable res_cor");
-            current_statement__ = 143;
+            current_statement__ = 146;
             validate_non_negative_index("Load_mat", "Ni", Ni);
-            current_statement__ = 144;
+            current_statement__ = 147;
             validate_non_negative_index("Load_mat", "Nf", Nf);
             Eigen::Matrix<local_scalar_t__, -1, -1> Load_mat;
             Load_mat = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Nf);
             stan::math::fill(Load_mat, DUMMY_VAR__);
             
-            current_statement__ = 145;
+            current_statement__ = 148;
             assign(Load_mat, nil_index_list(), rep_matrix(0, Ni, Nf),
               "assigning variable Load_mat");
-            current_statement__ = 146;
+            current_statement__ = 149;
             validate_non_negative_index("lamb_phi_lamb", "Ni", Ni);
-            current_statement__ = 147;
+            current_statement__ = 150;
             validate_non_negative_index("lamb_phi_lamb", "Ni", Ni);
             Eigen::Matrix<local_scalar_t__, -1, -1> lamb_phi_lamb;
             lamb_phi_lamb = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Ni);
             stan::math::fill(lamb_phi_lamb, DUMMY_VAR__);
             
-            current_statement__ = 149;
+            current_statement__ = 152;
             validate_non_negative_index("loading_par_exp", "Ni", Ni);
-            current_statement__ = 150;
+            current_statement__ = 153;
             validate_non_negative_index("loading_par_exp", "Nce", Nce);
             Eigen::Matrix<local_scalar_t__, -1, -1> loading_par_exp;
             loading_par_exp = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Nce);
             stan::math::fill(loading_par_exp, DUMMY_VAR__);
             
-            current_statement__ = 151;
+            current_statement__ = 154;
             assign(loading_par_exp, nil_index_list(), rep_matrix(0, Ni, Nce),
               "assigning variable loading_par_exp");
-            current_statement__ = 152;
+            current_statement__ = 155;
             validate_non_negative_index("loading_par_exp_2", "Ni", Ni);
-            current_statement__ = 153;
+            current_statement__ = 156;
             validate_non_negative_index("loading_par_exp_2", "Ni", Ni);
             Eigen::Matrix<local_scalar_t__, -1, -1> loading_par_exp_2;
             loading_par_exp_2 = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Ni);
             stan::math::fill(loading_par_exp_2, DUMMY_VAR__);
             
-            current_statement__ = 155;
+            current_statement__ = 158;
             validate_non_negative_index("delta_mat_ast", "Ni", Ni);
             Eigen::Matrix<local_scalar_t__, -1, 1> delta_mat_ast;
             delta_mat_ast = Eigen::Matrix<local_scalar_t__, -1, 1>(Ni);
@@ -1634,36 +1637,36 @@ public:
               int pos;
               pos = std::numeric_limits<int>::min();
               
-              current_statement__ = 157;
+              current_statement__ = 160;
               pos = 0;
               int pos_complex;
               pos_complex = std::numeric_limits<int>::min();
               
-              current_statement__ = 158;
+              current_statement__ = 161;
               pos_complex = 0;
-              current_statement__ = 170;
+              current_statement__ = 173;
               for (int i = 1; i <= Ni; ++i) {
-                current_statement__ = 168;
+                current_statement__ = 171;
                 for (int j = 1; j <= Nf; ++j) {
-                  current_statement__ = 166;
+                  current_statement__ = 169;
                   if (logical_neq(
                         rvalue(loading_pattern,
                           cons_list(index_uni(i),
                             cons_list(index_uni(j), nil_index_list())),
                           "loading_pattern"), 0)) {
-                    current_statement__ = 163;
+                    current_statement__ = 166;
                     pos = (pos + 1);
-                    current_statement__ = 164;
+                    current_statement__ = 167;
                     assign(Load_mat,
                       cons_list(index_uni(i),
                         cons_list(index_uni(j), nil_index_list())),
                       loadings[(pos - 1)], "assigning variable Load_mat");
                   } else {
-                    current_statement__ = 162;
+                    current_statement__ = 165;
                     if (logical_eq(complex_struc, 1)) {
-                      current_statement__ = 159;
+                      current_statement__ = 162;
                       pos_complex = (pos_complex + 1);
-                      current_statement__ = 160;
+                      current_statement__ = 163;
                       assign(Load_mat,
                         cons_list(index_uni(i),
                           cons_list(index_uni(j), nil_index_list())),
@@ -1673,20 +1676,20 @@ public:
                     } 
                   }}}
             }
-            current_statement__ = 174;
+            current_statement__ = 177;
             if (logical_eq(corr_fac, 1)) {
-              current_statement__ = 173;
+              current_statement__ = 176;
               assign(lamb_phi_lamb, nil_index_list(),
                 quad_form_sym(phi_mat, transpose(Load_mat)),
                 "assigning variable lamb_phi_lamb");
             } else {
-              current_statement__ = 172;
+              current_statement__ = 175;
               assign(lamb_phi_lamb, nil_index_list(), tcrossprod(Load_mat),
                 "assigning variable lamb_phi_lamb");
             }
-            current_statement__ = 178;
+            current_statement__ = 181;
             for (int i = 1; i <= Nce; ++i) {
-              current_statement__ = 175;
+              current_statement__ = 178;
               assign(loading_par_exp,
                 cons_list(index_uni(error_mat[(i - 1)][(1 - 1)]),
                   cons_list(index_uni(i), nil_index_list())),
@@ -1694,7 +1697,7 @@ public:
                   (stan::math::abs(res_cor[(i - 1)]) *
                     res_var[(error_mat[(i - 1)][(1 - 1)] - 1)])),
                 "assigning variable loading_par_exp");
-              current_statement__ = 176;
+              current_statement__ = 179;
               assign(loading_par_exp,
                 cons_list(index_uni(error_mat[(i - 1)][(2 - 1)]),
                   cons_list(index_uni(i), nil_index_list())),
@@ -1703,35 +1706,35 @@ public:
                     (stan::math::abs(res_cor[(i - 1)]) *
                       res_var[(error_mat[(i - 1)][(2 - 1)] - 1)]))),
                 "assigning variable loading_par_exp");}
-            current_statement__ = 179;
+            current_statement__ = 182;
             assign(loading_par_exp_2, nil_index_list(),
               tcrossprod(loading_par_exp),
               "assigning variable loading_par_exp_2");
-            current_statement__ = 180;
+            current_statement__ = 183;
             assign(delta_mat_ast, nil_index_list(),
               subtract(res_var, diagonal(loading_par_exp_2)),
               "assigning variable delta_mat_ast");
-            current_statement__ = 181;
+            current_statement__ = 184;
             assign(Omega, nil_index_list(),
               add_diag(add(lamb_phi_lamb, loading_par_exp_2), delta_mat_ast),
               "assigning variable Omega");
-            current_statement__ = 182;
+            current_statement__ = 185;
             assign(total_var, nil_index_list(), diagonal(Omega),
               "assigning variable total_var");
-            current_statement__ = 192;
+            current_statement__ = 195;
             if (logical_lt(method, 90)) {
               int pos;
               pos = std::numeric_limits<int>::min();
               
-              current_statement__ = 183;
+              current_statement__ = 186;
               pos = 0;
-              current_statement__ = 190;
+              current_statement__ = 193;
               for (int i = 2; i <= Ni; ++i) {
-                current_statement__ = 188;
+                current_statement__ = 191;
                 for (int j = 1; j <= (i - 1); ++j) {
-                  current_statement__ = 184;
+                  current_statement__ = 187;
                   pos = (pos + 1);
-                  current_statement__ = 185;
+                  current_statement__ = 188;
                   assign(Omega,
                     cons_list(index_uni(i),
                       cons_list(index_uni(j), nil_index_list())),
@@ -1743,7 +1746,7 @@ public:
                         stan::math::sqrt(
                           (total_var[(i - 1)] * total_var[(j - 1)])))),
                     "assigning variable Omega");
-                  current_statement__ = 186;
+                  current_statement__ = 189;
                   assign(Omega,
                     cons_list(index_uni(j),
                       cons_list(index_uni(i), nil_index_list())),
@@ -1753,9 +1756,9 @@ public:
                     "assigning variable Omega");}}
             } 
           }
-          current_statement__ = 232;
+          current_statement__ = 235;
           for (int i = 1; i <= Ng; ++i) {
-            current_statement__ = 194;
+            current_statement__ = 197;
             validate_non_negative_index("idxs", "sum(valid_var[ : , i])",
                                         sum(
                                           rvalue(valid_var,
@@ -1773,39 +1776,39 @@ public:
             local_scalar_t__ m_val;
             m_val = DUMMY_VAR__;
             
-            current_statement__ = 197;
+            current_statement__ = 200;
             pos_valid = 0;
-            current_statement__ = 203;
+            current_statement__ = 206;
             for (int j = 1; j <= Ni; ++j) {
-              current_statement__ = 201;
+              current_statement__ = 204;
               if (logical_eq(valid_var[(j - 1)][(i - 1)], 1)) {
-                current_statement__ = 198;
+                current_statement__ = 201;
                 pos_valid = (pos_valid + 1);
-                current_statement__ = 199;
+                current_statement__ = 202;
                 assign(idxs,
                   cons_list(index_uni(pos_valid), nil_index_list()), j,
                   "assigning variable idxs");
               } }
-            current_statement__ = 204;
+            current_statement__ = 207;
             assign(S_impute, nil_index_list(), S[(i - 1)],
               "assigning variable S_impute");
-            current_statement__ = 217;
+            current_statement__ = 220;
             for (int j = 2; j <= Ni; ++j) {
-              current_statement__ = 215;
+              current_statement__ = 218;
               if (logical_eq(valid_var[(j - 1)][(i - 1)], 1)) {
-                current_statement__ = 213;
+                current_statement__ = 216;
                 for (int k = 1; k <= (j - 1); ++k) {
-                  current_statement__ = 211;
+                  current_statement__ = 214;
                   if (logical_eq(valid_var[(k - 1)][(i - 1)], 1)) {
-                    current_statement__ = 209;
+                    current_statement__ = 212;
                     if (logical_eq(
                           rvalue(S_impute,
                             cons_list(index_uni(j),
                               cons_list(index_uni(k), nil_index_list())),
                             "S_impute"), 999)) {
-                      current_statement__ = 205;
+                      current_statement__ = 208;
                       pos_miss_c = (pos_miss_c + 1);
-                      current_statement__ = 206;
+                      current_statement__ = 209;
                       assign(S_impute,
                         cons_list(index_uni(j),
                           cons_list(index_uni(k), nil_index_list())),
@@ -1820,7 +1823,7 @@ public:
                               cons_list(index_uni(k),
                                 cons_list(index_uni(k), nil_index_list())),
                               "S_impute"))), "assigning variable S_impute");
-                      current_statement__ = 207;
+                      current_statement__ = 210;
                       assign(S_impute,
                         cons_list(index_uni(k),
                           cons_list(index_uni(j), nil_index_list())),
@@ -1831,13 +1834,13 @@ public:
                     } 
                   } }
               } }
-            current_statement__ = 223;
+            current_statement__ = 226;
             for (int j = 1; j <= Ni; ++j) {
-              current_statement__ = 221;
+              current_statement__ = 224;
               if (logical_eq(miss_ind[(j - 1)][(i - 1)], 1)) {
-                current_statement__ = 218;
+                current_statement__ = 221;
                 pos_miss_i = (pos_miss_i + 1);
-                current_statement__ = 219;
+                current_statement__ = 222;
                 assign(S_impute,
                   cons_list(index_uni(j),
                     cons_list(index_uni(j), nil_index_list())),
@@ -1847,9 +1850,9 @@ public:
                      "S_impute") + var_shifts[(pos_miss_i - 1)]),
                   "assigning variable S_impute");
               } }
-            current_statement__ = 230;
+            current_statement__ = 233;
             if (logical_eq(type, 1)) {
-              current_statement__ = 228;
+              current_statement__ = 231;
               lp_accum__.add(
                 wishart_lpdf<false>(
                   rvalue(S_impute,
@@ -1862,9 +1865,9 @@ public:
                         cons_list(index_multi(idxs), nil_index_list())),
                       "Omega"), (Np[(i - 1)] - 1.0))));
             } else {
-              current_statement__ = 227;
+              current_statement__ = 230;
               if (logical_eq(type, 2)) {
-                current_statement__ = 224;
+                current_statement__ = 227;
                 m_val = ((stan::math::exp(
                             (m_ln_int[(1 - 1)] +
                               multiply(
@@ -1872,7 +1875,7 @@ public:
                                   cons_list(index_uni(i),
                                     cons_list(index_omni(), nil_index_list())),
                                   "X"), m_ln_beta))) + Ni) - 1);
-                current_statement__ = 225;
+                current_statement__ = 228;
                 lp_accum__.add(
                   gen_matrix_beta_ii_lpdf<false>(
                     rvalue(S_impute,
@@ -2205,7 +2208,7 @@ public:
           } 
         }
       }
-      current_statement__ = 51;
+      current_statement__ = 54;
       if (logical_eq(type, 2)) {
         current_statement__ = 42;
         validate_non_negative_index("ebx", "Ng", Ng);
@@ -2217,46 +2220,53 @@ public:
         assign(ebx, nil_index_list(),
           stan::math::exp(add(m_ln_int[(1 - 1)], multiply(X, m_ln_beta))),
           "assigning variable ebx");
+        double mn_ebx;
+        mn_ebx = std::numeric_limits<double>::quiet_NaN();
+        
         current_statement__ = 44;
+        mn_ebx = 0.0;
+        current_statement__ = 45;
         assign(m_s, nil_index_list(),
           subtract(
             add(
               stan::math::exp(add(m_ln_int[(1 - 1)], multiply(X, m_ln_beta))),
               Ni), 1), "assigning variable m_s");
-        current_statement__ = 45;
-        v_mn = mean(elt_divide(1.0, m_s));
         current_statement__ = 46;
+        v_mn = mean(elt_divide(1.0, m_s));
+        current_statement__ = 47;
         rmsea_mn = stan::math::sqrt(v_mn);
-        current_statement__ = 49;
-        for (int i = 1; i <= p; ++i) {
-          current_statement__ = 47;
-          assign(rmsea_beta, cons_list(index_uni(i), nil_index_list()),
-            (-m_ln_beta[(i - 1)] *
-              mean(
-                elt_divide(ebx,
-                  multiply(2, pow(subtract(add(ebx, p), 1), (3.0 / 2)))))),
-            "assigning variable rmsea_beta");}
+        current_statement__ = 50;
+        for (int i = 1; i <= Ng; ++i) {
+          current_statement__ = 48;
+          mn_ebx = (mn_ebx +
+                     (ebx[(i - 1)] /
+                       (2 * pow(((ebx[(i - 1)] + p) - 1), (3.0 / 2)))));}
+        current_statement__ = 51;
+        mn_ebx = (mn_ebx / (Ng * 1.0));
+        current_statement__ = 52;
+        assign(rmsea_beta, nil_index_list(),
+          multiply(minus(m_ln_beta), mn_ebx), "assigning variable rmsea_beta");
       } 
-      current_statement__ = 61;
+      current_statement__ = 64;
       if (logical_lt(method, 90)) {
         int pos;
         pos = std::numeric_limits<int>::min();
         
-        current_statement__ = 52;
+        current_statement__ = 55;
         pos = 0;
-        current_statement__ = 59;
+        current_statement__ = 62;
         for (int i = 2; i <= Ni; ++i) {
-          current_statement__ = 57;
+          current_statement__ = 60;
           for (int j = 1; j <= (i - 1); ++j) {
-            current_statement__ = 53;
+            current_statement__ = 56;
             pos = (pos + 1);
-            current_statement__ = 54;
+            current_statement__ = 57;
             assign(Resid,
               cons_list(index_uni(i),
                 cons_list(index_uni(j), nil_index_list())),
               (resids[(pos - 1)] * rms_src_p[(1 - 1)]),
               "assigning variable Resid");
-            current_statement__ = 55;
+            current_statement__ = 58;
             assign(Resid,
               cons_list(index_uni(j),
                 cons_list(index_uni(i), nil_index_list())),
@@ -2269,36 +2279,36 @@ public:
         int pos;
         pos = std::numeric_limits<int>::min();
         
-        current_statement__ = 62;
+        current_statement__ = 65;
         pos = 0;
         int pos_complex;
         pos_complex = std::numeric_limits<int>::min();
         
-        current_statement__ = 63;
+        current_statement__ = 66;
         pos_complex = 0;
-        current_statement__ = 75;
+        current_statement__ = 78;
         for (int i = 1; i <= Ni; ++i) {
-          current_statement__ = 73;
+          current_statement__ = 76;
           for (int j = 1; j <= Nf; ++j) {
-            current_statement__ = 71;
+            current_statement__ = 74;
             if (logical_neq(
                   rvalue(loading_pattern,
                     cons_list(index_uni(i),
                       cons_list(index_uni(j), nil_index_list())),
                     "loading_pattern"), 0)) {
-              current_statement__ = 68;
+              current_statement__ = 71;
               pos = (pos + 1);
-              current_statement__ = 69;
+              current_statement__ = 72;
               assign(Load_mat,
                 cons_list(index_uni(i),
                   cons_list(index_uni(j), nil_index_list())),
                 loadings[(pos - 1)], "assigning variable Load_mat");
             } else {
-              current_statement__ = 67;
+              current_statement__ = 70;
               if (logical_eq(complex_struc, 1)) {
-                current_statement__ = 64;
+                current_statement__ = 67;
                 pos_complex = (pos_complex + 1);
-                current_statement__ = 65;
+                current_statement__ = 68;
                 assign(Load_mat,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())),
@@ -2308,14 +2318,14 @@ public:
               } 
             }}}
       }
-      current_statement__ = 94;
+      current_statement__ = 97;
       for (int j = 1; j <= Nf; ++j) {
-        current_statement__ = 92;
+        current_statement__ = 95;
         if (logical_lt(
               rvalue(Load_mat,
                 cons_list(index_uni(markers[(j - 1)]),
                   cons_list(index_uni(j), nil_index_list())), "Load_mat"), 0)) {
-          current_statement__ = 77;
+          current_statement__ = 80;
           assign(Load_mat,
             cons_list(index_omni(),
               cons_list(index_uni(j), nil_index_list())),
@@ -2325,9 +2335,9 @@ public:
                   cons_list(index_omni(),
                     cons_list(index_uni(j), nil_index_list())), "Load_mat")),
               -1.0), "assigning variable Load_mat");
-          current_statement__ = 81;
+          current_statement__ = 84;
           if (logical_eq(corr_fac, 1)) {
-            current_statement__ = 78;
+            current_statement__ = 81;
             assign(phi_mat,
               cons_list(index_omni(),
                 cons_list(index_uni(j), nil_index_list())),
@@ -2337,7 +2347,7 @@ public:
                     cons_list(index_omni(),
                       cons_list(index_uni(j), nil_index_list())), "phi_mat")),
                 -1.0), "assigning variable phi_mat");
-            current_statement__ = 79;
+            current_statement__ = 82;
             assign(phi_mat,
               cons_list(index_uni(j),
                 cons_list(index_omni(), nil_index_list())),
@@ -2350,33 +2360,33 @@ public:
           } 
           {
             Eigen::Matrix<double, -1, 1> sym1__;
-            current_statement__ = 82;
+            current_statement__ = 85;
             assign(sym1__, nil_index_list(),
               rvalue(Load_mat,
                 cons_list(index_omni(),
                   cons_list(index_uni(j), nil_index_list())), "Load_mat"),
               "assigning variable sym1__");
-            current_statement__ = 82;
+            current_statement__ = 85;
             for (int sym2__ = 1; sym2__ <= stan::math::size(sym1__); ++sym2__) {
               {
                 double i;
-                current_statement__ = 82;
+                current_statement__ = 85;
                 i = sym1__[(sym2__ - 1)];
-                current_statement__ = 90;
+                current_statement__ = 93;
                 if (logical_neq(i, 0)) {
-                  current_statement__ = 88;
+                  current_statement__ = 91;
                   for (int k = 1; k <= Nce; ++k) {
-                    current_statement__ = 84;
+                    current_statement__ = 87;
                     if (logical_eq(i, error_mat[(k - 1)][(1 - 1)])) {
-                      current_statement__ = 83;
+                      current_statement__ = 86;
                       assign(res_cor,
                         cons_list(index_uni(k), nil_index_list()),
                         (res_cor[(k - 1)] * -1.0),
                         "assigning variable res_cor");
                     } 
-                    current_statement__ = 86;
+                    current_statement__ = 89;
                     if (logical_eq(i, error_mat[(k - 1)][(2 - 1)])) {
-                      current_statement__ = 85;
+                      current_statement__ = 88;
                       assign(res_cor,
                         cons_list(index_uni(k), nil_index_list()),
                         (res_cor[(k - 1)] * -1.0),
@@ -2386,9 +2396,9 @@ public:
               }}
           }
         } }
-      current_statement__ = 97;
+      current_statement__ = 100;
       for (int i = 1; i <= Nce; ++i) {
-        current_statement__ = 95;
+        current_statement__ = 98;
         assign(res_cov, cons_list(index_uni(i), nil_index_list()),
           (res_cor[(i - 1)] *
             prod(
