@@ -36,9 +36,6 @@ LinkingTo:
     rstan (>= 2.21.8),
     StanHeaders (>= 2.18.0)
 SystemRequirements: GNU make
-Suggests: 
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
 RdMacros: Rdpack
 URL: https://jamesuanhoro.github.io/minorbsem/
 LazyData: true
