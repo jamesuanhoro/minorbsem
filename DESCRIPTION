@@ -26,7 +26,7 @@ Imports:
     Rcpp (>= 0.12.0),
     RcppParallel (>= 5.0.1),
     Rdpack,
-    rstan (>= 2.26.21),
+    rstan (>= 2.21.8),
     rstantools (>= 2.3.0)
 Remotes: 
     github::stan-dev/rstan@v2.26.21
@@ -35,7 +35,7 @@ LinkingTo:
     Rcpp (>= 0.12.0),
     RcppEigen (>= 0.3.3.3.0),
     RcppParallel (>= 5.0.1),
-    rstan (>= 2.26.21),
+    rstan (>= 2.21.8),
     StanHeaders (>= 2.18.0)
 SystemRequirements: GNU make
 Suggests: 
