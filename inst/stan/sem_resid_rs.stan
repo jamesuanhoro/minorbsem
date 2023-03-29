@@ -35,12 +35,12 @@ data {
   matrix[Ni, Ni] S;
   int Nf;
   int Nce;
-  array[Nce, 2] int error_mat; // cor error matrix
+  int error_mat[Nce, 2]; // cor error matrix
   matrix[Ni, Nf] loading_pattern;
-  array[Nf] int markers; // markers
+  int markers[Nf]; // markers
   int Nf_corr;
-  array[Nf_corr, 2] int F_corr_mat;
-  array[Nf, Nf] int coef_pattern;
+  int F_corr_mat[Nf_corr, 2];
+  int coef_pattern[Nf, Nf];
   real<lower = 0> sc_par;  // sigma_coefficients parameter
   real<lower = 0> sl_par;  // sigma_loading parameter
   real<lower = 0> rs_par;  // residual sd parameter
@@ -152,7 +152,7 @@ model {
     vector[Ni] total_var;
 
     {
-      array[3] int pos_3 = rep_array(0, 3);
+      int pos_3[3] = rep_array(0, 3);
       for (i in 1:Nf) {
         if (sum(coef_pattern[i, ]) > 0) pos_3[1] += 1;
         for (j in 1:Nf) {
@@ -293,7 +293,7 @@ generated quantities {
     vector[Nf] d_rt_c_hat;
 
     {
-      array[3] int pos_3 = rep_array(0, 3);
+      int pos_3[3] = rep_array(0, 3);
       for (i in 1:Nf) {
         if (sum(coef_pattern[i, ]) > 0) pos_3[1] += 1;
         for (j in 1:Nf) {

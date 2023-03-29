@@ -35,9 +35,9 @@ data {
   matrix[Ni, Ni] S;  // covariance matrix
   int<lower = 0> Nf;  // number factors
   int<lower = 0> Nce;  // number correlated errors
-  array[Nce, 2] int error_mat;  // correlated error matrix
+  int error_mat[Nce, 2];  // correlated error matrix
   matrix[Ni, Nf] loading_pattern;  // loading pattern
-  array[Nf] int markers;  // marker variables
+  int markers[Nf];  // marker variables
   int<lower = 0, upper = 1> corr_fac;  // 1 for correlated factors, 0 otherwise
   real<lower = 1> shape_phi_c;  // lkj prior shape for phi
   real<lower = 0> sl_par;  // sigma_loading parameter

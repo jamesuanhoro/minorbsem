@@ -34,14 +34,14 @@ functions {
 }
 data {
   int<lower = 0> Ng;  // number of groups
-  array[Ng] int<lower = 0> Np;  // number persons by matrix
+  int<lower = 0> Np[Ng];  // number persons by matrix
   int<lower = 0> Ni;  // number items
-  array[Ng] matrix[Ni, Ni] S;  // covariance matrices
+  matrix[Ni, Ni] S[Ng];  // covariance matrices
   int<lower = 0> Nf; // N_factors
   int<lower = 0> Nce; // N_correlated errors
-  array[Nce, 2] int error_mat; // cor error matrix
+  int error_mat[Nce, 2]; // cor error matrix
   matrix[Ni, Nf] loading_pattern;
-  array[Nf] int markers; // markers
+  int markers[Nf]; // markers
   int<lower = 0, upper = 1> corr_fac;  // 1 for correlated factors, 0 otherwise
   real<lower = 1> shape_phi_c; // lkj prior shape for phi
   real<lower = 0> sl_par;  // sigma_loading parameter
@@ -51,8 +51,8 @@ data {
   int<lower = 0, upper = 1> complex_struc;
   int Nmiss;  // number missing correlations
   int Nitem_miss;  // number items with missing correlations across groups
-  array[Ni, Ng] int valid_var;  // indicator of valid items within group
-  array[Ni, Ng] int miss_ind;  // items with missing correlations
+  int valid_var[Ni, Ng];  // indicator of valid items within group
+  int miss_ind[Ni, Ng];  // items with missing correlations
   int p;  // number of moderators
   matrix[Ng, p] X;  // moderator matrix
   real<lower = 0> mln_par;  // meta-reg int hyper-parameter
@@ -207,7 +207,7 @@ model {
     }
 
     for (i in 1:Ng) {
-      array[sum(valid_var[, i])] int idxs;
+      int idxs[sum(valid_var[, i])];
       real m_val;
 
       pos_valid = 0;
