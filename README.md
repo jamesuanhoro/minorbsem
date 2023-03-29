@@ -16,6 +16,7 @@ version](https://img.shields.io/github/r-package/v/jamesuanhoro/minorbsem)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/minorbsem)](https://cran.r-project.org/package=minorbsem)
 ![GitHub last
 commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
+[![R-CMD-check](https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 #### Table of Contents
