@@ -11,10 +11,8 @@ functions {
   real generalized_double_pareto_lpdf(vector x, real alpha) {
     // generalized double Pareto
     // https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/
-    vector[size(x)] x_abs;
-    for (i in 1:size(x)) x_abs[i] = abs(x[i]);
     return(sum(
-      -(alpha + 1.0) * log(1.0 + x_abs / alpha)
+      -(alpha + 1.0) * log(1.0 + fabs(x) / alpha)
     ));
   }
   real eff(int p, real x) {
