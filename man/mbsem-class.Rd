@@ -29,15 +29,6 @@
 }
 \section{Methods}{
   \describe{
-    \item{plot}{
-      \code{signature(x = "mbsem", type = "hist", param_type = c("rm", "co", "lo", "fc", "rsq"))}:
-      Visualizes the posterior distribution of requested parameter types in
-      \code{param_type = } argument.
-      If \code{type = "hist"}, returns histogram(s).
-      If \code{type = "trace"}, returns traceplot(s).
-      See \code{\link{parameter_hist}} or \code{\link{parameter_trace}} for
-      elaboration of \code{param_type} argument.
-    }
     \item{logLik}{
       \code{signature(object = "mbsem", include_residuals = FALSE)}:
       Returns the casewise log-likelihood as long as the full data is available.

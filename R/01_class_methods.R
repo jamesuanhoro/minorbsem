@@ -7,22 +7,6 @@ methods::setMethod(
   }
 )
 
-#' @export
-methods::setGeneric("plot")
-methods::setMethod(
-  "plot",
-  "mbsem",
-  function(x, type = "hist", param_type = c("rm", "co", "lo", "fc", "rsq")) {
-    stopifnot(type %in% c("hist", "trace"))
-
-    if (type == "hist") {
-      parameter_hist(x, param_type = param_type)
-    } else if (type == "trace") {
-      parameter_trace(x, param_type = param_type)
-    }
-  }
-)
-
 methods::setMethod(
   "fitted",
   "mbsem",
@@ -84,7 +68,7 @@ methods::setMethod(
   "logLik",
   "mbsem",
   function(object, include_residuals = FALSE) {
-    # casewise_log_likelihood(object, include_residuals)
+    casewise_log_likelihood(object, include_residuals)
   }
 )
 
