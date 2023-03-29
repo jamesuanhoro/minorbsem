@@ -80,7 +80,8 @@ Restart R prior to installation. minorbsem requires that R is at least version
 3.4.0. `version` command shows the installed R version.
 If the installed version is less than 3.4.0, then update R before proceeding.
 
-Install `remotes` to allow installation of R packages that are hosted on GitHub instead of Cran (the default repository for R packages):
+Install `remotes` to allow installation of R packages that are hosted on GitHub
+instead of Cran (the default repository for R packages):
 
 ``` r
 install.packages("remotes")
