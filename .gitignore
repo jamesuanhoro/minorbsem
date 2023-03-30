@@ -13,5 +13,3 @@ README.html
 docs
 inst/cmdstan/*
 !inst/cmdstan/*_resid.stan
-src/*.cc
-src/*.h
