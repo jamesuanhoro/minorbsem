@@ -65,7 +65,11 @@ prepare_stan_plot_data <- function(object) {
     phi_result <- posterior::as_draws_df(
       posterior::subset_draws(param_draws, variable = "phi_mat")
     )
+    keep_cols <- which(
+      colnames(phi_result) %in% paste0(".", c("chain", "iteration", "draw"))
+    )
     phi_duplicates <- duplicated(as.list(phi_result))
+    phi_duplicates[keep_cols] <- FALSE
     phi_result <- phi_result[!phi_duplicates]
     phi_result <- rename_post_df_columns(
       phi_result, factor_labels, factor_labels, "fc:", "~~",

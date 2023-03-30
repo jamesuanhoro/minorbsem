@@ -179,10 +179,13 @@ target_fitter <- function(
     chains,
     ncores,
     show_messages) {
-  init_resid <- function() {
-    list(
-      resids = rep(1e-3, (data_list$Ni^2 - data_list$Ni) / 2)
-    )
+  init_resid <- "random"
+  if (data_list$method < 90) {
+    init_resid <- function() {
+      list(
+        resids = rep(1e-3, (data_list$Ni^2 - data_list$Ni) / 2)
+      )
+    }
   }
 
   if (target == "rstan") {
