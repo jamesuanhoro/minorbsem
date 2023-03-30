@@ -90,227 +90,230 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'meta_cfa_resid_rs', line 102, column 2 to column 22)",
                                                       " (in 'meta_cfa_resid_rs', line 103, column 2 to column 50)",
                                                       " (in 'meta_cfa_resid_rs', line 104, column 2 to column 43)",
-                                                      " (in 'meta_cfa_resid_rs', line 234, column 2 to column 26)",
-                                                      " (in 'meta_cfa_resid_rs', line 235, column 2 to column 50)",
-                                                      " (in 'meta_cfa_resid_rs', line 236, column 2 to column 85)",
-                                                      " (in 'meta_cfa_resid_rs', line 237, column 2 to column 39)",
-                                                      " (in 'meta_cfa_resid_rs', line 238, column 2 to column 43)",
-                                                      " (in 'meta_cfa_resid_rs', line 239, column 2 to column 22)",
-                                                      " (in 'meta_cfa_resid_rs', line 240, column 2 to column 49)",
-                                                      " (in 'meta_cfa_resid_rs', line 241, column 2 to column 47)",
-                                                      " (in 'meta_cfa_resid_rs', line 242, column 2 to column 18)",
-                                                      " (in 'meta_cfa_resid_rs', line 243, column 2 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 244, column 2 to column 23)",
-                                                      " (in 'meta_cfa_resid_rs', line 248, column 4 to column 18)",
-                                                      " (in 'meta_cfa_resid_rs', line 247, column 9 to line 249, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 246, column 4 to column 27)",
-                                                      " (in 'meta_cfa_resid_rs', line 245, column 21 to line 247, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 245, column 2 to line 249, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 255, column 4 to line 257, column 6)",
-                                                      " (in 'meta_cfa_resid_rs', line 254, column 26 to line 258, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 254, column 9 to line 258, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 253, column 4 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 252, column 26 to line 254, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 252, column 9 to line 258, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 251, column 4 to column 24)",
-                                                      " (in 'meta_cfa_resid_rs', line 250, column 19 to line 252, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 250, column 2 to line 258, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 260, column 11 to column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 260, column 4 to column 54)",
-                                                      " (in 'meta_cfa_resid_rs', line 261, column 11 to column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 261, column 4 to column 34)",
-                                                      " (in 'meta_cfa_resid_rs', line 262, column 4 to column 22)",
-                                                      " (in 'meta_cfa_resid_rs', line 263, column 4 to column 28)",
-                                                      " (in 'meta_cfa_resid_rs', line 264, column 4 to column 26)",
-                                                      " (in 'meta_cfa_resid_rs', line 266, column 6 to column 60)",
-                                                      " (in 'meta_cfa_resid_rs', line 265, column 20 to line 267, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 265, column 4 to line 267, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 268, column 4 to column 33)",
-                                                      " (in 'meta_cfa_resid_rs', line 269, column 4 to column 37)",
-                                                      " (in 'meta_cfa_resid_rs', line 259, column 17 to line 270, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 259, column 2 to line 270, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 272, column 4 to column 16)",
-                                                      " (in 'meta_cfa_resid_rs', line 275, column 8 to column 17)",
-                                                      " (in 'meta_cfa_resid_rs', line 276, column 8 to column 49)",
-                                                      " (in 'meta_cfa_resid_rs', line 277, column 8 to column 34)",
-                                                      " (in 'meta_cfa_resid_rs', line 274, column 27 to line 278, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 274, column 6 to line 278, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 273, column 20 to line 279, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 273, column 4 to line 279, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 271, column 19 to line 280, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 271, column 2 to line 280, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 282, column 4 to column 16)",
-                                                      " (in 'meta_cfa_resid_rs', line 283, column 4 to column 24)",
-                                                      " (in 'meta_cfa_resid_rs', line 290, column 10 to column 27)",
-                                                      " (in 'meta_cfa_resid_rs', line 291, column 10 to column 85)",
-                                                      " (in 'meta_cfa_resid_rs', line 289, column 39 to line 292, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 289, column 15 to line 292, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 287, column 10 to column 19)",
-                                                      " (in 'meta_cfa_resid_rs', line 288, column 10 to column 41)",
-                                                      " (in 'meta_cfa_resid_rs', line 286, column 40 to line 289, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 286, column 8 to line 292, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 285, column 22 to line 293, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 285, column 6 to line 293, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 284, column 20 to line 294, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 284, column 4 to line 294, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 281, column 2 to line 295, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 298, column 6 to column 28)",
-                                                      " (in 'meta_cfa_resid_rs', line 300, column 8 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 301, column 8 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 299, column 25 to line 302, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 299, column 6 to line 302, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 303, column 6 to line 310, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 306, column 38 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 306, column 12 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 307, column 38 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 307, column 12 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 305, column 27 to line 308, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 305, column 10 to line 308, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 304, column 20 to line 309, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 304, column 8 to line 309, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 297, column 37 to line 311, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 297, column 4 to line 311, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 296, column 18 to line 312, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 296, column 2 to line 312, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 314, column 4 to column 60)",
-                                                      " (in 'meta_cfa_resid_rs', line 313, column 19 to line 315, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 313, column 2 to line 315, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 107, column 2 to column 27)",
-                                                      " (in 'meta_cfa_resid_rs', line 119, column 4 to column 32)",
-                                                      " (in 'meta_cfa_resid_rs', line 120, column 4 to line 121, column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 117, column 26 to line 122, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 117, column 9 to line 122, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 116, column 4 to column 28)",
-                                                      " (in 'meta_cfa_resid_rs', line 114, column 26 to line 117, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 114, column 9 to line 122, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 113, column 4 to column 38)",
-                                                      " (in 'meta_cfa_resid_rs', line 111, column 26 to line 114, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 111, column 9 to line 122, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 110, column 4 to column 26)",
-                                                      " (in 'meta_cfa_resid_rs', line 108, column 19 to line 111, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 108, column 2 to line 122, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 124, column 4 to column 42)",
-                                                      " (in 'meta_cfa_resid_rs', line 125, column 4 to column 43)",
-                                                      " (in 'meta_cfa_resid_rs', line 126, column 4 to line 127, column 50)",
-                                                      " (in 'meta_cfa_resid_rs', line 123, column 26 to line 128, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 123, column 2 to line 128, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 129, column 2 to column 39)",
-                                                      " (in 'meta_cfa_resid_rs', line 130, column 2 to column 43)",
-                                                      " (in 'meta_cfa_resid_rs', line 131, column 2 to column 36)",
-                                                      " (in 'meta_cfa_resid_rs', line 132, column 2 to column 48)",
-                                                      " (in 'meta_cfa_resid_rs', line 133, column 2 to column 36)",
-                                                      " (in 'meta_cfa_resid_rs', line 134, column 2 to column 38)",
-                                                      " (in 'meta_cfa_resid_rs', line 135, column 2 to column 39)",
-                                                      " (in 'meta_cfa_resid_rs', line 136, column 2 to column 28)",
-                                                      " (in 'meta_cfa_resid_rs', line 138, column 11 to column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 138, column 15 to column 17)",
-                                                      " (in 'meta_cfa_resid_rs', line 138, column 4 to column 28)",
-                                                      " (in 'meta_cfa_resid_rs', line 139, column 4 to column 23)",
-                                                      " (in 'meta_cfa_resid_rs', line 140, column 4 to column 23)",
-                                                      " (in 'meta_cfa_resid_rs', line 141, column 4 to column 18)",
+                                                      " (in 'meta_cfa_resid_rs', line 236, column 2 to column 26)",
+                                                      " (in 'meta_cfa_resid_rs', line 237, column 2 to column 50)",
+                                                      " (in 'meta_cfa_resid_rs', line 238, column 2 to column 85)",
+                                                      " (in 'meta_cfa_resid_rs', line 239, column 2 to column 39)",
+                                                      " (in 'meta_cfa_resid_rs', line 240, column 2 to column 43)",
+                                                      " (in 'meta_cfa_resid_rs', line 241, column 2 to column 22)",
+                                                      " (in 'meta_cfa_resid_rs', line 242, column 2 to column 49)",
+                                                      " (in 'meta_cfa_resid_rs', line 243, column 2 to column 47)",
+                                                      " (in 'meta_cfa_resid_rs', line 244, column 2 to column 18)",
+                                                      " (in 'meta_cfa_resid_rs', line 245, column 2 to column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 246, column 2 to column 23)",
+                                                      " (in 'meta_cfa_resid_rs', line 250, column 4 to column 18)",
+                                                      " (in 'meta_cfa_resid_rs', line 249, column 9 to line 251, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 248, column 4 to column 27)",
+                                                      " (in 'meta_cfa_resid_rs', line 247, column 21 to line 249, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 247, column 2 to line 251, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 257, column 4 to line 259, column 6)",
+                                                      " (in 'meta_cfa_resid_rs', line 256, column 26 to line 260, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 256, column 9 to line 260, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 255, column 4 to column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 254, column 26 to line 256, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 254, column 9 to line 260, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 253, column 4 to column 24)",
+                                                      " (in 'meta_cfa_resid_rs', line 252, column 19 to line 254, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 252, column 2 to line 260, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 262, column 11 to column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 262, column 4 to column 54)",
+                                                      " (in 'meta_cfa_resid_rs', line 263, column 11 to column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 263, column 4 to column 34)",
+                                                      " (in 'meta_cfa_resid_rs', line 264, column 4 to column 22)",
+                                                      " (in 'meta_cfa_resid_rs', line 265, column 4 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 266, column 4 to column 26)",
+                                                      " (in 'meta_cfa_resid_rs', line 268, column 6 to column 60)",
+                                                      " (in 'meta_cfa_resid_rs', line 267, column 20 to line 269, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 267, column 4 to line 269, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 270, column 4 to column 33)",
+                                                      " (in 'meta_cfa_resid_rs', line 271, column 4 to column 37)",
+                                                      " (in 'meta_cfa_resid_rs', line 261, column 17 to line 272, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 261, column 2 to line 272, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 274, column 4 to column 16)",
+                                                      " (in 'meta_cfa_resid_rs', line 277, column 8 to column 17)",
+                                                      " (in 'meta_cfa_resid_rs', line 278, column 8 to column 49)",
+                                                      " (in 'meta_cfa_resid_rs', line 279, column 8 to column 34)",
+                                                      " (in 'meta_cfa_resid_rs', line 276, column 27 to line 280, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 276, column 6 to line 280, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 275, column 20 to line 281, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 275, column 4 to line 281, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 273, column 19 to line 282, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 273, column 2 to line 282, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 284, column 4 to column 16)",
+                                                      " (in 'meta_cfa_resid_rs', line 285, column 4 to column 24)",
+                                                      " (in 'meta_cfa_resid_rs', line 292, column 10 to column 27)",
+                                                      " (in 'meta_cfa_resid_rs', line 293, column 10 to column 85)",
+                                                      " (in 'meta_cfa_resid_rs', line 291, column 39 to line 294, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 291, column 15 to line 294, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 289, column 10 to column 19)",
+                                                      " (in 'meta_cfa_resid_rs', line 290, column 10 to column 41)",
+                                                      " (in 'meta_cfa_resid_rs', line 288, column 40 to line 291, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 288, column 8 to line 294, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 287, column 22 to line 295, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 287, column 6 to line 295, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 286, column 20 to line 296, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 286, column 4 to line 296, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 283, column 2 to line 297, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 300, column 6 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 302, column 8 to column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 303, column 8 to column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 301, column 25 to line 304, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 301, column 6 to line 304, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 305, column 6 to line 312, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 308, column 38 to column 57)",
+                                                      " (in 'meta_cfa_resid_rs', line 308, column 12 to column 57)",
+                                                      " (in 'meta_cfa_resid_rs', line 309, column 38 to column 57)",
+                                                      " (in 'meta_cfa_resid_rs', line 309, column 12 to column 57)",
+                                                      " (in 'meta_cfa_resid_rs', line 307, column 27 to line 310, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 307, column 10 to line 310, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 306, column 20 to line 311, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 306, column 8 to line 311, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 299, column 37 to line 313, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 299, column 4 to line 313, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 298, column 18 to line 314, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 298, column 2 to line 314, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 316, column 4 to column 60)",
+                                                      " (in 'meta_cfa_resid_rs', line 315, column 19 to line 317, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 315, column 2 to line 317, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 107, column 9 to column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 107, column 2 to column 39)",
+                                                      " (in 'meta_cfa_resid_rs', line 109, column 4 to column 52)",
+                                                      " (in 'meta_cfa_resid_rs', line 108, column 17 to line 110, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 108, column 2 to line 110, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 111, column 2 to column 27)",
+                                                      " (in 'meta_cfa_resid_rs', line 123, column 4 to column 32)",
+                                                      " (in 'meta_cfa_resid_rs', line 124, column 4 to line 125, column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 121, column 26 to line 126, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 121, column 9 to line 126, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 120, column 4 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 118, column 26 to line 121, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 118, column 9 to line 126, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 117, column 4 to column 38)",
+                                                      " (in 'meta_cfa_resid_rs', line 115, column 26 to line 118, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 115, column 9 to line 126, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 114, column 4 to column 26)",
+                                                      " (in 'meta_cfa_resid_rs', line 112, column 19 to line 115, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 112, column 2 to line 126, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 128, column 4 to column 42)",
+                                                      " (in 'meta_cfa_resid_rs', line 129, column 4 to column 43)",
+                                                      " (in 'meta_cfa_resid_rs', line 130, column 4 to line 131, column 50)",
+                                                      " (in 'meta_cfa_resid_rs', line 127, column 26 to line 132, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 127, column 2 to line 132, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 133, column 2 to column 39)",
+                                                      " (in 'meta_cfa_resid_rs', line 134, column 2 to column 43)",
+                                                      " (in 'meta_cfa_resid_rs', line 135, column 2 to column 36)",
+                                                      " (in 'meta_cfa_resid_rs', line 136, column 2 to column 48)",
+                                                      " (in 'meta_cfa_resid_rs', line 137, column 2 to column 36)",
+                                                      " (in 'meta_cfa_resid_rs', line 138, column 2 to column 38)",
+                                                      " (in 'meta_cfa_resid_rs', line 139, column 2 to column 39)",
+                                                      " (in 'meta_cfa_resid_rs', line 140, column 2 to column 28)",
                                                       " (in 'meta_cfa_resid_rs', line 142, column 11 to column 13)",
                                                       " (in 'meta_cfa_resid_rs', line 142, column 15 to column 17)",
-                                                      " (in 'meta_cfa_resid_rs', line 142, column 4 to column 25)",
-                                                      " (in 'meta_cfa_resid_rs', line 143, column 11 to column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 143, column 4 to column 25)",
-                                                      " (in 'meta_cfa_resid_rs', line 145, column 13 to column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 145, column 6 to column 43)",
-                                                      " (in 'meta_cfa_resid_rs', line 146, column 13 to column 20)",
-                                                      " (in 'meta_cfa_resid_rs', line 146, column 22 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 146, column 6 to column 89)",
-                                                      " (in 'meta_cfa_resid_rs', line 147, column 13 to column 16)",
-                                                      " (in 'meta_cfa_resid_rs', line 147, column 6 to column 47)",
-                                                      " (in 'meta_cfa_resid_rs', line 148, column 13 to column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 148, column 17 to column 19)",
-                                                      " (in 'meta_cfa_resid_rs', line 148, column 6 to column 54)",
+                                                      " (in 'meta_cfa_resid_rs', line 142, column 4 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 143, column 4 to column 23)",
+                                                      " (in 'meta_cfa_resid_rs', line 144, column 4 to column 23)",
+                                                      " (in 'meta_cfa_resid_rs', line 145, column 4 to column 18)",
+                                                      " (in 'meta_cfa_resid_rs', line 146, column 11 to column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 146, column 15 to column 17)",
+                                                      " (in 'meta_cfa_resid_rs', line 146, column 4 to column 25)",
+                                                      " (in 'meta_cfa_resid_rs', line 147, column 11 to column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 147, column 4 to column 25)",
                                                       " (in 'meta_cfa_resid_rs', line 149, column 13 to column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 149, column 17 to column 19)",
-                                                      " (in 'meta_cfa_resid_rs', line 149, column 6 to column 35)",
-                                                      " (in 'meta_cfa_resid_rs', line 150, column 13 to column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 150, column 17 to column 20)",
-                                                      " (in 'meta_cfa_resid_rs', line 150, column 6 to column 63)",
-                                                      " (in 'meta_cfa_resid_rs', line 151, column 13 to column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 151, column 17 to column 19)",
-                                                      " (in 'meta_cfa_resid_rs', line 151, column 6 to column 39)",
+                                                      " (in 'meta_cfa_resid_rs', line 149, column 6 to column 43)",
+                                                      " (in 'meta_cfa_resid_rs', line 150, column 13 to column 20)",
+                                                      " (in 'meta_cfa_resid_rs', line 150, column 22 to column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 150, column 6 to column 89)",
+                                                      " (in 'meta_cfa_resid_rs', line 151, column 13 to column 16)",
+                                                      " (in 'meta_cfa_resid_rs', line 151, column 6 to column 47)",
                                                       " (in 'meta_cfa_resid_rs', line 152, column 13 to column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 152, column 6 to column 31)",
-                                                      " (in 'meta_cfa_resid_rs', line 154, column 8 to column 20)",
-                                                      " (in 'meta_cfa_resid_rs', line 155, column 8 to column 28)",
-                                                      " (in 'meta_cfa_resid_rs', line 162, column 14 to column 31)",
-                                                      " (in 'meta_cfa_resid_rs', line 163, column 14 to column 89)",
-                                                      " (in 'meta_cfa_resid_rs', line 161, column 43 to line 164, column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 161, column 19 to line 164, column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 159, column 14 to column 23)",
-                                                      " (in 'meta_cfa_resid_rs', line 160, column 14 to column 45)",
-                                                      " (in 'meta_cfa_resid_rs', line 158, column 44 to line 161, column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 158, column 12 to line 164, column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 157, column 26 to line 165, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 157, column 10 to line 165, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 156, column 24 to line 166, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 156, column 8 to line 166, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 153, column 6 to line 167, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 169, column 11 to column 48)",
-                                                      " (in 'meta_cfa_resid_rs', line 168, column 25 to column 75)",
-                                                      " (in 'meta_cfa_resid_rs', line 168, column 6 to line 169, column 48)",
-                                                      " (in 'meta_cfa_resid_rs', line 171, column 8 to line 172, column 54)",
-                                                      " (in 'meta_cfa_resid_rs', line 173, column 8 to line 174, column 54)",
-                                                      " (in 'meta_cfa_resid_rs', line 170, column 23 to line 175, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 170, column 6 to line 175, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 176, column 6 to column 54)",
-                                                      " (in 'meta_cfa_resid_rs', line 177, column 6 to column 60)",
-                                                      " (in 'meta_cfa_resid_rs', line 178, column 6 to column 73)",
-                                                      " (in 'meta_cfa_resid_rs', line 179, column 6 to column 34)",
-                                                      " (in 'meta_cfa_resid_rs', line 181, column 8 to column 20)",
-                                                      " (in 'meta_cfa_resid_rs', line 184, column 12 to column 21)",
-                                                      " (in 'meta_cfa_resid_rs', line 185, column 12 to column 90)",
-                                                      " (in 'meta_cfa_resid_rs', line 186, column 12 to column 38)",
-                                                      " (in 'meta_cfa_resid_rs', line 183, column 31 to line 187, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 183, column 10 to line 187, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 182, column 24 to line 188, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 182, column 8 to line 188, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 180, column 23 to line 189, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 180, column 6 to line 189, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 144, column 4 to line 190, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 192, column 15 to column 34)",
-                                                      " (in 'meta_cfa_resid_rs', line 192, column 6 to column 36)",
-                                                      " (in 'meta_cfa_resid_rs', line 193, column 6 to column 17)",
-                                                      " (in 'meta_cfa_resid_rs', line 194, column 6 to column 20)",
-                                                      " (in 'meta_cfa_resid_rs', line 197, column 10 to column 25)",
-                                                      " (in 'meta_cfa_resid_rs', line 198, column 10 to column 30)",
-                                                      " (in 'meta_cfa_resid_rs', line 196, column 34 to line 199, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 196, column 8 to line 199, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 195, column 22 to line 200, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 195, column 6 to line 200, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 201, column 6 to column 22)",
-                                                      " (in 'meta_cfa_resid_rs', line 207, column 16 to column 32)",
-                                                      " (in 'meta_cfa_resid_rs', line 208, column 16 to line 209, column 62)",
-                                                      " (in 'meta_cfa_resid_rs', line 210, column 16 to column 48)",
-                                                      " (in 'meta_cfa_resid_rs', line 206, column 41 to line 211, column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 206, column 14 to line 211, column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 205, column 38 to line 212, column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 205, column 12 to line 212, column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 204, column 31 to line 213, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 204, column 10 to line 213, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 203, column 34 to line 214, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 203, column 8 to line 214, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 202, column 22 to line 215, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 202, column 6 to line 215, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 218, column 10 to column 26)",
-                                                      " (in 'meta_cfa_resid_rs', line 219, column 10 to column 53)",
-                                                      " (in 'meta_cfa_resid_rs', line 217, column 33 to line 220, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 217, column 8 to line 220, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 216, column 22 to line 221, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 216, column 6 to line 221, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 226, column 8 to column 63)",
-                                                      " (in 'meta_cfa_resid_rs', line 227, column 8 to line 228, column 72)",
-                                                      " (in 'meta_cfa_resid_rs', line 225, column 28 to line 229, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 225, column 13 to line 229, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 223, column 8 to line 224, column 81)",
-                                                      " (in 'meta_cfa_resid_rs', line 222, column 21 to line 225, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 222, column 6 to line 229, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 191, column 20 to line 230, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 191, column 4 to line 230, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 137, column 2 to line 231, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 152, column 17 to column 19)",
+                                                      " (in 'meta_cfa_resid_rs', line 152, column 6 to column 54)",
+                                                      " (in 'meta_cfa_resid_rs', line 153, column 13 to column 15)",
+                                                      " (in 'meta_cfa_resid_rs', line 153, column 17 to column 19)",
+                                                      " (in 'meta_cfa_resid_rs', line 153, column 6 to column 35)",
+                                                      " (in 'meta_cfa_resid_rs', line 154, column 13 to column 15)",
+                                                      " (in 'meta_cfa_resid_rs', line 154, column 17 to column 20)",
+                                                      " (in 'meta_cfa_resid_rs', line 154, column 6 to column 63)",
+                                                      " (in 'meta_cfa_resid_rs', line 155, column 13 to column 15)",
+                                                      " (in 'meta_cfa_resid_rs', line 155, column 17 to column 19)",
+                                                      " (in 'meta_cfa_resid_rs', line 155, column 6 to column 39)",
+                                                      " (in 'meta_cfa_resid_rs', line 156, column 13 to column 15)",
+                                                      " (in 'meta_cfa_resid_rs', line 156, column 6 to column 31)",
+                                                      " (in 'meta_cfa_resid_rs', line 158, column 8 to column 20)",
+                                                      " (in 'meta_cfa_resid_rs', line 159, column 8 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 166, column 14 to column 31)",
+                                                      " (in 'meta_cfa_resid_rs', line 167, column 14 to column 89)",
+                                                      " (in 'meta_cfa_resid_rs', line 165, column 43 to line 168, column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 165, column 19 to line 168, column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 163, column 14 to column 23)",
+                                                      " (in 'meta_cfa_resid_rs', line 164, column 14 to column 45)",
+                                                      " (in 'meta_cfa_resid_rs', line 162, column 44 to line 165, column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 162, column 12 to line 168, column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 161, column 26 to line 169, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 161, column 10 to line 169, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 160, column 24 to line 170, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 160, column 8 to line 170, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 157, column 6 to line 171, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 173, column 11 to column 48)",
+                                                      " (in 'meta_cfa_resid_rs', line 172, column 25 to column 75)",
+                                                      " (in 'meta_cfa_resid_rs', line 172, column 6 to line 173, column 48)",
+                                                      " (in 'meta_cfa_resid_rs', line 175, column 8 to line 176, column 54)",
+                                                      " (in 'meta_cfa_resid_rs', line 177, column 8 to line 178, column 54)",
+                                                      " (in 'meta_cfa_resid_rs', line 174, column 23 to line 179, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 174, column 6 to line 179, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 180, column 6 to column 54)",
+                                                      " (in 'meta_cfa_resid_rs', line 181, column 6 to column 60)",
+                                                      " (in 'meta_cfa_resid_rs', line 182, column 6 to column 73)",
+                                                      " (in 'meta_cfa_resid_rs', line 183, column 6 to column 34)",
+                                                      " (in 'meta_cfa_resid_rs', line 185, column 8 to column 20)",
+                                                      " (in 'meta_cfa_resid_rs', line 188, column 12 to column 21)",
+                                                      " (in 'meta_cfa_resid_rs', line 189, column 12 to column 90)",
+                                                      " (in 'meta_cfa_resid_rs', line 190, column 12 to column 38)",
+                                                      " (in 'meta_cfa_resid_rs', line 187, column 31 to line 191, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 187, column 10 to line 191, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 186, column 24 to line 192, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 186, column 8 to line 192, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 184, column 23 to line 193, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 184, column 6 to line 193, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 148, column 4 to line 194, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 196, column 15 to column 34)",
+                                                      " (in 'meta_cfa_resid_rs', line 196, column 6 to column 36)",
+                                                      " (in 'meta_cfa_resid_rs', line 197, column 6 to column 20)",
+                                                      " (in 'meta_cfa_resid_rs', line 200, column 10 to column 25)",
+                                                      " (in 'meta_cfa_resid_rs', line 201, column 10 to column 30)",
+                                                      " (in 'meta_cfa_resid_rs', line 199, column 34 to line 202, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 199, column 8 to line 202, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 198, column 22 to line 203, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 198, column 6 to line 203, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 204, column 6 to column 22)",
+                                                      " (in 'meta_cfa_resid_rs', line 210, column 16 to column 32)",
+                                                      " (in 'meta_cfa_resid_rs', line 211, column 16 to line 212, column 62)",
+                                                      " (in 'meta_cfa_resid_rs', line 213, column 16 to column 48)",
+                                                      " (in 'meta_cfa_resid_rs', line 209, column 41 to line 214, column 15)",
+                                                      " (in 'meta_cfa_resid_rs', line 209, column 14 to line 214, column 15)",
+                                                      " (in 'meta_cfa_resid_rs', line 208, column 38 to line 215, column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 208, column 12 to line 215, column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 207, column 31 to line 216, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 207, column 10 to line 216, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 206, column 34 to line 217, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 206, column 8 to line 217, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 205, column 22 to line 218, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 205, column 6 to line 218, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 221, column 10 to column 26)",
+                                                      " (in 'meta_cfa_resid_rs', line 222, column 10 to column 53)",
+                                                      " (in 'meta_cfa_resid_rs', line 220, column 33 to line 223, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 220, column 8 to line 223, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 219, column 22 to line 224, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 219, column 6 to line 224, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 229, column 8 to line 230, column 73)",
+                                                      " (in 'meta_cfa_resid_rs', line 228, column 28 to line 231, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 228, column 13 to line 231, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 226, column 8 to line 227, column 81)",
+                                                      " (in 'meta_cfa_resid_rs', line 225, column 21 to line 228, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 225, column 6 to line 231, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 195, column 20 to line 232, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 195, column 4 to line 232, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 141, column 2 to line 233, column 3)",
                                                       " (in 'meta_cfa_resid_rs', line 36, column 2 to column 20)",
                                                       " (in 'meta_cfa_resid_rs', line 37, column 20 to column 22)",
                                                       " (in 'meta_cfa_resid_rs', line 37, column 2 to column 24)",
@@ -392,17 +395,17 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'meta_cfa_resid_rs', line 102, column 9 to column 10)",
                                                       " (in 'meta_cfa_resid_rs', line 103, column 31 to column 36)",
                                                       " (in 'meta_cfa_resid_rs', line 104, column 20 to column 30)",
-                                                      " (in 'meta_cfa_resid_rs', line 235, column 9 to column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 235, column 13 to column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 236, column 9 to column 16)",
-                                                      " (in 'meta_cfa_resid_rs', line 236, column 18 to column 25)",
                                                       " (in 'meta_cfa_resid_rs', line 237, column 9 to column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 238, column 9 to column 12)",
-                                                      " (in 'meta_cfa_resid_rs', line 239, column 9 to column 12)",
-                                                      " (in 'meta_cfa_resid_rs', line 240, column 9 to column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 240, column 13 to column 15)",
-                                                      " (in 'meta_cfa_resid_rs', line 241, column 9 to column 14)",
-                                                      " (in 'meta_cfa_resid_rs', line 244, column 9 to column 10)",
+                                                      " (in 'meta_cfa_resid_rs', line 237, column 13 to column 15)",
+                                                      " (in 'meta_cfa_resid_rs', line 238, column 9 to column 16)",
+                                                      " (in 'meta_cfa_resid_rs', line 238, column 18 to column 25)",
+                                                      " (in 'meta_cfa_resid_rs', line 239, column 9 to column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 240, column 9 to column 12)",
+                                                      " (in 'meta_cfa_resid_rs', line 241, column 9 to column 12)",
+                                                      " (in 'meta_cfa_resid_rs', line 242, column 9 to column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 242, column 13 to column 15)",
+                                                      " (in 'meta_cfa_resid_rs', line 243, column 9 to column 14)",
+                                                      " (in 'meta_cfa_resid_rs', line 246, column 9 to column 10)",
                                                       " (in 'meta_cfa_resid_rs', line 9, column 6 to column 16)",
                                                       " (in 'meta_cfa_resid_rs', line 7, column 6 to column 15)",
                                                       " (in 'meta_cfa_resid_rs', line 6, column 4 to line 9, column 16)",
@@ -429,12 +432,12 @@ sign(const T0__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 331;
+    current_statement__ = 334;
     if (logical_gt(x, 0)) {
-      current_statement__ = 330;
+      current_statement__ = 333;
       return 1;
     } else {
-      current_statement__ = 329;
+      current_statement__ = 332;
       return -1;
     }
   } catch (const std::exception& e) {
@@ -464,7 +467,7 @@ generalized_double_pareto_lpdf(const T0__& x_arg__, const T1__& alpha,
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 333;
+    current_statement__ = 336;
     return sum(
              multiply(-(alpha + 1.0),
                stan::math::log(add(1.0, divide(stan::math::fabs(x), alpha)))));
@@ -494,7 +497,7 @@ eff(const int& p, const T1__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 335;
+    current_statement__ = 338;
     return (((2 * lmgamma(p, (x / 2))) -
               ((x * p) * stan::math::log((x / 2)))) + (x * p));
   } catch (const std::exception& e) {
@@ -523,7 +526,7 @@ ln_det_spd(const T0__& S_arg__, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 337;
+    current_statement__ = 340;
     return (2 * sum(stan::math::log(diagonal(cholesky_decompose(S)))));
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -560,18 +563,18 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     int p;
     p = std::numeric_limits<int>::min();
     
-    current_statement__ = 339;
+    current_statement__ = 342;
     p = rows(S);
     local_scalar_t__ F_1;
     F_1 = DUMMY_VAR__;
     
-    current_statement__ = 340;
+    current_statement__ = 343;
     F_1 = ((eff(p, m, pstream__) + eff(p, n, pstream__)) -
             eff(p, (m + n), pstream__));
     local_scalar_t__ F_2;
     F_2 = DUMMY_VAR__;
     
-    current_statement__ = 341;
+    current_statement__ = 344;
     F_2 = ((-(((n - p) - 1) * ln_det_spd(S, pstream__)) -
              (m * ln_det_spd(Omega, pstream__))) +
             ((m + n) *
@@ -580,9 +583,9 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     local_scalar_t__ ll;
     ll = DUMMY_VAR__;
     
-    current_statement__ = 342;
+    current_statement__ = 345;
     ll = ((F_1 + F_2) / -2.0);
-    current_statement__ = 343;
+    current_statement__ = 346;
     return ll;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -667,49 +670,49 @@ public:
       pos__ = std::numeric_limits<int>::min();
       
       pos__ = 1;
-      current_statement__ = 237;
+      current_statement__ = 240;
       context__.validate_dims("data initialization","Ng","int",
           context__.to_vec());
       Ng = std::numeric_limits<int>::min();
       
-      current_statement__ = 237;
+      current_statement__ = 240;
       Ng = context__.vals_i("Ng")[(1 - 1)];
-      current_statement__ = 237;
-      current_statement__ = 237;
+      current_statement__ = 240;
+      current_statement__ = 240;
       check_greater_or_equal(function__, "Ng", Ng, 0);
-      current_statement__ = 238;
+      current_statement__ = 241;
       validate_non_negative_index("Np", "Ng", Ng);
-      current_statement__ = 239;
+      current_statement__ = 242;
       context__.validate_dims("data initialization","Np","int",
           context__.to_vec(Ng));
       Np = std::vector<int>(Ng, std::numeric_limits<int>::min());
       
-      current_statement__ = 239;
+      current_statement__ = 242;
       assign(Np, nil_index_list(), context__.vals_i("Np"),
         "assigning variable Np");
-      current_statement__ = 239;
+      current_statement__ = 242;
       for (int sym1__ = 1; sym1__ <= Ng; ++sym1__) {
-        current_statement__ = 239;
-        current_statement__ = 239;
+        current_statement__ = 242;
+        current_statement__ = 242;
         check_greater_or_equal(function__, "Np[sym1__]", Np[(sym1__ - 1)], 0);
       }
-      current_statement__ = 240;
+      current_statement__ = 243;
       context__.validate_dims("data initialization","Ni","int",
           context__.to_vec());
       Ni = std::numeric_limits<int>::min();
       
-      current_statement__ = 240;
-      Ni = context__.vals_i("Ni")[(1 - 1)];
-      current_statement__ = 240;
-      current_statement__ = 240;
-      check_greater_or_equal(function__, "Ni", Ni, 0);
-      current_statement__ = 241;
-      validate_non_negative_index("S", "Ng", Ng);
-      current_statement__ = 242;
-      validate_non_negative_index("S", "Ni", Ni);
       current_statement__ = 243;
-      validate_non_negative_index("S", "Ni", Ni);
+      Ni = context__.vals_i("Ni")[(1 - 1)];
+      current_statement__ = 243;
+      current_statement__ = 243;
+      check_greater_or_equal(function__, "Ni", Ni, 0);
       current_statement__ = 244;
+      validate_non_negative_index("S", "Ng", Ng);
+      current_statement__ = 245;
+      validate_non_negative_index("S", "Ni", Ni);
+      current_statement__ = 246;
+      validate_non_negative_index("S", "Ni", Ni);
+      current_statement__ = 247;
       context__.validate_dims("data initialization","S","double",
           context__.to_vec(Ng, Ni, Ni));
       S = std::vector<Eigen::Matrix<double, -1, -1>>(Ng, Eigen::Matrix<double, -1, -1>(Ni, Ni));
@@ -717,78 +720,78 @@ public:
       
       {
         std::vector<local_scalar_t__> S_flat__;
-        current_statement__ = 244;
+        current_statement__ = 247;
         assign(S_flat__, nil_index_list(), context__.vals_r("S"),
           "assigning variable S_flat__");
-        current_statement__ = 244;
+        current_statement__ = 247;
         pos__ = 1;
-        current_statement__ = 244;
+        current_statement__ = 247;
         for (int sym1__ = 1; sym1__ <= Ni; ++sym1__) {
-          current_statement__ = 244;
+          current_statement__ = 247;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 244;
+            current_statement__ = 247;
             for (int sym3__ = 1; sym3__ <= Ng; ++sym3__) {
-              current_statement__ = 244;
+              current_statement__ = 247;
               assign(S,
                 cons_list(index_uni(sym3__),
                   cons_list(index_uni(sym2__),
                     cons_list(index_uni(sym1__), nil_index_list()))),
                 S_flat__[(pos__ - 1)], "assigning variable S");
-              current_statement__ = 244;
+              current_statement__ = 247;
               pos__ = (pos__ + 1);}}}
       }
-      current_statement__ = 245;
+      current_statement__ = 248;
       context__.validate_dims("data initialization","Nf","int",
           context__.to_vec());
       Nf = std::numeric_limits<int>::min();
       
-      current_statement__ = 245;
+      current_statement__ = 248;
       Nf = context__.vals_i("Nf")[(1 - 1)];
-      current_statement__ = 245;
-      current_statement__ = 245;
+      current_statement__ = 248;
+      current_statement__ = 248;
       check_greater_or_equal(function__, "Nf", Nf, 0);
-      current_statement__ = 246;
+      current_statement__ = 249;
       context__.validate_dims("data initialization","Nce","int",
           context__.to_vec());
       Nce = std::numeric_limits<int>::min();
       
-      current_statement__ = 246;
+      current_statement__ = 249;
       Nce = context__.vals_i("Nce")[(1 - 1)];
-      current_statement__ = 246;
-      current_statement__ = 246;
+      current_statement__ = 249;
+      current_statement__ = 249;
       check_greater_or_equal(function__, "Nce", Nce, 0);
-      current_statement__ = 247;
+      current_statement__ = 250;
       validate_non_negative_index("error_mat", "Nce", Nce);
-      current_statement__ = 248;
+      current_statement__ = 251;
       context__.validate_dims("data initialization","error_mat","int",
           context__.to_vec(Nce, 2));
       error_mat = std::vector<std::vector<int>>(Nce, std::vector<int>(2, std::numeric_limits<int>::min()));
       
       {
         std::vector<int> error_mat_flat__;
-        current_statement__ = 248;
+        current_statement__ = 251;
         assign(error_mat_flat__, nil_index_list(),
           context__.vals_i("error_mat"),
           "assigning variable error_mat_flat__");
-        current_statement__ = 248;
+        current_statement__ = 251;
         pos__ = 1;
-        current_statement__ = 248;
+        current_statement__ = 251;
         for (int sym1__ = 1; sym1__ <= 2; ++sym1__) {
-          current_statement__ = 248;
+          current_statement__ = 251;
           for (int sym2__ = 1; sym2__ <= Nce; ++sym2__) {
-            current_statement__ = 248;
+            current_statement__ = 251;
             assign(error_mat,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               error_mat_flat__[(pos__ - 1)], "assigning variable error_mat");
-            current_statement__ = 248;
+            current_statement__ = 251;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 249;
+      current_statement__ = 252;
       validate_non_negative_index("loading_pattern", "Ni", Ni);
-      current_statement__ = 250;
+      current_statement__ = 253;
       validate_non_negative_index("loading_pattern", "Nf", Nf);
-      current_statement__ = 251;
+      current_statement__ = 254;
       context__.validate_dims("data initialization","loading_pattern",
           "double",context__.to_vec(Ni, Nf));
       loading_pattern = Eigen::Matrix<double, -1, -1>(Ni, Nf);
@@ -796,171 +799,143 @@ public:
       
       {
         std::vector<local_scalar_t__> loading_pattern_flat__;
-        current_statement__ = 251;
+        current_statement__ = 254;
         assign(loading_pattern_flat__, nil_index_list(),
           context__.vals_r("loading_pattern"),
           "assigning variable loading_pattern_flat__");
-        current_statement__ = 251;
+        current_statement__ = 254;
         pos__ = 1;
-        current_statement__ = 251;
+        current_statement__ = 254;
         for (int sym1__ = 1; sym1__ <= Nf; ++sym1__) {
-          current_statement__ = 251;
+          current_statement__ = 254;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 251;
+            current_statement__ = 254;
             assign(loading_pattern,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               loading_pattern_flat__[(pos__ - 1)],
               "assigning variable loading_pattern");
-            current_statement__ = 251;
+            current_statement__ = 254;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 252;
+      current_statement__ = 255;
       validate_non_negative_index("markers", "Nf", Nf);
-      current_statement__ = 253;
+      current_statement__ = 256;
       context__.validate_dims("data initialization","markers","int",
           context__.to_vec(Nf));
       markers = std::vector<int>(Nf, std::numeric_limits<int>::min());
       
-      current_statement__ = 253;
+      current_statement__ = 256;
       assign(markers, nil_index_list(), context__.vals_i("markers"),
         "assigning variable markers");
-      current_statement__ = 254;
+      current_statement__ = 257;
       context__.validate_dims("data initialization","corr_fac","int",
           context__.to_vec());
       corr_fac = std::numeric_limits<int>::min();
       
-      current_statement__ = 254;
+      current_statement__ = 257;
       corr_fac = context__.vals_i("corr_fac")[(1 - 1)];
-      current_statement__ = 254;
-      current_statement__ = 254;
+      current_statement__ = 257;
+      current_statement__ = 257;
       check_greater_or_equal(function__, "corr_fac", corr_fac, 0);
-      current_statement__ = 254;
-      current_statement__ = 254;
+      current_statement__ = 257;
+      current_statement__ = 257;
       check_less_or_equal(function__, "corr_fac", corr_fac, 1);
-      current_statement__ = 255;
+      current_statement__ = 258;
       context__.validate_dims("data initialization","shape_phi_c","double",
           context__.to_vec());
       shape_phi_c = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 255;
+      current_statement__ = 258;
       shape_phi_c = context__.vals_r("shape_phi_c")[(1 - 1)];
-      current_statement__ = 255;
-      current_statement__ = 255;
+      current_statement__ = 258;
+      current_statement__ = 258;
       check_greater_or_equal(function__, "shape_phi_c", shape_phi_c, 1);
-      current_statement__ = 256;
+      current_statement__ = 259;
       context__.validate_dims("data initialization","sl_par","double",
           context__.to_vec());
       sl_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 256;
+      current_statement__ = 259;
       sl_par = context__.vals_r("sl_par")[(1 - 1)];
-      current_statement__ = 256;
-      current_statement__ = 256;
+      current_statement__ = 259;
+      current_statement__ = 259;
       check_greater_or_equal(function__, "sl_par", sl_par, 0);
-      current_statement__ = 257;
+      current_statement__ = 260;
       context__.validate_dims("data initialization","rs_par","double",
           context__.to_vec());
       rs_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 257;
+      current_statement__ = 260;
       rs_par = context__.vals_r("rs_par")[(1 - 1)];
-      current_statement__ = 257;
-      current_statement__ = 257;
+      current_statement__ = 260;
+      current_statement__ = 260;
       check_greater_or_equal(function__, "rs_par", rs_par, 0);
-      current_statement__ = 258;
+      current_statement__ = 261;
       context__.validate_dims("data initialization","rc_par","double",
           context__.to_vec());
       rc_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 258;
+      current_statement__ = 261;
       rc_par = context__.vals_r("rc_par")[(1 - 1)];
-      current_statement__ = 258;
-      current_statement__ = 258;
+      current_statement__ = 261;
+      current_statement__ = 261;
       check_greater_or_equal(function__, "rc_par", rc_par, 1);
-      current_statement__ = 259;
+      current_statement__ = 262;
       context__.validate_dims("data initialization","method","int",
           context__.to_vec());
       method = std::numeric_limits<int>::min();
       
-      current_statement__ = 259;
+      current_statement__ = 262;
       method = context__.vals_i("method")[(1 - 1)];
-      current_statement__ = 259;
-      current_statement__ = 259;
+      current_statement__ = 262;
+      current_statement__ = 262;
       check_greater_or_equal(function__, "method", method, 1);
-      current_statement__ = 259;
-      current_statement__ = 259;
+      current_statement__ = 262;
+      current_statement__ = 262;
       check_less_or_equal(function__, "method", method, 100);
-      current_statement__ = 260;
+      current_statement__ = 263;
       context__.validate_dims("data initialization","complex_struc","int",
           context__.to_vec());
       complex_struc = std::numeric_limits<int>::min();
       
-      current_statement__ = 260;
+      current_statement__ = 263;
       complex_struc = context__.vals_i("complex_struc")[(1 - 1)];
-      current_statement__ = 260;
-      current_statement__ = 260;
+      current_statement__ = 263;
+      current_statement__ = 263;
       check_greater_or_equal(function__, "complex_struc", complex_struc, 0);
-      current_statement__ = 260;
-      current_statement__ = 260;
+      current_statement__ = 263;
+      current_statement__ = 263;
       check_less_or_equal(function__, "complex_struc", complex_struc, 1);
-      current_statement__ = 261;
+      current_statement__ = 264;
       context__.validate_dims("data initialization","Nmiss","int",
           context__.to_vec());
       Nmiss = std::numeric_limits<int>::min();
       
-      current_statement__ = 261;
+      current_statement__ = 264;
       Nmiss = context__.vals_i("Nmiss")[(1 - 1)];
-      current_statement__ = 262;
+      current_statement__ = 265;
       context__.validate_dims("data initialization","Nitem_miss","int",
           context__.to_vec());
       Nitem_miss = std::numeric_limits<int>::min();
       
-      current_statement__ = 262;
-      Nitem_miss = context__.vals_i("Nitem_miss")[(1 - 1)];
-      current_statement__ = 263;
-      validate_non_negative_index("valid_var", "Ni", Ni);
-      current_statement__ = 264;
-      validate_non_negative_index("valid_var", "Ng", Ng);
       current_statement__ = 265;
+      Nitem_miss = context__.vals_i("Nitem_miss")[(1 - 1)];
+      current_statement__ = 266;
+      validate_non_negative_index("valid_var", "Ni", Ni);
+      current_statement__ = 267;
+      validate_non_negative_index("valid_var", "Ng", Ng);
+      current_statement__ = 268;
       context__.validate_dims("data initialization","valid_var","int",
           context__.to_vec(Ni, Ng));
       valid_var = std::vector<std::vector<int>>(Ni, std::vector<int>(Ng, std::numeric_limits<int>::min()));
       
       {
         std::vector<int> valid_var_flat__;
-        current_statement__ = 265;
+        current_statement__ = 268;
         assign(valid_var_flat__, nil_index_list(),
           context__.vals_i("valid_var"),
           "assigning variable valid_var_flat__");
-        current_statement__ = 265;
-        pos__ = 1;
-        current_statement__ = 265;
-        for (int sym1__ = 1; sym1__ <= Ng; ++sym1__) {
-          current_statement__ = 265;
-          for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
-            current_statement__ = 265;
-            assign(valid_var,
-              cons_list(index_uni(sym2__),
-                cons_list(index_uni(sym1__), nil_index_list())),
-              valid_var_flat__[(pos__ - 1)], "assigning variable valid_var");
-            current_statement__ = 265;
-            pos__ = (pos__ + 1);}}
-      }
-      current_statement__ = 266;
-      validate_non_negative_index("miss_ind", "Ni", Ni);
-      current_statement__ = 267;
-      validate_non_negative_index("miss_ind", "Ng", Ng);
-      current_statement__ = 268;
-      context__.validate_dims("data initialization","miss_ind","int",
-          context__.to_vec(Ni, Ng));
-      miss_ind = std::vector<std::vector<int>>(Ni, std::vector<int>(Ng, std::numeric_limits<int>::min()));
-      
-      {
-        std::vector<int> miss_ind_flat__;
-        current_statement__ = 268;
-        assign(miss_ind_flat__, nil_index_list(),
-          context__.vals_i("miss_ind"), "assigning variable miss_ind_flat__");
         current_statement__ = 268;
         pos__ = 1;
         current_statement__ = 268;
@@ -968,25 +943,53 @@ public:
           current_statement__ = 268;
           for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
             current_statement__ = 268;
-            assign(miss_ind,
+            assign(valid_var,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
-              miss_ind_flat__[(pos__ - 1)], "assigning variable miss_ind");
+              valid_var_flat__[(pos__ - 1)], "assigning variable valid_var");
             current_statement__ = 268;
             pos__ = (pos__ + 1);}}
       }
       current_statement__ = 269;
+      validate_non_negative_index("miss_ind", "Ni", Ni);
+      current_statement__ = 270;
+      validate_non_negative_index("miss_ind", "Ng", Ng);
+      current_statement__ = 271;
+      context__.validate_dims("data initialization","miss_ind","int",
+          context__.to_vec(Ni, Ng));
+      miss_ind = std::vector<std::vector<int>>(Ni, std::vector<int>(Ng, std::numeric_limits<int>::min()));
+      
+      {
+        std::vector<int> miss_ind_flat__;
+        current_statement__ = 271;
+        assign(miss_ind_flat__, nil_index_list(),
+          context__.vals_i("miss_ind"), "assigning variable miss_ind_flat__");
+        current_statement__ = 271;
+        pos__ = 1;
+        current_statement__ = 271;
+        for (int sym1__ = 1; sym1__ <= Ng; ++sym1__) {
+          current_statement__ = 271;
+          for (int sym2__ = 1; sym2__ <= Ni; ++sym2__) {
+            current_statement__ = 271;
+            assign(miss_ind,
+              cons_list(index_uni(sym2__),
+                cons_list(index_uni(sym1__), nil_index_list())),
+              miss_ind_flat__[(pos__ - 1)], "assigning variable miss_ind");
+            current_statement__ = 271;
+            pos__ = (pos__ + 1);}}
+      }
+      current_statement__ = 272;
       context__.validate_dims("data initialization","p","int",
           context__.to_vec());
       p = std::numeric_limits<int>::min();
       
-      current_statement__ = 269;
-      p = context__.vals_i("p")[(1 - 1)];
-      current_statement__ = 270;
-      validate_non_negative_index("X", "Ng", Ng);
-      current_statement__ = 271;
-      validate_non_negative_index("X", "p", p);
       current_statement__ = 272;
+      p = context__.vals_i("p")[(1 - 1)];
+      current_statement__ = 273;
+      validate_non_negative_index("X", "Ng", Ng);
+      current_statement__ = 274;
+      validate_non_negative_index("X", "p", p);
+      current_statement__ = 275;
       context__.validate_dims("data initialization","X","double",
           context__.to_vec(Ng, p));
       X = Eigen::Matrix<double, -1, -1>(Ng, p);
@@ -994,195 +997,195 @@ public:
       
       {
         std::vector<local_scalar_t__> X_flat__;
-        current_statement__ = 272;
+        current_statement__ = 275;
         assign(X_flat__, nil_index_list(), context__.vals_r("X"),
           "assigning variable X_flat__");
-        current_statement__ = 272;
+        current_statement__ = 275;
         pos__ = 1;
-        current_statement__ = 272;
+        current_statement__ = 275;
         for (int sym1__ = 1; sym1__ <= p; ++sym1__) {
-          current_statement__ = 272;
+          current_statement__ = 275;
           for (int sym2__ = 1; sym2__ <= Ng; ++sym2__) {
-            current_statement__ = 272;
+            current_statement__ = 275;
             assign(X,
               cons_list(index_uni(sym2__),
                 cons_list(index_uni(sym1__), nil_index_list())),
               X_flat__[(pos__ - 1)], "assigning variable X");
-            current_statement__ = 272;
+            current_statement__ = 275;
             pos__ = (pos__ + 1);}}
       }
-      current_statement__ = 273;
+      current_statement__ = 276;
       context__.validate_dims("data initialization","mln_par","double",
           context__.to_vec());
       mln_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 273;
+      current_statement__ = 276;
       mln_par = context__.vals_r("mln_par")[(1 - 1)];
-      current_statement__ = 273;
-      current_statement__ = 273;
+      current_statement__ = 276;
+      current_statement__ = 276;
       check_greater_or_equal(function__, "mln_par", mln_par, 0);
-      current_statement__ = 274;
+      current_statement__ = 277;
       context__.validate_dims("data initialization","mlb_par","double",
           context__.to_vec());
       mlb_par = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 274;
+      current_statement__ = 277;
       mlb_par = context__.vals_r("mlb_par")[(1 - 1)];
-      current_statement__ = 274;
-      current_statement__ = 274;
+      current_statement__ = 277;
+      current_statement__ = 277;
       check_greater_or_equal(function__, "mlb_par", mlb_par, 0);
-      current_statement__ = 275;
+      current_statement__ = 278;
       context__.validate_dims("data initialization","type","int",
           context__.to_vec());
       type = std::numeric_limits<int>::min();
       
-      current_statement__ = 275;
+      current_statement__ = 278;
       type = context__.vals_i("type")[(1 - 1)];
-      current_statement__ = 275;
-      current_statement__ = 275;
+      current_statement__ = 278;
+      current_statement__ = 278;
       check_greater_or_equal(function__, "type", type, 1);
-      current_statement__ = 275;
-      current_statement__ = 275;
+      current_statement__ = 278;
+      current_statement__ = 278;
       check_less_or_equal(function__, "type", type, 3);
-      current_statement__ = 276;
+      current_statement__ = 279;
       sqrt_two = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 276;
+      current_statement__ = 279;
       sqrt_two = stan::math::sqrt(2.0);
-      current_statement__ = 277;
+      current_statement__ = 280;
       pi_sqrt_three = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 277;
+      current_statement__ = 280;
       pi_sqrt_three = (stan::math::pi() / stan::math::sqrt(3.0));
-      current_statement__ = 278;
+      current_statement__ = 281;
       Nl = std::numeric_limits<int>::min();
       
-      current_statement__ = 278;
+      current_statement__ = 281;
       Nl = 0;
-      current_statement__ = 279;
+      current_statement__ = 282;
       Nf_corr = std::numeric_limits<int>::min();
       
-      current_statement__ = 279;
+      current_statement__ = 282;
       Nf_corr = (logical_eq(corr_fac, 1) ? Nf : 1);
-      current_statement__ = 280;
+      current_statement__ = 283;
       Nisqd2 = std::numeric_limits<int>::min();
       
-      current_statement__ = 280;
+      current_statement__ = 283;
       Nisqd2 = ((Ni * (Ni - 1)) / 2);
-      current_statement__ = 281;
+      current_statement__ = 284;
       N_rms = std::numeric_limits<int>::min();
       
-      current_statement__ = 281;
+      current_statement__ = 284;
       N_rms = 1;
-      current_statement__ = 282;
+      current_statement__ = 285;
       N_alpha = std::numeric_limits<int>::min();
       
-      current_statement__ = 282;
+      current_statement__ = 285;
       N_alpha = 0;
-      current_statement__ = 283;
+      current_statement__ = 286;
       N_complex = std::numeric_limits<int>::min();
       
-      current_statement__ = 283;
+      current_statement__ = 286;
       N_complex = 0;
-      current_statement__ = 284;
+      current_statement__ = 287;
       N_type = std::numeric_limits<int>::min();
       
-      current_statement__ = 284;
-      N_type = 1;
       current_statement__ = 287;
+      N_type = 1;
+      current_statement__ = 290;
       if (logical_gte(method, 90)) {
-        current_statement__ = 285;
+        current_statement__ = 288;
         Nisqd2 = 0;
       } 
-      current_statement__ = 290;
+      current_statement__ = 293;
       if (logical_eq(method, 100)) {
-        current_statement__ = 288;
+        current_statement__ = 291;
         N_rms = 0;
       } 
-      current_statement__ = 292;
+      current_statement__ = 295;
       if (logical_eq(method, 4)) {
-        current_statement__ = 291;
+        current_statement__ = 294;
         N_alpha = 1;
       } 
-      current_statement__ = 294;
+      current_statement__ = 297;
       if (logical_lt(type, 2)) {
-        current_statement__ = 293;
+        current_statement__ = 296;
         N_type = 0;
       } 
-      current_statement__ = 300;
+      current_statement__ = 303;
       for (int i = 1; i <= Ni; ++i) {
-        current_statement__ = 298;
+        current_statement__ = 301;
         for (int j = 1; j <= Nf; ++j) {
-          current_statement__ = 296;
+          current_statement__ = 299;
           if (logical_eq(
                 rvalue(loading_pattern,
                   cons_list(index_uni(i),
                     cons_list(index_uni(j), nil_index_list())),
                   "loading_pattern"), 1)) {
-            current_statement__ = 295;
+            current_statement__ = 298;
             Nl = (Nl + 1);
           } }}
-      current_statement__ = 303;
+      current_statement__ = 306;
       if (logical_eq(complex_struc, 1)) {
-        current_statement__ = 301;
+        current_statement__ = 304;
         N_complex = ((Ni * Nf) - Nl);
       } 
-      current_statement__ = 278;
-      current_statement__ = 278;
+      current_statement__ = 281;
+      current_statement__ = 281;
       check_greater_or_equal(function__, "Nl", Nl, 0);
-      current_statement__ = 304;
-      validate_non_negative_index("rms_src_p", "N_rms", N_rms);
-      current_statement__ = 305;
-      validate_non_negative_index("gdp_alpha", "N_alpha", N_alpha);
-      current_statement__ = 306;
-      validate_non_negative_index("resids", "Nisqd2", Nisqd2);
       current_statement__ = 307;
-      validate_non_negative_index("loadings", "Nl", Nl);
+      validate_non_negative_index("rms_src_p", "N_rms", N_rms);
       current_statement__ = 308;
-      validate_non_negative_index("res_sds", "Ni", Ni);
+      validate_non_negative_index("gdp_alpha", "N_alpha", N_alpha);
       current_statement__ = 309;
-      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
-      current_statement__ = 309;
-      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
+      validate_non_negative_index("resids", "Nisqd2", Nisqd2);
       current_statement__ = 310;
-      validate_non_negative_index("res_cor_01", "Nce", Nce);
+      validate_non_negative_index("loadings", "Nl", Nl);
       current_statement__ = 311;
-      validate_non_negative_index("loadings_complex", "N_complex", N_complex);
+      validate_non_negative_index("res_sds", "Ni", Ni);
       current_statement__ = 312;
+      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
+      current_statement__ = 312;
+      validate_non_negative_index("phi_mat_chol", "Nf_corr", Nf_corr);
+      current_statement__ = 313;
+      validate_non_negative_index("res_cor_01", "Nce", Nce);
+      current_statement__ = 314;
+      validate_non_negative_index("loadings_complex", "N_complex", N_complex);
+      current_statement__ = 315;
       validate_non_negative_index("sigma_loadings_complex", "complex_struc",
                                   complex_struc);
-      current_statement__ = 313;
+      current_statement__ = 316;
       validate_non_negative_index("gdp_loadings_complex", "complex_struc",
                                   complex_struc);
-      current_statement__ = 314;
-      validate_non_negative_index("m_ln_int", "N_type", N_type);
-      current_statement__ = 315;
-      validate_non_negative_index("m_ln_beta", "p", p);
-      current_statement__ = 316;
-      validate_non_negative_index("miss_cor_01", "Nmiss", Nmiss);
       current_statement__ = 317;
-      validate_non_negative_index("var_shifts", "Nitem_miss", Nitem_miss);
+      validate_non_negative_index("m_ln_int", "N_type", N_type);
       current_statement__ = 318;
-      validate_non_negative_index("Load_mat", "Ni", Ni);
+      validate_non_negative_index("m_ln_beta", "p", p);
       current_statement__ = 319;
-      validate_non_negative_index("Load_mat", "Nf", Nf);
+      validate_non_negative_index("miss_cor_01", "Nmiss", Nmiss);
       current_statement__ = 320;
-      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
+      validate_non_negative_index("var_shifts", "Nitem_miss", Nitem_miss);
       current_statement__ = 321;
-      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
+      validate_non_negative_index("Load_mat", "Ni", Ni);
       current_statement__ = 322;
-      validate_non_negative_index("res_var", "Ni", Ni);
+      validate_non_negative_index("Load_mat", "Nf", Nf);
       current_statement__ = 323;
-      validate_non_negative_index("res_cor", "Nce", Nce);
+      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
       current_statement__ = 324;
-      validate_non_negative_index("res_cov", "Nce", Nce);
+      validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
       current_statement__ = 325;
-      validate_non_negative_index("Resid", "Ni", Ni);
+      validate_non_negative_index("res_var", "Ni", Ni);
       current_statement__ = 326;
-      validate_non_negative_index("Resid", "Ni", Ni);
+      validate_non_negative_index("res_cor", "Nce", Nce);
       current_statement__ = 327;
-      validate_non_negative_index("miss_cor", "Nmiss", Nmiss);
+      validate_non_negative_index("res_cov", "Nce", Nce);
       current_statement__ = 328;
+      validate_non_negative_index("Resid", "Ni", Ni);
+      current_statement__ = 329;
+      validate_non_negative_index("Resid", "Ni", Ni);
+      current_statement__ = 330;
+      validate_non_negative_index("miss_cor", "Nmiss", Nmiss);
+      current_statement__ = 331;
       validate_non_negative_index("rmsea_beta", "p", p);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1462,27 +1465,46 @@ public:
         }}
       {
         current_statement__ = 101;
+        validate_non_negative_index("m_s", "Ng", Ng);
+        Eigen::Matrix<local_scalar_t__, -1, 1> m_s;
+        m_s = Eigen::Matrix<local_scalar_t__, -1, 1>(Ng);
+        stan::math::fill(m_s, DUMMY_VAR__);
+        
+        current_statement__ = 102;
+        assign(m_s, nil_index_list(), rep_vector(0.0, Ng),
+          "assigning variable m_s");
+        current_statement__ = 105;
+        if (logical_eq(type, 2)) {
+          current_statement__ = 103;
+          assign(m_s, nil_index_list(),
+            subtract(
+              add(
+                stan::math::exp(
+                  add(m_ln_int[(1 - 1)], multiply(X, m_ln_beta))), Ni), 1),
+            "assigning variable m_s");
+        } 
+        current_statement__ = 106;
         lp_accum__.add(std_normal_lpdf<propto__>(rms_src_p));
-        current_statement__ = 114;
+        current_statement__ = 119;
         if (logical_eq(method, 1)) {
-          current_statement__ = 112;
+          current_statement__ = 117;
           lp_accum__.add(std_normal_lpdf<propto__>(resids));
         } else {
-          current_statement__ = 111;
+          current_statement__ = 116;
           if (logical_eq(method, 2)) {
-            current_statement__ = 109;
+            current_statement__ = 114;
             lp_accum__.add(double_exponential_lpdf<propto__>(resids, 0, 1));
           } else {
-            current_statement__ = 108;
+            current_statement__ = 113;
             if (logical_eq(method, 3)) {
-              current_statement__ = 106;
+              current_statement__ = 111;
               lp_accum__.add(logistic_lpdf<propto__>(resids, 0, 1));
             } else {
-              current_statement__ = 105;
+              current_statement__ = 110;
               if (logical_eq(method, 4)) {
-                current_statement__ = 102;
+                current_statement__ = 107;
                 lp_accum__.add(lognormal_lpdf<propto__>(gdp_alpha, 1, 1));
-                current_statement__ = 103;
+                current_statement__ = 108;
                 lp_accum__.add(
                   generalized_double_pareto_lpdf<false>(resids,
                     gdp_alpha[(1 - 1)], pstream__));
@@ -1490,38 +1512,38 @@ public:
             }
           }
         }
-        current_statement__ = 119;
+        current_statement__ = 124;
         if (logical_eq(complex_struc, 1)) {
-          current_statement__ = 115;
+          current_statement__ = 120;
           lp_accum__.add(std_normal_lpdf<propto__>(sigma_loadings_complex));
-          current_statement__ = 116;
+          current_statement__ = 121;
           lp_accum__.add(lognormal_lpdf<propto__>(gdp_loadings_complex, 1, 1));
-          current_statement__ = 117;
+          current_statement__ = 122;
           lp_accum__.add(
             generalized_double_pareto_lpdf<false>(loadings_complex,
               gdp_loadings_complex[(1 - 1)], pstream__));
         } 
-        current_statement__ = 120;
+        current_statement__ = 125;
         lp_accum__.add(normal_lpdf<propto__>(loadings, 0, sigma_loadings));
-        current_statement__ = 121;
+        current_statement__ = 126;
         lp_accum__.add(student_t_lpdf<propto__>(sigma_loadings, 3, 0, sl_par));
-        current_statement__ = 122;
+        current_statement__ = 127;
         lp_accum__.add(student_t_lpdf<propto__>(res_sds, 3, 0, rs_par));
-        current_statement__ = 123;
+        current_statement__ = 128;
         lp_accum__.add(
           lkj_corr_cholesky_lpdf<propto__>(phi_mat_chol, shape_phi_c));
-        current_statement__ = 124;
+        current_statement__ = 129;
         lp_accum__.add(beta_lpdf<propto__>(res_cor_01, rc_par, rc_par));
-        current_statement__ = 125;
+        current_statement__ = 130;
         lp_accum__.add(student_t_lpdf<propto__>(m_ln_int, 3, 0, mln_par));
-        current_statement__ = 126;
+        current_statement__ = 131;
         lp_accum__.add(student_t_lpdf<propto__>(m_ln_beta, 3, 0, mlb_par));
-        current_statement__ = 127;
+        current_statement__ = 132;
         lp_accum__.add(std_normal_lpdf<propto__>(var_shifts));
         {
-          current_statement__ = 128;
+          current_statement__ = 133;
           validate_non_negative_index("S_impute", "Ni", Ni);
-          current_statement__ = 129;
+          current_statement__ = 134;
           validate_non_negative_index("S_impute", "Ni", Ni);
           Eigen::Matrix<local_scalar_t__, -1, -1> S_impute;
           S_impute = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Ni);
@@ -1530,101 +1552,101 @@ public:
           int pos_miss_c;
           pos_miss_c = std::numeric_limits<int>::min();
           
-          current_statement__ = 131;
+          current_statement__ = 136;
           pos_miss_c = 0;
           int pos_miss_i;
           pos_miss_i = std::numeric_limits<int>::min();
           
-          current_statement__ = 132;
+          current_statement__ = 137;
           pos_miss_i = 0;
           int pos_valid;
           pos_valid = std::numeric_limits<int>::min();
           
-          current_statement__ = 134;
+          current_statement__ = 139;
           validate_non_negative_index("Omega", "Ni", Ni);
-          current_statement__ = 135;
+          current_statement__ = 140;
           validate_non_negative_index("Omega", "Ni", Ni);
           Eigen::Matrix<local_scalar_t__, -1, -1> Omega;
           Omega = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Ni);
           stan::math::fill(Omega, DUMMY_VAR__);
           
-          current_statement__ = 137;
+          current_statement__ = 142;
           validate_non_negative_index("total_var", "Ni", Ni);
           Eigen::Matrix<local_scalar_t__, -1, 1> total_var;
           total_var = Eigen::Matrix<local_scalar_t__, -1, 1>(Ni);
           stan::math::fill(total_var, DUMMY_VAR__);
           
           {
-            current_statement__ = 139;
+            current_statement__ = 144;
             validate_non_negative_index("res_var", "Ni", Ni);
             Eigen::Matrix<local_scalar_t__, -1, 1> res_var;
             res_var = Eigen::Matrix<local_scalar_t__, -1, 1>(Ni);
             stan::math::fill(res_var, DUMMY_VAR__);
             
-            current_statement__ = 140;
+            current_statement__ = 145;
             assign(res_var, nil_index_list(), square(res_sds),
               "assigning variable res_var");
-            current_statement__ = 141;
+            current_statement__ = 146;
             validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
-            current_statement__ = 142;
+            current_statement__ = 147;
             validate_non_negative_index("phi_mat", "Nf_corr", Nf_corr);
             Eigen::Matrix<local_scalar_t__, -1, -1> phi_mat;
             phi_mat = Eigen::Matrix<local_scalar_t__, -1, -1>(Nf_corr, Nf_corr);
             stan::math::fill(phi_mat, DUMMY_VAR__);
             
-            current_statement__ = 143;
+            current_statement__ = 148;
             assign(phi_mat, nil_index_list(),
               multiply_lower_tri_self_transpose(phi_mat_chol),
               "assigning variable phi_mat");
-            current_statement__ = 144;
+            current_statement__ = 149;
             validate_non_negative_index("res_cor", "Nce", Nce);
             Eigen::Matrix<local_scalar_t__, -1, 1> res_cor;
             res_cor = Eigen::Matrix<local_scalar_t__, -1, 1>(Nce);
             stan::math::fill(res_cor, DUMMY_VAR__);
             
-            current_statement__ = 145;
+            current_statement__ = 150;
             assign(res_cor, nil_index_list(),
               subtract(multiply(res_cor_01, 2), 1),
               "assigning variable res_cor");
-            current_statement__ = 146;
+            current_statement__ = 151;
             validate_non_negative_index("Load_mat", "Ni", Ni);
-            current_statement__ = 147;
+            current_statement__ = 152;
             validate_non_negative_index("Load_mat", "Nf", Nf);
             Eigen::Matrix<local_scalar_t__, -1, -1> Load_mat;
             Load_mat = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Nf);
             stan::math::fill(Load_mat, DUMMY_VAR__);
             
-            current_statement__ = 148;
+            current_statement__ = 153;
             assign(Load_mat, nil_index_list(), rep_matrix(0, Ni, Nf),
               "assigning variable Load_mat");
-            current_statement__ = 149;
+            current_statement__ = 154;
             validate_non_negative_index("lamb_phi_lamb", "Ni", Ni);
-            current_statement__ = 150;
+            current_statement__ = 155;
             validate_non_negative_index("lamb_phi_lamb", "Ni", Ni);
             Eigen::Matrix<local_scalar_t__, -1, -1> lamb_phi_lamb;
             lamb_phi_lamb = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Ni);
             stan::math::fill(lamb_phi_lamb, DUMMY_VAR__);
             
-            current_statement__ = 152;
+            current_statement__ = 157;
             validate_non_negative_index("loading_par_exp", "Ni", Ni);
-            current_statement__ = 153;
+            current_statement__ = 158;
             validate_non_negative_index("loading_par_exp", "Nce", Nce);
             Eigen::Matrix<local_scalar_t__, -1, -1> loading_par_exp;
             loading_par_exp = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Nce);
             stan::math::fill(loading_par_exp, DUMMY_VAR__);
             
-            current_statement__ = 154;
+            current_statement__ = 159;
             assign(loading_par_exp, nil_index_list(), rep_matrix(0, Ni, Nce),
               "assigning variable loading_par_exp");
-            current_statement__ = 155;
+            current_statement__ = 160;
             validate_non_negative_index("loading_par_exp_2", "Ni", Ni);
-            current_statement__ = 156;
+            current_statement__ = 161;
             validate_non_negative_index("loading_par_exp_2", "Ni", Ni);
             Eigen::Matrix<local_scalar_t__, -1, -1> loading_par_exp_2;
             loading_par_exp_2 = Eigen::Matrix<local_scalar_t__, -1, -1>(Ni, Ni);
             stan::math::fill(loading_par_exp_2, DUMMY_VAR__);
             
-            current_statement__ = 158;
+            current_statement__ = 163;
             validate_non_negative_index("delta_mat_ast", "Ni", Ni);
             Eigen::Matrix<local_scalar_t__, -1, 1> delta_mat_ast;
             delta_mat_ast = Eigen::Matrix<local_scalar_t__, -1, 1>(Ni);
@@ -1634,36 +1656,36 @@ public:
               int pos;
               pos = std::numeric_limits<int>::min();
               
-              current_statement__ = 160;
+              current_statement__ = 165;
               pos = 0;
               int pos_complex;
               pos_complex = std::numeric_limits<int>::min();
               
-              current_statement__ = 161;
+              current_statement__ = 166;
               pos_complex = 0;
-              current_statement__ = 173;
+              current_statement__ = 178;
               for (int i = 1; i <= Ni; ++i) {
-                current_statement__ = 171;
+                current_statement__ = 176;
                 for (int j = 1; j <= Nf; ++j) {
-                  current_statement__ = 169;
+                  current_statement__ = 174;
                   if (logical_neq(
                         rvalue(loading_pattern,
                           cons_list(index_uni(i),
                             cons_list(index_uni(j), nil_index_list())),
                           "loading_pattern"), 0)) {
-                    current_statement__ = 166;
+                    current_statement__ = 171;
                     pos = (pos + 1);
-                    current_statement__ = 167;
+                    current_statement__ = 172;
                     assign(Load_mat,
                       cons_list(index_uni(i),
                         cons_list(index_uni(j), nil_index_list())),
                       loadings[(pos - 1)], "assigning variable Load_mat");
                   } else {
-                    current_statement__ = 165;
+                    current_statement__ = 170;
                     if (logical_eq(complex_struc, 1)) {
-                      current_statement__ = 162;
+                      current_statement__ = 167;
                       pos_complex = (pos_complex + 1);
-                      current_statement__ = 163;
+                      current_statement__ = 168;
                       assign(Load_mat,
                         cons_list(index_uni(i),
                           cons_list(index_uni(j), nil_index_list())),
@@ -1673,20 +1695,20 @@ public:
                     } 
                   }}}
             }
-            current_statement__ = 177;
+            current_statement__ = 182;
             if (logical_eq(corr_fac, 1)) {
-              current_statement__ = 176;
+              current_statement__ = 181;
               assign(lamb_phi_lamb, nil_index_list(),
                 quad_form_sym(phi_mat, transpose(Load_mat)),
                 "assigning variable lamb_phi_lamb");
             } else {
-              current_statement__ = 175;
+              current_statement__ = 180;
               assign(lamb_phi_lamb, nil_index_list(), tcrossprod(Load_mat),
                 "assigning variable lamb_phi_lamb");
             }
-            current_statement__ = 181;
+            current_statement__ = 186;
             for (int i = 1; i <= Nce; ++i) {
-              current_statement__ = 178;
+              current_statement__ = 183;
               assign(loading_par_exp,
                 cons_list(index_uni(error_mat[(i - 1)][(1 - 1)]),
                   cons_list(index_uni(i), nil_index_list())),
@@ -1694,7 +1716,7 @@ public:
                   (stan::math::abs(res_cor[(i - 1)]) *
                     res_var[(error_mat[(i - 1)][(1 - 1)] - 1)])),
                 "assigning variable loading_par_exp");
-              current_statement__ = 179;
+              current_statement__ = 184;
               assign(loading_par_exp,
                 cons_list(index_uni(error_mat[(i - 1)][(2 - 1)]),
                   cons_list(index_uni(i), nil_index_list())),
@@ -1703,35 +1725,35 @@ public:
                     (stan::math::abs(res_cor[(i - 1)]) *
                       res_var[(error_mat[(i - 1)][(2 - 1)] - 1)]))),
                 "assigning variable loading_par_exp");}
-            current_statement__ = 182;
+            current_statement__ = 187;
             assign(loading_par_exp_2, nil_index_list(),
               tcrossprod(loading_par_exp),
               "assigning variable loading_par_exp_2");
-            current_statement__ = 183;
+            current_statement__ = 188;
             assign(delta_mat_ast, nil_index_list(),
               subtract(res_var, diagonal(loading_par_exp_2)),
               "assigning variable delta_mat_ast");
-            current_statement__ = 184;
+            current_statement__ = 189;
             assign(Omega, nil_index_list(),
               add_diag(add(lamb_phi_lamb, loading_par_exp_2), delta_mat_ast),
               "assigning variable Omega");
-            current_statement__ = 185;
+            current_statement__ = 190;
             assign(total_var, nil_index_list(), diagonal(Omega),
               "assigning variable total_var");
-            current_statement__ = 195;
+            current_statement__ = 200;
             if (logical_lt(method, 90)) {
               int pos;
               pos = std::numeric_limits<int>::min();
               
-              current_statement__ = 186;
+              current_statement__ = 191;
               pos = 0;
-              current_statement__ = 193;
+              current_statement__ = 198;
               for (int i = 2; i <= Ni; ++i) {
-                current_statement__ = 191;
+                current_statement__ = 196;
                 for (int j = 1; j <= (i - 1); ++j) {
-                  current_statement__ = 187;
+                  current_statement__ = 192;
                   pos = (pos + 1);
-                  current_statement__ = 188;
+                  current_statement__ = 193;
                   assign(Omega,
                     cons_list(index_uni(i),
                       cons_list(index_uni(j), nil_index_list())),
@@ -1743,7 +1765,7 @@ public:
                         stan::math::sqrt(
                           (total_var[(i - 1)] * total_var[(j - 1)])))),
                     "assigning variable Omega");
-                  current_statement__ = 189;
+                  current_statement__ = 194;
                   assign(Omega,
                     cons_list(index_uni(j),
                       cons_list(index_uni(i), nil_index_list())),
@@ -1753,9 +1775,9 @@ public:
                     "assigning variable Omega");}}
             } 
           }
-          current_statement__ = 235;
+          current_statement__ = 238;
           for (int i = 1; i <= Ng; ++i) {
-            current_statement__ = 197;
+            current_statement__ = 202;
             validate_non_negative_index("idxs", "sum(valid_var[ : , i])",
                                         sum(
                                           rvalue(valid_var,
@@ -1770,42 +1792,39 @@ public:
                                           cons_list(index_uni(i),
                                             nil_index_list())), "valid_var")), std::numeric_limits<int>::min());
             
-            local_scalar_t__ m_val;
-            m_val = DUMMY_VAR__;
-            
-            current_statement__ = 200;
+            current_statement__ = 204;
             pos_valid = 0;
-            current_statement__ = 206;
+            current_statement__ = 210;
             for (int j = 1; j <= Ni; ++j) {
-              current_statement__ = 204;
+              current_statement__ = 208;
               if (logical_eq(valid_var[(j - 1)][(i - 1)], 1)) {
-                current_statement__ = 201;
+                current_statement__ = 205;
                 pos_valid = (pos_valid + 1);
-                current_statement__ = 202;
+                current_statement__ = 206;
                 assign(idxs,
                   cons_list(index_uni(pos_valid), nil_index_list()), j,
                   "assigning variable idxs");
               } }
-            current_statement__ = 207;
+            current_statement__ = 211;
             assign(S_impute, nil_index_list(), S[(i - 1)],
               "assigning variable S_impute");
-            current_statement__ = 220;
+            current_statement__ = 224;
             for (int j = 2; j <= Ni; ++j) {
-              current_statement__ = 218;
+              current_statement__ = 222;
               if (logical_eq(valid_var[(j - 1)][(i - 1)], 1)) {
-                current_statement__ = 216;
+                current_statement__ = 220;
                 for (int k = 1; k <= (j - 1); ++k) {
-                  current_statement__ = 214;
+                  current_statement__ = 218;
                   if (logical_eq(valid_var[(k - 1)][(i - 1)], 1)) {
-                    current_statement__ = 212;
+                    current_statement__ = 216;
                     if (logical_eq(
                           rvalue(S_impute,
                             cons_list(index_uni(j),
                               cons_list(index_uni(k), nil_index_list())),
                             "S_impute"), 999)) {
-                      current_statement__ = 208;
+                      current_statement__ = 212;
                       pos_miss_c = (pos_miss_c + 1);
-                      current_statement__ = 209;
+                      current_statement__ = 213;
                       assign(S_impute,
                         cons_list(index_uni(j),
                           cons_list(index_uni(k), nil_index_list())),
@@ -1820,7 +1839,7 @@ public:
                               cons_list(index_uni(k),
                                 cons_list(index_uni(k), nil_index_list())),
                               "S_impute"))), "assigning variable S_impute");
-                      current_statement__ = 210;
+                      current_statement__ = 214;
                       assign(S_impute,
                         cons_list(index_uni(k),
                           cons_list(index_uni(j), nil_index_list())),
@@ -1831,13 +1850,13 @@ public:
                     } 
                   } }
               } }
-            current_statement__ = 226;
+            current_statement__ = 230;
             for (int j = 1; j <= Ni; ++j) {
-              current_statement__ = 224;
+              current_statement__ = 228;
               if (logical_eq(miss_ind[(j - 1)][(i - 1)], 1)) {
-                current_statement__ = 221;
+                current_statement__ = 225;
                 pos_miss_i = (pos_miss_i + 1);
-                current_statement__ = 222;
+                current_statement__ = 226;
                 assign(S_impute,
                   cons_list(index_uni(j),
                     cons_list(index_uni(j), nil_index_list())),
@@ -1847,9 +1866,9 @@ public:
                      "S_impute") + var_shifts[(pos_miss_i - 1)]),
                   "assigning variable S_impute");
               } }
-            current_statement__ = 233;
+            current_statement__ = 236;
             if (logical_eq(type, 1)) {
-              current_statement__ = 231;
+              current_statement__ = 234;
               lp_accum__.add(
                 wishart_lpdf<false>(
                   rvalue(S_impute,
@@ -1862,17 +1881,9 @@ public:
                         cons_list(index_multi(idxs), nil_index_list())),
                       "Omega"), (Np[(i - 1)] - 1.0))));
             } else {
-              current_statement__ = 230;
+              current_statement__ = 233;
               if (logical_eq(type, 2)) {
-                current_statement__ = 227;
-                m_val = ((stan::math::exp(
-                            (m_ln_int[(1 - 1)] +
-                              multiply(
-                                rvalue(X,
-                                  cons_list(index_uni(i),
-                                    cons_list(index_omni(), nil_index_list())),
-                                  "X"), m_ln_beta))) + Ni) - 1);
-                current_statement__ = 228;
+                current_statement__ = 231;
                 lp_accum__.add(
                   gen_matrix_beta_ii_lpdf<false>(
                     rvalue(S_impute,
@@ -1882,7 +1893,7 @@ public:
                     rvalue(Omega,
                       cons_list(index_multi(idxs),
                         cons_list(index_multi(idxs), nil_index_list())),
-                      "Omega"), (Np[(i - 1)] - 1.0), m_val, pstream__));
+                      "Omega"), (Np[(i - 1)] - 1.0), m_s[(i - 1)], pstream__));
               } 
             }}
         }

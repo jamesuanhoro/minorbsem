@@ -110,6 +110,12 @@ parameters {
   vector<lower = 0>[Nitem_miss] var_shifts;
 }
 model {
+  vector[Ng] m_s = rep_vector(0.0, Ng);
+
+  if (type == 2) {
+    m_s = exp(m_ln_int[1] + X * m_ln_beta) + Ni - 1;
+  }
+
   rms_src_p ~ std_normal();
   if (method == 1) {
     // normal
@@ -208,7 +214,6 @@ model {
 
     for (i in 1:Ng) {
       int idxs[sum(valid_var[, i])];
-      real m_val;
 
       pos_valid = 0;
       for (j in 1:Ni) {
@@ -245,9 +250,8 @@ model {
         target += wishart_lpdf(
           S_impute[idxs, idxs] | Np[i] - 1.0, Omega[idxs, idxs] / (Np[i] - 1.0));
       } else if (type == 2) {
-        m_val = exp(m_ln_int[1] + X[i, ] * m_ln_beta) + Ni - 1;
         target += gen_matrix_beta_ii_lpdf(
-          S_impute[idxs, idxs] | Omega[idxs, idxs], Np[i] - 1.0, m_val);
+          S_impute[idxs, idxs] | Omega[idxs, idxs], Np[i] - 1.0, m_s[i]);
       }
     }
   }
