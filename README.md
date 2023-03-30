@@ -17,6 +17,8 @@ version](https://img.shields.io/github/r-package/v/jamesuanhoro/minorbsem)
 ![GitHub last
 commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
 [![R-CMD-check](https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml)
+[![minorbsem status
+badge](https://jamesuanhoro.r-universe.dev/badges/minorbsem)](https://jamesuanhoro.r-universe.dev)
 <!-- badges: end -->
 
 #### Table of Contents
@@ -26,8 +28,6 @@ commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
   - [Permitted models and supported data
     types](#permitted-models-and-supported-data-types)
 - [Installation](#installation)
-  - [Install remotes](#install-remotes)
-  - [Install minorbsem](#install-minorbsem)
 - [A reasonably complete
   demonstration](#a-reasonably-complete-demonstration)
   - [Model comparisons](#model-comparisons)
@@ -78,25 +78,15 @@ models.
 
 ## Installation
 
-### Install remotes
-
-Restart R prior to installation. minorbsem requires that R is at least
-version 3.4.0. `version` command shows the installed R version. If the
-installed version is less than 3.4.0, then update R before proceeding.
-
-Install `remotes` to allow installation of R packages that are hosted on
-GitHub instead of Cran (the default repository for R packages):
-
-``` r
-install.packages("remotes")
-```
-
-### Install minorbsem
-
 Install minorbsem:
 
 ``` r
-remotes::install_github("jamesuanhoro/minorbsem")
+install.packages(
+  'minorbsem',
+  repos = c(
+    'https://jamesuanhoro.r-universe.dev', 'https://cloud.r-project.org'
+  )
+)
 ```
 
 ## A reasonably complete demonstration
