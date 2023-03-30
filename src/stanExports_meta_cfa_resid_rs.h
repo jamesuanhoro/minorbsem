@@ -98,83 +98,83 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'meta_cfa_resid_rs', line 239, column 2 to column 22)",
                                                       " (in 'meta_cfa_resid_rs', line 240, column 2 to column 49)",
                                                       " (in 'meta_cfa_resid_rs', line 241, column 2 to column 47)",
-                                                      " (in 'meta_cfa_resid_rs', line 242, column 2 to column 17)",
-                                                      " (in 'meta_cfa_resid_rs', line 243, column 2 to column 18)",
-                                                      " (in 'meta_cfa_resid_rs', line 244, column 2 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 245, column 2 to column 23)",
-                                                      " (in 'meta_cfa_resid_rs', line 249, column 4 to column 18)",
-                                                      " (in 'meta_cfa_resid_rs', line 248, column 9 to line 250, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 247, column 4 to column 27)",
-                                                      " (in 'meta_cfa_resid_rs', line 246, column 21 to line 248, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 246, column 2 to line 250, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 256, column 4 to line 258, column 6)",
-                                                      " (in 'meta_cfa_resid_rs', line 255, column 26 to line 259, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 255, column 9 to line 259, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 254, column 4 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 253, column 26 to line 255, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 253, column 9 to line 259, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 252, column 4 to column 24)",
-                                                      " (in 'meta_cfa_resid_rs', line 251, column 19 to line 253, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 251, column 2 to line 259, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 242, column 2 to column 18)",
+                                                      " (in 'meta_cfa_resid_rs', line 243, column 2 to column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 244, column 2 to column 23)",
+                                                      " (in 'meta_cfa_resid_rs', line 248, column 4 to column 18)",
+                                                      " (in 'meta_cfa_resid_rs', line 247, column 9 to line 249, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 246, column 4 to column 27)",
+                                                      " (in 'meta_cfa_resid_rs', line 245, column 21 to line 247, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 245, column 2 to line 249, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 255, column 4 to line 257, column 6)",
+                                                      " (in 'meta_cfa_resid_rs', line 254, column 26 to line 258, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 254, column 9 to line 258, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 253, column 4 to column 29)",
+                                                      " (in 'meta_cfa_resid_rs', line 252, column 26 to line 254, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 252, column 9 to line 258, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 251, column 4 to column 24)",
+                                                      " (in 'meta_cfa_resid_rs', line 250, column 19 to line 252, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 250, column 2 to line 258, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 260, column 11 to column 13)",
+                                                      " (in 'meta_cfa_resid_rs', line 260, column 4 to column 54)",
                                                       " (in 'meta_cfa_resid_rs', line 261, column 11 to column 13)",
-                                                      " (in 'meta_cfa_resid_rs', line 261, column 4 to column 54)",
+                                                      " (in 'meta_cfa_resid_rs', line 261, column 4 to column 34)",
                                                       " (in 'meta_cfa_resid_rs', line 262, column 4 to column 22)",
-                                                      " (in 'meta_cfa_resid_rs', line 263, column 4 to column 52)",
-                                                      " (in 'meta_cfa_resid_rs', line 264, column 4 to column 28)",
-                                                      " (in 'meta_cfa_resid_rs', line 265, column 4 to column 26)",
-                                                      " (in 'meta_cfa_resid_rs', line 267, column 6 to column 60)",
-                                                      " (in 'meta_cfa_resid_rs', line 266, column 20 to line 268, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 266, column 4 to line 268, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 269, column 4 to column 33)",
-                                                      " (in 'meta_cfa_resid_rs', line 270, column 4 to column 37)",
-                                                      " (in 'meta_cfa_resid_rs', line 260, column 17 to line 271, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 260, column 2 to line 271, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 273, column 4 to column 16)",
-                                                      " (in 'meta_cfa_resid_rs', line 276, column 8 to column 17)",
-                                                      " (in 'meta_cfa_resid_rs', line 277, column 8 to column 49)",
-                                                      " (in 'meta_cfa_resid_rs', line 278, column 8 to column 34)",
-                                                      " (in 'meta_cfa_resid_rs', line 275, column 27 to line 279, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 275, column 6 to line 279, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 274, column 20 to line 280, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 274, column 4 to line 280, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 272, column 19 to line 281, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 272, column 2 to line 281, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 283, column 4 to column 16)",
-                                                      " (in 'meta_cfa_resid_rs', line 284, column 4 to column 24)",
-                                                      " (in 'meta_cfa_resid_rs', line 291, column 10 to column 27)",
-                                                      " (in 'meta_cfa_resid_rs', line 292, column 10 to column 85)",
-                                                      " (in 'meta_cfa_resid_rs', line 290, column 39 to line 293, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 290, column 15 to line 293, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 288, column 10 to column 19)",
-                                                      " (in 'meta_cfa_resid_rs', line 289, column 10 to column 41)",
-                                                      " (in 'meta_cfa_resid_rs', line 287, column 40 to line 290, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 287, column 8 to line 293, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 286, column 22 to line 294, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 286, column 6 to line 294, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 285, column 20 to line 295, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 285, column 4 to line 295, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 282, column 2 to line 296, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 299, column 6 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 263, column 4 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 264, column 4 to column 26)",
+                                                      " (in 'meta_cfa_resid_rs', line 266, column 6 to column 60)",
+                                                      " (in 'meta_cfa_resid_rs', line 265, column 20 to line 267, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 265, column 4 to line 267, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 268, column 4 to column 33)",
+                                                      " (in 'meta_cfa_resid_rs', line 269, column 4 to column 37)",
+                                                      " (in 'meta_cfa_resid_rs', line 259, column 17 to line 270, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 259, column 2 to line 270, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 272, column 4 to column 16)",
+                                                      " (in 'meta_cfa_resid_rs', line 275, column 8 to column 17)",
+                                                      " (in 'meta_cfa_resid_rs', line 276, column 8 to column 49)",
+                                                      " (in 'meta_cfa_resid_rs', line 277, column 8 to column 34)",
+                                                      " (in 'meta_cfa_resid_rs', line 274, column 27 to line 278, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 274, column 6 to line 278, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 273, column 20 to line 279, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 273, column 4 to line 279, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 271, column 19 to line 280, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 271, column 2 to line 280, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 282, column 4 to column 16)",
+                                                      " (in 'meta_cfa_resid_rs', line 283, column 4 to column 24)",
+                                                      " (in 'meta_cfa_resid_rs', line 290, column 10 to column 27)",
+                                                      " (in 'meta_cfa_resid_rs', line 291, column 10 to column 85)",
+                                                      " (in 'meta_cfa_resid_rs', line 289, column 39 to line 292, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 289, column 15 to line 292, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 287, column 10 to column 19)",
+                                                      " (in 'meta_cfa_resid_rs', line 288, column 10 to column 41)",
+                                                      " (in 'meta_cfa_resid_rs', line 286, column 40 to line 289, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 286, column 8 to line 292, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 285, column 22 to line 293, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 285, column 6 to line 293, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 284, column 20 to line 294, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 284, column 4 to line 294, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 281, column 2 to line 295, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 298, column 6 to column 28)",
+                                                      " (in 'meta_cfa_resid_rs', line 300, column 8 to column 29)",
                                                       " (in 'meta_cfa_resid_rs', line 301, column 8 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 302, column 8 to column 29)",
-                                                      " (in 'meta_cfa_resid_rs', line 300, column 25 to line 303, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 300, column 6 to line 303, column 7)",
-                                                      " (in 'meta_cfa_resid_rs', line 304, column 6 to line 311, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 299, column 25 to line 302, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 299, column 6 to line 302, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 303, column 6 to line 310, column 7)",
+                                                      " (in 'meta_cfa_resid_rs', line 306, column 38 to column 57)",
+                                                      " (in 'meta_cfa_resid_rs', line 306, column 12 to column 57)",
                                                       " (in 'meta_cfa_resid_rs', line 307, column 38 to column 57)",
                                                       " (in 'meta_cfa_resid_rs', line 307, column 12 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 308, column 38 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 308, column 12 to column 57)",
-                                                      " (in 'meta_cfa_resid_rs', line 306, column 27 to line 309, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 306, column 10 to line 309, column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 305, column 20 to line 310, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 305, column 8 to line 310, column 9)",
-                                                      " (in 'meta_cfa_resid_rs', line 298, column 37 to line 312, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 298, column 4 to line 312, column 5)",
-                                                      " (in 'meta_cfa_resid_rs', line 297, column 18 to line 313, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 297, column 2 to line 313, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 315, column 4 to column 60)",
-                                                      " (in 'meta_cfa_resid_rs', line 314, column 19 to line 316, column 3)",
-                                                      " (in 'meta_cfa_resid_rs', line 314, column 2 to line 316, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 305, column 27 to line 308, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 305, column 10 to line 308, column 11)",
+                                                      " (in 'meta_cfa_resid_rs', line 304, column 20 to line 309, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 304, column 8 to line 309, column 9)",
+                                                      " (in 'meta_cfa_resid_rs', line 297, column 37 to line 311, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 297, column 4 to line 311, column 5)",
+                                                      " (in 'meta_cfa_resid_rs', line 296, column 18 to line 312, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 296, column 2 to line 312, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 314, column 4 to column 60)",
+                                                      " (in 'meta_cfa_resid_rs', line 313, column 19 to line 315, column 3)",
+                                                      " (in 'meta_cfa_resid_rs', line 313, column 2 to line 315, column 3)",
                                                       " (in 'meta_cfa_resid_rs', line 107, column 2 to column 27)",
                                                       " (in 'meta_cfa_resid_rs', line 119, column 4 to column 32)",
                                                       " (in 'meta_cfa_resid_rs', line 120, column 4 to line 121, column 29)",
@@ -402,8 +402,7 @@ static const std::vector<string> locations_array__ = {" (found before start of p
                                                       " (in 'meta_cfa_resid_rs', line 240, column 9 to column 11)",
                                                       " (in 'meta_cfa_resid_rs', line 240, column 13 to column 15)",
                                                       " (in 'meta_cfa_resid_rs', line 241, column 9 to column 14)",
-                                                      " (in 'meta_cfa_resid_rs', line 242, column 9 to column 11)",
-                                                      " (in 'meta_cfa_resid_rs', line 245, column 9 to column 10)",
+                                                      " (in 'meta_cfa_resid_rs', line 244, column 9 to column 10)",
                                                       " (in 'meta_cfa_resid_rs', line 9, column 6 to column 16)",
                                                       " (in 'meta_cfa_resid_rs', line 7, column 6 to column 15)",
                                                       " (in 'meta_cfa_resid_rs', line 6, column 4 to line 9, column 16)",
@@ -430,12 +429,12 @@ sign(const T0__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 332;
+    current_statement__ = 331;
     if (logical_gt(x, 0)) {
-      current_statement__ = 331;
+      current_statement__ = 330;
       return 1;
     } else {
-      current_statement__ = 330;
+      current_statement__ = 329;
       return -1;
     }
   } catch (const std::exception& e) {
@@ -465,7 +464,7 @@ generalized_double_pareto_lpdf(const T0__& x_arg__, const T1__& alpha,
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 334;
+    current_statement__ = 333;
     return sum(
              multiply(-(alpha + 1.0),
                stan::math::log(add(1.0, divide(stan::math::fabs(x), alpha)))));
@@ -495,7 +494,7 @@ eff(const int& p, const T1__& x, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 336;
+    current_statement__ = 335;
     return (((2 * lmgamma(p, (x / 2))) -
               ((x * p) * stan::math::log((x / 2)))) + (x * p));
   } catch (const std::exception& e) {
@@ -524,7 +523,7 @@ ln_det_spd(const T0__& S_arg__, std::ostream* pstream__) {
   (void) DUMMY_VAR__;  // suppress unused var warning
   
   try {
-    current_statement__ = 338;
+    current_statement__ = 337;
     return (2 * sum(stan::math::log(diagonal(cholesky_decompose(S)))));
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -561,18 +560,18 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     int p;
     p = std::numeric_limits<int>::min();
     
-    current_statement__ = 340;
+    current_statement__ = 339;
     p = rows(S);
     local_scalar_t__ F_1;
     F_1 = DUMMY_VAR__;
     
-    current_statement__ = 341;
+    current_statement__ = 340;
     F_1 = ((eff(p, m, pstream__) + eff(p, n, pstream__)) -
             eff(p, (m + n), pstream__));
     local_scalar_t__ F_2;
     F_2 = DUMMY_VAR__;
     
-    current_statement__ = 342;
+    current_statement__ = 341;
     F_2 = ((-(((n - p) - 1) * ln_det_spd(S, pstream__)) -
              (m * ln_det_spd(Omega, pstream__))) +
             ((m + n) *
@@ -581,9 +580,9 @@ gen_matrix_beta_ii_lpdf(const T0__& S_arg__, const T1__& Omega_arg__,
     local_scalar_t__ ll;
     ll = DUMMY_VAR__;
     
-    current_statement__ = 343;
+    current_statement__ = 342;
     ll = ((F_1 + F_2) / -2.0);
-    current_statement__ = 344;
+    current_statement__ = 343;
     return ll;
   } catch (const std::exception& e) {
     stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1184,8 +1183,6 @@ public:
       current_statement__ = 327;
       validate_non_negative_index("miss_cor", "Nmiss", Nmiss);
       current_statement__ = 328;
-      validate_non_negative_index("m_s", "Ng", Ng);
-      current_statement__ = 329;
       validate_non_negative_index("rmsea_beta", "p", p);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -2161,45 +2158,41 @@ public:
       current_statement__ = 23;
       assign(miss_cor, nil_index_list(),
         subtract(multiply(miss_cor_01, 2), 1), "assigning variable miss_cor");
-      Eigen::Matrix<double, -1, 1> m_s;
-      m_s = Eigen::Matrix<double, -1, 1>(Ng);
-      stan::math::fill(m_s, std::numeric_limits<double>::quiet_NaN());
-      
       double v_mn;
       v_mn = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 25;
+      current_statement__ = 24;
       v_mn = 0.0;
       double rmsea_mn;
       rmsea_mn = std::numeric_limits<double>::quiet_NaN();
       
-      current_statement__ = 26;
+      current_statement__ = 25;
       rmsea_mn = stan::math::sqrt(v_mn);
       Eigen::Matrix<double, -1, 1> rmsea_beta;
       rmsea_beta = Eigen::Matrix<double, -1, 1>(p);
       stan::math::fill(rmsea_beta, std::numeric_limits<double>::quiet_NaN());
       
-      current_statement__ = 32;
+      current_statement__ = 31;
       if (logical_neq(method, 100)) {
-        current_statement__ = 30;
+        current_statement__ = 29;
         rms_src = rms_src_p[(1 - 1)];
       } else {
-        current_statement__ = 28;
+        current_statement__ = 27;
         rms_src = 0.0;
       }
-      current_statement__ = 41;
+      current_statement__ = 40;
       if (logical_eq(method, 2)) {
-        current_statement__ = 39;
+        current_statement__ = 38;
         rms_src = (rms_src * sqrt_two);
       } else {
-        current_statement__ = 38;
+        current_statement__ = 37;
         if (logical_eq(method, 3)) {
-          current_statement__ = 36;
+          current_statement__ = 35;
           rms_src = (rms_src * pi_sqrt_three);
         } else {
-          current_statement__ = 35;
+          current_statement__ = 34;
           if (logical_eq(method, 4)) {
-            current_statement__ = 33;
+            current_statement__ = 32;
             rms_src = (rms_src *
                         ((sqrt_two * gdp_alpha[(1 - 1)]) /
                           stan::math::sqrt(
@@ -2210,27 +2203,30 @@ public:
       }
       current_statement__ = 54;
       if (logical_eq(type, 2)) {
-        current_statement__ = 42;
+        current_statement__ = 41;
         validate_non_negative_index("ebx", "Ng", Ng);
         Eigen::Matrix<double, -1, 1> ebx;
         ebx = Eigen::Matrix<double, -1, 1>(Ng);
         stan::math::fill(ebx, std::numeric_limits<double>::quiet_NaN());
         
-        current_statement__ = 43;
+        current_statement__ = 42;
         assign(ebx, nil_index_list(),
           stan::math::exp(add(m_ln_int[(1 - 1)], multiply(X, m_ln_beta))),
           "assigning variable ebx");
+        current_statement__ = 43;
+        validate_non_negative_index("m_s", "Ng", Ng);
+        Eigen::Matrix<double, -1, 1> m_s;
+        m_s = Eigen::Matrix<double, -1, 1>(Ng);
+        stan::math::fill(m_s, std::numeric_limits<double>::quiet_NaN());
+        
+        current_statement__ = 44;
+        assign(m_s, nil_index_list(), subtract(add(ebx, Ni), 1),
+          "assigning variable m_s");
         double mn_ebx;
         mn_ebx = std::numeric_limits<double>::quiet_NaN();
         
-        current_statement__ = 44;
-        mn_ebx = 0.0;
         current_statement__ = 45;
-        assign(m_s, nil_index_list(),
-          subtract(
-            add(
-              stan::math::exp(add(m_ln_int[(1 - 1)], multiply(X, m_ln_beta))),
-              Ni), 1), "assigning variable m_s");
+        mn_ebx = 0.0;
         current_statement__ = 46;
         v_mn = mean(elt_divide(1.0, m_s));
         current_statement__ = 47;
@@ -2441,8 +2437,6 @@ public:
                 cons_list(index_uni(sym1__), nil_index_list())), "Resid"));}}
       for (int sym1__ = 1; sym1__ <= Nmiss; ++sym1__) {
         vars__.emplace_back(miss_cor[(sym1__ - 1)]);}
-      for (int sym1__ = 1; sym1__ <= Ng; ++sym1__) {
-        vars__.emplace_back(m_s[(sym1__ - 1)]);}
       vars__.emplace_back(v_mn);
       vars__.emplace_back(rmsea_mn);
       for (int sym1__ = 1; sym1__ <= p; ++sym1__) {
@@ -2925,7 +2919,6 @@ public:
     names__.emplace_back("res_cov");
     names__.emplace_back("Resid");
     names__.emplace_back("miss_cor");
-    names__.emplace_back("m_s");
     names__.emplace_back("v_mn");
     names__.emplace_back("rmsea_mn");
     names__.emplace_back("rmsea_beta");
@@ -2986,8 +2979,6 @@ public:
                                              static_cast<size_t>(Ni)});
     
     dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(Nmiss)});
-    
-    dimss__.emplace_back(std::vector<size_t>{static_cast<size_t>(Ng)});
     
     dimss__.emplace_back(std::vector<size_t>{});
     
@@ -3106,10 +3097,6 @@ public:
         {
           param_names__.emplace_back(std::string() + "miss_cor" + '.' + std::to_string(sym1__));
         }}
-      for (int sym1__ = 1; sym1__ <= Ng; ++sym1__) {
-        {
-          param_names__.emplace_back(std::string() + "m_s" + '.' + std::to_string(sym1__));
-        }}
       param_names__.emplace_back(std::string() + "v_mn");
       param_names__.emplace_back(std::string() + "rmsea_mn");
       for (int sym1__ = 1; sym1__ <= p; ++sym1__) {
@@ -3226,10 +3213,6 @@ public:
         {
           param_names__.emplace_back(std::string() + "miss_cor" + '.' + std::to_string(sym1__));
         }}
-      for (int sym1__ = 1; sym1__ <= Ng; ++sym1__) {
-        {
-          param_names__.emplace_back(std::string() + "m_s" + '.' + std::to_string(sym1__));
-        }}
       param_names__.emplace_back(std::string() + "v_mn");
       param_names__.emplace_back(std::string() + "rmsea_mn");
       for (int sym1__ = 1; sym1__ <= p; ++sym1__) {
@@ -3242,13 +3225,13 @@ public:
     
   inline std::string get_constrained_sizedtypes() const {
     stringstream s__;
-    s__ << "[{\"name\":\"rms_src_p\",\"type\":{\"name\":\"vector\",\"length\":" << N_rms << "},\"block\":\"parameters\"},{\"name\":\"gdp_alpha\",\"type\":{\"name\":\"vector\",\"length\":" << N_alpha << "},\"block\":\"parameters\"},{\"name\":\"resids\",\"type\":{\"name\":\"vector\",\"length\":" << Nisqd2 << "},\"block\":\"parameters\"},{\"name\":\"loadings\",\"type\":{\"name\":\"vector\",\"length\":" << Nl << "},\"block\":\"parameters\"},{\"name\":\"sigma_loadings\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"res_sds\",\"type\":{\"name\":\"vector\",\"length\":" << Ni << "},\"block\":\"parameters\"},{\"name\":\"phi_mat_chol\",\"type\":{\"name\":\"matrix\",\"rows\":" << Nf_corr << ",\"cols\":" << Nf_corr << "},\"block\":\"parameters\"},{\"name\":\"res_cor_01\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"parameters\"},{\"name\":\"loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << N_complex << "},\"block\":\"parameters\"},{\"name\":\"sigma_loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << complex_struc << "},\"block\":\"parameters\"},{\"name\":\"gdp_loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << complex_struc << "},\"block\":\"parameters\"},{\"name\":\"m_ln_int\",\"type\":{\"name\":\"vector\",\"length\":" << N_type << "},\"block\":\"parameters\"},{\"name\":\"m_ln_beta\",\"type\":{\"name\":\"vector\",\"length\":" << p << "},\"block\":\"parameters\"},{\"name\":\"miss_cor_01\",\"type\":{\"name\":\"vector\",\"length\":" << Nmiss << "},\"block\":\"parameters\"},{\"name\":\"var_shifts\",\"type\":{\"name\":\"vector\",\"length\":" << Nitem_miss << "},\"block\":\"parameters\"},{\"name\":\"rms_src\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"Load_mat\",\"type\":{\"name\":\"matrix\",\"rows\":" << Ni << ",\"cols\":" << Nf << "},\"block\":\"generated_quantities\"},{\"name\":\"phi_mat\",\"type\":{\"name\":\"matrix\",\"rows\":" << Nf_corr << ",\"cols\":" << Nf_corr << "},\"block\":\"generated_quantities\"},{\"name\":\"res_var\",\"type\":{\"name\":\"vector\",\"length\":" << Ni << "},\"block\":\"generated_quantities\"},{\"name\":\"res_cor\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"generated_quantities\"},{\"name\":\"res_cov\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"generated_quantities\"},{\"name\":\"Resid\",\"type\":{\"name\":\"matrix\",\"rows\":" << Ni << ",\"cols\":" << Ni << "},\"block\":\"generated_quantities\"},{\"name\":\"miss_cor\",\"type\":{\"name\":\"vector\",\"length\":" << Nmiss << "},\"block\":\"generated_quantities\"},{\"name\":\"m_s\",\"type\":{\"name\":\"vector\",\"length\":" << Ng << "},\"block\":\"generated_quantities\"},{\"name\":\"v_mn\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"rmsea_mn\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"rmsea_beta\",\"type\":{\"name\":\"vector\",\"length\":" << p << "},\"block\":\"generated_quantities\"}]";
+    s__ << "[{\"name\":\"rms_src_p\",\"type\":{\"name\":\"vector\",\"length\":" << N_rms << "},\"block\":\"parameters\"},{\"name\":\"gdp_alpha\",\"type\":{\"name\":\"vector\",\"length\":" << N_alpha << "},\"block\":\"parameters\"},{\"name\":\"resids\",\"type\":{\"name\":\"vector\",\"length\":" << Nisqd2 << "},\"block\":\"parameters\"},{\"name\":\"loadings\",\"type\":{\"name\":\"vector\",\"length\":" << Nl << "},\"block\":\"parameters\"},{\"name\":\"sigma_loadings\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"res_sds\",\"type\":{\"name\":\"vector\",\"length\":" << Ni << "},\"block\":\"parameters\"},{\"name\":\"phi_mat_chol\",\"type\":{\"name\":\"matrix\",\"rows\":" << Nf_corr << ",\"cols\":" << Nf_corr << "},\"block\":\"parameters\"},{\"name\":\"res_cor_01\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"parameters\"},{\"name\":\"loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << N_complex << "},\"block\":\"parameters\"},{\"name\":\"sigma_loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << complex_struc << "},\"block\":\"parameters\"},{\"name\":\"gdp_loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << complex_struc << "},\"block\":\"parameters\"},{\"name\":\"m_ln_int\",\"type\":{\"name\":\"vector\",\"length\":" << N_type << "},\"block\":\"parameters\"},{\"name\":\"m_ln_beta\",\"type\":{\"name\":\"vector\",\"length\":" << p << "},\"block\":\"parameters\"},{\"name\":\"miss_cor_01\",\"type\":{\"name\":\"vector\",\"length\":" << Nmiss << "},\"block\":\"parameters\"},{\"name\":\"var_shifts\",\"type\":{\"name\":\"vector\",\"length\":" << Nitem_miss << "},\"block\":\"parameters\"},{\"name\":\"rms_src\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"Load_mat\",\"type\":{\"name\":\"matrix\",\"rows\":" << Ni << ",\"cols\":" << Nf << "},\"block\":\"generated_quantities\"},{\"name\":\"phi_mat\",\"type\":{\"name\":\"matrix\",\"rows\":" << Nf_corr << ",\"cols\":" << Nf_corr << "},\"block\":\"generated_quantities\"},{\"name\":\"res_var\",\"type\":{\"name\":\"vector\",\"length\":" << Ni << "},\"block\":\"generated_quantities\"},{\"name\":\"res_cor\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"generated_quantities\"},{\"name\":\"res_cov\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"generated_quantities\"},{\"name\":\"Resid\",\"type\":{\"name\":\"matrix\",\"rows\":" << Ni << ",\"cols\":" << Ni << "},\"block\":\"generated_quantities\"},{\"name\":\"miss_cor\",\"type\":{\"name\":\"vector\",\"length\":" << Nmiss << "},\"block\":\"generated_quantities\"},{\"name\":\"v_mn\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"rmsea_mn\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"rmsea_beta\",\"type\":{\"name\":\"vector\",\"length\":" << p << "},\"block\":\"generated_quantities\"}]";
     return s__.str();
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     stringstream s__;
-    s__ << "[{\"name\":\"rms_src_p\",\"type\":{\"name\":\"vector\",\"length\":" << N_rms << "},\"block\":\"parameters\"},{\"name\":\"gdp_alpha\",\"type\":{\"name\":\"vector\",\"length\":" << N_alpha << "},\"block\":\"parameters\"},{\"name\":\"resids\",\"type\":{\"name\":\"vector\",\"length\":" << Nisqd2 << "},\"block\":\"parameters\"},{\"name\":\"loadings\",\"type\":{\"name\":\"vector\",\"length\":" << Nl << "},\"block\":\"parameters\"},{\"name\":\"sigma_loadings\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"res_sds\",\"type\":{\"name\":\"vector\",\"length\":" << Ni << "},\"block\":\"parameters\"},{\"name\":\"phi_mat_chol\",\"type\":{\"name\":\"vector\",\"length\":" << ((Nf_corr * (Nf_corr - 1)) / 2) << "},\"block\":\"parameters\"},{\"name\":\"res_cor_01\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"parameters\"},{\"name\":\"loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << N_complex << "},\"block\":\"parameters\"},{\"name\":\"sigma_loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << complex_struc << "},\"block\":\"parameters\"},{\"name\":\"gdp_loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << complex_struc << "},\"block\":\"parameters\"},{\"name\":\"m_ln_int\",\"type\":{\"name\":\"vector\",\"length\":" << N_type << "},\"block\":\"parameters\"},{\"name\":\"m_ln_beta\",\"type\":{\"name\":\"vector\",\"length\":" << p << "},\"block\":\"parameters\"},{\"name\":\"miss_cor_01\",\"type\":{\"name\":\"vector\",\"length\":" << Nmiss << "},\"block\":\"parameters\"},{\"name\":\"var_shifts\",\"type\":{\"name\":\"vector\",\"length\":" << Nitem_miss << "},\"block\":\"parameters\"},{\"name\":\"rms_src\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"Load_mat\",\"type\":{\"name\":\"matrix\",\"rows\":" << Ni << ",\"cols\":" << Nf << "},\"block\":\"generated_quantities\"},{\"name\":\"phi_mat\",\"type\":{\"name\":\"matrix\",\"rows\":" << Nf_corr << ",\"cols\":" << Nf_corr << "},\"block\":\"generated_quantities\"},{\"name\":\"res_var\",\"type\":{\"name\":\"vector\",\"length\":" << Ni << "},\"block\":\"generated_quantities\"},{\"name\":\"res_cor\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"generated_quantities\"},{\"name\":\"res_cov\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"generated_quantities\"},{\"name\":\"Resid\",\"type\":{\"name\":\"matrix\",\"rows\":" << Ni << ",\"cols\":" << Ni << "},\"block\":\"generated_quantities\"},{\"name\":\"miss_cor\",\"type\":{\"name\":\"vector\",\"length\":" << Nmiss << "},\"block\":\"generated_quantities\"},{\"name\":\"m_s\",\"type\":{\"name\":\"vector\",\"length\":" << Ng << "},\"block\":\"generated_quantities\"},{\"name\":\"v_mn\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"rmsea_mn\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"rmsea_beta\",\"type\":{\"name\":\"vector\",\"length\":" << p << "},\"block\":\"generated_quantities\"}]";
+    s__ << "[{\"name\":\"rms_src_p\",\"type\":{\"name\":\"vector\",\"length\":" << N_rms << "},\"block\":\"parameters\"},{\"name\":\"gdp_alpha\",\"type\":{\"name\":\"vector\",\"length\":" << N_alpha << "},\"block\":\"parameters\"},{\"name\":\"resids\",\"type\":{\"name\":\"vector\",\"length\":" << Nisqd2 << "},\"block\":\"parameters\"},{\"name\":\"loadings\",\"type\":{\"name\":\"vector\",\"length\":" << Nl << "},\"block\":\"parameters\"},{\"name\":\"sigma_loadings\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"res_sds\",\"type\":{\"name\":\"vector\",\"length\":" << Ni << "},\"block\":\"parameters\"},{\"name\":\"phi_mat_chol\",\"type\":{\"name\":\"vector\",\"length\":" << ((Nf_corr * (Nf_corr - 1)) / 2) << "},\"block\":\"parameters\"},{\"name\":\"res_cor_01\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"parameters\"},{\"name\":\"loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << N_complex << "},\"block\":\"parameters\"},{\"name\":\"sigma_loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << complex_struc << "},\"block\":\"parameters\"},{\"name\":\"gdp_loadings_complex\",\"type\":{\"name\":\"vector\",\"length\":" << complex_struc << "},\"block\":\"parameters\"},{\"name\":\"m_ln_int\",\"type\":{\"name\":\"vector\",\"length\":" << N_type << "},\"block\":\"parameters\"},{\"name\":\"m_ln_beta\",\"type\":{\"name\":\"vector\",\"length\":" << p << "},\"block\":\"parameters\"},{\"name\":\"miss_cor_01\",\"type\":{\"name\":\"vector\",\"length\":" << Nmiss << "},\"block\":\"parameters\"},{\"name\":\"var_shifts\",\"type\":{\"name\":\"vector\",\"length\":" << Nitem_miss << "},\"block\":\"parameters\"},{\"name\":\"rms_src\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"Load_mat\",\"type\":{\"name\":\"matrix\",\"rows\":" << Ni << ",\"cols\":" << Nf << "},\"block\":\"generated_quantities\"},{\"name\":\"phi_mat\",\"type\":{\"name\":\"matrix\",\"rows\":" << Nf_corr << ",\"cols\":" << Nf_corr << "},\"block\":\"generated_quantities\"},{\"name\":\"res_var\",\"type\":{\"name\":\"vector\",\"length\":" << Ni << "},\"block\":\"generated_quantities\"},{\"name\":\"res_cor\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"generated_quantities\"},{\"name\":\"res_cov\",\"type\":{\"name\":\"vector\",\"length\":" << Nce << "},\"block\":\"generated_quantities\"},{\"name\":\"Resid\",\"type\":{\"name\":\"matrix\",\"rows\":" << Ni << ",\"cols\":" << Ni << "},\"block\":\"generated_quantities\"},{\"name\":\"miss_cor\",\"type\":{\"name\":\"vector\",\"length\":" << Nmiss << "},\"block\":\"generated_quantities\"},{\"name\":\"v_mn\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"rmsea_mn\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"rmsea_beta\",\"type\":{\"name\":\"vector\",\"length\":" << p << "},\"block\":\"generated_quantities\"}]";
     return s__.str();
     } // get_unconstrained_sizedtypes() 
     
