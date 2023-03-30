@@ -59,8 +59,11 @@ mbsem_test_kbls_shared <- function(kbl, method, meta = FALSE) {
 }
 
 dat_cov <- function(dat = "HS") {
-  if (dat == "HS") dat <- HS[, paste0("x", 1:9)]
-  else if (dat == "PD") dat <- PD
+  if (dat == "HS") {
+    dat <- HS[, paste0("x", 1:9)]
+  } else if (dat == "PD") {
+    dat <- PD
+  }
 
   input <- list(data = NULL, cov = NULL, nobs = NULL)
   if (sample(2, 1) == 1) {

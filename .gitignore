@@ -3,8 +3,6 @@
 .Rdata
 .httr-oauth
 .DS_Store
-inst/Stan/*
-!inst/Stan/*_resid.stan
 .vscode/
 README.html
 /README_files/*
@@ -13,3 +11,5 @@ README.html
 !/vignettes/articles/*.Rmd
 !/vignettes/articles/*.pdf
 docs
+inst/cmdstan/*
+!inst/cmdstan/*_resid.stan

@@ -2,6 +2,7 @@
 // Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #include <RcppArmadillo.h>
+#include <RcppEigen.h>
 #include <Rcpp.h>
 
 using namespace Rcpp;
@@ -40,9 +41,16 @@ BEGIN_RCPP
 END_RCPP
 }
 
+RcppExport SEXP _rcpp_module_boot_stan_fit4cfa_resid_rs_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4meta_cfa_resid_rs_mod();
+RcppExport SEXP _rcpp_module_boot_stan_fit4sem_resid_rs_mod();
+
 static const R_CallMethodDef CallEntries[] = {
     {"_minorbsem_ldmvnrm_arma", (DL_FUNC) &_minorbsem_ldmvnrm_arma, 5},
     {"_minorbsem_ldmvnrm_list_arma", (DL_FUNC) &_minorbsem_ldmvnrm_list_arma, 3},
+    {"_rcpp_module_boot_stan_fit4cfa_resid_rs_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4cfa_resid_rs_mod, 0},
+    {"_rcpp_module_boot_stan_fit4meta_cfa_resid_rs_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4meta_cfa_resid_rs_mod, 0},
+    {"_rcpp_module_boot_stan_fit4sem_resid_rs_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4sem_resid_rs_mod, 0},
     {NULL, NULL, 0}
 };
 

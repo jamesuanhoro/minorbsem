@@ -15,7 +15,7 @@ test_that("Random method (any case) works for CFA", {
     data = input$dat, sample_cov = input$cov, sample_nobs = input$nobs,
     orthogonal = orthogonal,
     simple_struc = sample(c(TRUE, FALSE), 1),
-    warmup = 500, sampling = 500, chains = 3,
+    warmup = 500, sampling = 500, chains = 1,
     method = method, refresh = 0, show_messages = FALSE
   )
   expect_error(
@@ -58,7 +58,7 @@ test_that("Random method (any case) works for SEM", {
     data = input$dat, sample_cov = input$cov, sample_nobs = input$nobs,
     orthogonal = sample(c(TRUE, FALSE), 1),
     simple_struc = sample(c(TRUE, FALSE), 1),
-    warmup = 500, sampling = 500, chains = 3,
+    warmup = 500, sampling = 500, chains = 1,
     method = method, refresh = 0, show_messages = FALSE
   )
   expect_error(

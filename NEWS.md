@@ -1,5 +1,8 @@
-# minorbsem (development version)
+# minorbsem 0.2.0
 
+* RStan implementation now working and with tests
+  * Simpler installation
+  * Precursor to CRAN
 * Fixed row order of variables printed
 * Fixed an undiscovered error when user fits model with single chain
 

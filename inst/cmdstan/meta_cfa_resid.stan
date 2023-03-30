@@ -258,7 +258,6 @@ generated quantities {
   vector[Nce] res_cov;
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
   vector[Nmiss] miss_cor = miss_cor_01 * 2 - 1;
-  vector[Ng] m_s;
   real v_mn = 0.0;
   real rmsea_mn = sqrt(v_mn);
   vector[p] rmsea_beta;
@@ -280,14 +279,12 @@ generated quantities {
 
   if (type == 2) {
     vector[Ng] ebx = exp(m_ln_int[1] + X * m_ln_beta);
+    vector[Ng] m_s = ebx + Ni - 1;
+    real mn_ebx = mean(ebx ./ (2 * (ebx + p - 1) ^ (3.0 / 2)));
 
-    m_s = exp(m_ln_int[1] + X * m_ln_beta) + Ni - 1;
     v_mn = mean(1.0 ./ m_s);
     rmsea_mn = sqrt(v_mn);
-
-    for (i in 1:p) {
-      rmsea_beta[i] = -m_ln_beta[i] * mean(ebx ./ (2 * (ebx + p - 1) ^ (3.0 / 2)));
-    }
+    rmsea_beta = -m_ln_beta * mn_ebx;
   }
 
   if (method < 90) {
