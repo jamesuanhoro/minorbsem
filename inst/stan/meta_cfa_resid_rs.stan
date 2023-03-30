@@ -113,7 +113,11 @@ model {
   vector[Ng] m_s = rep_vector(0.0, Ng);
 
   if (type == 2) {
-    m_s = exp(m_ln_int[1] + X * m_ln_beta) + Ni - 1;
+    if (p == 0) {
+      m_s = rep_vector(exp(m_ln_int[1]), Ng) + Ni - 1;
+    } else {
+      m_s = exp(m_ln_int[1] + X * m_ln_beta) + Ni - 1;
+    }
   }
 
   rms_src_p ~ std_normal();
@@ -285,9 +289,17 @@ generated quantities {
   }
 
   if (type == 2) {
-    vector[Ng] ebx = exp(m_ln_int[1] + X * m_ln_beta);
-    vector[Ng] m_s = ebx + Ni - 1;
+    vector[Ng] ebx;
+    vector[Ng] m_s;
     real mn_ebx = 0.0;
+
+    if (p == 0) {
+      ebx = rep_vector(exp(m_ln_int[1]), Ng);
+    } else {
+      ebx = exp(m_ln_int[1] + X * m_ln_beta);
+    }
+
+    m_s = ebx + Ni - 1;
 
     v_mn = mean(1.0 ./ m_s);
     rmsea_mn = sqrt(v_mn);
