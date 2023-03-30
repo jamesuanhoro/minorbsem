@@ -2,7 +2,7 @@
 \Rdversion{1.1}
 \docType{class}
 \alias{mbsem-class}
-\alias{plot,mbsem-method}
+\alias{fitted,mbsem-method}
 \alias{logLik,mbsem-method}
 \alias{residuals,mbsem-method}
 \alias{show,mbsem-method}
@@ -15,7 +15,8 @@
   the data used to fit the model, and the fitted Stan model.
 }
 \section{Objects from the Class}{
-  Objects can be created by calls to the \code{\link{minorbsem}} function.
+  Objects can be created by calls to the \code{\link{minorbsem}}
+  or \code{\link{meta_mbcfa}} function.
 }
 \section{Slots}{
   \describe{
@@ -23,7 +24,7 @@
     \item{\code{minor_factor_matrix}:}{Summary statistics for standardized residual covariances}
     \item{\code{data_list}:}{Data used to fit the model}
     \item{\code{priors}:}{Priors used to fit the model}
-    \item{\code{stan_fit}:}{Fitted CmdStan model}
+    \item{\code{stan_fit}:}{Fitted RStan or CmdStan model}
     \item{\code{version}:}{Package version used to fit model}
   }
 }
@@ -72,9 +73,6 @@
     fit_1 <- minorbsem("F1 =~ x1 + x2 + x3
                         F2 =~ x4 + x5 + x6
                         F3 =~ x7 + x8 + x9", HS)
-    # Plot parameter estimates
-    plot(fit_1)
-
     # Model-implied covariances
     mod_imp_cov <- fitted(fit_1)
     # Get average of model-implied covariance matrix
