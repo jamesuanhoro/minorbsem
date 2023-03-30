@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +88,6 @@
 <a href="#installation">Installation</a>
 <ul>
 <li><a href="#install-remotes">Install remotes</a></li>
-<li><a href="#install-cmdstanr-and-cmdstan">Install CmdStanR and CmdStan</a></li>
 <li><a href="#install-minorbsem">Install minorbsem</a></li>
 </ul>
 </li>
@@ -134,8 +133,6 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The package requires that you <strong>have CmdStan installed on your machine</strong>, see installation instructions here: <a href="https://mc-stan.org/cmdstanr/articles/cmdstanr.html" class="external-link uri">https://mc-stan.org/cmdstanr/articles/cmdstanr.html</a></p>
-<p>If you have CmdStan installed and working, go to: <a href="#install-minorbsem">Install minorbsem</a>.</p>
 <div class="section level3">
 <h3 id="install-remotes">Install remotes<a class="anchor" aria-label="anchor" href="#install-remotes"></a>
 </h3>
@@ -145,28 +142,17 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="install-cmdstanr-and-cmdstan">Install CmdStanR and CmdStan<a class="anchor" aria-label="anchor" href="#install-cmdstanr-and-cmdstan"></a>
-</h3>
-<p>Install the <code>cmdstanr</code> package so <code>minorbsem</code> can interface with Stan. If any problems come up at this stage, see: <a href="https://mc-stan.org/cmdstanr/articles/cmdstanr.html" class="external-link">Getting started with CmdStanR</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stan-dev/cmdstanr"</span><span class="op">)</span></span></code></pre></div>
-<p>Install Stan. First, we check that the computer is correctly set up to install Stan:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">cmdstanr</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/cmdstanr/reference/install_cmdstan.html" class="external-link">check_cmdstan_toolchain</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># ensure computer is setup to install Stan</span></span>
-<span><span class="fu">cmdstanr</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/cmdstanr/reference/install_cmdstan.html" class="external-link">install_cmdstan</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># install Stan</span></span></code></pre></div>
-</div>
-<div class="section level3">
 <h3 id="install-minorbsem">Install minorbsem<a class="anchor" aria-label="anchor" href="#install-minorbsem"></a>
 </h3>
 <p>Install minorbsem:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"jamesuanhoro/minorbsem"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="a-reasonably-complete-demonstration">A reasonably complete demonstration<a class="anchor" aria-label="anchor" href="#a-reasonably-complete-demonstration"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jamesuanhoro.github.io/minorbsem/">minorbsem</a></span><span class="op">)</span></span>
 <span><span class="co"># Basic Holzinger-Swineford model</span></span>
 <span><span class="va">syntax_1</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
@@ -193,7 +179,7 @@
 </h3>
 <p>Fit a second model that estimates all cross-loadings and shrinks them to 0 using a global-local prior (<code>simple_struc = FALSE</code>).</p>
 <p>Then compare both models using LOO. This needs the <code>loo</code> package: <code>install.packages("loo")</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/minorbsem.html">minorbsem</a></span><span class="op">(</span><span class="va">syntax_1</span>, <span class="va">HS</span>, simple_struc <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Compute case wise log-likelihood</span></span>
@@ -227,7 +213,7 @@
 <h3 id="different-methods-to-capture-the-influence-of-minor-factors">Different methods to capture the influence of minor factors<a class="anchor" aria-label="anchor" href="#different-methods-to-capture-the-influence-of-minor-factors"></a>
 </h3>
 <p>Default method above is <code>method = "normal"</code> assuming standardized residual covariances are on average 0 and vary from 0 in continuous fashion.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Fit same model as above but use global-local prior to estimate</span></span>
 <span><span class="co"># minor factor influences</span></span>
 <span><span class="va">fit_gdp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/minorbsem.html">minorbsem</a></span><span class="op">(</span><span class="va">syntax_1</span>, <span class="va">HS</span>, method <span class="op">=</span> <span class="st">"GDP"</span><span class="op">)</span></span>
@@ -249,7 +235,7 @@
 <div class="section level3">
 <h3 id="meta-analytic-cfa">Meta-analytic CFA<a class="anchor" aria-label="anchor" href="#meta-analytic-cfa"></a>
 </h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># An example in the metaSEM package, 11 studies, 9 items.</span></span>
 <span><span class="va">model_syntax</span> <span class="op">&lt;-</span> <span class="st">"# latent variable definitions</span></span>
 <span><span class="st">F1 =~ JP1 + JP2 + JP3</span></span>
@@ -328,6 +314,7 @@ Uanhoro, James Ohisei. forthcoming. “Modeling Misspecification as a Parameter 
 <li><a href="https://app.codecov.io/gh/jamesuanhoro/minorbsem?branch=master" class="external-link"><img src="https://codecov.io/gh/jamesuanhoro/minorbsem/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://cran.r-project.org/" class="external-link"><img src="https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg" alt="minimal R version"></a></li>
 <li><a href="https://cran.r-project.org/package=minorbsem" class="external-link"><img src="https://www.r-pkg.org/badges/version/minorbsem" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 
