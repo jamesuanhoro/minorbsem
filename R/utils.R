@@ -198,7 +198,7 @@ target_fitter <- function(
       }
     }
 
-    stan_fit <- rstan::sampling(
+    suppressWarnings(stan_fit <- rstan::sampling(
       mod_resid,
       data = data_list,
       chains = chains,
@@ -213,7 +213,8 @@ target_fitter <- function(
         max_treedepth = max_treedepth
       ),
       show_messages = show_messages
-    )
+    ))
+    message(rstan::check_hmc_diagnostics(stan_fit))
   } else if (target == "cmdstan") {
     message(paste0(
       "Compiling Stan code ...\n",

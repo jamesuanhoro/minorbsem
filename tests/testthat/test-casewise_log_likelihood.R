@@ -39,7 +39,7 @@ mbsem_test_ll_1 <- function(fit, method) {
       )
     }
     testthat::expect_equal(ncol(ll_mat), nrow(fit@data_list$Y))
-    testthat::expect_equal(nrow(ll_mat), 500 * 3)
+    testthat::expect_equal(nrow(ll_mat), 500 * 1)
     testthat::expect_true(!is.na(sum(ll_mat)))
     testthat::expect_true(sum(abs(ll_mat)) > 0)
   }

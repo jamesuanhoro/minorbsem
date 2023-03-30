@@ -29,9 +29,12 @@ create_data_list_meta <- function(
   data_list$method <- method_hash(method)
 
   # Set type
-  data_list$type <- 2  # assume random-effects by default
-  if (type == "fe") data_list$type <- 1
-  else if (type == "dep") data_list$type <- 3
+  data_list$type <- 2 # assume random-effects by default
+  if (type == "fe") {
+    data_list$type <- 1
+  } else if (type == "dep") {
+    data_list$type <- 3
+  }
 
   # Set simple structure to 0 by default, change within CFA section
   data_list$complex_struc <- 0
