@@ -11,3 +11,5 @@ README.html
 !/vignettes/articles/*.Rmd
 !/vignettes/articles/*.pdf
 docs
+inst/cmdstan/*
+!inst/cmdstan/*_resid.stan

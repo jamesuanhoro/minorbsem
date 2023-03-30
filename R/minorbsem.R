@@ -37,6 +37,8 @@
 #' show table of results. As an example, use FALSE for simulation studies.
 #' @param show_messages (Logical) If TRUE, show messages from Stan sampler,
 #' if FALSE, hide messages.
+#' @param target (character) One of "rstan" or "cmdstan". If "cmdstan",
+#' CmdStan and CmdStanR need to be installed on the device.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
 #' CFAs assume standardized factors.
@@ -97,7 +99,8 @@ minorbsem <- function(
     ncores = max(parallel::detectCores() - 2, 1),
     priors = new_mbsempriors(),
     show = TRUE,
-    show_messages = TRUE) {
+    show_messages = TRUE,
+    target = "rstan") {
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -111,6 +114,9 @@ minorbsem <- function(
 
   # Must provide either data or sample_cov and sample_nobs
   user_input_check("data", data, sample_cov, sample_nobs)
+
+  # target must be valid
+  user_input_check("target", target)
 
   # Run lavaan fit
   if (!is.null(data)) {
@@ -145,33 +151,9 @@ minorbsem <- function(
 
   message("User input fully processed :)\n Now to modeling.")
 
-  if (data_list$sem_indicator == 0) {
-    mod_resid <- stanmodels$cfa_resid_rs
-  } else if (data_list$sem_indicator == 1) {
-    mod_resid <- stanmodels$sem_resid_rs
-  }
-
-  message("Fitting Stan model ...")
-
-  stan_fit <- rstan::sampling(
-    mod_resid,
-    data = data_list,
-    chains = chains,
-    cores = ncores,
-    seed = seed,
-    warmup = warmup,
-    iter = warmup + sampling,
-    refresh = refresh,
-    init = function() {
-      list(
-        resids = rep(1e-3, (data_list$Ni^2 - data_list$Ni) / 2)
-      )
-    },
-    control = list(
-      adapt_delta = adapt_delta,
-      max_treedepth = max_treedepth
-    ),
-    show_messages = show_messages
+  stan_fit <- target_fitter(
+    target, data_list, seed, warmup, sampling, refresh,
+    adapt_delta, max_treedepth, chains, ncores, show_messages
   )
 
   mbsem_results <- clean_up_stan_fit(
