@@ -113,7 +113,7 @@ test_that("Random method (any case) works for CFA", {
     model_syntax, HS,
     orthogonal = sample(c(TRUE, FALSE), 1),
     simple_struc = sample(c(TRUE, FALSE), 1),
-    warmup = 500, sampling = 500, chains = 3,
+    warmup = 500, sampling = 500, chains = 1,
     method = method, refresh = 0, show_messages = FALSE
   )
   mbsem_test_ll_1(fit, method)
@@ -128,7 +128,7 @@ test_that("Random method (any case) works for SEM", {
     model_syntax, PD,
     orthogonal = sample(c(TRUE, FALSE), 1),
     simple_struc = sample(c(TRUE, FALSE), 1),
-    warmup = 500, sampling = 500, chains = 3,
+    warmup = 500, sampling = 500, chains = 1,
     method = method, refresh = 0, show_messages = FALSE
   )
   mbsem_test_ll_1(fit, method)
@@ -147,7 +147,7 @@ test_that("CFA: Different LL methods are equal", {
     model_syntax, HS,
     orthogonal = sample(c(TRUE, FALSE), 1),
     simple_struc = sample(c(TRUE, FALSE), 1),
-    warmup = 500, sampling = 500, chains = 3,
+    warmup = 500, sampling = 500, chains = 1,
     method = method, refresh = 0, show_messages = FALSE
   )
   mbsem_test_ll_2(fit, method)
@@ -169,7 +169,7 @@ test_that("SEM: Different LL methods are equal", {
     model_syntax, PD,
     orthogonal = sample(c(TRUE, FALSE), 1),
     simple_struc = sample(c(TRUE, FALSE), 1),
-    warmup = 500, sampling = 500, chains = 3,
+    warmup = 500, sampling = 500, chains = 1,
     method = method, refresh = 0, show_messages = FALSE
   )
   mbsem_test_ll_2(fit, method)

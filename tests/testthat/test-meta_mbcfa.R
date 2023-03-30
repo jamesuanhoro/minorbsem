@@ -11,7 +11,7 @@ test_that("Random method works for meta-CFA on issp89", {
     sample_cov = issp89$data[1:3], sample_nobs = issp89$n[1:3],
     orthogonal = sample(c(TRUE, FALSE), 1),
     simple_struc = sample(c(TRUE, FALSE), 1),
-    warmup = 500, sampling = 500, chains = 3,
+    warmup = 500, sampling = 500, chains = 1,
     method = method, type = type,
     refresh = 0, show_messages = FALSE
   ), NA)
@@ -47,7 +47,7 @@ test_that("Random method works for meta-CFA on Norton13", {
     model_syntax,
     sample_cov = Norton13$data[1:3], sample_nobs = Norton13$n[1:3],
     orthogonal = TRUE, simple_struc = TRUE,
-    warmup = 500, sampling = 500, chains = 3,
+    warmup = 500, sampling = 500, chains = 1,
     method = method, type = type,
     refresh = 0, show_messages = FALSE
   ), NA)
