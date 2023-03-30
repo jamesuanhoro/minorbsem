@@ -12,7 +12,7 @@ functions {
     // generalized double Pareto
     // https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/
     return(sum(
-      -(alpha + 1.0) * log(1.0 + abs(x) / alpha)
+      -(alpha + 1.0) * log(1.0 + fabs(x) / alpha)
     ));
   }
   real eff(int p, real x) {
@@ -20,25 +20,28 @@ functions {
       2 * lmgamma(p, x / 2) - x * p * log(x / 2) + x * p
     );
   }
+  real ln_det_spd(matrix S) {
+    return(2 * sum(log(diagonal(cholesky_decompose(S)))));
+  }
   real gen_matrix_beta_ii_lpdf(matrix S, matrix Omega, real n, real m) {
     int p = rows(S);
     real F_1 = eff(p, m) + eff(p, n) - eff(p, m + n);
-    real F_2 = -((n - p - 1) * log_determinant_spd(S)) - (m * log_determinant_spd(Omega)) +
-      ((m + n) * log_determinant_spd((m * Omega + n * S) / (m + n)));
+    real F_2 = -((n - p - 1) * ln_det_spd(S)) - (m * ln_det_spd(Omega)) +
+      ((m + n) * ln_det_spd((m * Omega + n * S) / (m + n)));
     real ll = (F_1 + F_2) / -2.0;
     return(ll);
   }
 }
 data {
   int<lower = 0> Ng;  // number of groups
-  array[Ng] int<lower = 0> Np;  // number persons by matrix
+  int<lower = 0> Np[Ng];  // number persons by matrix
   int<lower = 0> Ni;  // number items
-  array[Ng] matrix[Ni, Ni] S;  // covariance matrices
+  matrix[Ni, Ni] S[Ng];  // covariance matrices
   int<lower = 0> Nf; // N_factors
   int<lower = 0> Nce; // N_correlated errors
-  array[Nce, 2] int error_mat; // cor error matrix
+  int error_mat[Nce, 2]; // cor error matrix
   matrix[Ni, Nf] loading_pattern;
-  array[Nf] int markers; // markers
+  int markers[Nf]; // markers
   int<lower = 0, upper = 1> corr_fac;  // 1 for correlated factors, 0 otherwise
   real<lower = 1> shape_phi_c; // lkj prior shape for phi
   real<lower = 0> sl_par;  // sigma_loading parameter
@@ -48,8 +51,8 @@ data {
   int<lower = 0, upper = 1> complex_struc;
   int Nmiss;  // number missing correlations
   int Nitem_miss;  // number items with missing correlations across groups
-  array[Ni, Ng] int valid_var;  // indicator of valid items within group
-  array[Ni, Ng] int miss_ind;  // items with missing correlations
+  int valid_var[Ni, Ng];  // indicator of valid items within group
+  int miss_ind[Ni, Ng];  // items with missing correlations
   int p;  // number of moderators
   matrix[Ng, p] X;  // moderator matrix
   real<lower = 0> mln_par;  // meta-reg int hyper-parameter
@@ -61,7 +64,7 @@ transformed data {
   real pi_sqrt_three = pi() / sqrt(3.0);
   int<lower = 0> Nl = 0;  // N_non-zero loadings
   int Nf_corr = corr_fac == 1 ? Nf : 1;
-  int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
+  int Nisqd2 = (Ni * (Ni - 1)) / 2;
   int N_rms = 1;
   int N_alpha = 0;
   int N_complex = 0;
@@ -204,7 +207,7 @@ model {
     }
 
     for (i in 1:Ng) {
-      array[sum(valid_var[, i])] int idxs;
+      int idxs[sum(valid_var[, i])];
       real m_val;
 
       pos_valid = 0;
@@ -258,7 +261,6 @@ generated quantities {
   vector[Nce] res_cov;
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
   vector[Nmiss] miss_cor = miss_cor_01 * 2 - 1;
-  vector[Ng] m_s;
   real v_mn = 0.0;
   real rmsea_mn = sqrt(v_mn);
   vector[p] rmsea_beta;
@@ -280,14 +282,18 @@ generated quantities {
 
   if (type == 2) {
     vector[Ng] ebx = exp(m_ln_int[1] + X * m_ln_beta);
+    vector[Ng] m_s = ebx + Ni - 1;
+    real mn_ebx = 0.0;
 
-    m_s = exp(m_ln_int[1] + X * m_ln_beta) + Ni - 1;
     v_mn = mean(1.0 ./ m_s);
     rmsea_mn = sqrt(v_mn);
 
-    for (i in 1:p) {
-      rmsea_beta[i] = -m_ln_beta[i] * mean(ebx ./ (2 * (ebx + p - 1) ^ (3.0 / 2)));
+    for (i in 1:Ng) {
+      mn_ebx += ebx[i] / (2 * (ebx[i] + p - 1) ^ (3.0 / 2));
     }
+    mn_ebx = mn_ebx / (Ng * 1.0);
+
+    rmsea_beta = -m_ln_beta * mn_ebx;
   }
 
   if (method < 90) {

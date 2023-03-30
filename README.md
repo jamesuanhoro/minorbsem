@@ -16,6 +16,7 @@ version](https://img.shields.io/github/r-package/v/jamesuanhoro/minorbsem)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/minorbsem)](https://cran.r-project.org/package=minorbsem)
 ![GitHub last
 commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
+[![R-CMD-check](https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 #### Table of Contents
@@ -26,7 +27,6 @@ commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
     types](#permitted-models-and-supported-data-types)
 - [Installation](#installation)
   - [Install remotes](#install-remotes)
-  - [Install CmdStanR and CmdStan](#install-cmdstanr-and-cmdstan)
   - [Install minorbsem](#install-minorbsem)
 - [A reasonably complete
   demonstration](#a-reasonably-complete-demonstration)
@@ -78,13 +78,6 @@ models.
 
 ## Installation
 
-The package requires that you **have CmdStan installed on your
-machine**, see installation instructions here:
-<https://mc-stan.org/cmdstanr/articles/cmdstanr.html>
-
-If you have CmdStan installed and working, go to: [Install
-minorbsem](#install-minorbsem).
-
 ### Install remotes
 
 Restart R prior to installation. minorbsem requires that R is at least
@@ -96,24 +89,6 @@ GitHub instead of Cran (the default repository for R packages):
 
 ``` r
 install.packages("remotes")
-```
-
-### Install CmdStanR and CmdStan
-
-Install the `cmdstanr` package so `minorbsem` can interface with Stan.
-If any problems come up at this stage, see: [Getting started with
-CmdStanR](https://mc-stan.org/cmdstanr/articles/cmdstanr.html).
-
-``` r
-remotes::install_github("stan-dev/cmdstanr")
-```
-
-Install Stan. First, we check that the computer is correctly set up to
-install Stan:
-
-``` r
-cmdstanr::check_cmdstan_toolchain()  # ensure computer is setup to install Stan
-cmdstanr::install_cmdstan()  # install Stan
 ```
 
 ### Install minorbsem

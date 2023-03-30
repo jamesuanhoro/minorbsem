@@ -37,6 +37,8 @@
 #' show table of results. As an example, use FALSE for simulation studies.
 #' @param show_messages (Logical) If TRUE, show messages from Stan sampler,
 #' if FALSE, hide messages.
+#' @param target (character) One of "rstan" or "cmdstan". If "cmdstan",
+#' CmdStan and CmdStanR need to be installed on the device.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
 #' CFAs assume standardized factors.
@@ -97,7 +99,8 @@ minorbsem <- function(
     ncores = max(parallel::detectCores() - 2, 1),
     priors = new_mbsempriors(),
     show = TRUE,
-    show_messages = TRUE) {
+    show_messages = TRUE,
+    target = "rstan") {
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -112,15 +115,8 @@ minorbsem <- function(
   # Must provide either data or sample_cov and sample_nobs
   user_input_check("data", data, sample_cov, sample_nobs)
 
-  # CmdStan path must be set
-  tryCatch(cmdstanr::cmdstan_path(),
-    error = function(e) {
-      stop(paste0(
-        "Error: CmdStan path has not been set yet.", " ",
-        "See ?cmdstanr::set_cmdstan_path()."
-      ))
-    }
-  )
+  # target must be valid
+  user_input_check("target", target)
 
   # Run lavaan fit
   if (!is.null(data)) {
@@ -155,42 +151,9 @@ minorbsem <- function(
 
   message("User input fully processed :)\n Now to modeling.")
 
-  message(paste0(
-    "Compiling Stan code ...\n",
-    "This takes a while the first time you run a CFA ",
-    "and the first time you run an SEM"
-  ))
-
-  if (data_list$sem_indicator == 0) {
-    mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/cfa_resid.stan", package = "minorbsem"),
-      stanc_options = list("O1")
-    )
-  } else if (data_list$sem_indicator == 1) {
-    mod_resid <- cmdstanr::cmdstan_model(
-      system.file("Stan/sem_resid.stan", package = "minorbsem"),
-      stanc_options = list("O1")
-    )
-  }
-
-  message("Fitting Stan model ...")
-
-  stan_fit <- mod_resid$sample(
-    data = data_list,
-    seed = seed,
-    iter_warmup = warmup,
-    iter_sampling = sampling,
-    refresh = refresh,
-    init = function() {
-      list(
-        resids = rep(1e-3, data_list$Ni^2 - data_list$Ni)
-      )
-    },
-    adapt_delta = adapt_delta,
-    max_treedepth = max_treedepth,
-    chains = chains,
-    parallel_chains = ncores,
-    show_messages = show_messages
+  stan_fit <- target_fitter(
+    target, data_list, seed, warmup, sampling, refresh,
+    adapt_delta, max_treedepth, chains, ncores, show_messages
   )
 
   mbsem_results <- clean_up_stan_fit(
