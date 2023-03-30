@@ -1,3 +1,14 @@
+methods::setClass("stan_fit", contains = "stanfit")
+methods::setClass("CmdStanMCMC")
+methods::setClass("CmdStanFit")
+methods::setClass("R6")
+methods::setClassUnion(
+  "cmdstan_classes", c("CmdStanMCMC", "CmdStanFit", "R6")
+)
+methods::setClassUnion(
+  "all_the_classes", c("stanfit", "cmdstan_classes")
+)
+
 #' A class for setting up priors.
 #'
 #' @slot lkj_shape (positive real) The shape parameter of the LKJ-prior on the
@@ -118,7 +129,7 @@ methods::setClass(
     minor_factor_matrix = "data.frame",
     data_list = "list",
     priors = "mbsempriors",
-    stan_fit = "stanfit",
+    stan_fit = "all_the_classes",
     version = "character"
   )
 )

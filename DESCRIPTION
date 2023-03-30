@@ -37,10 +37,12 @@ LinkingTo:
     rstan (>= 2.21.8),
     StanHeaders (>= 2.18.0)
 Suggests: 
-    cmdstanr
+    cmdstanr,
+    testthat (>= 3.0.0)
 Remotes: 
     github::stan-dev/cmdstanr
 SystemRequirements: GNU make
 RdMacros: Rdpack
 URL: https://jamesuanhoro.github.io/minorbsem/
 LazyData: true
+Config/testthat/edition: 3
