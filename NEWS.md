@@ -1,3 +1,7 @@
+# minorbsem (development version)
+
+* Fixed bug that caused target = CmdStan to fail when method = "none"
+
 # minorbsem 0.2.0
 
 * RStan implementation now working and with tests

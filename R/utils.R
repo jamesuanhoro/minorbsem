@@ -180,7 +180,7 @@ target_fitter <- function(
     ncores,
     show_messages) {
   init_resid <- "random"
-  if (data_list$method < 90) {
+  if (data_list$method < 90 || target == "cmdstan") {
     init_resid <- function() {
       list(
         resids = rep(1e-3, (data_list$Ni^2 - data_list$Ni) / 2)
