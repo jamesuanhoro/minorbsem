@@ -24,7 +24,7 @@ This will change in the near future."><!-- mathjax --><script src="https://cdnjs
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,6 +93,7 @@ This will change in the near future.</p>
 <span>  priors <span class="op">=</span> <span class="fu"><a href="new_mbsempriors.html">new_mbsempriors</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  show <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_messages <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  cluster <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  target <span class="op">=</span> <span class="st">"rstan"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -130,8 +131,9 @@ for each study.</p></dd>
 
 
 <dt>type</dt>
-<dd><p>(character) One of "fe" or "re" for fixed-effects MASEM
-or random-effects MASEM respectively.</p></dd>
+<dd><p>(character) One of "fe", "re", or "dep" for fixed-effects,
+random-effects, and dependent-samples MASEM respectively.
+The "dep" argument is experimental, see details below.</p></dd>
 
 
 <dt>orthogonal</dt>
@@ -198,6 +200,15 @@ show table of results. As an example, use FALSE for simulation studies.</p></dd>
 if FALSE, hide messages.</p></dd>
 
 
+<dt>cluster</dt>
+<dd><p>An optional integer vector identifying the cluster each group
+belongs to.
+Asssume there are five groups, the first three belong to cluster 1
+and the last two belong to cluster 2,
+then the argument would be: <code>cluster = c(1, 1, 1, 2, 2)</code>.
+This feature is experimental, see details below.</p></dd>
+
+
 <dt>target</dt>
 <dd><p>(character) One of "rstan" or "cmdstan". If "cmdstan",
 CmdStan and CmdStanR need to be installed on the device.</p></dd>
@@ -227,7 +238,11 @@ with minimal shrinking for larger residual covariances
 (Armagan et al. 2013)
 .</p></li>
 <li><p><code>none</code>: if intending to ignore the influence of minor factors.</p></li>
-</ul></div>
+</ul><p>When <code>type = "dep"</code>, the user must supply the cluster IDs, see cluster
+parameter documentation above. However, this feature is experimental and only
+available when <code>target = "cmdstan"</code>.
+Additionally, the cluster inputs are not validated.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Armagan A, Dunson DB, Lee J (2013).
