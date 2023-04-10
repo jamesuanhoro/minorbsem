@@ -54,6 +54,10 @@ data {
   matrix[Ng, p] X;  // moderator matrix
   real<lower = 0> mln_par;  // meta-reg int hyper-parameter
   real<lower = 0> mlb_par;  // meta-reg beta hyper-parameter
+  int<lower = 0> Nc;  // number of clusters
+  array[Ng] int<lower = 0, upper = Nc> C_ID;  // cluster ID
+  int p_c;  // number of moderators (by cluster)
+  matrix[Nc, p_c] X_c;  // moderator matrix (cluster)
   int<lower = 1, upper = 3> type; // which type
 }
 transformed data {
@@ -65,7 +69,8 @@ transformed data {
   int N_rms = 1;
   int N_alpha = 0;
   int N_complex = 0;
-  int N_type = 1;
+  int N_type_wi = 1;
+  int N_type_be = 1;
 
   if (method >= 90) {
     Nisqd2 = 0;
@@ -77,7 +82,8 @@ transformed data {
 
   if (method == 4) N_alpha = 1;
 
-  if (type < 2) N_type = 0;
+  if (type < 2) N_type_wi = 0;
+  if (type < 3) N_type_be = 0;
 
   for (i in 1:Ni) {
     for (j in 1:Nf) {
@@ -101,10 +107,13 @@ parameters {
   vector[N_complex] loadings_complex;
   vector<lower = 0>[complex_struc] sigma_loadings_complex;
   vector<lower = 2.0>[complex_struc] gdp_loadings_complex;
-  vector[N_type] m_ln_int;
-  vector[p] m_ln_beta;
+  vector[N_type_wi] m_ln_int_wi;
+  vector[p] m_ln_beta_wi;
+  vector[N_type_be] m_ln_int_be;
+  vector[p_c] m_ln_beta_be;
   vector<lower = 0, upper = 1>[Nmiss] miss_cor_01;
   vector<lower = 0>[Nitem_miss] var_shifts;
+  array[Nc] cov_matrix[Ni] E_clus;
 }
 model {
   rms_src_p ~ std_normal();
@@ -137,8 +146,10 @@ model {
   phi_mat_chol ~ lkj_corr_cholesky(shape_phi_c);
   res_cor_01 ~ beta(rc_par, rc_par);
 
-  m_ln_int ~ student_t(3, 0, mln_par);
-  m_ln_beta ~ student_t(3, 0, mlb_par);
+  m_ln_int_wi ~ student_t(3, 0, mln_par);
+  m_ln_beta_wi ~ student_t(3, 0, mlb_par);
+  m_ln_int_be ~ student_t(3, 0, mln_par);
+  m_ln_beta_be ~ student_t(3, 0, mlb_par);
   var_shifts ~ std_normal();
 
   {
@@ -203,6 +214,11 @@ model {
       }
     }
 
+    for (i in 1:Nc) {
+      real m_val_c = exp(m_ln_int_be[1] + X_c[i, ] * m_ln_beta_be) + Ni - 1;
+      E_clus[i] ~ wishart(m_val_c, Omega / m_val_c);
+    }
+
     for (i in 1:Ng) {
       array[sum(valid_var[, i])] int idxs;
       real m_val;
@@ -241,10 +257,15 @@ model {
       if (type == 1) {
         target += wishart_lpdf(
           S_impute[idxs, idxs] | Np[i] - 1.0, Omega[idxs, idxs] / (Np[i] - 1.0));
-      } else if (type == 2) {
-        m_val = exp(m_ln_int[1] + X[i, ] * m_ln_beta) + Ni - 1;
-        target += gen_matrix_beta_ii_lpdf(
-          S_impute[idxs, idxs] | Omega[idxs, idxs], Np[i] - 1.0, m_val);
+      } else if (type >= 2) {
+        m_val = exp(m_ln_int_wi[1] + X[i, ] * m_ln_beta_wi) + Ni - 1;
+        if (type == 2) {
+          target += gen_matrix_beta_ii_lpdf(
+            S_impute[idxs, idxs] | Omega[idxs, idxs], Np[i] - 1.0, m_val);
+        } else if (type == 3) {
+          target += gen_matrix_beta_ii_lpdf(
+            S_impute[idxs, idxs] | E_clus[C_ID[i]][idxs, idxs], Np[i] - 1.0, m_val);
+        }
       }
     }
   }
@@ -260,7 +281,13 @@ generated quantities {
   vector[Nmiss] miss_cor = miss_cor_01 * 2 - 1;
   real v_mn = 0.0;
   real rmsea_mn = sqrt(v_mn);
-  vector[p] rmsea_beta;
+  real v_wi = 0.0;
+  real rmsea_wi = sqrt(v_wi);
+  real v_be = 0.0;
+  real rmsea_be = sqrt(v_be);
+  vector[p] rmsea_beta_wi;
+  vector[p_c] rmsea_beta_be;
+  real prop_be = 0.0;
 
   if (method != 100) {
     rms_src = rms_src_p[1];
@@ -278,13 +305,30 @@ generated quantities {
   }
 
   if (type == 2) {
-    vector[Ng] ebx = exp(m_ln_int[1] + X * m_ln_beta);
-    vector[Ng] m_s = ebx + Ni - 1;
-    real mn_ebx = mean(ebx ./ (2 * (ebx + p - 1) ^ (3.0 / 2)));
+    vector[Ng] ebx_wi = exp(m_ln_int_wi[1] + X * m_ln_beta_wi);
+    vector[Ng] m_s_wi = ebx_wi + Ni - 1;
+    real mn_ebx_wi = mean(ebx_wi ./ (2 * (ebx_wi + p - 1) ^ (3.0 / 2)));
 
-    v_mn = mean(1.0 ./ m_s);
+    v_mn = mean(1.0 ./ m_s_wi);
     rmsea_mn = sqrt(v_mn);
-    rmsea_beta = -m_ln_beta * mn_ebx;
+    rmsea_beta_wi = -m_ln_beta_wi * mn_ebx_wi;
+  } else if (type == 3) {
+    vector[Ng] ebx_wi = exp(m_ln_int_wi[1] + X * m_ln_beta_wi);
+    vector[Nc] ebx_be = exp(m_ln_int_be[1] + X_c * m_ln_beta_be);
+    vector[Ng] m_s_wi = ebx_wi + Ni - 1;
+    vector[Nc] m_s_be = ebx_be + Ni - 1;
+    real mn_ebx_wi = mean(ebx_wi ./ (2 * (ebx_wi + p - 1) ^ (3.0 / 2)));
+    real mn_ebx_be = mean(ebx_be ./ (2 * (ebx_be + p - 1) ^ (3.0 / 2)));
+
+    v_wi = mean(1.0 ./ m_s_wi);
+    v_be = mean(1.0 ./ m_s_be);
+    v_mn = v_wi + v_be;
+    prop_be = v_be / v_mn;
+    rmsea_wi = sqrt(v_wi);
+    rmsea_be = sqrt(v_be);
+    rmsea_mn = sqrt(v_mn);
+    rmsea_beta_wi = -m_ln_beta_wi * mn_ebx_wi;
+    rmsea_beta_be = -m_ln_beta_be * mn_ebx_be;
   }
 
   if (method < 90) {

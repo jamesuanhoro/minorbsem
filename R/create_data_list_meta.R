@@ -9,7 +9,8 @@ create_data_list_meta <- function(
     method = "normal",
     type = "re",
     simple_struc = TRUE,
-    priors = NULL) {
+    priors = NULL,
+    cluster = NULL) {
   data_list <- list()
 
   # Get number of groups
@@ -30,10 +31,14 @@ create_data_list_meta <- function(
 
   # Set type
   data_list$type <- 2 # assume random-effects by default
+  data_list$Nc <- 0 # number of clusters
+  data_list$C_ID <- vector("integer", data_list$Ng) # cluster ID
   if (type == "fe") {
     data_list$type <- 1
   } else if (type == "dep") {
     data_list$type <- 3
+    data_list$C_ID <- cluster
+    data_list$Nc <- max(data_list$C_ID)
   }
 
   # Set simple structure to 0 by default, change within CFA section
@@ -122,6 +127,8 @@ create_data_list_meta <- function(
   # For now, no moderators
   data_list$p <- 0
   data_list$X <- matrix(nrow = data_list$Ng, ncol = data_list$p)
+  data_list$p_c <- 0
+  data_list$X_c <- matrix(nrow = 0, ncol = 0)
 
   # Handle missing data
   data_list <- prepare_missing_data_list(data_list)

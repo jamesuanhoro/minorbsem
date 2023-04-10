@@ -1,5 +1,5 @@
 test_that("Random method works for meta-CFA on issp89", {
-  print(type <- sample(type_hash(), 1))
+  print(type <- sample(c("fe", "re"), 1))
   method <- random_method_selection(meta = TRUE)
   model_syntax <- "# latent variable definitions
     F1 =~ JP1 + JP2 + JP3
@@ -35,7 +35,7 @@ test_that("Random method works for meta-CFA on issp89", {
 })
 
 test_that("Random method works for meta-CFA on Norton13", {
-  print(type <- sample(type_hash(), 1))
+  print(type <- sample(c("fe", "re"), 1))
   method <- random_method_selection(meta = TRUE)
   model_syntax <- paste0(
     "distress =~ ", paste0("x", 1:14, collapse = " + "), "\n",

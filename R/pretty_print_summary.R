@@ -87,12 +87,25 @@ pretty_print_summary <- function(
     )
   }
 
+  if (object@data_list$sem_indicator == 1) {
+    result <- kableExtra::footnote(
+      result,
+      general = paste0(
+        "Loadings are fully standardized, error variances are not shown."
+      )
+    )
+  }
+
   result <- kableExtra::kable_paper(result)
   result <- kableExtra::kable_styling(result, full_width = FALSE)
 
   result <- add_row_header(
     result, table_to_print,
     "Goodness of fit", ""
+  )
+  result <- add_row_header(
+    result, table_to_print,
+    "Dispersion between and within clusters", ""
   )
   result <- add_row_header(
     result, table_to_print,

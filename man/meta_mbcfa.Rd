@@ -25,6 +25,7 @@ meta_mbcfa(
   priors = new_mbsempriors(),
   show = TRUE,
   show_messages = TRUE,
+  cluster = NULL,
   target = "rstan"
 )
 }
@@ -47,8 +48,9 @@ for each study.}
 \item{method}{(character) One of "normal", "lasso", "logistic",
 "GDP", or "none". See details below.}
 
-\item{type}{(character) One of "fe" or "re" for fixed-effects MASEM
-or random-effects MASEM respectively.}
+\item{type}{(character) One of "fe", "re", or "dep" for fixed-effects,
+random-effects, and dependent-samples MASEM respectively.
+The "dep" argument is experimental, see details below.}
 
 \item{orthogonal}{(logical) constrain factors orthogonal, must be TRUE to fit
 bifactor models.}
@@ -88,6 +90,13 @@ show table of results. As an example, use FALSE for simulation studies.}
 \item{show_messages}{(Logical) If TRUE, show messages from Stan sampler,
 if FALSE, hide messages.}
 
+\item{cluster}{An optional integer vector identifying the cluster each group
+belongs to.
+Asssume there are five groups, the first three belong to cluster 1
+and the last two belong to cluster 2,
+then the argument would be: \code{cluster = c(1, 1, 1, 2, 2)}.
+This feature is experimental, see details below.}
+
 \item{target}{(character) One of "rstan" or "cmdstan". If "cmdstan",
 CmdStan and CmdStanR need to be installed on the device.}
 }
@@ -120,6 +129,11 @@ with minimal shrinking for larger residual covariances
 \insertCite{armagan_generalized_2013}{minorbsem}.
 \item \code{none}: if intending to ignore the influence of minor factors.
 }
+
+When \code{type = "dep"}, the user must supply the cluster IDs, see cluster
+parameter documentation above. However, this feature is experimental and only
+available when \code{target = "cmdstan"}.
+Additionally, the cluster inputs are not validated.
 }
 \examples{
 \dontrun{

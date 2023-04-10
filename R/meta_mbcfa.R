@@ -18,8 +18,15 @@
 #' for each study.
 #' @param method (character) One of "normal", "lasso", "logistic",
 #' "GDP", or "none". See details below.
-#' @param type (character) One of "fe" or "re" for fixed-effects MASEM
-#' or random-effects MASEM respectively.
+#' @param type (character) One of "fe", "re", or "dep" for fixed-effects,
+#' random-effects, and dependent-samples MASEM respectively.
+#' The "dep" argument is experimental, see details below.
+#' @param cluster An optional integer vector identifying the cluster each group
+#' belongs to.
+#' Asssume there are five groups, the first three belong to cluster 1
+#' and the last two belong to cluster 2,
+#' then the argument would be: \code{cluster = c(1, 1, 1, 2, 2)}.
+#' This feature is experimental, see details below.
 #' @inheritParams minorbsem
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
@@ -39,6 +46,11 @@
 #' with minimal shrinking for larger residual covariances
 #' \insertCite{armagan_generalized_2013}{minorbsem}.
 #' - \code{none}: if intending to ignore the influence of minor factors.
+#'
+#' When \code{type = "dep"}, the user must supply the cluster IDs, see cluster
+#' parameter documentation above. However, this feature is experimental and only
+#' available when \code{target = "cmdstan"}.
+#' Additionally, the cluster inputs are not validated.
 #' @examples
 #' \dontrun{
 #' model_syntax <- "# latent variable definitions
@@ -82,6 +94,7 @@ meta_mbcfa <- function(
     priors = new_mbsempriors(),
     show = TRUE,
     show_messages = TRUE,
+    cluster = NULL,
     target = "rstan") {
   message("Processing user input ...")
 
@@ -105,6 +118,9 @@ meta_mbcfa <- function(
   # target must be valid
   user_input_check("target", target)
 
+  # check for cluster when type = "dep"
+  user_input_check("meta-cluster", type, target, cluster)
+
   # Run lavaan fit
   if (!is.null(data)) {
     lav_fit <- lavaan::cfa(
@@ -126,7 +142,8 @@ meta_mbcfa <- function(
     method = method,
     type = type,
     simple_struc = simple_struc,
-    priors = priors
+    priors = priors,
+    cluster = cluster
   )
 
   message("User input fully processed :)\n Now to modeling.")

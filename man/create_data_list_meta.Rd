@@ -9,7 +9,8 @@ create_data_list_meta(
   method = "normal",
   type = "re",
   simple_struc = TRUE,
-  priors = NULL
+  priors = NULL,
+  cluster = NULL
 )
 }
 \arguments{
@@ -18,8 +19,9 @@ create_data_list_meta(
 \item{method}{(character) One of "normal", "lasso", "logistic",
 "GDP", or "none". See details below.}
 
-\item{type}{(character) One of "fe" or "re" for fixed-effects MASEM
-or random-effects MASEM respectively.}
+\item{type}{(character) One of "fe", "re", or "dep" for fixed-effects,
+random-effects, and dependent-samples MASEM respectively.
+The "dep" argument is experimental, see details below.}
 
 \item{simple_struc}{(LOGICAL) Only relevant for CFAs.
 If TRUE: assume simple structure;
@@ -28,6 +30,13 @@ double Pareto priors.}
 
 \item{priors}{An object of \code{\link{mbsempriors-class}}.
 See \code{\link{new_mbsempriors}} for more information.}
+
+\item{cluster}{An optional integer vector identifying the cluster each group
+belongs to.
+Asssume there are five groups, the first three belong to cluster 1
+and the last two belong to cluster 2,
+then the argument would be: \code{cluster = c(1, 1, 1, 2, 2)}.
+This feature is experimental, see details below.}
 }
 \value{
 Data list object used in fitting Stan model
