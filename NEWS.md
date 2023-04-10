@@ -1,6 +1,7 @@
-# minorbsem (development version)
+# minorbsem 0.2.1
 
-* Fixed bug that caused target = CmdStan to fail when method = "none"
+* Added dependent-samples MASEM (experimental -- CmdStan only)
+* Fixed bug that caused target = "cmdstan" to fail when method = "none"
 
 # minorbsem 0.2.0
 
