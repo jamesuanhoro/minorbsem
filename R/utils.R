@@ -138,6 +138,18 @@ user_input_check <- function(
     if (!tolower(object_1) %in% accepted_types) stop(err_msg)
   }
 
+  if (type == "meta-cluster") {
+    accepted_types <- type_hash()
+    if (object_1 == "dep") {
+      if (object_2 != "cmdstan") {
+        stop("target must be \"cmdstan\" when type = \"dep\"")
+      }
+      if (is.null(object_3)) {
+        stop("supply cluster information when type = \"dep\"")
+      }
+    }
+  }
+
   if (type == "target") {
     err_msg <- paste0(
       "type must be either: \"rstan\" or \"cmdstan\""
@@ -398,15 +410,15 @@ method_hash <- function(search_term = NULL) {
 type_hash <- function(search_term = NULL, elaborate = FALSE) {
   list_types <- c(
     "fe" = 1,
-    "re" = 2
-    # Add "dep" = 3 when ready
+    "re" = 2,
+    "dep" = 3
   )
   if (isTRUE(elaborate)) {
     # Only use when feeding integers
     list_types <- c(
       "Fixed-effects" = 1,
-      "Random-effects" = 2
-      # Add "Dependent-samples" = 3 when ready
+      "Random-effects" = 2,
+      "Dependent-samples" = 3
     )
   }
   converted_value <- converter_helper(search_term, list_types)
@@ -546,6 +558,15 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     from_list[1] <- "RMSEA"
   }
 
+  rmsea_params <- c("rmsea_be", "rmsea_wi", "prop_be")
+  rmsea_names <- c(
+    paste0("RMSEA (", c("between", "within"), ")"),
+    "% dispersion between"
+  )
+  if (data_list$meta == 1 && data_list$type == 3) {
+    params <- c(params, rmsea_params)
+  }
+
   load_idxs <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
     arr.ind = TRUE
@@ -604,6 +625,13 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     which(major_parameters$variable == "rms_src"),
     group = "Goodness of fit",
     from = from_list[2]
+  )
+
+  idxs <- which(major_parameters$variable %in% rmsea_params)
+  major_parameters <- modify_major_params(
+    major_parameters, idxs,
+    group = "Dispersion between and within clusters", op = "",
+    from = rmsea_names
   )
 
   idxs <- which(regexpr("Load\\_mat", major_parameters$variable) > 0)
@@ -690,7 +718,9 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   major_parameters$ess_tail <- round(major_parameters$ess_tail, 1)
 
   target <- c(
-    "Goodness of fit", "Latent regression coefficients", "R square",
+    "Goodness of fit",
+    "Dispersion between and within clusters",
+    "Latent regression coefficients", "R square",
     "Factor loadings", "Inter-factor correlations",
     "Residual variances", "Error correlations"
   )

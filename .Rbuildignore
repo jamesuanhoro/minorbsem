@@ -11,3 +11,4 @@
 ^pkgdown$
 ^\.github$
 ^docs$
+^trash\.R$

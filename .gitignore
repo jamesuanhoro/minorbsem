@@ -13,3 +13,4 @@ README.html
 docs
 inst/cmdstan/*
 !inst/cmdstan/*_resid.stan
+trash.R
