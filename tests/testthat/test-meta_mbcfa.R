@@ -30,7 +30,7 @@ test_that("Random method works for meta-CFA on issp89", {
     NA
   )
   mbsem_test_pp_shared(print_out, method, meta = TRUE)
-  expect_true(grel("Residual variances", print_out, ignore.case = TRUE))
+  expect_true(grepl("Residual variances", print_out, ignore.case = TRUE))
   testthat::expect_error(
     casewise_log_likelihood(fit),
     "Not yet implemented for meta-analysis models"
@@ -69,7 +69,7 @@ test_that("Random method works for meta-CFA on Norton13", {
     NA
   )
   mbsem_test_pp_shared(print_out, method, meta = TRUE)
-  expect_true(grel("Residual variances", print_out, ignore.case = TRUE))
+  expect_true(grepl("Residual variances", print_out, ignore.case = TRUE))
   testthat::expect_error(
     casewise_log_likelihood(fit),
     "Not yet implemented for meta-analysis models"
