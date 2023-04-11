@@ -1,3 +1,7 @@
+# minorbsem (development version)
+
+* Using huxtable to print tables instead of kableExtra
+
 # minorbsem 0.2.1
 
 * Added dependent-samples MASEM (experimental -- CmdStan only)
