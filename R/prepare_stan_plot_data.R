@@ -21,10 +21,17 @@ prepare_stan_plot_data <- function(object) {
 
   rmsea_result <- matrix(nrow = nrow(rms_result), ncol = 0)
   if (data_list$meta == 1) {
+    params <- c("rmsea_mn")
+    if (data_list$type == 3) {
+      params <- c(params, "rmsea_be", "rmsea_wi")
+    }
     rmsea_result <- posterior::as_draws_df(
-      posterior::subset_draws(param_draws, variable = "rmsea_mn")
+      posterior::subset_draws(param_draws, variable = params)
     )
-    colnames(rmsea_result)[1] <- "rm: rmsea"
+    colnames(rmsea_result)[1] <- "rmsea"
+    colnames(rmsea_result)[seq_along(params)] <- paste0(
+      "rm: ", colnames(rmsea_result)[seq_along(params)]
+    )
   }
 
   load_idxs <- paste0("Load_mat[", apply(which(
@@ -139,7 +146,7 @@ prepare_stan_plot_data <- function(object) {
   result <- result[!dup_change_list]
 
   varying <- colnames(result)[
-    which(regexpr("\\:", colnames(result)) > 0)
+    which(grepl("\\:", colnames(result)))
   ]
 
   result_long <- stats::reshape(

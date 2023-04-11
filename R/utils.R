@@ -86,11 +86,11 @@ user_input_check <- function(
     }
   }
 
-  if (regexpr("method", type) > 0) {
+  if (grepl("method", type)) {
     accepted_methods <- method_hash()
     if (type == "method-meta") {
       accepted_methods <- accepted_methods[
-        which(regexpr("WB", accepted_methods) < 0)
+        which(!grepl("WB", accepted_methods))
       ]
     }
     if (!tolower(object_1) %in% tolower(accepted_methods)) {
@@ -340,7 +340,7 @@ random_method_selection <- function(meta = FALSE) {
   accepted_methods <- method_hash()
   if (isTRUE(meta)) {
     accepted_methods <- accepted_methods[
-      which(regexpr("WB", accepted_methods) < 0)
+      which(!grepl("WB", accepted_methods))
     ]
   }
 
@@ -437,31 +437,6 @@ mb_ldmvn <- function(x_mat, mu, s_mat) {
   rooti <- backsolve(chol(s_mat), diag(k))
   quads <- colSums((crossprod(rooti, x_mat - mu))^2)
   return(-(k / 2) * log(2 * pi) + sum(log(diag(rooti))) - .5 * quads)
-}
-
-#' Add row header helper function
-#' @description A function that adds row headers to kable object
-#' @param kbl_object Kable object
-#' @param table_to_print Table used in Kable object
-#' @param search_term Label to search for in table and row header text
-#' @param extra Extra text to print in row header
-#' @returns If search_term present in term, modified Kable object,
-#' otherwise: original object is returned
-#' @keywords internal
-add_row_header <- function(
-    kbl_object,
-    table_to_print,
-    search_term,
-    extra = NULL) {
-  if (any(table_to_print[1] == search_term)) {
-    kbl_object <- kableExtra::pack_rows(
-      kbl_object,
-      paste0(search_term, " ", extra),
-      which(table_to_print[1] == search_term)[1],
-      rev(which(table_to_print[1] == search_term))[1]
-    )
-  }
-  return(kbl_object)
 }
 
 #' Posterior summary helper function
@@ -607,11 +582,16 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     major_parameters[, c("mean", "median", "sd", "mad", "rhat", "ess_bulk")]
   )
   major_parameters <- major_parameters[
-    !(duplicates & regexpr("phi\\_mat", major_parameters$variable) > 0),
+    !(duplicates & grepl("phi\\_mat", major_parameters$variable)),
   ]
 
+  mid_cols <- which(
+    colnames(major_parameters) %in% c("median", "sd", "mad") |
+    grepl("\\%", colnames(major_parameters))
+  )
   major_parameters[
-    major_parameters$variable == "ppp", c("sd", "mad")
+    major_parameters$variable == "ppp",
+    mid_cols
   ] <- NA_real_
 
   major_parameters <- modify_major_params(
@@ -634,7 +614,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     from = rmsea_names
   )
 
-  idxs <- which(regexpr("Load\\_mat", major_parameters$variable) > 0)
+  idxs <- which(grepl("Load\\_mat", major_parameters$variable))
   major_parameters <- modify_major_params(
     major_parameters, idxs,
     group = "Factor loadings", op = "=~",
@@ -646,7 +626,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     )]
   )
 
-  idxs <- which(regexpr("res\\_cor", major_parameters$variable) > 0)
+  idxs <- which(grepl("res\\_cor", major_parameters$variable))
   major_parameters <- modify_major_params(
     major_parameters, idxs,
     group = "Error correlations", op = "~~",
@@ -654,7 +634,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     to = indicator_labels[data_list$error_mat[, 2]]
   )
 
-  idxs <- which(regexpr("res\\_var", major_parameters$variable) > 0)
+  idxs <- which(grepl("res\\_var", major_parameters$variable))
   major_parameters <- modify_major_params(
     major_parameters, idxs,
     group = "Residual variances", op = "~~",
@@ -666,7 +646,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     )]
   )
 
-  idxs <- which(regexpr("phi\\_mat", major_parameters$variable) > 0)
+  idxs <- which(grepl("phi\\_mat", major_parameters$variable))
   major_parameters <- modify_major_params(
     major_parameters, idxs,
     group = "Inter-factor correlations", op = "~~",
@@ -682,7 +662,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
       major_parameters$from == major_parameters$to),
   ]
 
-  idxs <- which(regexpr("phi\\_cor", major_parameters$variable) > 0)
+  idxs <- which(grepl("phi\\_cor", major_parameters$variable))
   major_parameters <- modify_major_params(
     major_parameters, idxs,
     group = "Inter-factor correlations", op = "~~",
@@ -690,7 +670,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     to = factor_labels[data_list$F_corr_mat[, 2]]
   )
 
-  idxs <- which(regexpr("r\\_square", major_parameters$variable) > 0)
+  idxs <- which(grepl("r\\_square", major_parameters$variable))
   major_parameters <- modify_major_params(
     major_parameters, idxs,
     group = "R square", op = "~~",
@@ -702,7 +682,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     )]
   )
 
-  idxs <- which(regexpr("Coef\\_mat", major_parameters$variable) > 0)
+  idxs <- which(grepl("Coef\\_mat", major_parameters$variable))
   major_parameters <- modify_major_params(
     major_parameters, idxs,
     group = "Latent regression coefficients", op = "~",
@@ -984,7 +964,7 @@ create_mi_vcov_ll <- function(
   returned_mat <- matrix()
   if (data_list$method == 91) {
     sigma_cols <- colnames(mat)
-    sigma_cols <- sigma_cols[which(regexpr("Sigma\\[", sigma_cols) > 0)]
+    sigma_cols <- sigma_cols[which(grepl("Sigma\\[", sigma_cols))]
     returned_mat <- mat[, sigma_cols]
     if (isTRUE(return_ll)) {
       mu <- rep(0, data_list$Ni)

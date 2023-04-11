@@ -23,11 +23,14 @@ test_that("Random method works for meta-CFA on issp89", {
   mbsem_test_trace(fit)
   mbsem_test_plot_residuals(fit, method)
   expect_error(
-    kbl <- pretty_print_summary(fit),
+    print_out <- paste0(
+      capture.output(pretty_print_summary(fit)),
+      collapse = "\n"
+    ),
     NA
   )
-  mbsem_test_kbls_shared(kbl, method, meta = TRUE)
-  expect_true(regexpr("Residual variances", kbl, ignore.case = TRUE) > 0)
+  mbsem_test_pp_shared(print_out, method, meta = TRUE)
+  expect_true(grepl("Residual variances", print_out, ignore.case = TRUE))
   testthat::expect_error(
     casewise_log_likelihood(fit),
     "Not yet implemented for meta-analysis models"
@@ -59,11 +62,14 @@ test_that("Random method works for meta-CFA on Norton13", {
   mbsem_test_trace(fit)
   mbsem_test_plot_residuals(fit, method)
   expect_error(
-    kbl <- pretty_print_summary(fit),
+    print_out <- paste0(
+      capture.output(pretty_print_summary(fit)),
+      collapse = "\n"
+    ),
     NA
   )
-  mbsem_test_kbls_shared(kbl, method, meta = TRUE)
-  expect_true(regexpr("Residual variances", kbl, ignore.case = TRUE) > 0)
+  mbsem_test_pp_shared(print_out, method, meta = TRUE)
+  expect_true(grepl("Residual variances", print_out, ignore.case = TRUE))
   testthat::expect_error(
     casewise_log_likelihood(fit),
     "Not yet implemented for meta-analysis models"

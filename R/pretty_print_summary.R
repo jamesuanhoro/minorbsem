@@ -64,88 +64,84 @@ pretty_print_summary <- function(
     )
   }
 
-  result <- kableExtra::kbl(
-    table_to_print[, -1],
-    row.names = FALSE,
-    booktabs = TRUE,
-    caption = paste0(
-      "Parameter estimates (",
-      type_str,
-      "method = ", method_str,
-      ", sample size(s) = ", n_obs, ")"
-    ),
-    digits = digits
+  table_to_print[
+    table_to_print$group == "Latent regression coefficients", "group"
+  ] <- "Latent regression coefficients (outcome ~ predictor)"
+
+  caption_str <- paste0(
+    "Parameter estimates (",
+    type_str,
+    "method = ", method_str,
+    ", sample size(s) = ", n_obs, ")"
   )
 
-  if (simple && object@data_list$method == 4) {
-    result <- kableExtra::footnote(
-      result,
-      general = paste0(
-        "Mean and SD RMSE are median and mad respectively ",
-        "because RMSE is usually extremely right-skewed."
-      )
-    )
+  result <- huxtable::huxtable(table_to_print)
+  result <- huxtable::column_to_header(result, "group")
+  result <- huxtable::set_caption(result, caption_str)
+  result <- huxtable::set_tb_borders(result)
+
+  gof_row <- which(result$from == "Goodness of fit")
+  disp_row <- which(result$from == "Dispersion between and within clusters")
+  gof_disp_rows <- c(gof_row + 1:2, disp_row + 1:3)
+
+  for (row_id in gof_disp_rows) {
+    result <- huxtable::merge_cells(result, row_id, 1:3)
   }
+
+  footnote_str <- ""
 
   if (object@data_list$sem_indicator == 1) {
-    result <- kableExtra::footnote(
-      result,
-      general = paste0(
-        "Loadings are fully standardized, error variances are not shown."
-      )
+    footnote_str <- paste0(
+      "Loadings are fully standardized, error variances are not shown."
     )
   }
 
-  result <- kableExtra::kable_paper(result)
-  result <- kableExtra::kable_styling(result, full_width = FALSE)
+  if (isTRUE(simple) && object@data_list$method == 4) {
+    footnote_str <- paste0(
+      footnote_str, "\n",
+      "Mean and SD RMSE are median and mad respectively ",
+      "because RMSE is usually extremely right-skewed."
+    )
+  }
 
-  result <- add_row_header(
-    result, table_to_print,
-    "Goodness of fit", ""
-  )
-  result <- add_row_header(
-    result, table_to_print,
-    "Dispersion between and within clusters", ""
-  )
-  result <- add_row_header(
-    result, table_to_print,
-    "Latent regression coefficients", "(outcome ~ predictor)"
-  )
-  result <- add_row_header(
-    result, table_to_print,
-    "Factor loadings", "(factor =~ indicator)"
-  )
-  result <- add_row_header(
-    result, table_to_print,
-    "Inter-factor correlations", "(factor_x ~~ factor_y)"
-  )
-  result <- add_row_header(
-    result, table_to_print,
-    "R square", "(factor_x ~~ factor_x)"
-  )
-  result <- add_row_header(
-    result, table_to_print,
-    "Residual variances", "(indicator_x ~~ indicator_x)"
-  )
-  result <- add_row_header(
-    result, table_to_print,
-    "Error correlations", "(indicator_x ~~ indicator_y)"
-  )
+  result <- huxtable::add_footnote(result, text = footnote_str)
 
-  if (isFALSE(simple)) {
-    result <- kableExtra::add_header_above(
-      result, c(
-        "Relation" = 3, "Location" = 2, "Dispersion" = 4,
-        "Parameter convergence" = 3
-      )
+  if (isTRUE(simple)) {
+    result <- huxtable::set_number_format(
+      result, row = 2:ncol(result), col = 4:8, value = digits
+    )
+    result <- huxtable::set_number_format(result, col = 9, value = 0)
+  } else if (isFALSE(simple)) {
+    result <- huxtable::set_number_format(
+      result, row = 2:ncol(result), col = 4:10, value = digits
+    )
+    result <- huxtable::set_number_format(result, col = 11:12, value = 0)
+    result <- huxtable::insert_row(
+      result,
+      "Relation", rep("", 2),
+      "Location", rep("", 1),
+      "Dispersion", rep("", 3),
+      "Parameter convergence", rep("", 2),
+      after = 0
+    )
+    result <- huxtable::merge_cells(result, 1, 1:3)
+    result <- huxtable::merge_cells(result, 1, 4:5)
+    result <- huxtable::merge_cells(result, 1, 6:9)
+    result <- huxtable::merge_cells(result, 1, 10:12)
+    result <- huxtable::set_align(result, 1, huxtable::everywhere, "center")
+    result <- huxtable::set_tb_padding(result, 1, huxtable::everywhere, 5)
+    result <- huxtable::set_bold(result, 1, huxtable::everywhere)
+    result <- huxtable::set_right_border(
+      result,
+      row = huxtable::everywhere, col = c(3, 5, 9)
     )
   }
 
   if (!is.null(save_html) && is.character(save_html)) {
-    kableExtra::save_kable(result, file = save_html)
+    huxtable::quick_html(result, file = save_html)
   }
 
   print(result)
 
-  return(result)
+  return()
 }

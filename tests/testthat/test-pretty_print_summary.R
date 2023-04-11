@@ -19,24 +19,27 @@ test_that("Random method (any case) works for CFA", {
     method = method, refresh = 0, show_messages = FALSE
   )
   expect_error(
-    kbl <- pretty_print_summary(fit),
+    print_out <- paste0(
+      capture.output(pretty_print_summary(fit)),
+      collapse = "\n"
+    ),
     NA
   )
-  mbsem_test_kbls_shared(kbl, method)
-  expect_true(regexpr("Residual variances", kbl, ignore.case = TRUE) > 0)
+  mbsem_test_pp_shared(print_out, method)
+  expect_true(grepl("Residual variances", print_out, ignore.case = TRUE))
   if (!orthogonal) {
-    expect_true(regexpr(
+    expect_true(grepl(
       "Inter-factor correlations",
-      kbl,
+      print_out,
       ignore.case = TRUE
-    ) > 0)
+    ))
   }
   if (syntax_idx == 3) {
-    expect_true(regexpr(
+    expect_true(grepl(
       "Error correlations",
-      kbl,
+      print_out,
       ignore.case = TRUE
-    ) > 0)
+    ))
   }
 })
 
@@ -62,14 +65,17 @@ test_that("Random method (any case) works for SEM", {
     method = method, refresh = 0, show_messages = FALSE
   )
   expect_error(
-    kbl <- pretty_print_summary(fit),
+    print_out <- paste0(
+      capture.output(pretty_print_summary(fit)),
+      collapse = "\n"
+    ),
     NA
   )
-  mbsem_test_kbls_shared(kbl, method)
-  expect_true(regexpr(
+  mbsem_test_pp_shared(print_out, method)
+  expect_true(grepl(
     "Latent regression coefficients",
-    kbl,
+    print_out,
     ignore.case = TRUE
-  ) > 0)
-  expect_true(regexpr("R square", kbl, ignore.case = TRUE) > 0)
+  ))
+  expect_true(grepl("R square", print_out, ignore.case = TRUE))
 })
