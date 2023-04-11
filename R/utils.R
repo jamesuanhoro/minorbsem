@@ -587,7 +587,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
 
   mid_cols <- which(
     colnames(major_parameters) %in% c("median", "sd", "mad") |
-    grepl("\\%", colnames(major_parameters))
+      grepl("\\%", colnames(major_parameters))
   )
   major_parameters[
     major_parameters$variable == "ppp",
