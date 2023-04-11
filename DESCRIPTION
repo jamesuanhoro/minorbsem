@@ -19,7 +19,7 @@ Depends:
     R (>= 3.4.0)
 Imports: 
     ggplot2,
-    kableExtra,
+    huxtable,
     lavaan,
     methods,
     posterior,
