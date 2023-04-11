@@ -78,7 +78,6 @@ pretty_print_summary <- function(
   result <- huxtable::huxtable(table_to_print)
   result <- huxtable::column_to_header(result, "group")
   result <- huxtable::set_caption(result, caption_str)
-  result <- huxtable::set_tb_borders(result)
 
   gof_row <- which(result$from == "Goodness of fit")
   disp_row <- which(result$from == "Dispersion between and within clusters")
@@ -107,13 +106,13 @@ pretty_print_summary <- function(
   result <- huxtable::add_footnote(result, text = footnote_str)
 
   if (isTRUE(simple)) {
-    result <- huxtable::set_number_format(
-      result, row = 2:ncol(result), col = 4:8, value = digits
+    huxtable::number_format(result)[, 4:8] <- list(
+      function(x) trimws(format(round(x, digits), nsmall = digits))
     )
     result <- huxtable::set_number_format(result, col = 9, value = 0)
   } else if (isFALSE(simple)) {
-    result <- huxtable::set_number_format(
-      result, row = 2:ncol(result), col = 4:10, value = digits
+    huxtable::number_format(result)[, 4:10] <- list(
+      function(x) trimws(format(round(x, digits), nsmall = digits))
     )
     result <- huxtable::set_number_format(result, col = 11:12, value = 0)
     result <- huxtable::insert_row(
@@ -129,13 +128,28 @@ pretty_print_summary <- function(
     result <- huxtable::merge_cells(result, 1, 6:9)
     result <- huxtable::merge_cells(result, 1, 10:12)
     result <- huxtable::set_align(result, 1, huxtable::everywhere, "center")
-    result <- huxtable::set_tb_padding(result, 1, huxtable::everywhere, 5)
-    result <- huxtable::set_bold(result, 1, huxtable::everywhere)
+    result <- huxtable::set_valign(result, 1, huxtable::everywhere, "bottom")
+    result <- huxtable::set_tb_padding(result, 1, huxtable::everywhere, 10)
+    result <- huxtable::set_header_rows(result, 1, TRUE)
+    result <- huxtable::set_bottom_border(
+      result, 1,
+      col = huxtable::everywhere
+    )
     result <- huxtable::set_right_border(
       result,
       row = huxtable::everywhere, col = c(3, 5, 9)
     )
   }
+
+  header_rows <- rev(which(
+    rownames(result) == "" | substr(rownames(result), 1, 1) == "."
+  ))[-1]
+  header_rows <- c(header_rows, header_rows - 1)
+  result <- huxtable::set_bottom_border(
+    result, header_rows, huxtable::everywhere
+  )
+
+  result <- huxtable::style_headers(result, bold = TRUE)
 
   if (!is.null(save_html) && is.character(save_html)) {
     huxtable::quick_html(result, file = save_html)
