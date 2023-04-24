@@ -290,7 +290,6 @@ generated quantities {
 
   if (type == 2) {
     vector[Ng] ebx;
-    vector[Ng] m_s;
     real mn_ebx = 0.0;
 
     if (p == 0) {
@@ -299,9 +298,7 @@ generated quantities {
       ebx = exp(m_ln_int[1] + X * m_ln_beta);
     }
 
-    m_s = ebx + Ni - 1;
-
-    v_mn = mean(1.0 ./ m_s);
+    v_mn = mean(1.0 ./ ebx);
     rmsea_mn = sqrt(v_mn);
 
     for (i in 1:Ng) {

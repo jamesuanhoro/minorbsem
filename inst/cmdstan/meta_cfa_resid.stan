@@ -306,22 +306,19 @@ generated quantities {
 
   if (type == 2) {
     vector[Ng] ebx_wi = exp(m_ln_int_wi[1] + X * m_ln_beta_wi);
-    vector[Ng] m_s_wi = ebx_wi + Ni - 1;
     real mn_ebx_wi = mean(ebx_wi ./ (2 * (ebx_wi + p - 1) ^ (3.0 / 2)));
 
-    v_mn = mean(1.0 ./ m_s_wi);
+    v_mn = mean(1.0 ./ ebx_wi);
     rmsea_mn = sqrt(v_mn);
     rmsea_beta_wi = -m_ln_beta_wi * mn_ebx_wi;
   } else if (type == 3) {
     vector[Ng] ebx_wi = exp(m_ln_int_wi[1] + X * m_ln_beta_wi);
     vector[Nc] ebx_be = exp(m_ln_int_be[1] + X_c * m_ln_beta_be);
-    vector[Ng] m_s_wi = ebx_wi + Ni - 1;
-    vector[Nc] m_s_be = ebx_be + Ni - 1;
     real mn_ebx_wi = mean(ebx_wi ./ (2 * (ebx_wi + p - 1) ^ (3.0 / 2)));
     real mn_ebx_be = mean(ebx_be ./ (2 * (ebx_be + p - 1) ^ (3.0 / 2)));
 
-    v_wi = mean(1.0 ./ m_s_wi);
-    v_be = mean(1.0 ./ m_s_be);
+    v_wi = mean(1.0 ./ ebx_wi);
+    v_be = mean(1.0 ./ ebx_be);
     v_mn = v_wi + v_be;
     prop_be = v_be / v_mn;
     rmsea_wi = sqrt(v_wi);

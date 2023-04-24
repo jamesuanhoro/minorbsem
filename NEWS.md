@@ -1,5 +1,6 @@
-# minorbsem (development version)
+# minorbsem 0.2.2
 
+* Fixed error in implementation of RMSEA calculation in meta-analysis (marginal practical effect)
 * Using huxtable to print tables instead of kableExtra
 
 # minorbsem 0.2.1
