@@ -1,3 +1,35 @@
+mbsem_test_meta_ll <- function(fit, method) {
+  residuals <- sample(c(TRUE, FALSE), 1)
+
+  if (method_hash(method) >= 90 && isTRUE(residuals)) {
+    warn_msg <- paste0(
+      "include_residuals = TRUE is ignored when ",
+      "minorbsem method == \"none\", \"WB\", \"WB-cond\"."
+    )
+    testthat::expect_warning(
+      ll_mat <- casewise_log_likelihood(
+        fit,
+        include_residuals = residuals,
+        use_armadillo = !residuals
+      ),
+      warn_msg
+    )
+  } else {
+    testthat::expect_error(
+      ll_mat <- casewise_log_likelihood(
+        fit,
+        include_residuals = residuals,
+        use_armadillo = !residuals
+      ),
+      NA
+    )
+  }
+  testthat::expect_equal(ncol(ll_mat), fit@data_list$Ng)
+  testthat::expect_equal(nrow(ll_mat), 500 * 1)
+  testthat::expect_true(!is.na(sum(ll_mat)))
+  testthat::expect_true(sum(abs(ll_mat)) > 0)
+}
+
 test_that("Random method works for meta-CFA on issp89", {
   print(type <- sample(c("fe", "re"), 1))
   method <- random_method_selection(meta = TRUE)
@@ -31,10 +63,7 @@ test_that("Random method works for meta-CFA on issp89", {
   )
   mbsem_test_pp_shared(print_out, method, meta = TRUE)
   expect_true(grepl("Residual variances", print_out, ignore.case = TRUE))
-  testthat::expect_error(
-    casewise_log_likelihood(fit),
-    "Not yet implemented for meta-analysis models"
-  )
+  mbsem_test_meta_ll(fit, method)
 })
 
 test_that("Random method works for meta-CFA on Norton13", {
@@ -70,8 +99,5 @@ test_that("Random method works for meta-CFA on Norton13", {
   )
   mbsem_test_pp_shared(print_out, method, meta = TRUE)
   expect_true(grepl("Residual variances", print_out, ignore.case = TRUE))
-  testthat::expect_error(
-    casewise_log_likelihood(fit),
-    "Not yet implemented for meta-analysis models"
-  )
+  mbsem_test_meta_ll(fit, method)
 })

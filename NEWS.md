@@ -1,3 +1,7 @@
+# minorbsem (development version)
+
+* Added log-likelihood computations for meta-CFA
+
 # minorbsem 0.2.2
 
 * Fixed error in implementation of RMSEA calculation in meta-analysis (marginal practical effect)

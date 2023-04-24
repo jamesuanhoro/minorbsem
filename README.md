@@ -207,7 +207,6 @@ plot_residuals(meta_fit, type = "range")
 
 There are other methods, see details section in `?meta_mbcfa`.
 
-Model comparisons are not yet implemented for meta-analytic CFAs.
 Uanhoro (2022) addresses moderation (via meta-regression) and missing
 data in input covariances – these are not yet implemented.
 
