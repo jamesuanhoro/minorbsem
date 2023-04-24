@@ -50,7 +50,7 @@ factors which we cannot predict a-priori, e.g. MacCallum and Tucker
 
 The goal of minorbsem is to let you fit Bayesian SEMs that estimate the
 influence of minor factors on the covariance matrix following the
-approach in Uanhoro (forthcoming). Briefly, all residual covariances are
+approach in Uanhoro (2023). Briefly, all residual covariances are
 estimated with priors that shrink them towards zero, and the model
 returns the magnitude of the influence of minor factors.
 
@@ -98,7 +98,7 @@ syntax_1 <- "
 F1 =~ x1 + x2 + x3
 F2 =~ x4 + x5 + x6
 F3 =~ x7 + x8 + x9"
-# Expect a summary table output in Viewer
+# Expect a summary table output
 fit_1 <- minorbsem(syntax_1, HS)
 
 # Save output table to html file, see: ?pretty_print_summary for more options
@@ -224,20 +224,20 @@ Practice.” *Psychological Bulletin* 109 (3): 502–11.
 
 </div>
 
-<div id="ref-uanhoro_modeling_2023" class="csl-entry">
+<div id="ref-uanhoro_hierarchical_2022" class="csl-entry">
 
-Uanhoro, James Ohisei. forthcoming. “Modeling Misspecification as a
-Parameter in Bayesian Structural Equation Modeling.” *Educational and
-Psychological Measurement*, forthcoming.
+Uanhoro, James Ohisei. 2022. “Hierarchical Covariance Estimation
+Approach to Meta-Analytic Structural Equation Modeling.” *Structural
+Equation Modeling: A Multidisciplinary Journal* 0 (0): 1–15.
+<https://doi.org/10.1080/10705511.2022.2142128>.
 
 </div>
 
-<div id="ref-uanhoro_hierarchical_2022" class="csl-entry">
+<div id="ref-uanhoro_modeling_2023" class="csl-entry">
 
-———. 2022. “Hierarchical Covariance Estimation Approach to Meta-Analytic
-Structural Equation Modeling.” *Structural Equation Modeling: A
-Multidisciplinary Journal* 0 (0): 1–15.
-<https://doi.org/10.1080/10705511.2022.2142128>.
+———. 2023. “Modeling Misspecification as a Parameter in Bayesian
+Structural Equation Models.” *Educational and Psychological Measurement*
+0 (0): 00131644231165306. <https://doi.org/10.1177/00131644231165306>.
 
 </div>
 
