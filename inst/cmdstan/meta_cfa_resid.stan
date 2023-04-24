@@ -288,6 +288,116 @@ generated quantities {
   vector[p] rmsea_beta_wi;
   vector[p_c] rmsea_beta_be;
   real prop_be = 0.0;
+  vector[Ng] log_lik;
+
+  {
+    matrix[Ni, Ni] S_impute;
+    int pos_miss_c = 0;
+    int pos_miss_i = 0;
+    int pos_valid;
+    matrix[Ni, Ni] Omega;
+    vector[Ni] total_var;
+
+    {
+      matrix[Ni, Ni] lamb_phi_lamb;
+      matrix[Ni, Nce] loading_par_exp = rep_matrix(0, Ni, Nce);
+      matrix[Ni, Ni] loading_par_exp_2;
+      vector[Ni] delta_mat_ast;
+
+      {
+        int pos = 0;
+        int pos_complex = 0;
+        for (i in 1:Ni) {
+          for (j in 1:Nf) {
+            if (loading_pattern[i, j] != 0) {
+              pos += 1;
+              Load_mat[i, j] = loadings[pos];
+            } else if (complex_struc == 1) {
+              pos_complex += 1;
+              Load_mat[i, j] = sigma_loadings_complex[1] * loadings_complex[pos_complex];
+            }
+          }
+        }
+      }
+
+      if (corr_fac == 1) lamb_phi_lamb = quad_form_sym(phi_mat, Load_mat');
+      else lamb_phi_lamb = tcrossprod(Load_mat);
+
+      for (i in 1:Nce) {
+        loading_par_exp[error_mat[i, 1], i] = sqrt(
+          abs(res_cor[i]) * res_var[error_mat[i, 1]]);
+        loading_par_exp[error_mat[i, 2], i] = sign(res_cor[i]) * sqrt(
+          abs(res_cor[i]) * res_var[error_mat[i, 2]]);
+      }
+
+      loading_par_exp_2 = tcrossprod(loading_par_exp);
+      delta_mat_ast = res_var - diagonal(loading_par_exp_2);
+      Omega = add_diag(lamb_phi_lamb + loading_par_exp_2, delta_mat_ast);
+
+      total_var = diagonal(Omega);
+
+      if (method < 90) {
+        int pos = 0;
+        for (i in 2:Ni) {
+          for (j in 1:(i - 1)) {
+            pos += 1;
+            Omega[i, j] += resids[pos] * rms_src_p[1] * sqrt(total_var[i] * total_var[j]);
+            Omega[j, i] = Omega[i, j];
+          }
+        }
+      }
+    }
+
+    for (i in 1:Ng) {
+      array[sum(valid_var[, i])] int idxs;
+      real m_val;
+
+      pos_valid = 0;
+      for (j in 1:Ni) {
+        if (valid_var[j, i] == 1) {
+          pos_valid += 1;
+          idxs[pos_valid] = j;
+        }
+      }
+
+      S_impute = S[i];
+      for (j in 2:Ni) {
+        if (valid_var[j, i] == 1) {
+          for (k in 1:(j - 1)) {
+            if (valid_var[k, i] == 1) {
+              if (S_impute[j, k] == 999) {
+                pos_miss_c += 1;
+                S_impute[j, k] = (miss_cor_01[pos_miss_c] * 2 - 1) *
+                  sqrt(S_impute[j, j]) * sqrt(S_impute[k, k]);
+                S_impute[k, j] = S_impute[j, k];
+              }
+            }
+          }
+        }
+      }
+
+      for (j in 1:Ni) {
+        if (miss_ind[j, i] == 1) {
+          pos_miss_i += 1;
+          S_impute[j, j] += (var_shifts[pos_miss_i]);
+        }
+      }
+
+      if (type == 1) {
+        log_lik[i] = wishart_lpdf(
+          S_impute[idxs, idxs] | Np[i] - 1.0, Omega[idxs, idxs] / (Np[i] - 1.0));
+      } else if (type >= 2) {
+        m_val = exp(m_ln_int_wi[1] + X[i, ] * m_ln_beta_wi) + Ni - 1;
+        if (type == 2) {
+          log_lik[i] = gen_matrix_beta_ii_lpdf(
+            S_impute[idxs, idxs] | Omega[idxs, idxs], Np[i] - 1.0, m_val);
+        } else if (type == 3) {
+          log_lik[i] = gen_matrix_beta_ii_lpdf(
+            S_impute[idxs, idxs] | E_clus[C_ID[i]][idxs, idxs], Np[i] - 1.0, m_val);
+        }
+      }
+    }
+  }
 
   if (method != 100) {
     rms_src = rms_src_p[1];
@@ -336,22 +446,6 @@ generated quantities {
         pos += 1;
         Resid[i, j] = resids[pos] * rms_src_p[1];
         Resid[j, i] = Resid[i, j];
-      }
-    }
-  }
-
-  {
-    int pos = 0;
-    int pos_complex = 0;
-    for (i in 1:Ni) {
-      for (j in 1:Nf) {
-        if (loading_pattern[i, j] != 0) {
-          pos += 1;
-          Load_mat[i, j] = loadings[pos];
-        } else if (complex_struc == 1) {
-          pos_complex += 1;
-          Load_mat[i, j] = sigma_loadings_complex[1] * loadings_complex[pos_complex];
-        }
       }
     }
   }
