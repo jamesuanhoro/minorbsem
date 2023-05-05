@@ -65,7 +65,7 @@ correlated errors terms, and fully oblique or orthogonal factors
 - SEMs allowing latent regressions (only), cross-loadings, and correlated error
 terms.
 
-However, the package does not support fitting:
+However, the package does not currently support fitting:
 - MIMIC, 
 - multi-group models, 
 - multilevel models, or 
