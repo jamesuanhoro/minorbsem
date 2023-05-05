@@ -37,9 +37,8 @@ devtools::load_all()
 
 ## Package overview
 
-Structural equation models (SEMs) rarely reject the null
-hypothesis that there is no model misspecification.
-One explanation for this problem is that covariance 
+Structural equation models (SEMs) rarely reject the null hypothesis that there is 
+no model misspecification. One explanation for this problem is that covariance 
 structures are influenced by major factors which
 we can hypothesize about and minor factors which we cannot predict a-priori,
 e.g. @maccallum_representing_1991.
@@ -75,7 +74,7 @@ All data are assumed multivariate normal, i.e. no binary, ordinal models.
 
 ## Installation
 
-Install minorbsem:
+Install `minorbsem`:
 
 ``` r
 install.packages(
