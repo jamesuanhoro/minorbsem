@@ -47,7 +47,7 @@ e.g. @maccallum_representing_1991.
 
 The goal of `minorbsem` is to facilitate fitting Bayesian SEMs that estimate the
 influence of minor factors on the covariance matrix, following the approach in
-@uanhoro_modeling_2023. Briefly, all residual covariances are estimated with
+@uanhoro_modeling_2023. Briefly, the method estimates all residual covariances with 
 priors that shrink them towards zero, and the model returns the magnitude of the
 influence of minor factors.
 
@@ -65,8 +65,11 @@ correlated errors terms, and fully oblique or orthogonal factors
 - SEMs allowing latent regressions (only), cross-loadings, and correlated error
 terms.
 
-One cannot fit MIMIC, multi-group models, multilevel models, or models with
-specially constrained parameters (e.g. setting two parameters equal).
+However, the package does not support fitting:
+- MIMIC, 
+- multi-group models, 
+- multilevel models, or 
+- models with specially constrained parameters (e.g., setting two parameters equal).
 
 The meta-analysis models are only for the CFA configurations.
 
@@ -116,7 +119,7 @@ plot_residuals(fit_1, type = "range")
 Fit a second model that estimates all cross-loadings and shrinks them to
 0 using a global-local prior (`simple_struc = FALSE`).
 
-Then compare both models using LOO. This needs the `loo` package: `install.packages("loo")`.
+Then compare both models using the Leave-One-Out (LOO) method, using the `loo` package: `install.packages("loo")`.
 
 ``` r
 fit_2 <- minorbsem(syntax_1, HS, simple_struc = FALSE)
