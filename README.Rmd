@@ -37,22 +37,24 @@ devtools::load_all()
 
 ## Package overview
 
-It is rare that structural equation models (SEMs) are able to reject the null
-hypothesis that there is no misspecification in the model. One explanation for
-this problem is that covariance structures are influenced by major factors which
+Structural equation models (SEMs) rarely reject the null
+hypothesis that there is no model misspecification.
+One explanation for this problem is that covariance 
+structures are influenced by major factors which
 we can hypothesize about and minor factors which we cannot predict a-priori,
 e.g. @maccallum_representing_1991.
 
 ### Goals
 
-The goal of minorbsem is to let you fit Bayesian SEMs that estimate the
-influence of minor factors on the covariance matrix following the approach in
+The goal of `minorbsem` is to facilitate fitting Bayesian SEMs that estimate the
+influence of minor factors on the covariance matrix, following the approach in
 @uanhoro_modeling_2023. Briefly, all residual covariances are estimated with
 priors that shrink them towards zero, and the model returns the magnitude of the
 influence of minor factors.
 
-minorbsem also fits random-effects meta-analytic CFAs that capture the influence
-of minor factors following the approach in @uanhoro_hierarchical_2022.
+`minorbsem` also fits random-effects meta-analytic confirmatory factor analyses 
+(CFAs) that capture the influence of minor factors,
+according to the approach outlined by @uanhoro_hierarchical_2022.
 
 ### Permitted models and supported data types
 
