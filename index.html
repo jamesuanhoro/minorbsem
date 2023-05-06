@@ -104,12 +104,12 @@
 <div class="section level2">
 <h2 id="package-overview">Package overview<a class="anchor" aria-label="anchor" href="#package-overview"></a>
 </h2>
-<p>It is rare that structural equation models (SEMs) are able to reject the null hypothesis that there is no misspecification in the model. One explanation for this problem is that covariance structures are influenced by major factors which we can hypothesize about and minor factors which we cannot predict a-priori, e.g. MacCallum and Tucker (1991).</p>
+<p>Structural equation models (SEMs) rarely reject the null hypothesis that there is no model misspecification. One explanation for this problem is that covariance structures are influenced by major factors which we can hypothesize about and minor factors which we cannot predict a-priori, e.g. MacCallum and Tucker (1991).</p>
 <div class="section level3">
 <h3 id="goals">Goals<a class="anchor" aria-label="anchor" href="#goals"></a>
 </h3>
-<p>The goal of minorbsem is to let you fit Bayesian SEMs that estimate the influence of minor factors on the covariance matrix following the approach in Uanhoro (2023). Briefly, all residual covariances are estimated with priors that shrink them towards zero, and the model returns the magnitude of the influence of minor factors.</p>
-<p>minorbsem also fits random-effects meta-analytic CFAs that capture the influence of minor factors following the approach in Uanhoro (2022).</p>
+<p>The goal of <code>minorbsem</code> is to facilitate fitting Bayesian SEMs that estimate the influence of minor factors on the covariance matrix, following the approach in Uanhoro (2023). Briefly, the method estimates all residual covariances with priors that shrink them towards zero, and the model returns the magnitude of the influence of minor factors.</p>
+<p><code>minorbsem</code> also fits random-effects meta-analytic confirmatory factor analyses (CFAs) that capture the influence of minor factors, according to the approach outlined by Uanhoro (2022).</p>
 </div>
 <div class="section level3">
 <h3 id="permitted-models-and-supported-data-types">Permitted models and supported data types<a class="anchor" aria-label="anchor" href="#permitted-models-and-supported-data-types"></a>
@@ -119,7 +119,7 @@
 <li>CFA, allowing cross-loadings (which may be automatically estimated), correlated errors terms, and fully oblique or orthogonal factors (useful for fitting bifactor models)</li>
 <li>SEMs allowing latent regressions (only), cross-loadings, and correlated error terms.</li>
 </ul>
-<p>One cannot fit MIMIC, multi-group models, multilevel models, or models with specially constrained parameters (e.g. setting two parameters equal).</p>
+<p>However, the package does not currently support fitting: - MIMIC, - multi-group models, - multilevel models, or - models with specially constrained parameters (e.g., setting two parameters equal).</p>
 <p>The meta-analysis models are only for the CFA configurations.</p>
 <p>All data are assumed multivariate normal, i.e. no binary, ordinal models.</p>
 </div>
@@ -127,7 +127,7 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Install minorbsem:</p>
+<p>Install <code>minorbsem</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
 <span>  <span class="st">'minorbsem'</span>,</span>
@@ -165,7 +165,7 @@
 <h3 id="model-comparisons">Model comparisons<a class="anchor" aria-label="anchor" href="#model-comparisons"></a>
 </h3>
 <p>Fit a second model that estimates all cross-loadings and shrinks them to 0 using a global-local prior (<code>simple_struc = FALSE</code>).</p>
-<p>Then compare both models using LOO. This needs the <code>loo</code> package: <code>install.packages("loo")</code>.</p>
+<p>Then compare both models using the Leave-One-Out (LOO) method, using the <code>loo</code> package: <code>install.packages("loo")</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/minorbsem.html">minorbsem</a></span><span class="op">(</span><span class="va">syntax_1</span>, <span class="va">HS</span>, simple_struc <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
