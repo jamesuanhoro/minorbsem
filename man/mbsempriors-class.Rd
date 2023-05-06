@@ -17,6 +17,10 @@ interfactor correlation matrix in confirmatory factor models.}
 Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 deviation of loadings.}
 
+\item{\code{fs_par}}{(positive real) The scale parameter of the
+Student-t(df = 3, loc = 0) prior on the standard deviation
+of factors in SEMs.}
+
 \item{\code{rs_par}}{(positive real) The scale parameter of the
 Student-t(df = 3, loc = 0) prior on the residual standard deviations.}
 

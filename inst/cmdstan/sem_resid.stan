@@ -40,6 +40,7 @@ data {
   array[Nf, Nf] int coef_pattern;
   real<lower = 0> sc_par;  // sigma_coefficients parameter
   real<lower = 0> sl_par;  // sigma_loading parameter
+  real<lower = 0> fs_par;  // factor_sd parameter
   real<lower = 0> rs_par;  // residual sd parameter
   real<lower = 1> rc_par;  // residual corr parameter
   real<lower = 1> fc_par; // beta prior shape for phi
@@ -118,8 +119,7 @@ model {
 
   loadings ~ normal(0, sigma_loadings);
   sigma_loadings ~ student_t(3, 0, sl_par);
-  // TODO: #8 set prior as argument here or use standardized approach
-  phi_sd ~ student_t(3, 0, 1);
+  phi_sd ~ student_t(3, 0, fs_par);
 
   res_sds ~ student_t(3, 0, rs_par);
 
