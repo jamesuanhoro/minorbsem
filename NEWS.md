@@ -1,6 +1,7 @@
 # minorbsem (development version)
 
 * Added log-likelihood computations for meta-CFA
+* Added control over prior for factor standard deviation parameters
 
 # minorbsem 0.2.2
 
