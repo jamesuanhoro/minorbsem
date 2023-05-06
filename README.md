@@ -39,23 +39,23 @@ badge](https://jamesuanhoro.r-universe.dev/badges/minorbsem)](https://jamesuanho
 
 ## Package overview
 
-It is rare that structural equation models (SEMs) are able to reject the
-null hypothesis that there is no misspecification in the model. One
-explanation for this problem is that covariance structures are
-influenced by major factors which we can hypothesize about and minor
-factors which we cannot predict a-priori, e.g. MacCallum and Tucker
-(1991).
+Structural equation models (SEMs) rarely reject the null hypothesis that
+there is no model misspecification. One explanation for this problem is
+that covariance structures are influenced by major factors which we can
+hypothesize about and minor factors which we cannot predict a-priori,
+e.g. MacCallum and Tucker (1991).
 
 ### Goals
 
-The goal of minorbsem is to let you fit Bayesian SEMs that estimate the
-influence of minor factors on the covariance matrix following the
-approach in Uanhoro (2023). Briefly, all residual covariances are
-estimated with priors that shrink them towards zero, and the model
-returns the magnitude of the influence of minor factors.
+The goal of `minorbsem` is to facilitate fitting Bayesian SEMs that
+estimate the influence of minor factors on the covariance matrix,
+following the approach in Uanhoro (2023). Briefly, the method estimates
+all residual covariances with priors that shrink them towards zero, and
+the model returns the magnitude of the influence of minor factors.
 
-minorbsem also fits random-effects meta-analytic CFAs that capture the
-influence of minor factors following the approach in Uanhoro (2022).
+`minorbsem` also fits random-effects meta-analytic confirmatory factor
+analyses (CFAs) that capture the influence of minor factors, according
+to the approach outlined by Uanhoro (2022).
 
 ### Permitted models and supported data types
 
@@ -67,9 +67,9 @@ The package only fits a limited number of model configurations:
 - SEMs allowing latent regressions (only), cross-loadings, and
   correlated error terms.
 
-One cannot fit MIMIC, multi-group models, multilevel models, or models
-with specially constrained parameters (e.g. setting two parameters
-equal).
+However, the package does not currently support fitting: - MIMIC, -
+multi-group models, - multilevel models, or - models with specially
+constrained parameters (e.g., setting two parameters equal).
 
 The meta-analysis models are only for the CFA configurations.
 
@@ -78,7 +78,7 @@ models.
 
 ## Installation
 
-Install minorbsem:
+Install `minorbsem`:
 
 ``` r
 install.packages(
@@ -120,8 +120,8 @@ plot_residuals(fit_1, type = "range")
 Fit a second model that estimates all cross-loadings and shrinks them to
 0 using a global-local prior (`simple_struc = FALSE`).
 
-Then compare both models using LOO. This needs the `loo` package:
-`install.packages("loo")`.
+Then compare both models using the Leave-One-Out (LOO) method, using the
+`loo` package: `install.packages("loo")`.
 
 ``` r
 fit_2 <- minorbsem(syntax_1, HS, simple_struc = FALSE)
