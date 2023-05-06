@@ -66,7 +66,7 @@ minorbsem relies on the `lavaan` package [@Rosseel2012] for data processing.
 Moreover, minorbsem models are specified using lavaan-style syntax which allows for easy model specification.
 
 Additionally, it relies on `Rcpp` to speed up costly operations [@rcpp],
-the `kableExtra` package for printing results [@kable_ex],
+the `huxtable` package for printing results [@huxtable],
 the `posterior` package for accessing Stan model results [@posterior],
 and `ggplot2` for plotting [@ggplot2].
 
