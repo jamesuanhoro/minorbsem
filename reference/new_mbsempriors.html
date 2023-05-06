@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">new_mbsempriors</span><span class="op">(</span></span>
 <span>  lkj_shape <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  sl_par <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  fs_par <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  rs_par <span class="op">=</span> <span class="fl">2.5</span>,</span>
 <span>  rc_par <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  sc_par <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -74,6 +75,12 @@ interfactor correlation matrix in confirmatory factor models.</p></dd>
 <dd><p>(positive real) The scale parameter of the
 Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 deviation of loadings.</p></dd>
+
+
+<dt>fs_par</dt>
+<dd><p>(positive real) The scale parameter of the
+Student-t(df = 3, loc = 0) prior on the standard deviation
+of factors in SEMs.</p></dd>
 
 
 <dt>rs_par</dt>
