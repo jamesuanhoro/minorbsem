@@ -16,6 +16,9 @@ methods::setClassUnion(
 #' @slot sl_par (positive real) The scale parameter of the
 #' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 #' deviation of loadings.
+#' @slot fs_par (positive real) The scale parameter of the
+#' Student-t(df = 3, loc = 0) prior on the standard deviation
+#' of factors in SEMs.
 #' @slot rs_par (positive real) The scale parameter of the
 #' Student-t(df = 3, loc = 0) prior on the residual standard deviations.
 #' @slot rc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
@@ -42,6 +45,7 @@ methods::setClass(
   methods::representation(
     lkj_shape = "numeric",
     sl_par = "numeric",
+    fs_par = "numeric",
     rs_par = "numeric",
     rc_par = "numeric",
     sc_par = "numeric",
@@ -52,6 +56,7 @@ methods::setClass(
   prototype = list(
     lkj_shape = 2.0,
     sl_par = 1.0,
+    fs_par = 1.0,
     rs_par = 2.5,
     rc_par = 2.0,
     sc_par = 1.0,
@@ -69,6 +74,9 @@ methods::setClass(
 #' @param sl_par (positive real) The scale parameter of the
 #' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 #' deviation of loadings.
+#' @param fs_par (positive real) The scale parameter of the
+#' Student-t(df = 3, loc = 0) prior on the standard deviation
+#' of factors in SEMs.
 #' @param rs_par (positive real) The scale parameter of the
 #' Student-t(df = 3, loc = 0) prior on the residual standard deviations.
 #' @param rc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
@@ -101,6 +109,7 @@ methods::setClass(
 new_mbsempriors <- function(
     lkj_shape = 2.0,
     sl_par = 1.0,
+    fs_par = 1.0,
     rs_par = 2.5,
     rc_par = 2.0,
     sc_par = 1.0,
@@ -112,6 +121,7 @@ new_mbsempriors <- function(
     mb_priors_object,
     lkj_shape = lkj_shape,
     sl_par = sl_par,
+    fs_par = fs_par,
     rs_par = rs_par,
     rc_par = rc_par,
     sc_par = sc_par,

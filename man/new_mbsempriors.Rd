@@ -7,6 +7,7 @@
 new_mbsempriors(
   lkj_shape = 2,
   sl_par = 1,
+  fs_par = 1,
   rs_par = 2.5,
   rc_par = 2,
   sc_par = 1,
@@ -22,6 +23,10 @@ interfactor correlation matrix in confirmatory factor models.}
 \item{sl_par}{(positive real) The scale parameter of the
 Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
 deviation of loadings.}
+
+\item{fs_par}{(positive real) The scale parameter of the
+Student-t(df = 3, loc = 0) prior on the standard deviation
+of factors in SEMs.}
 
 \item{rs_par}{(positive real) The scale parameter of the
 Student-t(df = 3, loc = 0) prior on the residual standard deviations.}

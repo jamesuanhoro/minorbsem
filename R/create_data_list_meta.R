@@ -48,6 +48,7 @@ create_data_list_meta <- function(
   # Shape parameter for LKJ of interfactor corr
   data_list$shape_phi_c <- priors@lkj_shape
   data_list$sl_par <- priors@sl_par # sigma loading parameter
+  data_list$fs_par <- priors@fs_par # sigma factor sd parameter
   data_list$rs_par <- priors@rs_par # residual sd parameter
   data_list$rc_par <- priors@rc_par # residual corr parameter
   data_list$sc_par <- priors@sc_par # sigma coefficients parameter
