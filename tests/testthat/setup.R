@@ -33,7 +33,7 @@ mbsem_test_plot_residuals <- function(fit, method) {
       gg <- plot_residuals(fit, type = type),
       paste0(
         "There are no residuals to plot when ",
-        "method == \"none\", \"WB\", \"WB-cond\"."
+        "method == \"none\", \"WB\", \"WB-cond\", \"WW\"."
       )
     )
   } else {

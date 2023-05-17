@@ -11,7 +11,7 @@
 #' data frame
 #' is missing and only sample covariance matrix is given.
 #' @param method (character) One of "normal", "lasso", "logistic",
-#' "GDP", "WB", "WB-cond", or "none". See details below.
+#' "GDP", "WB", "WB-cond", "WW", or "none". See details below.
 #' @param orthogonal (logical) constrain factors orthogonal, must be TRUE to fit
 #' bifactor models.
 #' @param simple_struc (LOGICAL) Only relevant for CFAs.
@@ -64,6 +64,8 @@
 #' - \code{WB-cond}: same as WB but estimates the
 #' "population covariance matrix",
 #' allowing for computation of casewise log-likelihoods and LOO-CV.
+#' - \code{WW}: A variation on WB-cond, but assumes the population
+#' covariance matrix is Wishart as opposed to inverse-Wishart;
 #' - \code{none}: if intending to ignore the influence of minor factors.
 #' @examples
 #' \dontrun{

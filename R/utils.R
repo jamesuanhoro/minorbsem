@@ -90,7 +90,7 @@ user_input_check <- function(
     accepted_methods <- method_hash()
     if (type == "method-meta") {
       accepted_methods <- accepted_methods[
-        which(!grepl("WB", accepted_methods))
+        which(!grepl("WB|WW", accepted_methods))
       ]
     }
     if (!tolower(object_1) %in% tolower(accepted_methods)) {
@@ -340,7 +340,7 @@ random_method_selection <- function(meta = FALSE) {
   accepted_methods <- method_hash()
   if (isTRUE(meta)) {
     accepted_methods <- accepted_methods[
-      which(!grepl("WB", accepted_methods))
+      which(!grepl("WB|WW", accepted_methods))
     ]
   }
 
@@ -393,6 +393,7 @@ method_hash <- function(search_term = NULL) {
     "GDP" = 4,
     "WB" = 90,
     "WB-cond" = 91,
+    "WW" = 92,
     "none" = 100
   )
   converted_value <- converter_helper(search_term, list_methods)
