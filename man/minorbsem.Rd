@@ -40,7 +40,7 @@ data frame
 is missing and only sample covariance matrix is given.}
 
 \item{method}{(character) One of "normal", "lasso", "logistic",
-"GDP", "WB", "WB-cond", or "none". See details below.}
+"GDP", "WB", "WB-cond", "WW", or "none". See details below.}
 
 \item{orthogonal}{(logical) constrain factors orthogonal, must be TRUE to fit
 bifactor models.}
@@ -114,6 +114,8 @@ does NOT allow for computation of casewise log-likelihoods and LOO-CV.
 \item \code{WB-cond}: same as WB but estimates the
 "population covariance matrix",
 allowing for computation of casewise log-likelihoods and LOO-CV.
+\item \code{WW}: A variation on WB-cond, but assumes the population
+covariance matrix is Wishart as opposed to inverse-Wishart;
 \item \code{none}: if intending to ignore the influence of minor factors.
 }
 }

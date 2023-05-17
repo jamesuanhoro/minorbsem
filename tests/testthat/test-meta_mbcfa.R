@@ -4,7 +4,7 @@ mbsem_test_meta_ll <- function(fit, method) {
   if (method_hash(method) >= 90 && isTRUE(residuals)) {
     warn_msg <- paste0(
       "include_residuals = TRUE is ignored when ",
-      "minorbsem method == \"none\", \"WB\", \"WB-cond\"."
+      "minorbsem method == \"none\", \"WB\", \"WB-cond\", \"WW\"."
     )
     testthat::expect_warning(
       ll_mat <- casewise_log_likelihood(

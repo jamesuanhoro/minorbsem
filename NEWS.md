@@ -1,5 +1,6 @@
-# minorbsem (development version)
+# minorbsem 0.2.3
 
+* Added a Wishart-Wishart method as an alternative to WB-cond.
 * Added log-likelihood computations for meta-CFA
 * Added control over prior for factor standard deviation parameters
 

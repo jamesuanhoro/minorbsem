@@ -67,7 +67,7 @@ transformed data {
     Nisqd2 = 0;
   }
 
-  if (method == 91) {
+  if (method == 91 || method == 92) {
     N_Sigma = Ni;
   }
 
@@ -217,7 +217,7 @@ model {
       }
     }
 
-    if (method != 91) {
+    if (method != 91 && method != 92) {
       Sigma ~ inv_wishart(1000, id_mat);
     }
 
@@ -227,6 +227,9 @@ model {
         target += gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
       } else if (method == 91) {
         Sigma ~ inv_wishart(m, m * Omega);
+        target += wishart_lpdf(N_S | Np - 1, Sigma);
+      } else if (method == 92) {
+        Sigma ~ wishart(m, Omega / m);
         target += wishart_lpdf(N_S | Np - 1, Sigma);
       }
     } else {
@@ -368,7 +371,7 @@ generated quantities {
         S_sim = wishart_rng(Np - 1.0, Sigma_p / (Np - 1.0));
         D_obs = -2.0 * gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
         D_rep = -2.0 * gen_matrix_beta_ii_lpdf(S_sim | Omega, Np - 1.0, m, ln_det_S);
-      } else if (method == 91) {
+      } else if (method == 91 || method == 92) {
         S_sim = wishart_rng(Np - 1.0, Sigma / (Np - 1.0));
         D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Sigma);
         D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Sigma);

@@ -24,7 +24,7 @@ plot_residuals <- function(object, type = "matrix") {
   if (object@data_list$method >= 90) {
     stop(paste0(
       "There are no residuals to plot when ",
-      "method == \"none\", \"WB\", \"WB-cond\"."
+      "method == \"none\", \"WB\", \"WB-cond\", \"WW\"."
     ))
   }
 
