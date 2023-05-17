@@ -14,7 +14,7 @@ minor factors (Uanhoro 2023)
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,7 +104,7 @@ is missing and only sample covariance matrix is given.</p></dd>
 
 <dt>method</dt>
 <dd><p>(character) One of "normal", "lasso", "logistic",
-"GDP", "WB", "WB-cond", or "none". See details below.</p></dd>
+"GDP", "WB", "WB-cond", "WW", or "none". See details below.</p></dd>
 
 
 <dt>orthogonal</dt>
@@ -209,6 +209,8 @@ does NOT allow for computation of casewise log-likelihoods and LOO-CV.</p></li>
 <li><p><code>WB-cond</code>: same as WB but estimates the
 "population covariance matrix",
 allowing for computation of casewise log-likelihoods and LOO-CV.</p></li>
+<li><p><code>WW</code>: A variation on WB-cond, but assumes the population
+covariance matrix is Wishart as opposed to inverse-Wishart;</p></li>
 <li><p><code>none</code>: if intending to ignore the influence of minor factors.</p></li>
 </ul></div>
     <div class="section level2">
