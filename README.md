@@ -35,6 +35,7 @@ badge](https://jamesuanhoro.r-universe.dev/badges/minorbsem)](https://jamesuanho
   - [Different methods to capture the influence of minor
     factors](#different-methods-to-capture-the-influence-of-minor-factors)
   - [Meta-analytic CFA](#meta-analytic-cfa)
+- [Contributions are encouraged](#contributions-are-encouraged)
 - [Citations](#citations)
 
 ## Package overview
@@ -69,10 +70,11 @@ The package only fits a limited number of model configurations:
 
 However, the package does not currently support fitting:
 
-- MIMIC, 
-- multi-group models, 
-- multilevel models, or 
-- models with specially constrained parameters (e.g., setting two parameters equal).
+- MIMIC,
+- multi-group models,
+- multilevel models, or
+- models with specially constrained parameters (e.g., setting two
+  parameters equal).
 
 The meta-analysis models are only for the CFA configurations.
 
@@ -212,6 +214,21 @@ There are other methods, see details section in `?meta_mbcfa`.
 
 Uanhoro (2022) addresses moderation (via meta-regression) and missing
 data in input covariances – these are not yet implemented.
+
+## Contributions are encouraged
+
+All users of R (or SEM) are invited to submit functions or ideas for
+functions.
+
+Feel free to:
+
+- [open an issue](https://github.com/jamesuanhoro/minorbsem/issues/) to
+  report a bug or to discuss recommendations;
+- submit pull requests to recommend modifications or suggest
+  improvements.
+
+You can also email the package maintainer, James Uanhoro (James dot
+Uanhoro at unt dot edu). Thank you for helping improve minorbsem :).
 
 ## Citations
 

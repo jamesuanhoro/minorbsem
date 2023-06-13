@@ -9,8 +9,10 @@
   packageStartupMessage(strrep("#", 79))
   packageStartupMessage("This is ", paste(pkgname, version))
   packageStartupMessage(
-    "All users of R (or SEM) are invited to submit functions ",
-    "or ideas for functions."
+    "\nAll users of R (or SEM) are invited to report bugs, ",
+    "submit functions or ideas\nfor functions. ",
+    "An efficient way to do this is to open an issue on GitHub\n",
+    "https://github.com/jamesuanhoro/minorbsem/issues/."
   )
   packageStartupMessage(strrep("#", 79))
 }

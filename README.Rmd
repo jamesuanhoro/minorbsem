@@ -33,6 +33,7 @@ devtools::load_all()
 - [Additional examples](#additional-examples)
   - [Different methods to capture the influence of minor factors](#different-methods-to-capture-the-influence-of-minor-factors)
   - [Meta-analytic CFA](#meta-analytic-cfa)
+- [Contributions are encouraged](#contributions-are-encouraged)
 - [Citations](#citations)
 
 ## Package overview
@@ -206,5 +207,18 @@ There are other methods, see details section in `?meta_mbcfa`.
 
 @uanhoro_hierarchical_2022 addresses moderation (via meta-regression) and
 missing data in input covariances -- these are not yet implemented.
+
+## Contributions are encouraged
+
+All users of R (or SEM) are invited to submit functions or ideas for functions.
+
+Feel free to:
+
+- [open an issue](https://github.com/jamesuanhoro/minorbsem/issues/) to report a
+bug or to discuss recommendations;
+- submit pull requests to recommend modifications or suggest improvements.
+
+You can also email the package maintainer, James Uanhoro (James dot Uanhoro at unt dot edu).
+Thank you for helping improve minorbsem :).
 
 ## Citations
