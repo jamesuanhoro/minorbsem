@@ -1,3 +1,7 @@
+# minorbsem (development version)
+
+* Added simple contribution guidelines in startup message and README.
+
 # minorbsem 0.2.3
 
 * Added a Wishart-Wishart method as an alternative to WB-cond.
