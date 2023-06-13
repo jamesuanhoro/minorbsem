@@ -66,6 +66,7 @@ correlated errors terms, and fully oblique or orthogonal factors
 terms.
 
 However, the package does not currently support fitting:
+
 - MIMIC, 
 - multi-group models, 
 - multilevel models, or 

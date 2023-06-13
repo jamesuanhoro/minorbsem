@@ -67,9 +67,12 @@ The package only fits a limited number of model configurations:
 - SEMs allowing latent regressions (only), cross-loadings, and
   correlated error terms.
 
-However, the package does not currently support fitting: - MIMIC, -
-multi-group models, - multilevel models, or - models with specially
-constrained parameters (e.g., setting two parameters equal).
+However, the package does not currently support fitting:
+
+- MIMIC, 
+- multi-group models, 
+- multilevel models, or 
+- models with specially constrained parameters (e.g., setting two parameters equal).
 
 The meta-analysis models are only for the CFA configurations.
 
