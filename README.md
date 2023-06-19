@@ -19,6 +19,7 @@ commit](https://img.shields.io/github/last-commit/jamesuanhoro/minorbsem)
 [![R-CMD-check](https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml)
 [![minorbsem status
 badge](https://jamesuanhoro.r-universe.dev/badges/minorbsem)](https://jamesuanhoro.r-universe.dev)
+[![JOSS-paper](https://joss.theoj.org/papers/c0cd5b1a2d66bbf21fb00d237f646180/status.svg)](https://joss.theoj.org/papers/c0cd5b1a2d66bbf21fb00d237f646180)
 <!-- badges: end -->
 
 #### Table of Contents
