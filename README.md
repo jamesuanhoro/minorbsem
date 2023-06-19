@@ -50,13 +50,13 @@ e.g. MacCallum and Tucker (1991).
 
 The goal of `minorbsem` is to facilitate fitting Bayesian SEMs that
 estimate the influence of minor factors on the covariance matrix,
-following the approach in Uanhoro (2023). Briefly, the method estimates
+following the approach in Uanhoro (2023a). Briefly, the method estimates
 all residual covariances with priors that shrink them towards zero, and
 the model returns the magnitude of the influence of minor factors.
 
 `minorbsem` also fits random-effects meta-analytic confirmatory factor
 analyses (CFAs) that capture the influence of minor factors, according
-to the approach outlined by Uanhoro (2022).
+to the approach outlined by Uanhoro (2023b).
 
 ### Permitted models and supported data types
 
@@ -212,7 +212,7 @@ plot_residuals(meta_fit, type = "range")
 
 There are other methods, see details section in `?meta_mbcfa`.
 
-Uanhoro (2022) addresses moderation (via meta-regression) and missing
+Uanhoro (2023b) addresses moderation (via meta-regression) and missing
 data in input covariances – these are not yet implemented.
 
 ## Contributions are encouraged
@@ -243,20 +243,21 @@ Practice.” *Psychological Bulletin* 109 (3): 502–11.
 
 </div>
 
-<div id="ref-uanhoro_hierarchical_2022" class="csl-entry">
+<div id="ref-uanhoro_modeling_2023" class="csl-entry">
 
-Uanhoro, James Ohisei. 2022. “Hierarchical Covariance Estimation
-Approach to Meta-Analytic Structural Equation Modeling.” *Structural
-Equation Modeling: A Multidisciplinary Journal* 0 (0): 1–15.
-<https://doi.org/10.1080/10705511.2022.2142128>.
+Uanhoro, James Ohisei. 2023a. “Modeling Misspecification as a Parameter
+in Bayesian Structural Equation Models.” *Educational and Psychological
+Measurement* 0 (0): 00131644231165306.
+<https://doi.org/10.1177/00131644231165306>.
 
 </div>
 
-<div id="ref-uanhoro_modeling_2023" class="csl-entry">
+<div id="ref-uanhoro_hierarchical_2022" class="csl-entry">
 
-———. 2023. “Modeling Misspecification as a Parameter in Bayesian
-Structural Equation Models.” *Educational and Psychological Measurement*
-0 (0): 00131644231165306. <https://doi.org/10.1177/00131644231165306>.
+———. 2023b. “Hierarchical Covariance Estimation Approach to
+Meta-Analytic Structural Equation Modeling.” *Structural Equation
+Modeling: A Multidisciplinary Journal* 30 (4): 532–46.
+<https://doi.org/10.1080/10705511.2022.2142128>.
 
 </div>
 
