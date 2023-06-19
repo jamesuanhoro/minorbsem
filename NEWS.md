@@ -1,5 +1,6 @@
-# minorbsem (development version)
+# minorbsem 0.2.4
 
+* JOSS paper added
 * Added simple contribution guidelines in startup message and README.
 
 # minorbsem 0.2.3
