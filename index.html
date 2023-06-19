@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,8 +109,8 @@
 <div class="section level3">
 <h3 id="goals">Goals<a class="anchor" aria-label="anchor" href="#goals"></a>
 </h3>
-<p>The goal of <code>minorbsem</code> is to facilitate fitting Bayesian SEMs that estimate the influence of minor factors on the covariance matrix, following the approach in Uanhoro (2023). Briefly, the method estimates all residual covariances with priors that shrink them towards zero, and the model returns the magnitude of the influence of minor factors.</p>
-<p><code>minorbsem</code> also fits random-effects meta-analytic confirmatory factor analyses (CFAs) that capture the influence of minor factors, according to the approach outlined by Uanhoro (2022).</p>
+<p>The goal of <code>minorbsem</code> is to facilitate fitting Bayesian SEMs that estimate the influence of minor factors on the covariance matrix, following the approach in Uanhoro (2023a). Briefly, the method estimates all residual covariances with priors that shrink them towards zero, and the model returns the magnitude of the influence of minor factors.</p>
+<p><code>minorbsem</code> also fits random-effects meta-analytic confirmatory factor analyses (CFAs) that capture the influence of minor factors, according to the approach outlined by Uanhoro (2023b).</p>
 </div>
 <div class="section level3">
 <h3 id="permitted-models-and-supported-data-types">Permitted models and supported data types<a class="anchor" aria-label="anchor" href="#permitted-models-and-supported-data-types"></a>
@@ -250,7 +250,7 @@
 <span><span class="fu"><a href="reference/plot_residuals.html">plot_residuals</a></span><span class="op">(</span><span class="va">meta_fit</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/plot_residuals.html">plot_residuals</a></span><span class="op">(</span><span class="va">meta_fit</span>, type <span class="op">=</span> <span class="st">"range"</span><span class="op">)</span></span></code></pre></div>
 <p>There are other methods, see details section in <code><a href="reference/meta_mbcfa.html">?meta_mbcfa</a></code>.</p>
-<p>Uanhoro (2022) addresses moderation (via meta-regression) and missing data in input covariances – these are not yet implemented.</p>
+<p>Uanhoro (2023b) addresses moderation (via meta-regression) and missing data in input covariances – these are not yet implemented.</p>
 </div>
 </div>
 <div class="section level2">
@@ -272,11 +272,11 @@
 <div id="ref-maccallum_representing_1991" class="csl-entry">
 MacCallum, Robert C., and Ledyard R. Tucker. 1991. “Representing Sources of Error in the Common-Factor Model: Implications for Theory and Practice.” <em>Psychological Bulletin</em> 109 (3): 502–11. <a href="https://doi.org/10.1037/0033-2909.109.3.502" class="external-link uri">https://doi.org/10.1037/0033-2909.109.3.502</a>.
 </div>
-<div id="ref-uanhoro_hierarchical_2022" class="csl-entry">
-Uanhoro, James Ohisei. 2022. “Hierarchical Covariance Estimation Approach to Meta-Analytic Structural Equation Modeling.” <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 0 (0): 1–15. <a href="https://doi.org/10.1080/10705511.2022.2142128" class="external-link uri">https://doi.org/10.1080/10705511.2022.2142128</a>.
-</div>
 <div id="ref-uanhoro_modeling_2023" class="csl-entry">
-———. 2023. “Modeling Misspecification as a Parameter in Bayesian Structural Equation Models.” <em>Educational and Psychological Measurement</em> 0 (0): 00131644231165306. <a href="https://doi.org/10.1177/00131644231165306" class="external-link uri">https://doi.org/10.1177/00131644231165306</a>.
+Uanhoro, James Ohisei. 2023a. “Modeling Misspecification as a Parameter in Bayesian Structural Equation Models.” <em>Educational and Psychological Measurement</em> 0 (0): 00131644231165306. <a href="https://doi.org/10.1177/00131644231165306" class="external-link uri">https://doi.org/10.1177/00131644231165306</a>.
+</div>
+<div id="ref-uanhoro_hierarchical_2022" class="csl-entry">
+———. 2023b. “Hierarchical Covariance Estimation Approach to Meta-Analytic Structural Equation Modeling.” <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 30 (4): 532–46. <a href="https://doi.org/10.1080/10705511.2022.2142128" class="external-link uri">https://doi.org/10.1080/10705511.2022.2142128</a>.
 </div>
 </div>
 </div>
@@ -322,6 +322,7 @@ Uanhoro, James Ohisei. 2022. “Hierarchical Covariance Estimation Approach to M
 <li><a href="https://cran.r-project.org/package=minorbsem" class="external-link"><img src="https://www.r-pkg.org/badges/version/minorbsem" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/jamesuanhoro/minorbsem/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://jamesuanhoro.r-universe.dev" class="external-link"><img src="https://jamesuanhoro.r-universe.dev/badges/minorbsem" alt="minorbsem status badge"></a></li>
+<li><a href="https://joss.theoj.org/papers/c0cd5b1a2d66bbf21fb00d237f646180" class="external-link"><img src="https://joss.theoj.org/papers/c0cd5b1a2d66bbf21fb00d237f646180/status.svg" alt="JOSS-paper"></a></li>
 </ul>
 </div>
 
