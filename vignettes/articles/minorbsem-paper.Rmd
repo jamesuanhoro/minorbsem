@@ -52,6 +52,7 @@ header-includes:
   - \AtBeginEnvironment{tablenotes}{\singlespacing}
   - \captionsetup[table]{font={stretch=1.5}}
   - \captionsetup[figure]{font={stretch=1.5}}
+  - \DeclareUnicodeCharacter{2500}{--}
 ---
 
 ```{r setup, include = FALSE}
