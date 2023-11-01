@@ -37,8 +37,6 @@
 #' show table of results. As an example, use FALSE for simulation studies.
 #' @param show_messages (Logical) If TRUE, show messages from Stan sampler,
 #' if FALSE, hide messages.
-#' @param target (character) One of "rstan" or "cmdstan". If "cmdstan",
-#' CmdStan and CmdStanR need to be installed on the device.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
 #' CFAs assume standardized factors.
@@ -101,8 +99,7 @@ minorbsem <- function(
     ncores = max(parallel::detectCores() - 2, 1),
     priors = new_mbsempriors(),
     show = TRUE,
-    show_messages = TRUE,
-    target = "rstan") {
+    show_messages = TRUE) {
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -116,9 +113,6 @@ minorbsem <- function(
 
   # Must provide either data or sample_cov and sample_nobs
   user_input_check("data", data, sample_cov, sample_nobs)
-
-  # target must be valid
-  user_input_check("target", target)
 
   # Run lavaan fit
   if (!is.null(data)) {
@@ -154,7 +148,7 @@ minorbsem <- function(
   message("User input fully processed :)\n Now to modeling.")
 
   stan_fit <- target_fitter(
-    target, data_list, seed, warmup, sampling, refresh,
+    data_list, seed, warmup, sampling, refresh,
     adapt_delta, max_treedepth, chains, ncores, show_messages
   )
 

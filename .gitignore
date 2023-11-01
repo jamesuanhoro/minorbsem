@@ -11,6 +11,8 @@ README.html
 !/vignettes/articles/*.Rmd
 !/vignettes/articles/*.pdf
 docs
-inst/cmdstan/*
-!inst/cmdstan/*_resid.stan
 trash.R
+inst/stan/**
+!inst/stan/**/*.*
+inst/stan/**/*.exe
+inst/stan/**/*.EXE

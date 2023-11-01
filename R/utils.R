@@ -109,25 +109,6 @@ user_input_check <- function(
     }
   }
 
-  if (type == "target") {
-    err_msg <- paste0(
-      "type must be either: \"rstan\" or \"cmdstan\""
-    )
-    if (is.null(object_1)) stop(err_msg)
-    if (!object_1 %in% c("rstan", "cmdstan")) stop(err_msg)
-    if (object_1 == "cmdstan") {
-      # CmdStan path must be set
-      tryCatch(cmdstanr::cmdstan_path(),
-        error = function(e) {
-          stop(paste0(
-            "Error: CmdStan path has not been set yet.", " ",
-            "See ?cmdstanr::set_cmdstan_path()."
-          ))
-        }
-      )
-    }
-  }
-
   return(NULL)
 }
 
@@ -139,7 +120,6 @@ user_input_check <- function(
 #' @returns Fitted Stan model
 #' @keywords internal
 target_fitter <- function(
-    target,
     data_list,
     seed,
     warmup,
@@ -151,7 +131,7 @@ target_fitter <- function(
     ncores,
     show_messages) {
   init_resid <- "random"
-  if (data_list$method < 90 || target == "cmdstan") {
+  if (data_list$method < 90) {
     init_resid <- function() {
       list(
         resids = rep(1e-3, (data_list$Ni^2 - data_list$Ni) / 2)
@@ -159,65 +139,31 @@ target_fitter <- function(
     }
   }
 
-  if (target == "rstan") {
-    if (data_list$sem_indicator == 0) {
-      mod_resid <- stanmodels$cfa_resid_rs
-    } else if (data_list$sem_indicator == 1) {
-      mod_resid <- stanmodels$sem_resid_rs
-    }
-
-    suppressWarnings(stan_fit <- rstan::sampling(
-      mod_resid,
-      data = data_list,
-      chains = chains,
-      cores = ncores,
-      seed = seed,
-      warmup = warmup,
-      iter = warmup + sampling,
-      refresh = refresh,
-      init = init_resid,
-      control = list(
-        adapt_delta = adapt_delta,
-        max_treedepth = max_treedepth
-      ),
-      show_messages = show_messages
-    ))
-    message(rstan::check_hmc_diagnostics(stan_fit))
-  } else if (target == "cmdstan") {
-    message(paste0(
-      "Compiling Stan code ...\n",
-      "This takes a while the first time you run a CFA ",
-      "and the first time you run an SEM"
-    ))
-
-    if (data_list$sem_indicator == 0) {
-      mod_resid <- cmdstanr::cmdstan_model(
-        system.file("cmdstan/cfa_resid.stan", package = "minorbsem"),
-        stanc_options = list("O1")
-      )
-    } else if (data_list$sem_indicator == 1) {
-      mod_resid <- cmdstanr::cmdstan_model(
-        system.file("cmdstan/sem_resid.stan", package = "minorbsem"),
-        stanc_options = list("O1")
-      )
-    }
-
-    message("Fitting Stan model ...")
-
-    stan_fit <- mod_resid$sample(
-      data = data_list,
-      seed = seed,
-      iter_warmup = warmup,
-      iter_sampling = sampling,
-      refresh = refresh,
-      init = init_resid,
-      adapt_delta = adapt_delta,
-      max_treedepth = max_treedepth,
-      chains = chains,
-      parallel_chains = ncores,
-      show_messages = show_messages
+  if (data_list$sem_indicator == 0) {
+    mod_resid <- instantiate::stan_package_model(
+      name = "cfa_resid", package = "minorbsem"
+    )
+  } else if (data_list$sem_indicator == 1) {
+    mod_resid <- instantiate::stan_package_model(
+      name = "sem_resid", package = "minorbsem"
     )
   }
+
+  message("Fitting Stan model ...")
+
+  stan_fit <- mod_resid$sample(
+    data = data_list,
+    seed = seed,
+    iter_warmup = warmup,
+    iter_sampling = sampling,
+    refresh = refresh,
+    init = init_resid,
+    adapt_delta = adapt_delta,
+    max_treedepth = max_treedepth,
+    chains = chains,
+    parallel_chains = ncores,
+    show_messages = show_messages
+  )
 
   return(stan_fit)
 }
