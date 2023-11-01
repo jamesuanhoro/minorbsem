@@ -75,13 +75,12 @@ methods::setMethod(
 methods::setValidity("mbsempriors", function(object) {
   if (any(
     c(
-      object@sl_par, object@rs_par, object@sc_par,
-      object@mln_par, object@mlb_par
+      object@sl_par, object@rs_par, object@sc_par
     ) <= 0
   )) {
     paste0(
-      "@sl_par, @rs_par, @sc_par, @mln_par and ",
-      "@mlb_par must all be greater than 0"
+      "@sl_par, @rs_par, and @sc_par ",
+      "must all be greater than 0"
     )
   } else if (any(c(object@lkj_shape, object@rc_par, object@fc_par) < 1)) {
     "@lkj_shape, @rc_par and @fc_par must all be at least 1"
