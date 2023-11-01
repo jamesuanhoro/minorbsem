@@ -1,3 +1,8 @@
+# minorbsem (development version)
+
+* Eliminated the meta-analysis component, see [bayesianmasem](https://github.com/jamesuanhoro/bayesianmasem/) package
+* Using only CmdStan via the instantiate package
+
 # minorbsem 0.2.4
 
 * JOSS paper added
