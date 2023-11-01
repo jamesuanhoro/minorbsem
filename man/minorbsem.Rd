@@ -22,8 +22,7 @@ minorbsem(
   ncores = max(parallel::detectCores() - 2, 1),
   priors = new_mbsempriors(),
   show = TRUE,
-  show_messages = TRUE,
-  target = "rstan"
+  show_messages = TRUE
 )
 }
 \arguments{
@@ -79,9 +78,6 @@ show table of results. As an example, use FALSE for simulation studies.}
 
 \item{show_messages}{(Logical) If TRUE, show messages from Stan sampler,
 if FALSE, hide messages.}
-
-\item{target}{(character) One of "rstan" or "cmdstan". If "cmdstan",
-CmdStan and CmdStanR need to be installed on the device.}
 }
 \value{
 An object of \code{\link{mbsem-class}}

@@ -1,12 +1,8 @@
-methods::setClass("stan_fit", contains = "stanfit")
 methods::setClass("CmdStanMCMC")
 methods::setClass("CmdStanFit")
 methods::setClass("R6")
 methods::setClassUnion(
   "cmdstan_classes", c("CmdStanMCMC", "CmdStanFit", "R6")
-)
-methods::setClassUnion(
-  "all_the_classes", c("stanfit", "cmdstan_classes")
 )
 
 #' A class for setting up priors.
@@ -115,7 +111,7 @@ methods::setClass(
     minor_factor_matrix = "data.frame",
     data_list = "list",
     priors = "mbsempriors",
-    stan_fit = "all_the_classes",
+    stan_fit = "cmdstan_classes",
     version = "character"
   )
 )
