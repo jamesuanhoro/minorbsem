@@ -45,16 +45,12 @@ mbsem_test_plot_residuals <- function(fit, method) {
   }
 }
 
-mbsem_test_pp_shared <- function(print_out, method, meta = FALSE) {
+mbsem_test_pp_shared <- function(print_out, method) {
   testthat::expect_true(grepl(method, print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("Goodness of fit", print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("RMSE", print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("Factor loadings", print_out, ignore.case = TRUE))
-  if (isTRUE(meta)) {
-    testthat::expect_true(grepl("RMSEA", print_out, ignore.case = TRUE))
-  } else {
-    testthat::expect_true(grepl("PPP", print_out, ignore.case = TRUE))
-  }
+  testthat::expect_true(grepl("PPP", print_out, ignore.case = TRUE))
 }
 
 dat_cov <- function(dat = "HS") {

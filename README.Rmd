@@ -33,7 +33,6 @@ devtools::load_all()
   - [Model comparisons](#model-comparisons)
 - [Additional examples](#additional-examples)
   - [Different methods to capture the influence of minor factors](#different-methods-to-capture-the-influence-of-minor-factors)
-  - [Meta-analytic CFA](#meta-analytic-cfa)
 - [Contributions are encouraged](#contributions-are-encouraged)
 - [Citations](#citations)
 
@@ -53,10 +52,6 @@ influence of minor factors on the covariance matrix, following the approach in
 priors that shrink them towards zero, and the model returns the magnitude of the
 influence of minor factors.
 
-`minorbsem` also fits random-effects meta-analytic confirmatory factor analyses 
-(CFAs) that capture the influence of minor factors,
-according to the approach outlined by @uanhoro_hierarchical_2022.
-
 ### Permitted models and supported data types
 
 The package only fits a limited number of model configurations:
@@ -73,8 +68,6 @@ However, the package does not currently support fitting:
 - multi-group models, 
 - multilevel models, or 
 - models with specially constrained parameters (e.g., setting two parameters equal).
-
-The meta-analysis models are only for the CFA configurations.
 
 All data are assumed multivariate normal, i.e. no binary, ordinal models.
 
@@ -179,35 +172,6 @@ plot_residuals(fit_reg)
 There are other methods, see details section in `?minorbsem`.
 
 Model comparison via LOO works as above in the [first example](#model-comparisons).
-
-### Meta-analytic CFA
-
-``` r
-# An example in the metaSEM package, 11 studies, 9 items.
-model_syntax <- "# latent variable definitions
-F1 =~ JP1 + JP2 + JP3
-F2 =~ JN1 + JN2 + JN4 + JN4
-F3 =~ TD1 + TD2"
-meta_fit <- meta_mbcfa(
-  model_syntax,
-  sample_cov = issp89$data, sample_nobs = issp89$n
-)
-
-# Histogram of parameters, see: ?parameter_hist for arguments
-parameter_hist(meta_fit)
-
-# Traceplot of parameters, see: ?parameter_trace for arguments
-parameter_trace(meta_fit)
-
-# Examine all standardized residual covariances
-plot_residuals(meta_fit)
-plot_residuals(meta_fit, type = "range")
-```
-
-There are other methods, see details section in `?meta_mbcfa`.
-
-@uanhoro_hierarchical_2022 addresses moderation (via meta-regression) and
-missing data in input covariances -- these are not yet implemented.
 
 ## Contributions are encouraged
 

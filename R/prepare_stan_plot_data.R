@@ -19,21 +19,6 @@ prepare_stan_plot_data <- function(object) {
   )
   colnames(rms_result)[1] <- "rm: rms_src"
 
-  rmsea_result <- matrix(nrow = nrow(rms_result), ncol = 0)
-  if (data_list$meta == 1) {
-    params <- c("rmsea_mn")
-    if (data_list$type == 3) {
-      params <- c(params, "rmsea_be", "rmsea_wi")
-    }
-    rmsea_result <- posterior::as_draws_df(
-      posterior::subset_draws(param_draws, variable = params)
-    )
-    colnames(rmsea_result)[1] <- "rmsea"
-    colnames(rmsea_result)[seq_along(params)] <- paste0(
-      "rm: ", colnames(rmsea_result)[seq_along(params)]
-    )
-  }
-
   load_idxs <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
     arr.ind = TRUE
@@ -126,7 +111,7 @@ prepare_stan_plot_data <- function(object) {
   )
 
   result <- cbind(
-    rmsea_result, rms_result, coef_result, load_result, phi_result,
+    rms_result, coef_result, load_result, phi_result,
     rsq_result, rv_result, rc_result, resid_result
   )
 

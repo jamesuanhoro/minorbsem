@@ -15,8 +15,7 @@
   the data used to fit the model, and the fitted Stan model.
 }
 \section{Objects from the Class}{
-  Objects can be created by calls to the \code{\link{minorbsem}}
-  or \code{\link{meta_mbcfa}} function.
+  Objects can be created by calls to the \code{\link{minorbsem}} function.
 }
 \section{Slots}{
   \describe{

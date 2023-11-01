@@ -35,7 +35,6 @@ badge](https://jamesuanhoro.r-universe.dev/badges/minorbsem)](https://jamesuanho
 - [Additional examples](#additional-examples)
   - [Different methods to capture the influence of minor
     factors](#different-methods-to-capture-the-influence-of-minor-factors)
-  - [Meta-analytic CFA](#meta-analytic-cfa)
 - [Contributions are encouraged](#contributions-are-encouraged)
 - [Citations](#citations)
 
@@ -51,13 +50,9 @@ e.g. MacCallum and Tucker (1991).
 
 The goal of `minorbsem` is to facilitate fitting Bayesian SEMs that
 estimate the influence of minor factors on the covariance matrix,
-following the approach in Uanhoro (2023a). Briefly, the method estimates
+following the approach in Uanhoro (2023). Briefly, the method estimates
 all residual covariances with priors that shrink them towards zero, and
 the model returns the magnitude of the influence of minor factors.
-
-`minorbsem` also fits random-effects meta-analytic confirmatory factor
-analyses (CFAs) that capture the influence of minor factors, according
-to the approach outlined by Uanhoro (2023b).
 
 ### Permitted models and supported data types
 
@@ -76,8 +71,6 @@ However, the package does not currently support fitting:
 - multilevel models, or
 - models with specially constrained parameters (e.g., setting two
   parameters equal).
-
-The meta-analysis models are only for the CFA configurations.
 
 All data are assumed multivariate normal, i.e. no binary, ordinal
 models.
@@ -187,35 +180,6 @@ There are other methods, see details section in `?minorbsem`.
 Model comparison via LOO works as above in the [first
 example](#model-comparisons).
 
-### Meta-analytic CFA
-
-``` r
-# An example in the metaSEM package, 11 studies, 9 items.
-model_syntax <- "# latent variable definitions
-F1 =~ JP1 + JP2 + JP3
-F2 =~ JN1 + JN2 + JN4 + JN4
-F3 =~ TD1 + TD2"
-meta_fit <- meta_mbcfa(
-  model_syntax,
-  sample_cov = issp89$data, sample_nobs = issp89$n
-)
-
-# Histogram of parameters, see: ?parameter_hist for arguments
-parameter_hist(meta_fit)
-
-# Traceplot of parameters, see: ?parameter_trace for arguments
-parameter_trace(meta_fit)
-
-# Examine all standardized residual covariances
-plot_residuals(meta_fit)
-plot_residuals(meta_fit, type = "range")
-```
-
-There are other methods, see details section in `?meta_mbcfa`.
-
-Uanhoro (2023b) addresses moderation (via meta-regression) and missing
-data in input covariances – these are not yet implemented.
-
 ## Contributions are encouraged
 
 All users of R (or SEM) are invited to submit functions or ideas for
@@ -246,19 +210,10 @@ Practice.” *Psychological Bulletin* 109 (3): 502–11.
 
 <div id="ref-uanhoro_modeling_2023" class="csl-entry">
 
-Uanhoro, James Ohisei. 2023a. “Modeling Misspecification as a Parameter
+Uanhoro, James Ohisei. 2023. “Modeling Misspecification as a Parameter
 in Bayesian Structural Equation Models.” *Educational and Psychological
 Measurement* 0 (0): 00131644231165306.
 <https://doi.org/10.1177/00131644231165306>.
-
-</div>
-
-<div id="ref-uanhoro_hierarchical_2022" class="csl-entry">
-
-———. 2023b. “Hierarchical Covariance Estimation Approach to
-Meta-Analytic Structural Equation Modeling.” *Structural Equation
-Modeling: A Multidisciplinary Journal* 30 (4): 532–46.
-<https://doi.org/10.1080/10705511.2022.2142128>.
 
 </div>
 

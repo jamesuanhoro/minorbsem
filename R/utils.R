@@ -90,11 +90,6 @@ user_input_check <- function(
 
   if (grepl("method", type)) {
     accepted_methods <- method_hash()
-    if (type == "method-meta") {
-      accepted_methods <- accepted_methods[
-        which(!grepl("WB|WW", accepted_methods))
-      ]
-    }
     if (!tolower(object_1) %in% tolower(accepted_methods)) {
       err_msg <- paste0(
         "method must be one of the following: ",
@@ -111,44 +106,6 @@ user_input_check <- function(
         "(i) a dataset or\n\t",
         "(ii) sample covariance and sample size"
       ))
-    }
-  }
-
-  if (type == "data-meta") {
-    if (
-      (is.null(object_1) || is.null(object_2)) &&
-        (is.null(object_3) || is.null(object_4))
-    ) {
-      stop(paste0(
-        "User must provide either:\n\t",
-        "(i) a dataset and group variable or\n\t",
-        "(ii) sample covariance and sample size"
-      ))
-    }
-  }
-
-  if (type == "type-meta") {
-    accepted_types <- type_hash()
-    err_msg <- paste0(
-      "type must be one of the following: ",
-      paste0(
-        "\"", accepted_types, "\"",
-        collapse = ", "
-      )
-    )
-    if (is.null(object_1)) stop(err_msg)
-    if (!tolower(object_1) %in% accepted_types) stop(err_msg)
-  }
-
-  if (type == "meta-cluster") {
-    accepted_types <- type_hash()
-    if (object_1 == "dep") {
-      if (object_2 != "cmdstan") {
-        stop("target must be \"cmdstan\" when type = \"dep\"")
-      }
-      if (is.null(object_3)) {
-        stop("supply cluster information when type = \"dep\"")
-      }
     }
   }
 
@@ -203,16 +160,10 @@ target_fitter <- function(
   }
 
   if (target == "rstan") {
-    if (data_list$meta == 1) {
-      if (data_list$sem_indicator == 0) {
-        mod_resid <- stanmodels$meta_cfa_resid_rs
-      }
-    } else {
-      if (data_list$sem_indicator == 0) {
-        mod_resid <- stanmodels$cfa_resid_rs
-      } else if (data_list$sem_indicator == 1) {
-        mod_resid <- stanmodels$sem_resid_rs
-      }
+    if (data_list$sem_indicator == 0) {
+      mod_resid <- stanmodels$cfa_resid_rs
+    } else if (data_list$sem_indicator == 1) {
+      mod_resid <- stanmodels$sem_resid_rs
     }
 
     suppressWarnings(stan_fit <- rstan::sampling(
@@ -239,25 +190,16 @@ target_fitter <- function(
       "and the first time you run an SEM"
     ))
 
-    if (data_list$meta == 1) {
-      if (data_list$sem_indicator == 0) {
-        mod_resid <- cmdstanr::cmdstan_model(
-          system.file("cmdstan/meta_cfa_resid.stan", package = "minorbsem"),
-          stanc_options = list("O1")
-        )
-      }
-    } else {
-      if (data_list$sem_indicator == 0) {
-        mod_resid <- cmdstanr::cmdstan_model(
-          system.file("cmdstan/cfa_resid.stan", package = "minorbsem"),
-          stanc_options = list("O1")
-        )
-      } else if (data_list$sem_indicator == 1) {
-        mod_resid <- cmdstanr::cmdstan_model(
-          system.file("cmdstan/sem_resid.stan", package = "minorbsem"),
-          stanc_options = list("O1")
-        )
-      }
+    if (data_list$sem_indicator == 0) {
+      mod_resid <- cmdstanr::cmdstan_model(
+        system.file("cmdstan/cfa_resid.stan", package = "minorbsem"),
+        stanc_options = list("O1")
+      )
+    } else if (data_list$sem_indicator == 1) {
+      mod_resid <- cmdstanr::cmdstan_model(
+        system.file("cmdstan/sem_resid.stan", package = "minorbsem"),
+        stanc_options = list("O1")
+      )
     }
 
     message("Fitting Stan model ...")
@@ -280,71 +222,12 @@ target_fitter <- function(
   return(stan_fit)
 }
 
-#' Fill in missing values in sample covs function
-#' @inheritParams meta_mbcfa
-#' @returns list of filled in sample covs
-#' @keywords internal
-fill_in_missing_covs <- function(sample_cov) {
-  sample_cov <- lapply(seq_along(sample_cov), function(i) {
-    s_mat <- sample_cov[[i]]
-    diag(s_mat)[is.na(diag(s_mat))] <- 1
-    s_mat[is.na(s_mat)] <- 999
-    s_mat
-  })
-  return(sample_cov)
-}
-
-#' Create missing data matrices function
-#' @inheritParams create_data_list_meta
-#' @returns list of missing data matrices
-#' @keywords internal
-prepare_missing_data_list <- function(data_list = NULL) {
-  data_list$S <- fill_in_missing_covs(data_list$S)
-
-  # Indicators of whether a variable is present by study
-  data_list$valid_var <- do.call(cbind, lapply(data_list$S, function(s_mat) {
-    apply(s_mat, 1, function(s) 0 + !(sum((s == 999)) == data_list$Ni - 1))
-  }))
-
-  # Count of missing covariance/correlation elements
-  data_list$Nmiss <- sum(unlist(lapply(
-    seq_len(length(data_list$S)), function(i) {
-      idx <- which(data_list$valid_var[, i] == 1)
-      s_mat <- data_list$S[[i]][idx, idx]
-      sum(s_mat == 999) / 2
-    }
-  )))
-
-  # Indicator of whether a valid variable has any missing covariance
-  # elements by study
-  data_list$miss_ind <- matrix(unlist(lapply(
-    seq_len(length(data_list$S)), function(i) {
-      s_mat <- data_list$S[[i]]
-      idx <- which(data_list$valid_var[, i] == 1)
-      res <- rep(0, data_list$Ni)
-      res[idx] <- apply(s_mat[idx, idx], 2, function(s) any(s == 999) + 0)
-      res
-    }
-  )), data_list$Ni)
-
-  # Number of items that have missing covariance elements
-  data_list$Nitem_miss <- sum(data_list$miss_ind)
-
-  return(data_list)
-}
-
 #' Select random method and random case function
 #'
-#' @param meta IF TRUE, assume meta-analysis
 #' @returns randomly selected method and case
 #' @keywords internal
-random_method_selection <- function(meta = FALSE) {
+random_method_selection <- function() {
   accepted_methods <- method_hash()
-  if (isTRUE(meta)) {
-    accepted_methods <- accepted_methods[
-      which(!grepl("WB|WW", accepted_methods))
-    ]
-  }
 
   method <- sample(accepted_methods, 1)
 
@@ -399,32 +282,6 @@ method_hash <- function(search_term = NULL) {
     "none" = 100
   )
   converted_value <- converter_helper(search_term, list_methods)
-  return(converted_value)
-}
-
-#' Type-meta hash function
-#' @description A function that swaps type from string to integer
-#' and vice-versa
-#' @param elaborate (LOGICAL) If TRUE, print full names, otherwise
-#' print abbreviations
-#' @inheritParams converter_helper
-#' @returns If search_term is integer, returns string and vice-versa
-#' @keywords internal
-type_hash <- function(search_term = NULL, elaborate = FALSE) {
-  list_types <- c(
-    "fe" = 1,
-    "re" = 2,
-    "dep" = 3
-  )
-  if (isTRUE(elaborate)) {
-    # Only use when feeding integers
-    list_types <- c(
-      "Fixed-effects" = 1,
-      "Random-effects" = 2,
-      "Dependent-samples" = 3
-    )
-  }
-  converted_value <- converter_helper(search_term, list_types)
   return(converted_value)
 }
 
@@ -531,19 +388,6 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
 
   params <- c("ppp", "rms_src")
   from_list <- c("PPP", "RMSE")
-  if (data_list$meta == 1) {
-    params[1] <- "rmsea_mn"
-    from_list[1] <- "RMSEA"
-  }
-
-  rmsea_params <- c("rmsea_be", "rmsea_wi", "prop_be")
-  rmsea_names <- c(
-    paste0("RMSEA (", c("between", "within"), ")"),
-    "% dispersion between"
-  )
-  if (data_list$meta == 1 && data_list$type == 3) {
-    params <- c(params, rmsea_params)
-  }
 
   load_idxs <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
@@ -608,13 +452,6 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     which(major_parameters$variable == "rms_src"),
     group = "Goodness of fit",
     from = from_list[2]
-  )
-
-  idxs <- which(major_parameters$variable %in% rmsea_params)
-  major_parameters <- modify_major_params(
-    major_parameters, idxs,
-    group = "Dispersion between and within clusters", op = "",
-    from = rmsea_names
   )
 
   idxs <- which(grepl("Load\\_mat", major_parameters$variable))

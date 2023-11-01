@@ -2,7 +2,6 @@
 #'
 #' @description Get casewise log-likelihood for complete data,
 #' useful for WAIC, LOOIC, ...
-#' Does not work meta-analysis models.
 #' @param object (mbsem) An object of \code{\link{mbsem-class}}
 #' returned by \code{\link{minorbsem}}.
 #' @param include_residuals (LOGICAL) TRUE: Include minor factor
@@ -72,12 +71,6 @@ casewise_log_likelihood <- function(
   # data list must have full data
   data_list <- object@data_list
 
-  if (data_list$meta != 1) {
-    if (data_list$has_data != 1) {
-      stop("Cannot compute casewise log-likelihood without full data.")
-    }
-  }
-
   if (data_list$method == 90) {
     stop(paste0(
       "Cannot compute casewise log-likelihood when ",
@@ -95,26 +88,22 @@ casewise_log_likelihood <- function(
 
   post_mat <- posterior::as_draws_matrix(object@stan_fit)
 
-  if (data_list$meta == 1) {
-    result <- posterior::subset_draws(post_mat, variable = "log_lik")
-  } else {
-    # TODO: For Rcpp, do it all within Rcpp;
-    if (isTRUE(use_armadillo)) {
-      mu <- rep(0, data_list$Ni)
-      y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
-      m_vcov_list <- create_mi_vcov_ll(
-        post_mat, data_list,
-        include_residuals = include_residuals,
-        return_ll = FALSE
-      )
-      result <- ldmvnrm_list_arma(y_dat_t, mu, m_vcov_list)
-    } else if (isFALSE(use_armadillo)) {
-      result <- t(create_mi_vcov_ll(
-        post_mat, data_list,
-        include_residuals = include_residuals,
-        return_ll = TRUE
-      ))
-    }
+  # TODO: For Rcpp, do it all within Rcpp;
+  if (isTRUE(use_armadillo)) {
+    mu <- rep(0, data_list$Ni)
+    y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
+    m_vcov_list <- create_mi_vcov_ll(
+      post_mat, data_list,
+      include_residuals = include_residuals,
+      return_ll = FALSE
+    )
+    result <- ldmvnrm_list_arma(y_dat_t, mu, m_vcov_list)
+  } else if (isFALSE(use_armadillo)) {
+    result <- t(create_mi_vcov_ll(
+      post_mat, data_list,
+      include_residuals = include_residuals,
+      return_ll = TRUE
+    ))
   }
 
   return(result)
