@@ -1,36 +1,36 @@
 mbsem_test_hist <- function(fit) {
+  # do default
   testthat::expect_error(
-    gg <- parameter_hist(
-      fit,
-      param_type = c(
-        "rm", "lo", "ev", "co", "rc", "fc", "rsq",
-        "re"
-      )
-    ),
+    gg <- parameter_hist(fit),
+    NA
+  )
+  testthat::expect_true(inherits(gg, "ggplot"))
+  # do all
+  testthat::expect_error(
+    gg <- parameter_hist(fit, param_type = "all"),
     NA
   )
   testthat::expect_true(inherits(gg, "ggplot"))
 }
 
 mbsem_test_trace <- function(fit) {
+  # do default
   testthat::expect_error(
-    gg <- parameter_trace(
-      fit,
-      param_type = c(
-        "rm", "lo", "ev", "co", "rc", "fc", "rsq",
-        "re"
-      )
-    ),
+    gg <- parameter_trace(fit),
+    NA
+  )
+  # do all
+  testthat::expect_error(
+    gg <- parameter_trace(fit, param_type = "all"),
     NA
   )
   testthat::expect_true(inherits(gg, "ggplot"))
 }
 
 mbsem_test_plot_residuals <- function(fit, method) {
-  type <- sample(c("matrix", "range"), 1)
   if (method_hash(method) >= 90) {
     testthat::expect_error(
-      gg <- plot_residuals(fit, type = type),
+      gg <- plot_residuals(fit, type = sample(c("matrix", "range"), 1)),
       paste0(
         "There are no residuals to plot when ",
         "method == \"none\", \"WB\", \"WB-cond\", \"WW\"."
@@ -38,7 +38,14 @@ mbsem_test_plot_residuals <- function(fit, method) {
     )
   } else {
     testthat::expect_error(
-      gg <- plot_residuals(fit, type = type),
+      # do default
+      gg <- plot_residuals(fit),
+      NA
+    )
+    testthat::expect_true(inherits(gg, "ggplot"))
+    testthat::expect_error(
+      # do other
+      gg <- plot_residuals(fit, type = "range"),
       NA
     )
     testthat::expect_true(inherits(gg, "ggplot"))
