@@ -9,4 +9,7 @@
 library(testthat)
 library(minorbsem)
 
-test_check("minorbsem")
+if (is_testing()) {
+  skip_if_not_installed("cmdstanr")
+  test_check("minorbsem")
+}

@@ -1,8 +1,8 @@
 test_that("Random method prints correctly for CFA", {
-  skip_if_not_installed("cmdstanr")
   expect_error(
     print_out <- capture_output(
-      pretty_print_summary(fit_cfa), width = 300
+      pretty_print_summary(fit_cfa),
+      width = 300
     ),
     NA
   )
@@ -24,7 +24,8 @@ test_that("Random method prints correctly for CFA", {
   }
   expect_error(
     print_out <- capture_output(
-      pretty_print_summary(fit_cfa, simple = FALSE), width = 300
+      pretty_print_summary(fit_cfa, simple = FALSE),
+      width = 300
     ),
     NA
   )
@@ -32,10 +33,10 @@ test_that("Random method prints correctly for CFA", {
 })
 
 test_that("Random method prints correctly for SEM", {
-  skip_if_not_installed("cmdstanr")
   expect_error(
     print_out <- capture_output(
-      pretty_print_summary(fit_sem), width = 300
+      pretty_print_summary(fit_sem),
+      width = 300
     ),
     NA
   )
@@ -48,7 +49,8 @@ test_that("Random method prints correctly for SEM", {
   expect_true(grepl("R square", print_out, ignore.case = TRUE))
   expect_error(
     print_out <- capture_output(
-      pretty_print_summary(fit_sem, simple = FALSE), width = 300
+      pretty_print_summary(fit_sem, simple = FALSE),
+      width = 300
     ),
     NA
   )
