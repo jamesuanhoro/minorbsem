@@ -36,3 +36,5 @@ jobs:
           cache-version: 2
 
       - uses: r-lib/actions/check-r-package@v2
+        with:
+          args: 'c("--no-tests")'

@@ -6,17 +6,14 @@ mbsem_test_slots_correct <- function(fit) {
 }
 
 test_that("Random method (any case) has correct slots for CFA", {
-  skip_if_not_installed("cmdstanr")
   mbsem_test_slots_correct(fit_cfa)
 })
 
 test_that("Random method (any case) has correct slots for SEM", {
-  skip_if_not_installed("cmdstanr")
   mbsem_test_slots_correct(fit_sem)
 })
 
 test_that("Noncreated method fails", {
-  skip_if_not_installed("cmdstanr")
   method <- paste0(method_hash(), collapse = "")
   method <- strsplit(paste0(method_hash(), collapse = ""), "")[[1]]
   len_method <- length(method)

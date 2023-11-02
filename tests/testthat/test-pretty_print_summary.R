@@ -1,5 +1,4 @@
 test_that("Random method prints correctly for CFA", {
-  skip_if_not_installed("cmdstanr")
   expect_error(
     print_out <- capture_output(
       pretty_print_summary(fit_cfa),
@@ -34,7 +33,6 @@ test_that("Random method prints correctly for CFA", {
 })
 
 test_that("Random method prints correctly for SEM", {
-  skip_if_not_installed("cmdstanr")
   expect_error(
     print_out <- capture_output(
       pretty_print_summary(fit_sem),
