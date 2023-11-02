@@ -33,8 +33,6 @@ Suggests:
     covr,
     loo,
     testthat (>= 3.0.0)
-Remotes: 
-    github::stan-dev/cmdstanr
 RdMacros: Rdpack
 Additional_repositories:
     https://mc-stan.org/r-packages/
