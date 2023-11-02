@@ -322,14 +322,6 @@ generated quantities {
         phi_mat[, j] *= -1.0;
         phi_mat[j, ] *= -1.0;
       }
-      for (i in Load_mat[, j]) {
-        if (i != 0) {
-          for (k in 1:Nce) {
-            if (i == error_mat[k, 1]) res_cor[k] *= -1.0;
-            if (i == error_mat[k, 2]) res_cor[k] *= -1.0;
-          }
-        }
-      }
     }
   }
 
