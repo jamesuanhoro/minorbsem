@@ -45,12 +45,19 @@ mbsem_test_plot_residuals <- function(fit, method) {
   }
 }
 
-mbsem_test_pp_shared <- function(print_out, method) {
+mbsem_test_pp_shared <- function(print_out, method, simple = TRUE) {
   testthat::expect_true(grepl(method, print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("Goodness of fit", print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("RMSE", print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("Factor loadings", print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("PPP", print_out, ignore.case = TRUE))
+  if (isFALSE(simple)) {
+    testthat::expect_true(grepl("Location", print_out, ignore.case = TRUE))
+    testthat::expect_true(grepl("Dispersion", print_out, ignore.case = TRUE))
+    testthat::expect_true(grepl("convergence", print_out, ignore.case = TRUE))
+    testthat::expect_true(grepl("median", print_out, ignore.case = TRUE))
+    testthat::expect_true(grepl("mad", print_out, ignore.case = TRUE))
+  }
 }
 
 dat_cov <- function(dat = "HS", data_must = FALSE) {
@@ -99,6 +106,9 @@ expect_error(fit_cfa <- minorbsem(
 
 # Doing SEM here then sharing across tests
 method_sem <- random_method_selection()
+while (method_sem == method_cfa) {
+  method_sem <- random_method_selection()
+}
 model_sem_syntaxes <- c(
   "ind60 =~ x1 + x2 + x3\n dem60 =~ y1 + y2 + y3 + y4
   dem65 =~ y5 + y6 + y7 + y8\n dem60 ~ ind60\n dem65 ~ ind60 + dem60",
@@ -111,12 +121,14 @@ model_sem_syntaxes <- c(
 syntax_sem_idx <- sample(length(model_sem_syntaxes), 1)
 model_sem_syntax <- model_sem_syntaxes[syntax_sem_idx]
 sem_dat <- dat_cov("PD")
-orthogonal_sem <- sample(c(TRUE, FALSE), 1)
+while (!is.null(sem_dat$dat) && !is.null(cfa_dat$dat)) {
+  sem_dat <- dat_cov("PD")
+}
+orthogonal_sem <- !orthogonal_cfa
 expect_error(fit_sem <- minorbsem(
   model_sem_syntax,
   data = sem_dat$dat, sample_cov = sem_dat$cov, sample_nobs = sem_dat$nobs,
   orthogonal = orthogonal_sem,
-  simple_struc = sample(c(TRUE, FALSE), 1),
   warmup = 500, sampling = 500, chains = 1,
   method = method_sem, refresh = 0, show_messages = FALSE
 ), NA)

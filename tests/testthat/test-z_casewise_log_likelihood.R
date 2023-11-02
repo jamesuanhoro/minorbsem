@@ -118,7 +118,6 @@ if (fit_sem@data_list$has_data == 0) {
     model_sem_syntax,
     data = sem_dat$dat, sample_cov = sem_dat$cov, sample_nobs = sem_dat$nobs,
     orthogonal = orthogonal_sem,
-    simple_struc = sample(c(TRUE, FALSE), 1),
     warmup = 500, sampling = 500, chains = 1,
     method = method_sem, refresh = 0, show_messages = FALSE
   )

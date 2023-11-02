@@ -1,8 +1,7 @@
 test_that("Random method prints correctly for CFA", {
   expect_error(
-    print_out <- paste0(
-      capture_output(pretty_print_summary(fit_cfa), width = 300),
-      collapse = "\n"
+    print_out <- capture_output(
+      pretty_print_summary(fit_cfa), width = 300
     ),
     NA
   )
@@ -22,13 +21,19 @@ test_that("Random method prints correctly for CFA", {
       ignore.case = TRUE
     ))
   }
+  expect_error(
+    print_out <- capture_output(
+      pretty_print_summary(fit_cfa, simple = FALSE), width = 300
+    ),
+    NA
+  )
+  mbsem_test_pp_shared(print_out, method_cfa, simple = FALSE)
 })
 
 test_that("Random method prints correctly for SEM", {
   expect_error(
-    print_out <- paste0(
-      capture_output(pretty_print_summary(fit_sem), width = 300),
-      collapse = "\n"
+    print_out <- capture_output(
+      pretty_print_summary(fit_sem), width = 300
     ),
     NA
   )
@@ -39,4 +44,11 @@ test_that("Random method prints correctly for SEM", {
     ignore.case = TRUE
   ))
   expect_true(grepl("R square", print_out, ignore.case = TRUE))
+  expect_error(
+    print_out <- capture_output(
+      pretty_print_summary(fit_sem, simple = FALSE), width = 300
+    ),
+    NA
+  )
+  mbsem_test_pp_shared(print_out, method_sem, simple = FALSE)
 })
