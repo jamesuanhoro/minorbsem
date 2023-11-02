@@ -100,41 +100,45 @@ mbsem_test_ll_2 <- function(fit, method) {
   }
 }
 
-if (fit_cfa@data_list$has_data == 0) {
-  cfa_dat <- dat_cov("HS", data_must = TRUE)
-  fit_cfa <- minorbsem(
-    model_cfa_syntax,
-    data = cfa_dat$dat, sample_cov = cfa_dat$cov, sample_nobs = cfa_dat$nobs,
-    orthogonal = orthogonal_cfa,
-    simple_struc = sample(c(TRUE, FALSE), 1),
-    warmup = 500, sampling = 500, chains = 1,
-    method = method_cfa, refresh = 0, show_messages = FALSE
-  )
+if (is_testing()) {
+  skip_if_not_installed("cmdstanr")
+
+  if (fit_cfa@data_list$has_data == 0) {
+    cfa_dat <- dat_cov("HS", data_must = TRUE)
+    fit_cfa <- minorbsem(
+      model_cfa_syntax,
+      data = cfa_dat$dat, sample_cov = cfa_dat$cov, sample_nobs = cfa_dat$nobs,
+      orthogonal = orthogonal_cfa,
+      simple_struc = sample(c(TRUE, FALSE), 1),
+      warmup = 500, sampling = 500, chains = 1,
+      method = method_cfa, refresh = 0, show_messages = FALSE
+    )
+  }
+
+  if (fit_sem@data_list$has_data == 0) {
+    sem_dat <- dat_cov("PD", data_must = TRUE)
+    fit_sem <- minorbsem(
+      model_sem_syntax,
+      data = sem_dat$dat, sample_cov = sem_dat$cov, sample_nobs = sem_dat$nobs,
+      orthogonal = orthogonal_sem,
+      warmup = 500, sampling = 500, chains = 1,
+      method = method_sem, refresh = 0, show_messages = FALSE
+    )
+  }
+
+  test_that("Random method returns log-likelihood for CFA", {
+    mbsem_test_ll_1(fit_cfa, method_cfa)
+  })
+
+  test_that("Random method returns log-likelihood for SEM", {
+    mbsem_test_ll_1(fit_sem, method_sem)
+  })
+
+  test_that("CFA: Different LL methods are equal", {
+    mbsem_test_ll_2(fit_cfa, method_cfa)
+  })
+
+  test_that("SEM: Different LL methods are equal", {
+    mbsem_test_ll_2(fit_sem, method_sem)
+  })
 }
-
-if (fit_sem@data_list$has_data == 0) {
-  sem_dat <- dat_cov("PD", data_must = TRUE)
-  fit_sem <- minorbsem(
-    model_sem_syntax,
-    data = sem_dat$dat, sample_cov = sem_dat$cov, sample_nobs = sem_dat$nobs,
-    orthogonal = orthogonal_sem,
-    warmup = 500, sampling = 500, chains = 1,
-    method = method_sem, refresh = 0, show_messages = FALSE
-  )
-}
-
-test_that("Random method returns log-likelihood for CFA", {
-  mbsem_test_ll_1(fit_cfa, method_cfa)
-})
-
-test_that("Random method returns log-likelihood for SEM", {
-  mbsem_test_ll_1(fit_sem, method_sem)
-})
-
-test_that("CFA: Different LL methods are equal", {
-  mbsem_test_ll_2(fit_cfa, method_cfa)
-})
-
-test_that("SEM: Different LL methods are equal", {
-  mbsem_test_ll_2(fit_sem, method_sem)
-})
