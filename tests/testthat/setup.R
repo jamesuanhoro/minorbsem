@@ -89,6 +89,8 @@ dat_cov <- function(dat = "HS", data_must = FALSE) {
   return(input)
 }
 
+skip_if_not_installed("cmdstanr")
+
 # Doing CFA here then sharing it across tests, instead
 # of repeatedly fitting the model
 method_cfa <- random_method_selection()
