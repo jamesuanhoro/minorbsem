@@ -53,7 +53,7 @@ mbsem_test_pp_shared <- function(print_out, method) {
   testthat::expect_true(grepl("PPP", print_out, ignore.case = TRUE))
 }
 
-dat_cov <- function(dat = "HS") {
+dat_cov <- function(dat = "HS", data_must = FALSE) {
   if (dat == "HS") {
     dat <- HS[, paste0("x", 1:9)] # nolint
   } else if (dat == "PD") {
@@ -66,6 +66,10 @@ dat_cov <- function(dat = "HS") {
   } else {
     input$cov <- cov(dat)
     input$nobs <- nrow(dat)
+  }
+
+  if (isTRUE(data_must)) {
+    input$data <- dat
   }
 
   return(input)
