@@ -121,6 +121,7 @@ minorbsem <- function(
       data = data,
       std.lv = TRUE,
       do.fit = FALSE,
+      likelihood = "wishart",
       se = "none",
       test = "none",
       orthogonal = orthogonal
@@ -131,6 +132,7 @@ minorbsem <- function(
       sample.cov = sample_cov, sample.nobs = sample_nobs,
       std.lv = TRUE,
       do.fit = FALSE,
+      likelihood = "wishart",
       se = "none",
       test = "none",
       orthogonal = orthogonal
