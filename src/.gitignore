@@ -3,4 +3,3 @@
 *.dll
 *.cc
 *.h
-RcppExports.*
