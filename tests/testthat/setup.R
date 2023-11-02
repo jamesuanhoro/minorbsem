@@ -106,7 +106,7 @@ expect_error(fit_cfa <- minorbsem(
 
 # Doing SEM here then sharing across tests
 method_sem <- random_method_selection()
-while (method_sem == method_cfa) {
+while (method_hash(method_cfa) >= 90 && method_hash(method_sem)) {
   method_sem <- random_method_selection()
 }
 model_sem_syntaxes <- c(
