@@ -9,6 +9,7 @@ create_data_list(
   method = "normal",
   simple_struc = TRUE,
   priors = NULL,
+  compute_ll = FALSE,
   model = NULL,
   orthogonal = NULL
 )
@@ -26,6 +27,12 @@ double Pareto priors.}
 
 \item{priors}{An object of \code{\link{mbsempriors-class}}.
 See \code{\link{new_mbsempriors}} for more information.}
+
+\item{compute_ll}{(Logical) If TRUE, compute log-likelihood,
+if FALSE, do not. This may be useful for cross-validation. This argument is
+ignored when:
+(i) the full dataset is not provided;
+(ii) the method is WB, use WB-cond instead.}
 
 \item{model}{A description of the user-specified model, lavaan syntax.}
 

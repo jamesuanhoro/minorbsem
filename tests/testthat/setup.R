@@ -7,7 +7,7 @@ mbsem_test_hist <- function(fit) {
   testthat::expect_true(inherits(gg, "ggplot"))
   # do all
   testthat::expect_error(
-    gg <- parameter_hist(fit, param_type = "all"),
+    gg <- parameter_hist(fit),
     NA
   )
   testthat::expect_true(inherits(gg, "ggplot"))
@@ -21,7 +21,7 @@ mbsem_test_trace <- function(fit) {
   )
   # do all
   testthat::expect_error(
-    gg <- parameter_trace(fit, param_type = "all"),
+    gg <- parameter_trace(fit),
     NA
   )
   testthat::expect_true(inherits(gg, "ggplot"))

@@ -4,6 +4,7 @@
 * Using only CmdStan via the instantiate package
 * Permits equality constraints and fixed parameters for loadings, residual covariances and error variances.
 * Code refactoring
+* Log-likelihood now requested with minorbsem call
 
 # minorbsem 0.2.4
 

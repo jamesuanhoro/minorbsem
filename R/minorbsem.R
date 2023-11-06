@@ -37,6 +37,11 @@
 #' show table of results. As an example, use FALSE for simulation studies.
 #' @param show_messages (Logical) If TRUE, show messages from Stan sampler,
 #' if FALSE, hide messages.
+#' @param compute_ll (Logical) If TRUE, compute log-likelihood,
+#' if FALSE, do not. This may be useful for cross-validation. This argument is
+#' ignored when:
+#' (i) the full dataset is not provided;
+#' (ii) the method is WB, use WB-cond instead.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
 #' CFAs assume standardized factors.
@@ -99,7 +104,8 @@ minorbsem <- function(
     ncores = max(parallel::detectCores() - 2, 1),
     priors = new_mbsempriors(),
     show = TRUE,
-    show_messages = TRUE) {
+    show_messages = TRUE,
+    compute_ll = FALSE) {
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -145,6 +151,7 @@ minorbsem <- function(
     method = method,
     simple_struc = simple_struc,
     priors = priors,
+    compute_ll = compute_ll,
     model = model,
     orthogonal = orthogonal
   )

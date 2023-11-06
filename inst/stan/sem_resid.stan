@@ -45,6 +45,9 @@ data {
   real<lower = 1> rc_par;  // residual corr parameter
   real<lower = 1> fc_par; // beta prior shape for phi
   int<lower = 1, upper = 100> method; // which method
+  int <lower = 0, upper = 1> ret_ll; // return log-likelihood?
+  int <lower = 0, upper = 1> has_data; // has data?
+  matrix[Np * has_data, Ni] Y; // data
 }
 transformed data {
   real sqrt_two = sqrt(2.0);
@@ -58,6 +61,7 @@ transformed data {
   int N_alpha = 0;
   real ln_det_S = log_determinant_spd(S);
   int N_Sigma = 1;
+  int Np_ll = Np * ret_ll * has_data;
 
   if (method >= 90) {
     Nisqd2 = 0;
@@ -236,7 +240,7 @@ generated quantities {
   real D_obs;
   real D_rep;
   real<lower = 0, upper = 1> ppp;
-  real<lower = 0> rms_src;  // RMSE of residuals
+  real<lower = 0> rms_src = 0.0;  // RMSE of residuals
   matrix[Ni, Nf] Load_mat_u = rep_matrix(0, Ni, Nf);
   matrix[Nf, Nf] Coef_mat_u = rep_matrix(0, Nf, Nf);
   matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
@@ -248,6 +252,8 @@ generated quantities {
   vector[Nce] res_cor = res_cor_01 * 2 - 1;
   vector[Nce] res_cov;
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
+  matrix[Ni, Ni] Omega;
+  vector[Np_ll] log_lik;
 
   if (method != 100) {
     rms_src = rms_src_p[1];
@@ -277,7 +283,6 @@ generated quantities {
 
   {
     real m;
-    matrix[Ni, Ni] Omega;
     matrix[Ni, Ni] Sigma_p;
     matrix[Ni, Ni] S_sim;
     matrix[Nf, Nf_corr] F_corr_pe = rep_matrix(0, Nf, Nf_corr);
@@ -355,6 +360,19 @@ generated quantities {
           pos += 1;
           Omega[i, j] += resids[pos] * rms_src_p[1] * sqrt(total_var[i] * total_var[j]);
           Omega[j, i] = Omega[i, j];
+        }
+      }
+    }
+
+    if (ret_ll == 1) {
+      vector[Ni] zero_vec = rep_vector(0.0, Ni);
+      if (method == 91 || method == 92) {
+        for (i in 1:Np_ll) {
+          log_lik[i] = multi_normal_lpdf(Y[i, ] | zero_vec, Sigma);
+        }
+      } else {
+        for (i in 1:Np_ll) {
+          log_lik[i] = multi_normal_lpdf(Y[i, ] | zero_vec, Omega);
         }
       }
     }

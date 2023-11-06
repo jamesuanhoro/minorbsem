@@ -10,23 +10,10 @@ methods::setMethod(
 methods::setMethod(
   "fitted",
   "mbsem",
-  function(object, include_residuals = TRUE) {
-    post_mat <- posterior::as_draws_matrix(object@stan_fit)
+  function(object) {
+    omega_mat <- posterior::as_draws_matrix(object@stan_fit$draws("Omega"))
 
-    m_vcov_mat <- create_mi_vcov_ll(
-      mat = post_mat,
-      data_list = object@data_list,
-      include_residuals = include_residuals,
-      return_ll = FALSE
-    )
-
-    m_vcov_mat <- t(m_vcov_mat)
-
-    n_iter <- nrow(m_vcov_mat)
-
-    m_vcov_mat <- matrix(m_vcov_mat, nrow = n_iter)
-
-    return(m_vcov_mat)
+    return(omega_mat)
   }
 )
 
@@ -34,7 +21,9 @@ methods::setMethod(
   "residuals",
   "mbsem",
   function(object, standardized = TRUE) {
-    if (object@data_list$method >= 90) {
+    data_list <- object@data_list
+
+    if (data_list$method >= 90) {
       warning(paste0(
         "There are no residuals to plot when ",
         "method == \"none\", \"WB\", \"WB-cond\", \"WW\"."
@@ -47,8 +36,8 @@ methods::setMethod(
     resid_mat <- matrix(resid_mat, nrow = n_iter)
 
     if (isFALSE(standardized)) {
-      k <- object@data_list$Ni
-      m_vcov_mat <- fitted(object, include_residuals = FALSE)
+      k <- data_list$Ni
+      m_vcov_mat <- fitted(object)
       resid_mat <- t(sapply(1:n_iter, function(i) {
         resids <- matrix(resid_mat[i, ], nrow = k)
         m_vcov <- matrix(m_vcov_mat[i, ], nrow = k)
@@ -64,8 +53,19 @@ methods::setMethod(
 methods::setMethod(
   "logLik",
   "mbsem",
-  function(object, include_residuals = FALSE) {
-    casewise_log_likelihood(object, include_residuals)
+  function(object) {
+    data_list <- object@data_list
+
+    if (data_list$ret_ll == 0) {
+      err_msg <- paste0(
+        "No log-likelihood returned. ",
+        "You must set \"compute_ll = TRUE\" when calling ?minorbsem. ",
+        "If you already did that, see the compute_ll parameter ",
+        "description under ?minorbsem."
+      )
+      stop(err_msg)
+    }
+    posterior::as_draws_matrix(object@stan_fit$draws("log_lik"))
   }
 )
 

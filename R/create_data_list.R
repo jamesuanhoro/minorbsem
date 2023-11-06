@@ -9,6 +9,7 @@ create_data_list <- function(
     method = "normal",
     simple_struc = TRUE,
     priors = NULL,
+    compute_ll = FALSE,
     model = NULL,
     orthogonal = NULL) {
   data_list <- list()
@@ -21,10 +22,6 @@ create_data_list <- function(
 
   # Set simple structure to 0 by default, change within CFA section
   data_list$complex_struc <- 0
-
-  # Has data?
-  data_list$Y <- lavaan_object@Data@X[[1]]
-  data_list$has_data <- ifelse(is.null(data_list$Y), 0, 1)
 
   methods::validObject(priors) # validate priors
   # Shape parameter for LKJ of interfactor corr
@@ -45,6 +42,21 @@ create_data_list <- function(
   data_list$Ni <- nrow(data_list$S)
   # Sample size
   data_list$Np <- lavaan_object@SampleStats@nobs[[1]]
+
+  # Has data?
+  data_list$Y <- lavaan_object@Data@X[[1]]
+  data_list$has_data <- 1
+  if (is.null(data_list$Y)) {
+    data_list$has_data <- 0
+    data_list$Y <- matrix(nrow = 0, ncol = data_list$Ni)
+  } else {
+    data_list$Y <- t(t(data_list$Y) - colMeans(data_list$Y))
+  }
+  # return ll?
+  # yes, when requested, data available and method != 90
+  # TODO: add a warning
+  data_list$ret_ll <- isTRUE(compute_ll) * data_list$has_data *
+    (data_list$method != 90)
 
   # Loading pattern, 0s and 1s
   data_list$loading_pattern <- (param_structure$lambda > 0) * 1

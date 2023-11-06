@@ -22,7 +22,8 @@ minorbsem(
   ncores = max(parallel::detectCores() - 2, 1),
   priors = new_mbsempriors(),
   show = TRUE,
-  show_messages = TRUE
+  show_messages = TRUE,
+  compute_ll = FALSE
 )
 }
 \arguments{
@@ -78,6 +79,12 @@ show table of results. As an example, use FALSE for simulation studies.}
 
 \item{show_messages}{(Logical) If TRUE, show messages from Stan sampler,
 if FALSE, hide messages.}
+
+\item{compute_ll}{(Logical) If TRUE, compute log-likelihood,
+if FALSE, do not. This may be useful for cross-validation. This argument is
+ignored when:
+(i) the full dataset is not provided;
+(ii) the method is WB, use WB-cond instead.}
 }
 \value{
 An object of \code{\link{mbsem-class}}
