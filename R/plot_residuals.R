@@ -15,7 +15,8 @@
 #' }
 #' @export
 plot_residuals <- function(object, type = "matrix") {
-  parameter <- `50%` <- `5%` <- `95%` <- lo <- hi <- item_2 <- item_1 <- NULL
+  parameter <- `50%` <- `5%` <- `95%` <- lo <- hi <- item_2_f <- item_1_f <-
+    NULL
 
   if (!type %in% c("range", "matrix")) {
     stop("type must be either \"range\" or \"matrix\"")
@@ -28,16 +29,30 @@ plot_residuals <- function(object, type = "matrix") {
     ))
   }
 
-  clean_post_df <- prepare_stan_plot_data(object)
-  clean_post_df <- clean_post_df[clean_post_df$param_class == "re", ]
-  clean_post_df$parameter <- gsub("re: ", "", clean_post_df$parameter)
-  plot_df <- stats::aggregate(
-    value ~ parameter, clean_post_df,
-    FUN = function(xs) {
-      stats::quantile(xs, c(.5, .25, .75, .05, .95, .025, .975))
-    }
+  ind_names <- rownames(object@data_list$loading_pattern)
+  plot_df <- posterior::summarise_draws(
+    object@stan_fit$draws("Resid"),
+    ~ stats::quantile(.x, c(.5, .25, .75, .05, .95, .025, .975), na.rm = TRUE)
   )
-  plot_df <- cbind(plot_df, plot_df$value)
+  plot_df$item_1 <- as.integer(gsub(
+    "Resid\\[|,\\d+\\]", "", plot_df$variable
+  ))
+  plot_df$item_2 <- as.integer(gsub(
+    "Resid\\[\\d+,|\\]", "", plot_df$variable
+  ))
+  plot_df <- plot_df[
+    plot_df$item_1 < plot_df$item_2, , drop = FALSE
+  ]
+  plot_df$item_1_f <- factor(
+    plot_df$item_1, seq_along(ind_names), ind_names
+  )
+  plot_df$item_2_f <- factor(
+    plot_df$item_2, rev(seq_along(ind_names)), rev(ind_names)
+  )
+  plot_df$parameter <- paste0(
+    as.character(plot_df$item_1_f), "~~", as.character(plot_df$item_2_f)
+  )
+
   plot_df$lo <- plot_df$`2.5%`
   plot_df$hi <- plot_df$`97.5%`
 
@@ -76,17 +91,7 @@ plot_residuals <- function(object, type = "matrix") {
       )
   } else if (type == "matrix") {
     # Create items, use factors to ensure correct ordering
-    plot_df$item_1 <- unlist(lapply(strsplit(plot_df$parameter, "~~"), "[[", 1))
-    item_list_1 <- unique(unlist(lapply(strsplit(
-      clean_post_df$parameter, "~~"
-    ), "[[", 1)))
-    plot_df$item_1 <- factor(plot_df$item_1, rev(item_list_1))
-    plot_df$item_2 <- unlist(lapply(strsplit(plot_df$parameter, "~~"), "[[", 2))
-    item_list_2 <- unique(unlist(lapply(strsplit(
-      clean_post_df$parameter, "~~"
-    ), "[[", 2)))
-    plot_df$item_2 <- factor(plot_df$item_2, item_list_2)
-    p <- ggplot2::ggplot(plot_df, ggplot2::aes(item_2, item_1)) +
+    p <- ggplot2::ggplot(plot_df, ggplot2::aes(item_1_f, item_2_f)) +
       ggplot2::geom_tile(
         ggplot2::aes(alpha = abs(`50%`)),
         fill = "#444444", col = 1
