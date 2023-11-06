@@ -307,11 +307,10 @@ get_param_plot_list <- function(data_list) {
   fac_names <- colnames(param_structure)
   ind_names <- rownames(param_structure)
 
-  rms_params <- c()
+  rms_params <- array(dim = 0)
   if (data_list$method < 90) {
     rms_params <- c("RMSE" = "rms_src")
   }
-  params <- rms_params
 
   coef_idxs <- matrix(nrow = 0, ncol = 2)
   rsq_idxs <- array(dim = 0)
@@ -338,6 +337,7 @@ get_param_plot_list <- function(data_list) {
     rsq_idxs <- which(rowSums(data_list$coef_pattern) >= 1)
   }
 
+  coef_params <- array(dim = 0)
   if (nrow(coef_idxs) > 0) {
     coef_params <- paste0("Coef_mat[", apply(
       coef_idxs, 1, paste0, collapse = ","
@@ -345,16 +345,16 @@ get_param_plot_list <- function(data_list) {
     names(coef_params) <- apply(coef_idxs, 1, function(x) {
       paste0(fac_names[x[2]], "~", fac_names[x[1]])
     })
-    params <- c(params, coef_params)
   }
 
+  rsq_params <- array(dim = 0)
   if (length(rsq_idxs) > 0) {
     rsq_params <- paste0("r_square[", rsq_idxs, "]")
     names(rsq_params) <- paste0("rsq:", fac_names[rsq_idxs])
-    params <- c(params, rsq_params)
   }
 
-  if (nrow(phi_idxs) > 0) {
+  phi_params <- array(dim = 0)
+  if (nrow(phi_idxs) > 0 && data_list$sem_indicator == 0) {
     phi_params <- paste0("phi_mat[", apply(
       phi_idxs, 1, paste0,
       collapse = ","
@@ -362,9 +362,14 @@ get_param_plot_list <- function(data_list) {
     names(phi_params) <- apply(phi_idxs, 1, function(x) {
       paste0(fac_names[x[1]], "~~", fac_names[x[2]])
     })
-    params <- c(params, phi_params)
+  } else if (nrow(phi_idxs) > 0 && data_list$sem_indicator == 1) {
+    phi_params <- paste0("phi_cor[", seq_len(data_list$Nf_corr), "]")
+    names(phi_params) <- apply(phi_idxs, 1, function(x) {
+      paste0(fac_names[x[1]], "~~", fac_names[x[2]])
+    })
   }
 
+  load_params <- array(dim = 0)
   if (nrow(load_idxs) > 0) {
     load_params <- paste0(
       "Load_mat[", apply(load_idxs, 1, paste0, collapse = ","), "]"
@@ -372,23 +377,27 @@ get_param_plot_list <- function(data_list) {
     names(load_params) <- apply(load_idxs, 1, function(x) {
       paste0(fac_names[x[2]], "=~", ind_names[x[1]])
     })
-    params <- c(params, load_params)
   }
 
+  rv_params <- array(dim = 0)
   if (length(rv_idxs) > 0) {
     rv_params <- paste0("res_var[", rv_idxs, "]")
     names(rv_params) <- paste0(ind_names[rv_idxs], "~~", ind_names[rv_idxs])
-    params <- c(params, rv_params)
   }
 
+  rc_params <- array(dim = 0)
   if (data_list$Nce > 0) {
     rc_idxs <- data_list$error_mat
     rc_params <- paste0("res_cor[", seq_len(data_list$Nce), "]")
     names(rc_params) <- apply(rc_idxs, 1, function(x) {
       paste0(ind_names[x[1]], "~~", ind_names[x[2]])
     })
-    params <- c(params, rc_params)
   }
+
+  params <- c(
+    rms_params, coef_params, rsq_params, phi_params, load_params,
+    rv_params, rc_params
+  )
 
   return(params)
 }
