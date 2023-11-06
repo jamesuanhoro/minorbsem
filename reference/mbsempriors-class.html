@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,10 +59,15 @@
 interfactor correlation matrix in confirmatory factor models.</p></dd>
 
 
+<dt><code>ml_par</code></dt>
+<dd><p>(real) The location parameter of the normal prior on loadings.</p></dd>
+
+
 <dt><code>sl_par</code></dt>
-<dd><p>(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-deviation of loadings.</p></dd>
+<dd><p>(positive real)
+For CFAs: The scale parameter of the normal prior on loadings.
+For SEMs: The scale parameter of the Student-t(df = 3, loc = 0)
+prior on the hyper-parameter of the standard deviation of loadings.</p></dd>
 
 
 <dt><code>fs_par</code></dt>
@@ -92,18 +97,9 @@ deviations of coefficients; SD(coefs) vary by outcome.</p></dd>
 prior on the inter-factor correlations in latent regression models.</p></dd>
 
 
-<dt><code>mln_par</code></dt>
-<dd><p>(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the
-log-scale meta-regression intercept.
-Relevant only for meta-analysis.</p></dd>
-
-
-<dt><code>mlb_par</code></dt>
-<dd><p>(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the
-log-scale meta-regression coefficients.
-Relevant only for meta-analysis.</p></dd>
+<dt><code>rm_par</code></dt>
+<dd><p>(positive real) The scale parameter of the normal prior
+on the tau / CRMR parameter.</p></dd>
 
 
 </dl></div>

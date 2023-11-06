@@ -16,7 +16,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,8 +61,7 @@
 
     <div class="section level2">
     <h2 id="objects-from-the-class">Objects from the Class<a class="anchor" aria-label="anchor" href="#objects-from-the-class"></a></h2>
-    <p>Objects can be created by calls to the <code><a href="minorbsem.html">minorbsem</a></code>
-  or <code><a href="meta_mbcfa.html">meta_mbcfa</a></code> function.</p>
+    <p>Objects can be created by calls to the <code><a href="minorbsem.html">minorbsem</a></code> function.</p>
     </div>
     <div class="section level2">
     <h2 id="slots">Slots<a class="anchor" aria-label="anchor" href="#slots"></a></h2>
@@ -79,7 +78,7 @@
 <dd><p>Priors used to fit the model</p></dd>
 
     <dt><code>stan_fit</code>:</dt>
-<dd><p>Fitted RStan or CmdStan model</p></dd>
+<dd><p>Fitted CmdStan model</p></dd>
 
     <dt><code>version</code>:</dt>
 <dd><p>Package version used to fit model</p></dd>
@@ -89,20 +88,13 @@
     <div class="section level2">
     <h2 id="methods">Methods<a class="anchor" aria-label="anchor" href="#methods"></a></h2>
     <p></p><dl><dt>logLik</dt>
-<dd><p><code>signature(object = "mbsem", include_residuals = FALSE)</code>:
-      Returns the casewise log-likelihood as long as the full data is available.
-      <code>include_residuals = FALSE</code> ensures the minor factor residual
-      covariances are not included when computing the log-likelihood.
-      See <code><a href="casewise_log_likelihood.html">casewise_log_likelihood</a></code> for more details.</p></dd>
+<dd><p><code>signature(object = "mbsem")</code>:
+      Returns the casewise log-likelihood as long as the full data is available.</p></dd>
 
     <dt>fitted</dt>
-<dd><p><code>signature(object = "mbsem", include_residuals = TRUE)</code>:
+<dd><p><code>signature(object = "mbsem")</code>:
       Returns the posterior distribution of the model-implied covariance matrix
-      as a #(iterations) by #(items ^ 2) matrix.
-      If <code>include_residuals = TRUE</code>, includes residual covariances induced by
-      minor factors.
-      If <code>include_residuals = FALSE</code>, excludes residual covariances induced by
-      minor factors.</p></dd>
+      as a #(iterations) by #(items ^ 2) matrix.</p></dd>
 
     <dt>residuals</dt>
 <dd><p><code>signature(object = "mbsem", standardized = TRUE)</code>:
@@ -121,7 +113,7 @@
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="parameter_hist.html">parameter_hist</a></code>, <code><a href="parameter_trace.html">parameter_trace</a></code>,
-<code><a href="casewise_log_likelihood.html">casewise_log_likelihood</a></code>, <code><a href="plot_residuals.html">plot_residuals</a></code>
+<code><a href="plot_residuals.html">plot_residuals</a></code>,
 <code><a href="pretty_print_summary.html">pretty_print_summary</a></code></p></div>
     </div>
 

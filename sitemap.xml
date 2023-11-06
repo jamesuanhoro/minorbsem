@@ -19,13 +19,7 @@
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/HS.html</loc>
   </url>
   <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/Norton13.html</loc>
-  </url>
-  <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/PD.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/casewise_log_likelihood.html</loc>
   </url>
   <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/clean_up_stan_fit.html</loc>
@@ -37,40 +31,19 @@
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/create_data_list.html</loc>
   </url>
   <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/create_data_list_meta.html</loc>
-  </url>
-  <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/create_major_params.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/create_mi_vcov_ll.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/create_single_cfa_vcov_row.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/create_single_sem_vcov_row.html</loc>
   </url>
   <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-onAttach.html</loc>
   </url>
   <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/fill_in_missing_covs.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/include_residuals.html</loc>
+    <loc>https://jamesuanhoro.github.io/minorbsem/reference/get_param_plot_list.html</loc>
   </url>
   <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/index.html</loc>
   </url>
   <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/init_minorbsem.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/issp89.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/mb_ldmvn.html</loc>
   </url>
   <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/mbsem-class.html</loc>
@@ -80,9 +53,6 @@
   </url>
   <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/mbsempriors-class.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/meta_mbcfa.html</loc>
   </url>
   <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/method_hash.html</loc>
@@ -112,12 +82,6 @@
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/plot_residuals.html</loc>
   </url>
   <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/prepare_missing_data_list.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/prepare_stan_plot_data.html</loc>
-  </url>
-  <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/pretty_print_summary.html</loc>
   </url>
   <url>
@@ -130,12 +94,6 @@
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/target_fitter.html</loc>
   </url>
   <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/type_hash.html</loc>
-  </url>
-  <url>
     <loc>https://jamesuanhoro.github.io/minorbsem/reference/user_input_check.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/validate_param_type.html</loc>
   </url>
 </urlset>

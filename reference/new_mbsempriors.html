@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,14 +53,14 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">new_mbsempriors</span><span class="op">(</span></span>
 <span>  lkj_shape <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  ml_par <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  sl_par <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  fs_par <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  rs_par <span class="op">=</span> <span class="fl">2.5</span>,</span>
+<span>  rs_par <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  rc_par <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  sc_par <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  fc_par <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  mln_par <span class="op">=</span> <span class="fl">2.5</span>,</span>
-<span>  mlb_par <span class="op">=</span> <span class="fl">1</span></span>
+<span>  rm_par <span class="op">=</span> <span class="fl">0.15</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -71,10 +71,15 @@
 interfactor correlation matrix in confirmatory factor models.</p></dd>
 
 
+<dt>ml_par</dt>
+<dd><p>(real) The location parameter of the normal prior on loadings.</p></dd>
+
+
 <dt>sl_par</dt>
-<dd><p>(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-deviation of loadings.</p></dd>
+<dd><p>(positive real)
+For CFAs: The scale parameter of the normal prior on loadings.
+For SEMs: The scale parameter of the Student-t(df = 3, loc = 0)
+prior on the hyper-parameter of the standard deviation of loadings.</p></dd>
 
 
 <dt>fs_par</dt>
@@ -104,18 +109,9 @@ deviations of coefficients; SD(coefs) vary by outcome.</p></dd>
 prior on the inter-factor correlations in latent regression models.</p></dd>
 
 
-<dt>mln_par</dt>
-<dd><p>(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the
-log-scale meta-regression intercept.
-Relevant only for meta-analysis.</p></dd>
-
-
-<dt>mlb_par</dt>
-<dd><p>(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the
-log-scale meta-regression coefficients.
-Relevant only for meta-analysis.</p></dd>
+<dt>rm_par</dt>
+<dd><p>(positive real) The scale parameter of the normal prior
+on the tau / CRMR parameter.</p></dd>
 
 </dl></div>
     <div class="section level2">
