@@ -77,15 +77,25 @@ models.
 
 ## Installation
 
-Install `minorbsem`:
+`minorbsem` is hosted on GitHub, so we need the `remotes` package to
+install it. We also need to install the `cmdstanr` package and CmdStan
+in order to use Stan.
+
+Instructions:
 
 ``` r
+install.packages("remotes")  # install remotes
+
+# next install cmdstanr and CmdStan:
 install.packages(
-  'minorbsem',
-  repos = c(
-    'https://jamesuanhoro.r-universe.dev', 'https://cloud.r-project.org'
-  )
+  "cmdstanr",
+  repos = c("https://mc-stan.org/r-packages/", getOption("repos"))
 )
+cmdstanr::check_cmdstan_toolchain(fix = TRUE)
+cmdstanr::install_cmdstan()
+
+# Then finally minorbsem:
+remotes::install_github("jamesuanhoro/minorbsem")
 ```
 
 ## A reasonably complete demonstration
