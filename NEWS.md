@@ -3,6 +3,7 @@
 * Eliminated the meta-analysis component, see [bayesianmasem](https://github.com/jamesuanhoro/bayesianmasem/) package
 * Using only CmdStan via the instantiate package
 * Permits equality constraints and fixed parameters for loadings, residual covariances and error variances.
+* Code refactoring
 
 # minorbsem 0.2.4
 

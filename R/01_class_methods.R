@@ -41,10 +41,7 @@ methods::setMethod(
       ))
     }
 
-    resid_mat <- posterior::subset_draws(
-      posterior::as_draws_matrix(object@stan_fit),
-      variable = "Resid"
-    )
+    resid_mat <- posterior::as_draws_matrix(object@stan_fit$draws("Resid"))
 
     n_iter <- nrow(resid_mat)
     resid_mat <- matrix(resid_mat, nrow = n_iter)

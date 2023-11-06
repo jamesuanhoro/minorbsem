@@ -41,7 +41,8 @@ plot_residuals <- function(object, type = "matrix") {
     "Resid\\[\\d+,|\\]", "", plot_df$variable
   ))
   plot_df <- plot_df[
-    plot_df$item_1 < plot_df$item_2, , drop = FALSE
+    plot_df$item_1 < plot_df$item_2, ,
+    drop = FALSE
   ]
   plot_df$item_1_f <- factor(
     plot_df$item_1, seq_along(ind_names), ind_names

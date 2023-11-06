@@ -340,7 +340,8 @@ get_param_plot_list <- function(data_list) {
   coef_params <- array(dim = 0)
   if (nrow(coef_idxs) > 0) {
     coef_params <- paste0("Coef_mat[", apply(
-      coef_idxs, 1, paste0, collapse = ","
+      coef_idxs, 1, paste0,
+      collapse = ","
     ), "]")
     names(coef_params) <- apply(coef_idxs, 1, function(x) {
       paste0(fac_names[x[2]], "~", fac_names[x[1]])
