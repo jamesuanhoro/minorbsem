@@ -90,11 +90,6 @@ user_input_check <- function(
 
   if (grepl("method", type)) {
     accepted_methods <- method_hash()
-    if (type == "method-meta") {
-      accepted_methods <- accepted_methods[
-        which(!grepl("WB|WW", accepted_methods))
-      ]
-    }
     if (!tolower(object_1) %in% tolower(accepted_methods)) {
       err_msg <- paste0(
         "method must be one of the following: ",
@@ -114,63 +109,6 @@ user_input_check <- function(
     }
   }
 
-  if (type == "data-meta") {
-    if (
-      (is.null(object_1) || is.null(object_2)) &&
-        (is.null(object_3) || is.null(object_4))
-    ) {
-      stop(paste0(
-        "User must provide either:\n\t",
-        "(i) a dataset and group variable or\n\t",
-        "(ii) sample covariance and sample size"
-      ))
-    }
-  }
-
-  if (type == "type-meta") {
-    accepted_types <- type_hash()
-    err_msg <- paste0(
-      "type must be one of the following: ",
-      paste0(
-        "\"", accepted_types, "\"",
-        collapse = ", "
-      )
-    )
-    if (is.null(object_1)) stop(err_msg)
-    if (!tolower(object_1) %in% accepted_types) stop(err_msg)
-  }
-
-  if (type == "meta-cluster") {
-    accepted_types <- type_hash()
-    if (object_1 == "dep") {
-      if (object_2 != "cmdstan") {
-        stop("target must be \"cmdstan\" when type = \"dep\"")
-      }
-      if (is.null(object_3)) {
-        stop("supply cluster information when type = \"dep\"")
-      }
-    }
-  }
-
-  if (type == "target") {
-    err_msg <- paste0(
-      "type must be either: \"rstan\" or \"cmdstan\""
-    )
-    if (is.null(object_1)) stop(err_msg)
-    if (!object_1 %in% c("rstan", "cmdstan")) stop(err_msg)
-    if (object_1 == "cmdstan") {
-      # CmdStan path must be set
-      tryCatch(cmdstanr::cmdstan_path(),
-        error = function(e) {
-          stop(paste0(
-            "Error: CmdStan path has not been set yet.", " ",
-            "See ?cmdstanr::set_cmdstan_path()."
-          ))
-        }
-      )
-    }
-  }
-
   return(NULL)
 }
 
@@ -182,7 +120,6 @@ user_input_check <- function(
 #' @returns Fitted Stan model
 #' @keywords internal
 target_fitter <- function(
-    target,
     data_list,
     seed,
     warmup,
@@ -193,158 +130,57 @@ target_fitter <- function(
     chains,
     ncores,
     show_messages) {
-  init_resid <- "random"
-  if (data_list$method < 90 || target == "cmdstan") {
-    init_resid <- function() {
-      list(
-        resids = rep(1e-3, (data_list$Ni^2 - data_list$Ni) / 2)
-      )
-    }
-  }
-
-  if (target == "rstan") {
-    if (data_list$meta == 1) {
-      if (data_list$sem_indicator == 0) {
-        mod_resid <- stanmodels$meta_cfa_resid_rs
-      }
-    } else {
-      if (data_list$sem_indicator == 0) {
-        mod_resid <- stanmodels$cfa_resid_rs
-      } else if (data_list$sem_indicator == 1) {
-        mod_resid <- stanmodels$sem_resid_rs
-      }
-    }
-
-    suppressWarnings(stan_fit <- rstan::sampling(
-      mod_resid,
-      data = data_list,
-      chains = chains,
-      cores = ncores,
-      seed = seed,
-      warmup = warmup,
-      iter = warmup + sampling,
-      refresh = refresh,
-      init = init_resid,
-      control = list(
-        adapt_delta = adapt_delta,
-        max_treedepth = max_treedepth
+  init_resid <- function() {
+    list(
+      rms_src_p = array(.025, (data_list$method != 100) * 1),
+      resids = array(
+        0,
+        (data_list$method < 90) * (data_list$Ni^2 - data_list$Ni) / 2
       ),
-      show_messages = show_messages
-    ))
-    message(rstan::check_hmc_diagnostics(stan_fit))
-  } else if (target == "cmdstan") {
-    message(paste0(
-      "Compiling Stan code ...\n",
-      "This takes a while the first time you run a CFA ",
-      "and the first time you run an SEM"
-    ))
-
-    if (data_list$meta == 1) {
-      if (data_list$sem_indicator == 0) {
-        mod_resid <- cmdstanr::cmdstan_model(
-          system.file("cmdstan/meta_cfa_resid.stan", package = "minorbsem"),
-          stanc_options = list("O1")
+      loadings_complex = array(
+        0,
+        data_list$complex_struc * sum(
+          data_list$loading_pattern == 0 & data_list$loading_fixed == -999
         )
-      }
-    } else {
-      if (data_list$sem_indicator == 0) {
-        mod_resid <- cmdstanr::cmdstan_model(
-          system.file("cmdstan/cfa_resid.stan", package = "minorbsem"),
-          stanc_options = list("O1")
-        )
-      } else if (data_list$sem_indicator == 1) {
-        mod_resid <- cmdstanr::cmdstan_model(
-          system.file("cmdstan/sem_resid.stan", package = "minorbsem"),
-          stanc_options = list("O1")
-        )
-      }
-    }
-
-    message("Fitting Stan model ...")
-
-    stan_fit <- mod_resid$sample(
-      data = data_list,
-      seed = seed,
-      iter_warmup = warmup,
-      iter_sampling = sampling,
-      refresh = refresh,
-      init = init_resid,
-      adapt_delta = adapt_delta,
-      max_treedepth = max_treedepth,
-      chains = chains,
-      parallel_chains = ncores,
-      show_messages = show_messages
+      )
     )
   }
+
+  if (data_list$sem_indicator == 0) {
+    mod_resid <- instantiate::stan_package_model(
+      name = "cfa_resid", package = "minorbsem"
+    )
+  } else if (data_list$sem_indicator == 1) {
+    mod_resid <- instantiate::stan_package_model(
+      name = "sem_resid", package = "minorbsem"
+    )
+  }
+
+  message("Fitting Stan model ...")
+
+  stan_fit <- mod_resid$sample(
+    data = data_list,
+    seed = seed,
+    iter_warmup = warmup,
+    iter_sampling = sampling,
+    refresh = refresh,
+    init = init_resid,
+    adapt_delta = adapt_delta,
+    max_treedepth = max_treedepth,
+    chains = chains,
+    parallel_chains = ncores,
+    show_messages = show_messages
+  )
 
   return(stan_fit)
 }
 
-#' Fill in missing values in sample covs function
-#' @inheritParams meta_mbcfa
-#' @returns list of filled in sample covs
-#' @keywords internal
-fill_in_missing_covs <- function(sample_cov) {
-  sample_cov <- lapply(seq_along(sample_cov), function(i) {
-    s_mat <- sample_cov[[i]]
-    diag(s_mat)[is.na(diag(s_mat))] <- 1
-    s_mat[is.na(s_mat)] <- 999
-    s_mat
-  })
-  return(sample_cov)
-}
-
-#' Create missing data matrices function
-#' @inheritParams create_data_list_meta
-#' @returns list of missing data matrices
-#' @keywords internal
-prepare_missing_data_list <- function(data_list = NULL) {
-  data_list$S <- fill_in_missing_covs(data_list$S)
-
-  # Indicators of whether a variable is present by study
-  data_list$valid_var <- do.call(cbind, lapply(data_list$S, function(s_mat) {
-    apply(s_mat, 1, function(s) 0 + !(sum((s == 999)) == data_list$Ni - 1))
-  }))
-
-  # Count of missing covariance/correlation elements
-  data_list$Nmiss <- sum(unlist(lapply(
-    seq_len(length(data_list$S)), function(i) {
-      idx <- which(data_list$valid_var[, i] == 1)
-      s_mat <- data_list$S[[i]][idx, idx]
-      sum(s_mat == 999) / 2
-    }
-  )))
-
-  # Indicator of whether a valid variable has any missing covariance
-  # elements by study
-  data_list$miss_ind <- matrix(unlist(lapply(
-    seq_len(length(data_list$S)), function(i) {
-      s_mat <- data_list$S[[i]]
-      idx <- which(data_list$valid_var[, i] == 1)
-      res <- rep(0, data_list$Ni)
-      res[idx] <- apply(s_mat[idx, idx], 2, function(s) any(s == 999) + 0)
-      res
-    }
-  )), data_list$Ni)
-
-  # Number of items that have missing covariance elements
-  data_list$Nitem_miss <- sum(data_list$miss_ind)
-
-  return(data_list)
-}
-
 #' Select random method and random case function
 #'
-#' @param meta IF TRUE, assume meta-analysis
 #' @returns randomly selected method and case
 #' @keywords internal
-random_method_selection <- function(meta = FALSE) {
+random_method_selection <- function() {
   accepted_methods <- method_hash()
-  if (isTRUE(meta)) {
-    accepted_methods <- accepted_methods[
-      which(!grepl("WB|WW", accepted_methods))
-    ]
-  }
 
   method <- sample(accepted_methods, 1)
 
@@ -402,46 +238,6 @@ method_hash <- function(search_term = NULL) {
   return(converted_value)
 }
 
-#' Type-meta hash function
-#' @description A function that swaps type from string to integer
-#' and vice-versa
-#' @param elaborate (LOGICAL) If TRUE, print full names, otherwise
-#' print abbreviations
-#' @inheritParams converter_helper
-#' @returns If search_term is integer, returns string and vice-versa
-#' @keywords internal
-type_hash <- function(search_term = NULL, elaborate = FALSE) {
-  list_types <- c(
-    "fe" = 1,
-    "re" = 2,
-    "dep" = 3
-  )
-  if (isTRUE(elaborate)) {
-    # Only use when feeding integers
-    list_types <- c(
-      "Fixed-effects" = 1,
-      "Random-effects" = 2,
-      "Dependent-samples" = 3
-    )
-  }
-  converted_value <- converter_helper(search_term, list_types)
-  return(converted_value)
-}
-
-#' Multivariate normal density function
-#'
-#' @param x_mat the data matrix
-#' @param mu mean vector
-#' @param s_mat covariance matrix
-#' @returns sum of casewise log-likelihood
-#' @keywords internal
-mb_ldmvn <- function(x_mat, mu, s_mat) {
-  k <- nrow(x_mat)
-  rooti <- backsolve(chol(s_mat), diag(k))
-  quads <- colSums((crossprod(rooti, x_mat - mu))^2)
-  return(-(k / 2) * log(2 * pi) + sum(log(diag(rooti))) - .5 * quads)
-}
-
 #' Posterior summary helper function
 #' @description A function that slightly modifies the default
 #' summary function in posterior package
@@ -453,10 +249,7 @@ mb_ldmvn <- function(x_mat, mu, s_mat) {
 #' @returns Summary of posterior draws
 #' @keywords internal
 mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
-  draws <- posterior::subset_draws(
-    posterior::as_draws(stan_fit),
-    variable = variable
-  )
+  draws <- posterior::as_draws(stan_fit$draws(variable))
 
   lo_lim <- (1.0 - interval) / 2.0
   up_lim <- 1.0 - lo_lim # nolint
@@ -486,6 +279,111 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
   }
 
   return(result)
+}
+
+#' Create parameter list for plotting
+#' @param data_list Data list object passed to Stan
+#' @returns Name of varying model parameters
+#' @keywords internal
+get_param_plot_list <- function(data_list) {
+  param_structure <- data_list$loading_pattern
+  fac_names <- colnames(param_structure)
+  ind_names <- rownames(param_structure)
+
+  rms_params <- array(dim = 0)
+  if (data_list$method < 90) {
+    rms_params <- c("RMSE" = "rms_src")
+  }
+
+  coef_idxs <- matrix(nrow = 0, ncol = 2)
+  rsq_idxs <- array(dim = 0)
+  if (data_list$sem_indicator == 0) {
+    phi_idxs <- which(
+      lower.tri(data_list$corr_mask) & data_list$corr_mask == 1,
+      arr.ind = TRUE
+    )
+    load_idxs <- which(
+      data_list$loading_pattern >=
+        ifelse(data_list$complex_struc == 1, -999, 1) &
+        data_list$loading_fixed == -999,
+      arr.ind = TRUE
+    )
+    rv_idxs <- which(data_list$res_var_pattern != 0)
+  } else if (data_list$sem_indicator == 1) {
+    phi_idxs <- data_list$F_corr_mat
+    load_idxs <- which(data_list$loading_pattern >= 1, arr.ind = TRUE)
+    rv_idxs <- seq_len(data_list$Ni)
+    coef_idxs <- which(
+      data_list$coef_pattern == 1,
+      arr.ind = TRUE
+    )
+    rsq_idxs <- which(rowSums(data_list$coef_pattern) >= 1)
+  }
+
+  coef_params <- array(dim = 0)
+  if (nrow(coef_idxs) > 0) {
+    coef_params <- paste0("Coef_mat[", apply(
+      coef_idxs, 1, paste0,
+      collapse = ","
+    ), "]")
+    names(coef_params) <- apply(coef_idxs, 1, function(x) {
+      paste0(fac_names[x[2]], "~", fac_names[x[1]])
+    })
+  }
+
+  rsq_params <- array(dim = 0)
+  if (length(rsq_idxs) > 0) {
+    rsq_params <- paste0("r_square[", rsq_idxs, "]")
+    names(rsq_params) <- paste0("rsq:", fac_names[rsq_idxs])
+  }
+
+  phi_params <- array(dim = 0)
+  if (nrow(phi_idxs) > 0 && data_list$sem_indicator == 0) {
+    phi_params <- paste0("phi_mat[", apply(
+      phi_idxs, 1, paste0,
+      collapse = ","
+    ), "]")
+    names(phi_params) <- apply(phi_idxs, 1, function(x) {
+      paste0(fac_names[x[1]], "~~", fac_names[x[2]])
+    })
+  } else if (nrow(phi_idxs) > 0 && data_list$sem_indicator == 1) {
+    phi_params <- paste0("phi_cor[", seq_len(data_list$Nf_corr), "]")
+    names(phi_params) <- apply(phi_idxs, 1, function(x) {
+      paste0(fac_names[x[1]], "~~", fac_names[x[2]])
+    })
+  }
+
+  load_params <- array(dim = 0)
+  if (nrow(load_idxs) > 0) {
+    load_params <- paste0(
+      "Load_mat[", apply(load_idxs, 1, paste0, collapse = ","), "]"
+    )
+    names(load_params) <- apply(load_idxs, 1, function(x) {
+      paste0(fac_names[x[2]], "=~", ind_names[x[1]])
+    })
+  }
+
+  rv_params <- array(dim = 0)
+  if (length(rv_idxs) > 0) {
+    rv_params <- paste0("res_var[", rv_idxs, "]")
+    names(rv_params) <- paste0(ind_names[rv_idxs], "~~", ind_names[rv_idxs])
+  }
+
+  rc_params <- array(dim = 0)
+  if (data_list$Nce > 0) {
+    rc_idxs <- data_list$error_mat
+    rc_params <- paste0("res_cor[", seq_len(data_list$Nce), "]")
+    names(rc_params) <- apply(rc_idxs, 1, function(x) {
+      paste0(ind_names[x[1]], "~~", ind_names[x[2]])
+    })
+  }
+
+  params <- c(
+    rms_params, coef_params, rsq_params, phi_params, load_params,
+    rv_params, rc_params
+  )
+
+  return(params)
 }
 
 #' Modify major parameters table helper function
@@ -531,19 +429,6 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
 
   params <- c("ppp", "rms_src")
   from_list <- c("PPP", "RMSE")
-  if (data_list$meta == 1) {
-    params[1] <- "rmsea_mn"
-    from_list[1] <- "RMSEA"
-  }
-
-  rmsea_params <- c("rmsea_be", "rmsea_wi", "prop_be")
-  rmsea_names <- c(
-    paste0("RMSEA (", c("between", "within"), ")"),
-    "% dispersion between"
-  )
-  if (data_list$meta == 1 && data_list$type == 3) {
-    params <- c(params, rmsea_params)
-  }
 
   load_idxs <- paste0("Load_mat[", apply(which(
     data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
@@ -581,12 +466,19 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   )
 
   # Dump duplicates CFA inter-factor correlations here
-  duplicates <- duplicated(
-    major_parameters[, c("mean", "median", "sd", "mad", "rhat", "ess_bulk")]
-  )
-  major_parameters <- major_parameters[
-    !(duplicates & grepl("phi\\_mat", major_parameters$variable)),
-  ]
+  phi_rows_idx <- grepl("phi\\_mat", major_parameters$variable)
+  if (sum(phi_rows_idx) > 0) {
+    phi_rows <- major_parameters[phi_rows_idx, , drop = FALSE]
+    phi_rows$ind_1 <- as.integer(gsub(
+      "phi\\_mat\\[|,\\d+\\]", "", phi_rows$variable
+    ))
+    phi_rows$ind_2 <- as.integer(gsub(
+      "phi\\_mat\\[\\d+,|\\]", "", phi_rows$variable
+    ))
+    dump_rows <- phi_rows$ind_1 >= phi_rows$ind_2
+    phi_rows_idx[phi_rows_idx == TRUE] <- dump_rows
+    major_parameters <- major_parameters[!phi_rows_idx, , drop = FALSE]
+  }
 
   mid_cols <- which(
     colnames(major_parameters) %in% c("median", "sd", "mad") |
@@ -608,13 +500,6 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     which(major_parameters$variable == "rms_src"),
     group = "Goodness of fit",
     from = from_list[2]
-  )
-
-  idxs <- which(major_parameters$variable %in% rmsea_params)
-  major_parameters <- modify_major_params(
-    major_parameters, idxs,
-    group = "Dispersion between and within clusters", op = "",
-    from = rmsea_names
   )
 
   idxs <- which(grepl("Load\\_mat", major_parameters$variable))
@@ -720,24 +605,6 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   return(major_parameters)
 }
 
-#' Plotting param_type validation
-#'
-#' @param param_type param_type for plotting
-#' @returns NULL
-#' @keywords internal
-validate_param_type <- function(param_type) {
-  if (any(
-    !param_type %in% c("all", "rm", "lo", "ev", "rc", "fc", "rsq", "co", "re")
-  ) ||
-    is.null(param_type)) {
-    stop(paste0(
-      "All param_type options must be in ",
-      "c(\"all\", \"rm\", \"lo\", \"ev\", \"rc\", \"fc\", ",
-      "\"rsq\", \"co\", \"re\")"
-    ))
-  }
-}
-
 #' Rename columns of posterior data.frame prior by parameter type
 #'
 #' @param df Posterior data.frame
@@ -779,268 +646,4 @@ rename_post_df_columns <- function(
   colnames(df)[1:len_vars] <- col_names
 
   return(df)
-}
-
-#' Include minor factor residuals in model implied covariance matrix,
-#' helper function
-#'
-#' @param omega_mat model implied covariance matrix to be updated
-#' @param params vector of posterior samples from a single iteration
-#' @param data_list Data list object passed to Stan
-#' @returns A single model-impled covariance matrix
-#' @keywords internal
-include_residuals <- function(omega_mat, params, data_list) {
-  if (data_list$method >= 90) {
-    # there is no residual to include for this method
-    return(omega_mat)
-  }
-  tv <- diag(omega_mat)
-  n_re <- data_list$Ni * (data_list$Ni - 1) / 2
-  re <- params[paste0("resids[", 1:n_re, "]")]
-  rm <- params["rms_src_p[1]"]
-  pos <- 0
-  for (i in 2:data_list$Ni) {
-    for (j in 1:(i - 1)) {
-      pos <- pos + 1
-      omega_mat[i, j] <- omega_mat[i, j] + re[pos] * rm * sqrt(tv[i] * tv[j])
-      omega_mat[j, i] <- omega_mat[i, j]
-    }
-  }
-  return(omega_mat)
-}
-
-#' Create model implied covariance matrix from CFA, helper function
-#'
-#' @param params vector of posterior samples from a single iteration
-#' @param data_list Data list object passed to Stan
-#' @param include_residuals (LOGICAL)
-#' TRUE: Include minor factor residual covariances
-#' in model-implied covariance matrix;
-#' FALSE: Exclude them. If TRUE, different
-#' models fit to the data will hardly be distinguishable.
-#' @param all_lo loading indexes
-#' @param all_ev error variance indexes
-#' @param all_ph factor correlation indexes
-#' @returns A single model-impled covariance matrix
-#' @keywords internal
-create_single_cfa_vcov_row <- function(
-    params,
-    data_list,
-    include_residuals,
-    all_lo,
-    all_ev,
-    all_ph) {
-  lo_mat <- matrix(params[all_lo], nrow = data_list$Ni, ncol = data_list$Nf)
-  ev <- params[all_ev]
-
-  ph_mat <- diag(data_list$Nf)
-  if (data_list$corr_fac == 1) {
-    ph_mat <- matrix(params[all_ph], nrow = data_list$Nf, ncol = data_list$Nf)
-  }
-
-  lpl_mat <- lo_mat %*% ph_mat %*% t(lo_mat)
-
-  lpe_mat <- matrix(0, nrow = data_list$Ni, ncol = data_list$Nce)
-  if (ncol(lpe_mat) > 0) {
-    rc <- params[paste0("res_cor[", 1:data_list$Nce, "]")]
-    for (i in 1:data_list$Nce) {
-      lpe_mat[data_list$error_mat[i, 1], i] <- sqrt(
-        abs(rc[i]) * ev[data_list$error_mat[i, 1]]
-      )
-      lpe_mat[data_list$error_mat[i, 2], i] <- sign(rc[i]) * sqrt(
-        abs(rc[i]) * ev[data_list$error_mat[i, 2]]
-      )
-    }
-  }
-  lpe_sq_mat <- tcrossprod(lpe_mat)
-
-  d_ast <- ev - diag(lpe_sq_mat)
-
-  omega_mat <- lpl_mat + lpe_sq_mat + diag(d_ast)
-
-  if (include_residuals == TRUE) {
-    omega_mat <- include_residuals(omega_mat, params, data_list)
-  }
-
-  return(omega_mat)
-}
-
-#' Create model implied covariance matrix from SEM, helper function
-#'
-#' @param params vector of posterior samples from a single iteration
-#' @param data_list Data list object passed to Stan
-#' @param include_residuals (LOGICAL)
-#' TRUE: Include minor factor residual covariances
-#' in model-implied covariance matrix; FALSE: Exclude them. If TRUE, different
-#' models fit to the data will hardly be distinguishable.
-#' @param all_lo loading indexes
-#' @param all_ev error variance indexes
-#' @param all_ph factor correlation indexes
-#' @param all_co latent coefficient indexes
-#' @param all_fv factor variance indexes
-#' @returns A single model-impled covariance matrix
-#' @keywords internal
-create_single_sem_vcov_row <- function(
-    params,
-    data_list,
-    include_residuals,
-    all_lo,
-    all_ev,
-    all_ph,
-    all_co,
-    all_fv) {
-  lo_mat <- matrix(params[all_lo], nrow = data_list$Ni, ncol = data_list$Nf)
-  co_mat <- matrix(params[all_co], nrow = data_list$Nf, ncol = data_list$Nf)
-  ev <- params[all_ev]
-  fv <- params[all_fv]
-
-  lombi_mat <- lo_mat %*% solve(diag(data_list$Nf) - co_mat)
-
-  fpe_mat <- matrix(0, nrow = data_list$Nf, ncol = data_list$Nf_corr)
-  if (ncol(fpe_mat) > 0) {
-    fc <- params[all_ph]
-    for (i in 1:data_list$Nf_corr) {
-      fpe_mat[data_list$F_corr_mat[i, 1], i] <- sqrt(
-        abs(fc[i]) * ev[data_list$F_corr_mat[i, 1]]
-      )
-      fpe_mat[data_list$F_corr_mat[i, 2], i] <- sign(fc[i]) * sqrt(
-        abs(fc[i]) * ev[data_list$F_corr_mat[i, 2]]
-      )
-    }
-  }
-  fpe_sq_mat <- tcrossprod(fpe_mat)
-  fvr <- fv - diag(fpe_sq_mat)
-
-  lpe_mat <- matrix(0, nrow = data_list$Ni, ncol = data_list$Nce)
-  if (ncol(lpe_mat) > 0) {
-    rc <- params[paste0("res_cor[", 1:data_list$Nce, "]")]
-    for (i in 1:data_list$Nce) {
-      lpe_mat[data_list$error_mat[i, 1], i] <- sqrt(
-        abs(rc[i]) * ev[data_list$error_mat[i, 1]]
-      )
-      lpe_mat[data_list$error_mat[i, 2], i] <- sign(rc[i]) * sqrt(
-        abs(rc[i]) * ev[data_list$error_mat[i, 2]]
-      )
-    }
-  }
-  lpe_sq_mat <- tcrossprod(lpe_mat)
-
-  d_ast <- ev - diag(lpe_sq_mat)
-
-  omega_mat <- lombi_mat %*% (
-    fpe_sq_mat + diag(fvr)
-  ) %*% t(lombi_mat) + lpe_sq_mat + diag(d_ast)
-
-  if (include_residuals == TRUE) {
-    omega_mat <- include_residuals(omega_mat, params, data_list)
-  }
-
-  return(omega_mat)
-}
-
-#' Create model implied cov matrix or log-likelihood helper function
-#'
-#' @param mat Matrix of posterior samples
-#' @param data_list Data list object passed to Stan
-#' @param include_residuals (LOGICAL)
-#' TRUE: Include minor factor residual covariances
-#' in model-implied covariance matrix; FALSE: Exclude them. If TRUE, different
-#' models fit to the data will hardly be distinguishable.
-#' @param return_ll (LOGICAL)
-#' TRUE: Return matrix of log-likelihood
-#' FALSE: Return matrix of covariances
-#' @returns Returns a matrix, which one depends on
-#' \code{return_ll} argument.
-#' @keywords internal
-create_mi_vcov_ll <- function(
-    mat,
-    data_list,
-    include_residuals,
-    return_ll = FALSE) {
-  all_ev <- paste0("res_var[", 1:data_list$Ni, "]")
-  all_lo <- paste0("Load_mat[", apply(which(
-    data_list$loading_pattern != 2,
-    arr.ind = TRUE
-  ), 1, paste0, collapse = ","), "]")
-  all_ph <- NULL
-
-  returned_mat <- matrix()
-  if (data_list$method == 91) {
-    sigma_cols <- colnames(mat)
-    sigma_cols <- sigma_cols[which(grepl("Sigma\\[", sigma_cols))]
-    returned_mat <- mat[, sigma_cols]
-    if (isTRUE(return_ll)) {
-      mu <- rep(0, data_list$Ni)
-      y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
-      returned_mat <- apply(returned_mat, 1, function(m) {
-        m_vcov <- matrix(m, nrow = data_list$Ni, ncol = data_list$Ni)
-        mb_ldmvn(y_dat_t, mu, m_vcov)
-      })
-    } else {
-      returned_mat <- t(returned_mat)
-    }
-  } else if (data_list$sem_indicator == 0) {
-    if (data_list$corr_fac == 1) {
-      all_ph <- paste0("phi_mat[", apply(which(
-        diag(data_list$Nf) != 2,
-        arr.ind = TRUE
-      ), 1, paste0, collapse = ","), "]")
-    }
-
-    if (isFALSE(return_ll)) {
-      returned_mat <- apply(
-        mat, 1, create_single_cfa_vcov_row,
-        data_list = data_list, include_residuals = include_residuals,
-        all_lo = all_lo, all_ev = all_ev, all_ph = all_ph
-      )
-    } else if (isTRUE(return_ll)) {
-      mu <- rep(0, data_list$Ni)
-      y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
-      returned_mat <- apply(mat, 1, function(m) {
-        m_vcov <- create_single_cfa_vcov_row(
-          m,
-          data_list = data_list, include_residuals = include_residuals,
-          all_lo = all_lo, all_ev = all_ev, all_ph = all_ph
-        )
-        mb_ldmvn(y_dat_t, mu, m_vcov)
-      })
-    }
-  } else if (data_list$sem_indicator == 1) {
-    # Use _u Coefs and Loads as these are unstandardized
-    all_lo <- paste0("Load_mat_u[", apply(which(
-      data_list$loading_pattern != 2,
-      arr.ind = TRUE
-    ), 1, paste0, collapse = ","), "]")
-    all_co <- paste0("Coef_mat_u[", apply(which(
-      data_list$coef_pattern != 2,
-      arr.ind = TRUE
-    ), 1, paste0, collapse = ","), "]")
-    all_fv <- paste0("phi_var[", 1:data_list$Nf, "]")
-    if (data_list$Nf_corr > 0) {
-      all_ph <- paste0("phi_cor[", 1:data_list$Nf_corr, "]")
-    }
-
-    if (isFALSE(return_ll)) {
-      returned_mat <- apply(
-        mat, 1, create_single_sem_vcov_row,
-        data_list = data_list, include_residuals = include_residuals,
-        all_lo = all_lo, all_ev = all_ev, all_ph = all_ph,
-        all_co = all_co, all_fv = all_fv
-      )
-    } else if (isTRUE(return_ll)) {
-      mu <- rep(0, data_list$Ni)
-      y_dat_t <- t(data_list$Y) - colMeans(data_list$Y)
-      returned_mat <- apply(mat, 1, function(m) {
-        m_vcov <- create_single_sem_vcov_row(
-          m,
-          data_list = data_list, include_residuals = include_residuals,
-          all_lo = all_lo, all_ev = all_ev, all_ph = all_ph,
-          all_co = all_co, all_fv = all_fv
-        )
-        mb_ldmvn(y_dat_t, mu, m_vcov)
-      })
-    }
-  }
-
-  return(returned_mat)
 }

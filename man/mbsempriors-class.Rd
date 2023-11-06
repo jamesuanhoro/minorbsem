@@ -13,9 +13,12 @@ A class for setting up priors.
 \item{\code{lkj_shape}}{(positive real) The shape parameter of the LKJ-prior on the
 interfactor correlation matrix in confirmatory factor models.}
 
-\item{\code{sl_par}}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-deviation of loadings.}
+\item{\code{ml_par}}{(real) The location parameter of the normal prior on loadings.}
+
+\item{\code{sl_par}}{(positive real)
+For CFAs: The scale parameter of the normal prior on loadings.
+For SEMs: The scale parameter of the Student-t(df = 3, loc = 0)
+prior on the hyper-parameter of the standard deviation of loadings.}
 
 \item{\code{fs_par}}{(positive real) The scale parameter of the
 Student-t(df = 3, loc = 0) prior on the standard deviation
@@ -34,14 +37,7 @@ deviations of coefficients; SD(coefs) vary by outcome.}
 \item{\code{fc_par}}{(positive real) The shape parameter of the Beta(rc_par, rc_par)
 prior on the inter-factor correlations in latent regression models.}
 
-\item{\code{mln_par}}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the
-log-scale meta-regression intercept.
-Relevant only for meta-analysis.}
-
-\item{\code{mlb_par}}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the
-log-scale meta-regression coefficients.
-Relevant only for meta-analysis.}
+\item{\code{rm_par}}{(positive real) The scale parameter of the normal prior
+on the tau / CRMR parameter.}
 }}
 

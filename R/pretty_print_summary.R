@@ -57,12 +57,6 @@ pretty_print_summary <- function(
   }
 
   type_str <- ""
-  if (object@data_list$meta == 1) {
-    type_str <- paste0(
-      type_hash(object@data_list$type, elaborate = TRUE),
-      ", "
-    )
-  }
 
   table_to_print[
     table_to_print$group == "Latent regression coefficients", "group"

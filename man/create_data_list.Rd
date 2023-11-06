@@ -8,14 +8,17 @@ create_data_list(
   lavaan_object = NULL,
   method = "normal",
   simple_struc = TRUE,
-  priors = NULL
+  priors = NULL,
+  compute_ll = FALSE,
+  model = NULL,
+  orthogonal = NULL
 )
 }
 \arguments{
 \item{lavaan_object}{lavaan fit object of corresponding model}
 
-\item{method}{(character) One of "normal", "lasso",
-"logistic", "GDP", "WB", "WB-cond", "WW", "none"}
+\item{method}{(character) One of "normal", "lasso", "logistic",
+"GDP", "WB", "WB-cond", "WW", or "none". See details below.}
 
 \item{simple_struc}{(LOGICAL) Only relevant for CFAs.
 If TRUE: assume simple structure;
@@ -24,6 +27,17 @@ double Pareto priors.}
 
 \item{priors}{An object of \code{\link{mbsempriors-class}}.
 See \code{\link{new_mbsempriors}} for more information.}
+
+\item{compute_ll}{(Logical) If TRUE, compute log-likelihood,
+if FALSE, do not. This may be useful for cross-validation. This argument is
+ignored when:
+(i) the full dataset is not provided;
+(ii) the method is WB, use WB-cond instead.}
+
+\item{model}{A description of the user-specified model, lavaan syntax.}
+
+\item{orthogonal}{(logical) constrain factors orthogonal, must be TRUE to fit
+bifactor models.}
 }
 \value{
 Data list object used in fitting Stan model

@@ -1,3 +1,12 @@
+# minorbsem 0.2.5
+
+* Eliminated the meta-analysis component, see [bayesianmasem](https://github.com/jamesuanhoro/bayesianmasem/) package
+* Using only CmdStan via the instantiate package
+* Permits equality constraints and fixed parameters for loadings, residual covariances and error variances.
+* Code refactoring
+* Log-likelihood now requested with minorbsem call
+  * So no more Rcpp
+
 # minorbsem 0.2.4
 
 * JOSS paper added

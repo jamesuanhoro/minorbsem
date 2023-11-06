@@ -15,8 +15,7 @@
   the data used to fit the model, and the fitted Stan model.
 }
 \section{Objects from the Class}{
-  Objects can be created by calls to the \code{\link{minorbsem}}
-  or \code{\link{meta_mbcfa}} function.
+  Objects can be created by calls to the \code{\link{minorbsem}} function.
 }
 \section{Slots}{
   \describe{
@@ -24,27 +23,20 @@
     \item{\code{minor_factor_matrix}:}{Summary statistics for standardized residual covariances}
     \item{\code{data_list}:}{Data used to fit the model}
     \item{\code{priors}:}{Priors used to fit the model}
-    \item{\code{stan_fit}:}{Fitted RStan or CmdStan model}
+    \item{\code{stan_fit}:}{Fitted CmdStan model}
     \item{\code{version}:}{Package version used to fit model}
   }
 }
 \section{Methods}{
   \describe{
     \item{logLik}{
-      \code{signature(object = "mbsem", include_residuals = FALSE)}:
+      \code{signature(object = "mbsem")}:
       Returns the casewise log-likelihood as long as the full data is available.
-      \code{include_residuals = FALSE} ensures the minor factor residual
-      covariances are not included when computing the log-likelihood.
-      See \code{\link{casewise_log_likelihood}} for more details.
     }
     \item{fitted}{
-      \code{signature(object = "mbsem", include_residuals = TRUE)}:
+      \code{signature(object = "mbsem")}:
       Returns the posterior distribution of the model-implied covariance matrix
       as a #(iterations) by #(items ^ 2) matrix.
-      If \code{include_residuals = TRUE}, includes residual covariances induced by
-      minor factors.
-      If \code{include_residuals = FALSE}, excludes residual covariances induced by
-      minor factors.
     }
     \item{residuals}{
       \code{signature(object = "mbsem", standardized = TRUE)}:
@@ -65,7 +57,7 @@
 
 \seealso{
 \code{\link{parameter_hist}}, \code{\link{parameter_trace}},
-\code{\link{casewise_log_likelihood}}, \code{\link{plot_residuals}}
+\code{\link{plot_residuals}},
 \code{\link{pretty_print_summary}}
 }
 \examples{

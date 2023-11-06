@@ -6,23 +6,26 @@
 \usage{
 new_mbsempriors(
   lkj_shape = 2,
+  ml_par = 0,
   sl_par = 1,
   fs_par = 1,
-  rs_par = 2.5,
+  rs_par = 1,
   rc_par = 2,
   sc_par = 1,
   fc_par = 2,
-  mln_par = 2.5,
-  mlb_par = 1
+  rm_par = 0.15
 )
 }
 \arguments{
 \item{lkj_shape}{(positive real) The shape parameter of the LKJ-prior on the
 interfactor correlation matrix in confirmatory factor models.}
 
-\item{sl_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-deviation of loadings.}
+\item{ml_par}{(real) The location parameter of the normal prior on loadings.}
+
+\item{sl_par}{(positive real)
+For CFAs: The scale parameter of the normal prior on loadings.
+For SEMs: The scale parameter of the Student-t(df = 3, loc = 0)
+prior on the hyper-parameter of the standard deviation of loadings.}
 
 \item{fs_par}{(positive real) The scale parameter of the
 Student-t(df = 3, loc = 0) prior on the standard deviation
@@ -41,15 +44,8 @@ deviations of coefficients; SD(coefs) vary by outcome.}
 \item{fc_par}{(positive real) The shape parameter of the Beta(rc_par, rc_par)
 prior on the inter-factor correlations in latent regression models.}
 
-\item{mln_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the
-log-scale meta-regression intercept.
-Relevant only for meta-analysis.}
-
-\item{mlb_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the
-log-scale meta-regression coefficients.
-Relevant only for meta-analysis.}
+\item{rm_par}{(positive real) The scale parameter of the normal prior
+on the tau / CRMR parameter.}
 }
 \value{
 An object of \code{\link{mbsempriors-class}}

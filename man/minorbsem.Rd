@@ -18,12 +18,12 @@ minorbsem(
   refresh = (warmup + sampling)/10,
   adapt_delta = 0.9,
   max_treedepth = 10,
-  chains = 4,
+  chains = 3,
   ncores = max(parallel::detectCores() - 2, 1),
   priors = new_mbsempriors(),
   show = TRUE,
   show_messages = TRUE,
-  target = "rstan"
+  compute_ll = FALSE
 )
 }
 \arguments{
@@ -80,8 +80,11 @@ show table of results. As an example, use FALSE for simulation studies.}
 \item{show_messages}{(Logical) If TRUE, show messages from Stan sampler,
 if FALSE, hide messages.}
 
-\item{target}{(character) One of "rstan" or "cmdstan". If "cmdstan",
-CmdStan and CmdStanR need to be installed on the device.}
+\item{compute_ll}{(Logical) If TRUE, compute log-likelihood,
+if FALSE, do not. This may be useful for cross-validation. This argument is
+ignored when:
+(i) the full dataset is not provided;
+(ii) the method is WB, use WB-cond instead.}
 }
 \value{
 An object of \code{\link{mbsem-class}}

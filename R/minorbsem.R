@@ -37,8 +37,11 @@
 #' show table of results. As an example, use FALSE for simulation studies.
 #' @param show_messages (Logical) If TRUE, show messages from Stan sampler,
 #' if FALSE, hide messages.
-#' @param target (character) One of "rstan" or "cmdstan". If "cmdstan",
-#' CmdStan and CmdStanR need to be installed on the device.
+#' @param compute_ll (Logical) If TRUE, compute log-likelihood,
+#' if FALSE, do not. This may be useful for cross-validation. This argument is
+#' ignored when:
+#' (i) the full dataset is not provided;
+#' (ii) the method is WB, use WB-cond instead.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
 #' CFAs assume standardized factors.
@@ -97,12 +100,12 @@ minorbsem <- function(
     refresh = (warmup + sampling) / 10,
     adapt_delta = .9,
     max_treedepth = 10,
-    chains = 4,
+    chains = 3,
     ncores = max(parallel::detectCores() - 2, 1),
     priors = new_mbsempriors(),
     show = TRUE,
     show_messages = TRUE,
-    target = "rstan") {
+    compute_ll = FALSE) {
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -117,9 +120,6 @@ minorbsem <- function(
   # Must provide either data or sample_cov and sample_nobs
   user_input_check("data", data, sample_cov, sample_nobs)
 
-  # target must be valid
-  user_input_check("target", target)
-
   # Run lavaan fit
   if (!is.null(data)) {
     lav_fit <- lavaan::cfa(
@@ -127,8 +127,9 @@ minorbsem <- function(
       data = data,
       std.lv = TRUE,
       do.fit = FALSE,
-      se = "none",
-      test = "none",
+      likelihood = "wishart",
+      do.fit = FALSE,
+      ceq.simple = FALSE,
       orthogonal = orthogonal
     )
   } else {
@@ -137,8 +138,9 @@ minorbsem <- function(
       sample.cov = sample_cov, sample.nobs = sample_nobs,
       std.lv = TRUE,
       do.fit = FALSE,
-      se = "none",
-      test = "none",
+      likelihood = "wishart",
+      do.fit = FALSE,
+      ceq.simple = FALSE,
       orthogonal = orthogonal
     )
   }
@@ -148,13 +150,16 @@ minorbsem <- function(
     lavaan_object = lav_fit,
     method = method,
     simple_struc = simple_struc,
-    priors = priors
+    priors = priors,
+    compute_ll = compute_ll,
+    model = model,
+    orthogonal = orthogonal
   )
 
   message("User input fully processed :)\n Now to modeling.")
 
   stan_fit <- target_fitter(
-    target, data_list, seed, warmup, sampling, refresh,
+    data_list, seed, warmup, sampling, refresh,
     adapt_delta, max_treedepth, chains, ncores, show_messages
   )
 

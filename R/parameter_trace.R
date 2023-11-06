@@ -2,73 +2,33 @@
 #'
 #' @description Produce traceplots of parameter posterior distribution,
 #' option to limit plot by type of parameter.
-#' @inheritParams parameter_hist
-#' @returns ggplot object
+#' @param object (mbsem) An object of \code{\link{mbsem-class}}
+#' returned by \code{\link{minorbsem}}.
+#' @param subset (character) Subset of parameters:
+#' NULL (Default) showing all estimated parameters;
+#' Any other response will be used as regular expressions to subset
+#' the parameters. It can be loading names or types of parameters.
+#' @param ... additional arguments to relevant bayesplot function
+#' @returns bayesplot object
 #' @examples
 #' \dontrun{
 #' fit <- minorbsem("F1 =~ x1 + x2 + x3
 #'                   F2 =~ x4 + x5 + x6
 #'                   F3 =~ x7 + x8 + x9", HS)
 #' parameter_trace(fit)
-#' parameter_trace(fit, param_type = "all")
-#' parameter_trace(fit, param_type = c("rm", "lo", "fc"))
 #' }
 #' @export
-parameter_trace <- function(
-    object,
-    param_type = c("rm", "co", "lo", "fc", "rsq")) {
-  .iteration <- value <- .chain <- NULL
+parameter_trace <- function(object, subset = NULL, ...) {
+  stopifnot(inherits(object, "mbsem"))
 
-  # param_type must in options
-  validate_param_type(param_type)
-
-  clean_post_df <- prepare_stan_plot_data(object)
-
-  p <- list()
-  if (any(param_type == "all")) {
-    plot_df <- clean_post_df[
-      clean_post_df$param_class != "re",
-    ]
-    p <- ggplot2::ggplot(
-      plot_df, ggplot2::aes(.iteration, value, col = factor(.chain))
-    ) +
-      ggplot2::geom_line() +
-      ggplot2::theme_classic() +
-      ggplot2::theme(
-        strip.background = ggplot2::element_blank(),
-        legend.position = "top"
-      ) +
-      ggplot2::facet_wrap(~parameter, scales = "free_y") +
-      ggplot2::labs(
-        x = "Iteration",
-        y = "Parameter estimates",
-        col = "Chain"
-      )
-  } else {
-    plot_df <- clean_post_df[
-      clean_post_df$param_class %in% param_type,
-    ]
-    if (nrow(plot_df) == 0) {
-      stop(paste0(
-        "Selected param_type option(s) is/are not in the fitted model"
-      ))
-    }
-    p <- ggplot2::ggplot(
-      plot_df, ggplot2::aes(.iteration, value, col = factor(.chain))
-    ) +
-      ggplot2::geom_line() +
-      ggplot2::theme_classic() +
-      ggplot2::theme(
-        strip.background = ggplot2::element_blank(),
-        legend.position = "top"
-      ) +
-      ggplot2::facet_wrap(~parameter, scales = "free_y") +
-      ggplot2::labs(
-        x = "Iteration",
-        y = "Parameter estimates",
-        col = "Chain"
-      )
+  param_list <- get_param_plot_list(object@data_list)
+  if (!is.null(subset)) {
+    param_names <- names(param_list)
+    param_list <- param_list[grep(subset, param_names, ignore.case = TRUE)]
   }
+  pd_mat <- posterior::as_draws_matrix(object@stan_fit$draws(param_list))
+  colnames(pd_mat)[seq_along(param_list)] <- names(param_list)
 
-  return(p)
+  result <- bayesplot::mcmc_trace(pd_mat, ...)
+  return(result)
 }

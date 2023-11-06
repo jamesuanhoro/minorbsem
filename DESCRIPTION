@@ -1,6 +1,6 @@
 Package: minorbsem
 Title: Fit Bayesian structural equation models under the assumption that minor factors exist
-Version: 0.2.4
+Version: 0.2.5
 Authors@R: c(
     person(given = c("James", "O."), family = "Uanhoro",
            email = "james.uanhoro@unt.edu", role = c("aut", "cre"),
@@ -8,8 +8,7 @@ Authors@R: c(
 Description: Structural equation models (SEMs) rarely reject the null hypothesis
     that there is no model misspecification. One explanation for this problem
     is that covariance structures are influenced by major factors which we can hypothesize about
-    and minor factors which we cannot predict a-priori. This package lets you fit regular and
-    meta-analytic Bayesian SEMs that estimate the influence of minor factors.
+    and minor factors which we cannot predict a-priori.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -18,33 +17,22 @@ Biarch: true
 Depends: 
     R (>= 3.4.0)
 Imports: 
+    bayesplot,
     ggplot2,
     huxtable,
+    instantiate,
     lavaan,
     methods,
     posterior,
-    Rcpp (>= 0.12.0),
-    RcppParallel (>= 5.0.1),
-    Rdpack,
-    rstan (>= 2.21.8),
-    rstantools (>= 2.3.0)
-LinkingTo: 
-    BH (>= 1.66.0),
-    Rcpp (>= 0.12.0),
-    RcppArmadillo,
-    RcppEigen (>= 0.3.3.3.0),
-    RcppParallel (>= 5.0.1),
-    rstan (>= 2.21.8),
-    StanHeaders (>= 2.18.0)
+    Rdpack
 Suggests: 
-    cmdstanr,
     covr,
     loo,
     testthat (>= 3.0.0)
-Remotes: 
-    github::stan-dev/cmdstanr
-SystemRequirements: GNU make
 RdMacros: Rdpack
+Additional_repositories:
+    https://mc-stan.org/r-packages/
+SystemRequirements: CmdStan (https://mc-stan.org/users/interfaces/cmdstan)
 URL: https://jamesuanhoro.github.io/minorbsem/
 LazyData: true
 Config/testthat/edition: 3
