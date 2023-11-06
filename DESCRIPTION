@@ -17,6 +17,7 @@ Biarch: true
 Depends: 
     R (>= 3.4.0)
 Imports: 
+    bayesplot,
     ggplot2,
     huxtable,
     instantiate,

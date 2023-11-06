@@ -298,6 +298,101 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
   return(result)
 }
 
+#' Create parameter list for plotting
+#' @param data_list Data list object passed to Stan
+#' @returns Name of varying model parameters
+#' @keywords internal
+get_param_plot_list <- function(data_list) {
+  param_structure <- data_list$loading_pattern
+  fac_names <- colnames(param_structure)
+  ind_names <- rownames(param_structure)
+
+  rms_params <- c()
+  if (data_list$method < 90) {
+    rms_params <- c("RMSE" = "rms_src")
+  }
+  params <- rms_params
+
+  coef_idxs <- matrix(nrow = 0, ncol = 2)
+  rsq_idxs <- array(dim = 0)
+  if (data_list$sem_indicator == 0) {
+    phi_idxs <- which(
+      lower.tri(data_list$corr_mask) & data_list$corr_mask == 1,
+      arr.ind = TRUE
+    )
+    load_idxs <- which(
+      data_list$loading_pattern >=
+        ifelse(data_list$complex_struc == 1, -999, 1) &
+        data_list$loading_fixed == -999,
+      arr.ind = TRUE
+    )
+    rv_idxs <- which(data_list$res_var_pattern != 0)
+  } else if (data_list$sem_indicator == 1) {
+    phi_idxs <- data_list$F_corr_mat
+    load_idxs <- which(data_list$loading_pattern >= 1, arr.ind = TRUE)
+    rv_idxs <- seq_len(data_list$Ni)
+    coef_idxs <- which(
+      data_list$coef_pattern == 1,
+      arr.ind = TRUE
+    )
+    rsq_idxs <- which(rowSums(data_list$coef_pattern) >= 1)
+  }
+
+  if (nrow(coef_idxs) > 0) {
+    coef_params <- paste0("Coef_mat[", apply(
+      coef_idxs, 1, paste0, collapse = ","
+    ), "]")
+    names(coef_params) <- apply(coef_idxs, 1, function(x) {
+      paste0(fac_names[x[2]], "~", fac_names[x[1]])
+    })
+    params <- c(params, coef_params)
+  }
+
+  if (length(rsq_idxs) > 0) {
+    rsq_params <- paste0("r_square[", rsq_idxs, "]")
+    names(rsq_params) <- paste0("rsq:", fac_names[rsq_idxs])
+    params <- c(params, rsq_params)
+  }
+
+  if (nrow(phi_idxs) > 0) {
+    phi_params <- paste0("phi_mat[", apply(
+      phi_idxs, 1, paste0,
+      collapse = ","
+    ), "]")
+    names(phi_params) <- apply(phi_idxs, 1, function(x) {
+      paste0(fac_names[x[1]], "~~", fac_names[x[2]])
+    })
+    params <- c(params, phi_params)
+  }
+
+  if (nrow(load_idxs) > 0) {
+    load_params <- paste0(
+      "Load_mat[", apply(load_idxs, 1, paste0, collapse = ","), "]"
+    )
+    names(load_params) <- apply(load_idxs, 1, function(x) {
+      paste0(fac_names[x[2]], "=~", ind_names[x[1]])
+    })
+    params <- c(params, load_params)
+  }
+
+  if (length(rv_idxs) > 0) {
+    rv_params <- paste0("res_var[", rv_idxs, "]")
+    names(rv_params) <- paste0(ind_names[rv_idxs], "~~", ind_names[rv_idxs])
+    params <- c(params, rv_params)
+  }
+
+  if (data_list$Nce > 0) {
+    rc_idxs <- data_list$error_mat
+    rc_params <- paste0("res_cor[", seq_len(data_list$Nce), "]")
+    names(rc_params) <- apply(rc_idxs, 1, function(x) {
+      paste0(ind_names[x[1]], "~~", ind_names[x[2]])
+    })
+    params <- c(params, rc_params)
+  }
+
+  return(params)
+}
+
 #' Modify major parameters table helper function
 #' @description A function that adds user friendly descriptions to the
 #' major parameters table
@@ -508,24 +603,6 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   major_parameters[1:2, ] <- major_parameters[new_order, ]
 
   return(major_parameters)
-}
-
-#' Plotting param_type validation
-#'
-#' @param param_type param_type for plotting
-#' @returns NULL
-#' @keywords internal
-validate_param_type <- function(param_type) {
-  if (any(
-    !param_type %in% c("all", "rm", "lo", "ev", "rc", "fc", "rsq", "co", "re")
-  ) ||
-    is.null(param_type)) {
-    stop(paste0(
-      "All param_type options must be in ",
-      "c(\"all\", \"rm\", \"lo\", \"ev\", \"rc\", \"fc\", ",
-      "\"rsq\", \"co\", \"re\")"
-    ))
-  }
 }
 
 #' Rename columns of posterior data.frame prior by parameter type

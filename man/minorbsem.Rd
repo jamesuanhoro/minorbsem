@@ -18,7 +18,7 @@ minorbsem(
   refresh = (warmup + sampling)/10,
   adapt_delta = 0.9,
   max_treedepth = 10,
-  chains = 4,
+  chains = 3,
   ncores = max(parallel::detectCores() - 2, 1),
   priors = new_mbsempriors(),
   show = TRUE,
