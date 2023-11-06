@@ -483,12 +483,19 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   )
 
   # Dump duplicates CFA inter-factor correlations here
-  duplicates <- duplicated(
-    major_parameters[, c("mean", "median", "sd", "mad", "rhat", "ess_bulk")]
-  )
-  major_parameters <- major_parameters[
-    !(duplicates & grepl("phi\\_mat", major_parameters$variable)),
-  ]
+  phi_rows_idx <- grepl("phi\\_mat", major_parameters$variable)
+  if (sum(phi_rows_idx) > 0) {
+    phi_rows <- major_parameters[phi_rows_idx, , drop = FALSE]
+    phi_rows$ind_1 <- as.integer(gsub(
+      "phi\\_mat\\[|,\\d+\\]", "", phi_rows$variable
+    ))
+    phi_rows$ind_2 <- as.integer(gsub(
+      "phi\\_mat\\[\\d+,|\\]", "", phi_rows$variable
+    ))
+    dump_rows <- phi_rows$ind_1 >= phi_rows$ind_2
+    phi_rows_idx[phi_rows_idx == TRUE] <- dump_rows
+    major_parameters <- major_parameters[!phi_rows_idx, , drop = FALSE]
+  }
 
   mid_cols <- which(
     colnames(major_parameters) %in% c("median", "sd", "mad") |
