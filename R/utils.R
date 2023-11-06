@@ -132,9 +132,16 @@ target_fitter <- function(
     show_messages) {
   init_resid <- function() {
     list(
-      resids = rep(
+      rms_src_p = array(.025, (data_list$method != 100) * 1),
+      resids = array(
         0,
         (data_list$method < 90) * (data_list$Ni^2 - data_list$Ni) / 2
+      ),
+      loadings_complex = array(
+        0,
+        data_list$complex_struc * sum(
+          data_list$loading_pattern == 0 & data_list$loading_fixed == -999
+        )
       )
     )
   }
@@ -616,10 +623,7 @@ create_single_cfa_vcov_row <- function(
   lo_mat <- matrix(params[all_lo], nrow = data_list$Ni, ncol = data_list$Nf)
   ev <- params[all_ev]
 
-  ph_mat <- diag(data_list$Nf)
-  if (data_list$corr_fac == 1) {
-    ph_mat <- matrix(params[all_ph], nrow = data_list$Nf, ncol = data_list$Nf)
-  }
+  ph_mat <- matrix(params[all_ph], nrow = data_list$Nf, ncol = data_list$Nf)
 
   lpl_mat <- lo_mat %*% ph_mat %*% t(lo_mat)
 
@@ -763,12 +767,10 @@ create_mi_vcov_ll <- function(
       returned_mat <- t(returned_mat)
     }
   } else if (data_list$sem_indicator == 0) {
-    if (data_list$corr_fac == 1) {
-      all_ph <- paste0("phi_mat[", apply(which(
-        diag(data_list$Nf) != 2,
-        arr.ind = TRUE
-      ), 1, paste0, collapse = ","), "]")
-    }
+    all_ph <- paste0("phi_mat[", apply(which(
+      diag(data_list$Nf) != 2,
+      arr.ind = TRUE
+    ), 1, paste0, collapse = ","), "]")
 
     if (isFALSE(return_ll)) {
       returned_mat <- apply(

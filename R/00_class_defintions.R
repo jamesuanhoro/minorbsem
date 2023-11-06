@@ -9,9 +9,11 @@ methods::setClassUnion(
 #'
 #' @slot lkj_shape (positive real) The shape parameter of the LKJ-prior on the
 #' interfactor correlation matrix in confirmatory factor models.
-#' @slot sl_par (positive real) The scale parameter of the
-#' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-#' deviation of loadings.
+#' @slot ml_par (real) The location parameter of the normal prior on loadings.
+#' @slot sl_par (positive real)
+#' For CFAs: The scale parameter of the normal prior on loadings.
+#' For SEMs: The scale parameter of the Student-t(df = 3, loc = 0)
+#' prior on the hyper-parameter of the standard deviation of loadings.
 #' @slot fs_par (positive real) The scale parameter of the
 #' Student-t(df = 3, loc = 0) prior on the standard deviation
 #' of factors in SEMs.
@@ -24,6 +26,8 @@ methods::setClassUnion(
 #' deviations of coefficients; SD(coefs) vary by outcome.
 #' @slot fc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
 #' prior on the inter-factor correlations in latent regression models.
+#' @slot rm_par (positive real) The scale parameter of the normal prior
+#' on the tau / CRMR parameter.
 #'
 #' @name mbsempriors-class
 #' @rdname mbsempriors-class
@@ -32,21 +36,25 @@ methods::setClass(
   "mbsempriors",
   methods::representation(
     lkj_shape = "numeric",
+    ml_par = "numeric",
     sl_par = "numeric",
     fs_par = "numeric",
     rs_par = "numeric",
     rc_par = "numeric",
     sc_par = "numeric",
-    fc_par = "numeric"
+    fc_par = "numeric",
+    rm_par = "numeric"
   ),
   prototype = list(
     lkj_shape = 2.0,
+    ml_par = 0.0,
     sl_par = 1.0,
     fs_par = 1.0,
-    rs_par = 2.5,
+    rs_par = 1.0,
     rc_par = 2.0,
     sc_par = 1.0,
-    fc_par = 2.0
+    fc_par = 2.0,
+    rm_par = 0.15
   )
 )
 
@@ -55,9 +63,11 @@ methods::setClass(
 #' @description Modify default priors in package.
 #' @param lkj_shape (positive real) The shape parameter of the LKJ-prior on the
 #' interfactor correlation matrix in confirmatory factor models.
-#' @param sl_par (positive real) The scale parameter of the
-#' Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-#' deviation of loadings.
+#' @param ml_par (real) The location parameter of the normal prior on loadings.
+#' @param sl_par (positive real)
+#' For CFAs: The scale parameter of the normal prior on loadings.
+#' For SEMs: The scale parameter of the Student-t(df = 3, loc = 0)
+#' prior on the hyper-parameter of the standard deviation of loadings.
 #' @param fs_par (positive real) The scale parameter of the
 #' Student-t(df = 3, loc = 0) prior on the standard deviation
 #' of factors in SEMs.
@@ -70,6 +80,8 @@ methods::setClass(
 #' deviations of coefficients; SD(coefs) vary by outcome.
 #' @param fc_par (positive real) The shape parameter of the Beta(rc_par, rc_par)
 #' prior on the inter-factor correlations in latent regression models.
+#' @param rm_par (positive real) The scale parameter of the normal prior
+#' on the tau / CRMR parameter.
 #' @returns An object of \code{\link{mbsempriors-class}}
 #' @examples
 #' # Change LKJ shape parameter only
@@ -84,22 +96,26 @@ methods::setClass(
 #' @export
 new_mbsempriors <- function(
     lkj_shape = 2.0,
+    ml_par = 0.0,
     sl_par = 1.0,
     fs_par = 1.0,
-    rs_par = 2.5,
+    rs_par = 1.0,
     rc_par = 2.0,
     sc_par = 1.0,
-    fc_par = 2.0) {
+    fc_par = 2.0,
+    rm_par = 0.15) {
   mb_priors_object <- methods::new("mbsempriors")
   mb_priors_object <- methods::initialize(
     mb_priors_object,
     lkj_shape = lkj_shape,
+    ml_par = ml_par,
     sl_par = sl_par,
     fs_par = fs_par,
     rs_par = rs_par,
     rc_par = rc_par,
     sc_par = sc_par,
-    fc_par = fc_par
+    fc_par = fc_par,
+    rm_par = rm_par
   )
   return(mb_priors_object)
 }

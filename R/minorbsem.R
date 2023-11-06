@@ -122,8 +122,8 @@ minorbsem <- function(
       std.lv = TRUE,
       do.fit = FALSE,
       likelihood = "wishart",
-      se = "none",
-      test = "none",
+      do.fit = FALSE,
+      ceq.simple = FALSE,
       orthogonal = orthogonal
     )
   } else {
@@ -133,8 +133,8 @@ minorbsem <- function(
       std.lv = TRUE,
       do.fit = FALSE,
       likelihood = "wishart",
-      se = "none",
-      test = "none",
+      do.fit = FALSE,
+      ceq.simple = FALSE,
       orthogonal = orthogonal
     )
   }
@@ -144,7 +144,9 @@ minorbsem <- function(
     lavaan_object = lav_fit,
     method = method,
     simple_struc = simple_struc,
-    priors = priors
+    priors = priors,
+    model = model,
+    orthogonal = orthogonal
   )
 
   message("User input fully processed :)\n Now to modeling.")
