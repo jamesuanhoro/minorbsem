@@ -746,7 +746,7 @@ create_mi_vcov_ll <- function(
     return_ll = FALSE) {
   all_ev <- paste0("res_var[", 1:data_list$Ni, "]")
   all_lo <- paste0("Load_mat[", apply(which(
-    data_list$loading_pattern != 2,
+    !is.na(data_list$loading_pattern),
     arr.ind = TRUE
   ), 1, paste0, collapse = ","), "]")
   all_ph <- NULL
@@ -793,7 +793,7 @@ create_mi_vcov_ll <- function(
   } else if (data_list$sem_indicator == 1) {
     # Use _u Coefs and Loads as these are unstandardized
     all_lo <- paste0("Load_mat_u[", apply(which(
-      data_list$loading_pattern != 2,
+      !is.na(data_list$loading_pattern),
       arr.ind = TRUE
     ), 1, paste0, collapse = ","), "]")
     all_co <- paste0("Coef_mat_u[", apply(which(
