@@ -5,6 +5,7 @@
 * Permits equality constraints and fixed parameters for loadings, residual covariances and error variances.
 * Code refactoring
 * Log-likelihood now requested with minorbsem call
+  * So no more Rcpp
 
 # minorbsem 0.2.4
 
