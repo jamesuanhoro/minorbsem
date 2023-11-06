@@ -289,7 +289,7 @@ generated quantities {
     for (i in 2:Ni) {
       for (j in 1:(i - 1)) {
         pos += 1;
-        Resid[i, j] = resids[pos] * rms_src_p[1];
+        Resid[i, j] = resids[pos] * rms_src_tmp;
         Resid[j, i] = Resid[i, j];
       }
     }

@@ -30,9 +30,9 @@ devtools::load_all()
   - [Permitted models and supported data types](#permitted-models-and-supported-data-types)
 - [Installation](#installation)
 - [A reasonably complete demonstration](#a-reasonably-complete-demonstration)
-  - [Model comparisons](#model-comparisons)
 - [Additional examples](#additional-examples)
   - [Different methods to capture the influence of minor factors](#different-methods-to-capture-the-influence-of-minor-factors)
+  - [Relax simple structure](#relax-simple-structure)
 - [Contributions are encouraged](#contributions-are-encouraged)
 - [Citations](#citations)
 
@@ -120,40 +120,6 @@ plot_residuals(fit_1)
 plot_residuals(fit_1, type = "range")
 ```
 
-### Model comparisons
-
-Fit a second model that estimates all cross-loadings and shrinks them to
-0 using a global-local prior (`simple_struc = FALSE`).
-
-Then compare both models using the Leave-One-Out (LOO) method, using the `loo` package: `install.packages("loo")`.
-
-``` r
-fit_2 <- minorbsem(syntax_1, HS, simple_struc = FALSE)
-
-# Compute case wise log-likelihood
-# exclude minor factor influences or else both models will fit data equally
-ll_mat_1 <- casewise_log_likelihood(fit_1, include_residuals = FALSE)
-ll_mat_2 <- casewise_log_likelihood(fit_2, include_residuals = FALSE)
-chain_id <- posterior::as_draws_df(fit_1@stan_fit)$.chain
-
-# loo for model 1
-loo_1 <- loo::loo(
-  ll_mat_1,
-  r_eff = loo::relative_eff(ll_mat_1, chain_id = chain_id)
-)
-print(loo_1)
-
-# loo for model 2
-loo_2 <- loo::loo(
-  ll_mat_2,
-  r_eff = loo::relative_eff(ll_mat_2, chain_id = chain_id)
-)
-print(loo_2)
-
-# Compare both models
-print(loo::loo_compare(loo_1, loo_2), simplify = FALSE)
-```
-
 ## Additional examples
 
 ### Different methods to capture the influence of minor factors
@@ -162,7 +128,7 @@ Default method above is `method = "normal"` assuming standardized residual
 covariances are on average 0 and vary from 0 in continuous fashion.
 
 ``` r
-## Fit same model as above but use global-local prior to estimate
+# Fit same model as above but use global-local prior to estimate
 # minor factor influences
 fit_gdp <- minorbsem(syntax_1, HS, method = "GDP")
 plot_residuals(fit_gdp)
@@ -170,18 +136,22 @@ parameter_hist(fit_gdp)
 parameter_trace(fit_gdp)
 
 # Ignoring minor factor influences
-fit_reg <- minorbsem(syntax_1, HS, method = "none")
-parameter_hist(fit_reg)
-parameter_trace(fit_reg)
+fit_none <- minorbsem(syntax_1, HS, method = "none")
+parameter_hist(fit_none)
+parameter_trace(fit_none)
 
 # Error!!!: Plotting residuals will give an error message
 # since minor factor influences are assumed null
-plot_residuals(fit_reg)
+plot_residuals(fit_none)
+```
+
+### Relax simple structure
+
+```r
+fit_complex <- minorbsem(syntax_1, HS, simple_struc = FALSE)
 ```
 
 There are other methods, see details section in `?minorbsem`.
-
-Model comparison via LOO works as above in the [first example](#model-comparisons).
 
 ## Contributions are encouraged
 

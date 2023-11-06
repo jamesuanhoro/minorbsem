@@ -5,11 +5,11 @@ functions {
     else
       return -1;
   }
-  real generalized_double_pareto_lpdf(vector x, real alpha) {
+  real generalized_double_pareto_lpdf(vector x, real alpha, real scale) {
     // generalized double Pareto
     // https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/
     return(sum(
-      -(alpha + 1.0) * log(1.0 + abs(x) / alpha)
+      -log(2) - log(scale) - (alpha + 1.0) * log1p(abs(x) / (scale * alpha))
     ));
   }
   real eff(int p, real x) {
@@ -41,6 +41,7 @@ data {
   real<lower = 0> sc_par;  // sigma_coefficients parameter
   real<lower = 0> sl_par;  // sigma_loading parameter
   real<lower = 0> fs_par;  // factor_sd parameter
+  real<lower = 0> rm_par;  // rms scale parameter
   real<lower = 0> rs_par;  // residual sd parameter
   real<lower = 1> rc_par;  // residual corr parameter
   real<lower = 1> fc_par; // beta prior shape for phi
@@ -90,7 +91,7 @@ transformed data {
   }
 }
 parameters {
-  vector<lower = 0.0>[N_rms] rms_src_p;
+  vector<lower = 0.0, upper = 1.0>[N_rms] rms_src_p;
   vector<lower = 2.0>[N_alpha] gdp_alpha;
   vector[Nisqd2] resids;
   vector<lower = 0>[Nl - Nf] loadings; // loadings
@@ -103,8 +104,22 @@ parameters {
   vector<lower = 0>[outcome_count] sigma_coefs;
   cov_matrix[N_Sigma] Sigma;
 }
+transformed parameters {
+  real rms_src_tmp = 0.0;
+
+  if (method != 100) rms_src_tmp = rms_src_p[1];
+  if (method == 2) {
+    rms_src_tmp /= sqrt_two;
+  } else if (method == 3) {
+    rms_src_tmp /= pi_sqrt_three;
+  } else if (method == 4) {
+    rms_src_tmp /= sqrt_two * gdp_alpha[1] / sqrt(
+      (gdp_alpha[1] - 1.0) * (gdp_alpha[1] - 2.0)
+    );
+  }
+}
 model {
-  rms_src_p ~ std_normal();
+  rms_src_p ~ normal(0, rm_par);
   if (method == 1) {
     // normal
     resids ~ std_normal();
@@ -118,7 +133,7 @@ model {
     // https://www.mdpi.com/2075-1680/11/9/462
     gdp_alpha ~ lognormal(1, 1);
     target += generalized_double_pareto_lpdf(
-      resids | gdp_alpha[1]);
+      resids | gdp_alpha[1], 1.0);
   }
 
   loadings ~ normal(0, sigma_loadings);
@@ -210,7 +225,7 @@ model {
       for (i in 2:Ni) {
         for (j in 1:(i - 1)) {
           pos += 1;
-          Omega[i, j] += resids[pos] * rms_src_p[1] * sqrt(total_var[i] * total_var[j]);
+          Omega[i, j] += resids[pos] * rms_src_tmp * sqrt(total_var[i] * total_var[j]);
           Omega[j, i] = Omega[i, j];
         }
       }
@@ -221,7 +236,7 @@ model {
     }
 
     if (method >= 90 && method <= 99) {
-      m = 1.0 / square(rms_src_p[1]) + Ni - 1;
+      m = 1.0 / square(rms_src_tmp) + Ni - 1;
       if (method == 90) {
         target += gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
       } else if (method == 91) {
@@ -255,27 +270,14 @@ generated quantities {
   matrix[Ni, Ni] Omega;
   vector[Np_ll] log_lik;
 
-  if (method != 100) {
-    rms_src = rms_src_p[1];
-  } else {
-    rms_src = 0.0;
-  }
-  if (method == 2) {
-    rms_src *= sqrt_two;
-  } else if (method == 3) {
-    rms_src *= pi_sqrt_three;
-  } else if (method == 4) {
-    rms_src *= sqrt_two * gdp_alpha[1] / sqrt(
-      (gdp_alpha[1] - 1.0) * (gdp_alpha[1] - 2.0)
-    );
-  }
+  if (method != 100) rms_src = rms_src_p[1];
 
   if (method < 90) {
     int pos = 0;
     for (i in 2:Ni) {
       for (j in 1:(i - 1)) {
         pos += 1;
-        Resid[i, j] = resids[pos] * rms_src_p[1];
+        Resid[i, j] = resids[pos] * rms_src_tmp;
         Resid[j, i] = Resid[i, j];
       }
     }
@@ -358,7 +360,7 @@ generated quantities {
       for (i in 2:Ni) {
         for (j in 1:(i - 1)) {
           pos += 1;
-          Omega[i, j] += resids[pos] * rms_src_p[1] * sqrt(total_var[i] * total_var[j]);
+          Omega[i, j] += resids[pos] * rms_src_tmp * sqrt(total_var[i] * total_var[j]);
           Omega[j, i] = Omega[i, j];
         }
       }
@@ -379,7 +381,7 @@ generated quantities {
 
     if (method >= 90 && method <= 99) {
       if (method == 90) {
-        m = 1.0 / square(rms_src_p[1]) + Ni - 1;
+        m = 1.0 / square(rms_src_tmp) + Ni - 1;
         Sigma_p = inv_wishart_rng(m, m * Omega);
         S_sim = wishart_rng(Np - 1.0, Sigma_p / (Np - 1.0));
         D_obs = -2.0 * gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
