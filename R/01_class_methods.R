@@ -79,8 +79,8 @@ methods::setValidity("mbsempriors", function(object) {
       "@sl_par, @rs_par, and @sc_par ",
       "must all be greater than 0"
     )
-  } else if (any(c(object@lkj_shape, object@rc_par, object@fc_par) < 1)) {
-    "@lkj_shape, @rc_par and @fc_par must all be at least 1"
+  } else if (any(c(object@lkj_shape, object@rc_par) < 1)) {
+    "@lkj_shape and @rc_par must all be at least 1"
   } else {
     TRUE
   }

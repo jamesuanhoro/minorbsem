@@ -83,12 +83,6 @@ pretty_print_summary <- function(
 
   footnote_str <- ""
 
-  if (object@data_list$sem_indicator == 1) {
-    footnote_str <- paste0(
-      "Loadings are fully standardized, error variances are not shown."
-    )
-  }
-
   if (isTRUE(simple) && object@data_list$method == 4) {
     footnote_str <- paste0(
       footnote_str, "\n",

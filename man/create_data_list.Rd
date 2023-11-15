@@ -10,8 +10,7 @@ create_data_list(
   simple_struc = TRUE,
   priors = NULL,
   compute_ll = FALSE,
-  model = NULL,
-  orthogonal = NULL
+  partab = NULL
 )
 }
 \arguments{
@@ -34,10 +33,7 @@ ignored when:
 (i) the full dataset is not provided;
 (ii) the method is WB, use WB-cond instead.}
 
-\item{model}{A description of the user-specified model, lavaan syntax.}
-
-\item{orthogonal}{(logical) constrain factors orthogonal, must be TRUE to fit
-bifactor models.}
+\item{partab}{lavaanify result of corresponding model}
 }
 \value{
 Data list object used in fitting Stan model

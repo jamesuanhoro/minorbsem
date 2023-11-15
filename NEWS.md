@@ -1,3 +1,9 @@
+# minorbsem 0.2.6
+
+* Now using single Stan script for all models
+  * There are now parameter constraints for latent variable regression models
+* Latent regression coefficient parameters are now standardized
+
 # minorbsem 0.2.5
 
 * Eliminated the meta-analysis component, see [bayesianmasem](https://github.com/jamesuanhoro/bayesianmasem/) package
