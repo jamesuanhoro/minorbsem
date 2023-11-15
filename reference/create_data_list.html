@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,8 +57,7 @@
 <span>  simple_struc <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  priors <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  compute_ll <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  model <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  orthogonal <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  partab <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -93,13 +92,8 @@ ignored when:
 (ii) the method is WB, use WB-cond instead.</p></dd>
 
 
-<dt>model</dt>
-<dd><p>A description of the user-specified model, lavaan syntax.</p></dd>
-
-
-<dt>orthogonal</dt>
-<dd><p>(logical) constrain factors orthogonal, must be TRUE to fit
-bifactor models.</p></dd>
+<dt>partab</dt>
+<dd><p>lavaanify result of corresponding model</p></dd>
 
 </dl></div>
     <div class="section level2">
