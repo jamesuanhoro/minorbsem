@@ -142,19 +142,14 @@ target_fitter <- function(
         data_list$complex_struc * sum(
           data_list$loading_pattern == 0 & data_list$loading_fixed == -999
         )
-      )
+      ),
+      coefs = array(0, max(data_list$coef_pattern))
     )
   }
 
-  if (data_list$sem_indicator == 0) {
-    mod_resid <- instantiate::stan_package_model(
-      name = "cfa_resid", package = "minorbsem"
-    )
-  } else if (data_list$sem_indicator == 1) {
-    mod_resid <- instantiate::stan_package_model(
-      name = "sem_resid", package = "minorbsem"
-    )
-  }
+  mod_resid <- instantiate::stan_package_model(
+    name = "sem", package = "minorbsem"
+  )
 
   message("Fitting Stan model ...")
 
@@ -297,24 +292,21 @@ get_param_plot_list <- function(data_list) {
 
   coef_idxs <- matrix(nrow = 0, ncol = 2)
   rsq_idxs <- array(dim = 0)
-  if (data_list$sem_indicator == 0) {
-    phi_idxs <- which(
-      lower.tri(data_list$corr_mask) & data_list$corr_mask == 1,
-      arr.ind = TRUE
-    )
-    load_idxs <- which(
-      data_list$loading_pattern >=
-        ifelse(data_list$complex_struc == 1, -999, 1) &
-        data_list$loading_fixed == -999,
-      arr.ind = TRUE
-    )
-    rv_idxs <- which(data_list$res_var_pattern != 0)
-  } else if (data_list$sem_indicator == 1) {
-    phi_idxs <- data_list$F_corr_mat
-    load_idxs <- which(data_list$loading_pattern >= 1, arr.ind = TRUE)
-    rv_idxs <- seq_len(data_list$Ni)
+  phi_idxs <- which(
+    lower.tri(data_list$corr_mask) & data_list$corr_mask == 1,
+    arr.ind = TRUE
+  )
+  load_idxs <- which(
+    data_list$loading_pattern >=
+      ifelse(data_list$complex_struc == 1, -999, 1) &
+      data_list$loading_fixed == -999,
+    arr.ind = TRUE
+  )
+  rv_idxs <- which(data_list$res_var_pattern != 0)
+  if (data_list$sem_indicator == 1) {
     coef_idxs <- which(
-      data_list$coef_pattern == 1,
+      data_list$coef_pattern >= 1 &
+      data_list$coef_fixed == -999,
       arr.ind = TRUE
     )
     rsq_idxs <- which(rowSums(data_list$coef_pattern) >= 1)
@@ -338,16 +330,11 @@ get_param_plot_list <- function(data_list) {
   }
 
   phi_params <- array(dim = 0)
-  if (nrow(phi_idxs) > 0 && data_list$sem_indicator == 0) {
+  if (nrow(phi_idxs) > 0) {
     phi_params <- paste0("phi_mat[", apply(
       phi_idxs, 1, paste0,
       collapse = ","
     ), "]")
-    names(phi_params) <- apply(phi_idxs, 1, function(x) {
-      paste0(fac_names[x[1]], "~~", fac_names[x[2]])
-    })
-  } else if (nrow(phi_idxs) > 0 && data_list$sem_indicator == 1) {
-    phi_params <- paste0("phi_cor[", seq_len(data_list$Nf_corr), "]")
     names(phi_params) <- apply(phi_idxs, 1, function(x) {
       paste0(fac_names[x[1]], "~~", fac_names[x[2]])
     })
@@ -431,7 +418,8 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   from_list <- c("PPP", "RMSE")
 
   load_idxs <- paste0("Load_mat[", apply(which(
-    data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1),
+    data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1) |
+      data_list$loading_fixed != -999,
     arr.ind = TRUE
   ), 1, paste0, collapse = ","), "]")
   params <- c(params, load_idxs)
@@ -440,22 +428,16 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     params <- c(params, "res_cor")
   }
 
-  if (data_list$sem_indicator == 0) {
-    params <- c(params, "res_var")
+  params <- c(params, "res_var")
 
-    params <- c(params, "phi_mat")
-  } else if (data_list$sem_indicator == 1) {
-    # Get interfactor correlations
-    if (data_list$Nf_corr > 0) {
-      params <- c(params, "phi_cor")
-    }
-
+  params <- c(params, "phi_mat")
+  if (data_list$sem_indicator == 1) {
     # Get R-square
     params <- c(params, "r_square")
 
     # Get factor coefficients
     coef_idxs <- paste0("Coef_mat[", apply(which(
-      data_list$coef_pattern == 1,
+      data_list$coef_pattern >= 1 | data_list$coef_fixed != -999,
       arr.ind = TRUE
     ), 1, paste0, collapse = ","), "]")
     params <- c(params, coef_idxs)
@@ -549,14 +531,6 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
     !(major_parameters$group == "Inter-factor correlations" &
       major_parameters$from == major_parameters$to),
   ]
-
-  idxs <- which(grepl("phi\\_cor", major_parameters$variable))
-  major_parameters <- modify_major_params(
-    major_parameters, idxs,
-    group = "Inter-factor correlations", op = "~~",
-    from = factor_labels[data_list$F_corr_mat[, 1]],
-    to = factor_labels[data_list$F_corr_mat[, 2]]
-  )
 
   idxs <- which(grepl("r\\_square", major_parameters$variable))
   major_parameters <- modify_major_params(

@@ -8,11 +8,9 @@ new_mbsempriors(
   lkj_shape = 2,
   ml_par = 0,
   sl_par = 1,
-  fs_par = 1,
   rs_par = 1,
   rc_par = 2,
-  sc_par = 1,
-  fc_par = 2,
+  sc_par = 0.5,
   rm_par = 0.15
 )
 }
@@ -23,13 +21,7 @@ interfactor correlation matrix in confirmatory factor models.}
 \item{ml_par}{(real) The location parameter of the normal prior on loadings.}
 
 \item{sl_par}{(positive real)
-For CFAs: The scale parameter of the normal prior on loadings.
-For SEMs: The scale parameter of the Student-t(df = 3, loc = 0)
-prior on the hyper-parameter of the standard deviation of loadings.}
-
-\item{fs_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the standard deviation
-of factors in SEMs.}
+The scale parameter of the normal prior on loadings.}
 
 \item{rs_par}{(positive real) The scale parameter of the
 Student-t(df = 3, loc = 0) prior on the residual standard deviations.}
@@ -37,12 +29,8 @@ Student-t(df = 3, loc = 0) prior on the residual standard deviations.}
 \item{rc_par}{(positive real) The shape parameter of the Beta(rc_par, rc_par)
 prior on the residual error correlations.}
 
-\item{sc_par}{(positive real) The scale parameter of the
-Student-t(df = 3, loc = 0) prior on the hyper-parameter of the standard
-deviations of coefficients; SD(coefs) vary by outcome.}
-
-\item{fc_par}{(positive real) The shape parameter of the Beta(rc_par, rc_par)
-prior on the inter-factor correlations in latent regression models.}
+\item{sc_par}{(positive real)
+The scale parameter of the normal prior on coefficients.}
 
 \item{rm_par}{(positive real) The scale parameter of the normal prior
 on the tau / CRMR parameter.}

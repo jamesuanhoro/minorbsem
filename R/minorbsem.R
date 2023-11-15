@@ -126,10 +126,9 @@ minorbsem <- function(
       model,
       data = data,
       std.lv = TRUE,
-      do.fit = FALSE,
       likelihood = "wishart",
       do.fit = FALSE,
-      ceq.simple = FALSE,
+      ceq.simple = TRUE,
       orthogonal = orthogonal
     )
   } else {
@@ -137,13 +136,16 @@ minorbsem <- function(
       model,
       sample.cov = sample_cov, sample.nobs = sample_nobs,
       std.lv = TRUE,
-      do.fit = FALSE,
       likelihood = "wishart",
       do.fit = FALSE,
-      ceq.simple = FALSE,
+      ceq.simple = TRUE,
       orthogonal = orthogonal
     )
   }
+  partab <- lavaan::lavaanify(
+    model,
+    ceq.simple = TRUE, std.lv = TRUE, orthogonal = orthogonal
+  )
 
   # Obtain data list for Stan
   data_list <- create_data_list(
@@ -152,8 +154,7 @@ minorbsem <- function(
     simple_struc = simple_struc,
     priors = priors,
     compute_ll = compute_ll,
-    model = model,
-    orthogonal = orthogonal
+    partab = partab
   )
 
   message("User input fully processed :)\n Now to modeling.")

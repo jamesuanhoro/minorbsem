@@ -37,6 +37,8 @@ data {
   array[Ni, Nf] real loading_fixed;  // loading pattern
   array[Ni] int res_var_pattern;  // res_var pattern
   array[Ni] real<lower = 0.0> res_var_fixed;  // res_var pattern
+  array[Nf, Nf] int coef_pattern;  // coef pattern
+  array[Nf, Nf] real coef_fixed;  // coef fixed
   array[Nf] int markers;  // marker variables
   matrix[Nf, Nf] corr_mask;  // 1 for correlated factors, 0 otherwise
   real<lower = 1> shape_phi_c;  // lkj prior shape for phi
@@ -47,6 +49,8 @@ data {
   int<lower = 0, upper = 1> complex_struc;
   matrix[Ni, Nf] load_est;
   matrix[Ni, Nf] load_se;
+  matrix[Nf, Nf] coef_est;
+  matrix[Nf, Nf] coef_se;
   int <lower = 0, upper = 1> ret_ll; // return log-likelihood?
   int <lower = 0, upper = 1> has_data; // has data?
   matrix[Np * has_data, Ni] Y; // data
@@ -60,6 +64,9 @@ transformed data {
   int<lower = 0> Nrv_uniq = 0;  // N_non-zero res_var unique
   int<lower = 0> Nrv = 0;  // N_non-zero res_var
   int<lower = 0> Nrv_fixed = 0;  // N_non-zero res_var unique
+  int<lower = 0> Nco_uniq = 0;  // N_non-zero coef unique
+  int<lower = 0> Nco = 0;  // N_non-zero coef
+  int<lower = 0> Nco_fixed = 0;  // N_non-zero coef unique
   cholesky_factor_cov[Ni] NL_S = sqrt(Np - 1) * cholesky_decompose(S);  // covariance matrix-chol
   int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
   int N_rms = 1;
@@ -99,6 +106,17 @@ transformed data {
     N_complex = Ni * Nf - Nl - Nl_fixed;
   }
 
+  for (i in 1:Nf) {
+    for (j in 1:Nf) {
+      if (coef_pattern[i, j] != 0) {
+        Nco += 1;
+        if (coef_pattern[i, j] > Nco_uniq) Nco_uniq = coef_pattern[i, j];
+      } else if (coef_fixed[i, j] != -999) {
+        Nco_fixed += 1;
+      }
+    }
+  }
+
   for (j in 1:(Ni - 1)) {
     for (i in (j + 1):Ni) {
       if (error_pattern[i, j] > Nce_uniq) {
@@ -125,6 +143,7 @@ parameters {
   cholesky_factor_corr[Nf] phi_mat_chol;
   vector<lower = 0, upper = 1>[Nce_uniq] res_cor_01;  // correlated errors on 01
   vector[N_complex] loadings_complex;
+  vector<lower = -1, upper = 1>[Nco_uniq] coefs;  // may need to be limited to (-1, 1)?
   vector<lower = 0>[complex_struc] sigma_loadings_complex;
   vector<lower = 2.0>[complex_struc] gdp_loadings_complex;
   cov_matrix[N_Sigma] Sigma;
@@ -178,12 +197,27 @@ model {
     vector[Ni] res_var;
     matrix[Nf, Nf] phi_mat = multiply_lower_tri_self_transpose(phi_mat_chol) .* corr_mask;
     vector[Nce_uniq] res_cor_u = res_cor_01 * 2 - 1;
+    matrix[Nf, Nf] Coef_mat = rep_matrix(0, Nf, Nf);
     matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
+    matrix[Nf, Nf] One_min_Beta_inv;
+    matrix[Nf, Nf] imp_phi;
     matrix[Ni, Ni] lamb_phi_lamb;
     matrix[Ni, Nce] loading_par_exp = rep_matrix(0, Ni, Nce);
     matrix[Ni, Ni] loading_par_exp_2;
     vector[Ni] delta_mat_ast;
     vector[Ni] total_var;
+    vector[Nf] phi_sd;
+
+    for (i in 1:Nf) {
+      for (j in 1:Nf) {
+        if (coef_pattern[i, j] != 0) {
+          coefs[coef_pattern[i, j]] ~ normal(coef_est[i, j], coef_se[i, j]);
+          Coef_mat[i, j] = coefs[coef_pattern[i, j]];
+        } else if (coef_fixed[i, j] != -999) {
+          Coef_mat[i, j] = coef_fixed[i, j];
+        }
+      }
+    }
 
     {
       int pos_complex = 0;
@@ -202,7 +236,12 @@ model {
       }
     }
 
-    lamb_phi_lamb = quad_form_sym(phi_mat, Load_mat');
+    for (i in 1:Nf) {
+      phi_sd[i] = fmax(0.0, sqrt(1 - quad_form_sym(phi_mat, Coef_mat[i, ]')));
+    }
+    One_min_Beta_inv = inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
+    imp_phi = quad_form_sym(quad_form_diag(phi_mat, phi_sd), One_min_Beta_inv');
+    lamb_phi_lamb = quad_form_sym(imp_phi, Load_mat');
 
     for (i in 1:Ni) {
       if (res_var_pattern[i] != 0) {
@@ -272,7 +311,9 @@ generated quantities {
   real D_rep;
   real<lower = 0, upper = 1> ppp;
   real<lower = 0> rms_src = 0.0;  // RMSE of residuals
+  matrix[Nf, Nf] Coef_mat = rep_matrix(0, Nf, Nf);
   matrix[Ni, Nf] Load_mat = rep_matrix(0, Ni, Nf);
+  vector[Nf] r_square = rep_vector(0, Nf);
   matrix[Nf, Nf] phi_mat = multiply_lower_tri_self_transpose(phi_mat_chol) .* corr_mask;
   vector[Ni] res_sds;
   vector[Ni] res_var;
@@ -300,11 +341,24 @@ generated quantities {
     matrix[Ni, Ni] Sigma_p;
     matrix[Ni, Ni] S_sim;
     vector[Nce_uniq] res_cor_u = res_cor_01 * 2 - 1;
+    matrix[Nf, Nf] One_min_Beta_inv;
+    matrix[Nf, Nf] imp_phi;
     matrix[Ni, Ni] lamb_phi_lamb;
     matrix[Ni, Nce] loading_par_exp = rep_matrix(0, Ni, Nce);
     matrix[Ni, Ni] loading_par_exp_2;
     vector[Ni] delta_mat_ast;
     vector[Ni] total_var;
+    vector[Nf] phi_sd;
+
+    for (i in 1:Nf) {
+      for (j in 1:Nf) {
+        if (coef_pattern[i, j] != 0) {
+          Coef_mat[i, j] = coefs[coef_pattern[i, j]];
+        } else if (coef_fixed[i, j] != -999) {
+          Coef_mat[i, j] = coef_fixed[i, j];
+        }
+      }
+    }
 
     {
       int pos_complex = 0;
@@ -322,7 +376,12 @@ generated quantities {
       }
     }
 
-    lamb_phi_lamb = quad_form_sym(phi_mat, Load_mat');
+    for (i in 1:Nf) {
+      phi_sd[i] = fmax(0.0, sqrt(1 - quad_form_sym(phi_mat, Coef_mat[i, ]')));
+    }
+    One_min_Beta_inv = inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
+    imp_phi = quad_form_sym(quad_form_diag(phi_mat, phi_sd), One_min_Beta_inv');
+    lamb_phi_lamb = quad_form_sym(imp_phi, Load_mat');
 
     for (i in 1:Ni) {
       if (res_var_pattern[i] != 0) {
@@ -402,6 +461,8 @@ generated quantities {
       D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Omega / (Np - 1.0));
     }
     ppp = D_rep > D_obs ? 1.0 : 0.0;
+
+    r_square = 1.0 - square(phi_sd);
   }
 
   for (j in 1:Nf) {
@@ -409,6 +470,8 @@ generated quantities {
       Load_mat[, j] *= -1.0;
       phi_mat[, j] *= -1.0;
       phi_mat[j, ] *= -1.0;
+      Coef_mat[, j] *= -1.0;
+      Coef_mat[j, ] *= -1.0;
     }
   }
 }
