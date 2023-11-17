@@ -147,9 +147,15 @@ target_fitter <- function(
     )
   }
 
-  mod_resid <- instantiate::stan_package_model(
-    name = "sem", package = "minorbsem"
-  )
+  if (data_list$correlation == 0) {
+    mod_resid <- instantiate::stan_package_model(
+      name = "sem_cov", package = "minorbsem"
+    )
+  } else if (data_list$correlation == 1) {
+    mod_resid <- instantiate::stan_package_model(
+      name = "sem_cor", package = "minorbsem"
+    )
+  }
 
   message("Fitting Stan model ...")
 
@@ -351,7 +357,7 @@ get_param_plot_list <- function(data_list) {
   }
 
   rv_params <- array(dim = 0)
-  if (length(rv_idxs) > 0) {
+  if (length(rv_idxs) > 0 && data_list$correlation == 0) {
     rv_params <- paste0("res_var[", rv_idxs, "]")
     names(rv_params) <- paste0(ind_names[rv_idxs], "~~", ind_names[rv_idxs])
   }
@@ -620,4 +626,111 @@ rename_post_df_columns <- function(
   colnames(df)[1:len_vars] <- col_names
 
   return(df)
+}
+
+#' Log matrix function using eigendecomposition
+#' @param r_mat (matrix) Correlation matrix
+#' @returns Logarithm of the correlation matrix
+#' @keywords internal
+.log_m <- function(r_mat) {
+  eig <- eigen(r_mat, symmetric = TRUE)
+  return(eig$vectors %*% diag(log(eig$values)) %*% t(eig$vectors))
+}
+
+#' Log matrix function using eigendecomposition
+#' @param r_vec (vector) Strict lower half vector of correlation matrix
+#' @returns Strict lower half vector of log(correlation matrix)
+#' @keywords internal
+.g_map <- function(r_vec) {
+  d <- 0.5 * (1 + sqrt(1 + 8 * length(r_vec)))
+  r_mat <- matrix(0, d, d)
+  r_mat[lower.tri(r_mat, diag = FALSE)] <- r_vec
+  r_mat <- r_mat + t(r_mat)
+  diag(r_mat) <- 1
+  r_log_mat <- .log_m(r_mat)
+  r_log_vec <- r_log_mat[lower.tri(r_log_mat, diag = FALSE)]
+  return(r_log_vec)
+}
+
+#' Asymptotic variance matrix of lower half vector of log(correlation matrix)
+#' @param n (positive integer) Sample size
+#' @param acov_mat (matrix) Asymptotic variance matrix of lower half vector
+#' of correlation matrix.
+#' @inheritParams .log_m
+#' @returns Asymptotic variance matrix of strict lower half vector
+#' of log(correlation matrix).
+#' @keywords internal
+.get_avar_mat <- function(r_mat, n, acov_mat = NULL) {
+  r_mat <- stats::cov2cor(r_mat)
+  if (is.null(acov_mat)) {
+    omega_r <- .get_asy_cov(r_mat) / n
+  } else {
+    omega_r <- acov_mat
+  }
+  r_vec <- r_mat[lower.tri(r_mat, diag = FALSE)]
+  a_mat_inv <- pracma::jacobian(.g_map, r_vec)
+  omega_gamma <- a_mat_inv %*% omega_r %*% a_mat_inv
+  return(omega_gamma)
+}
+
+#' Asymptotic variance matrix of lower half vector of correlation matrix
+#' @inheritParams .log_m
+#' @returns Asymptotic variance matrix of strict lower half vector
+#' of correlation matrix.
+#' @keywords internal
+.get_asy_cov <- function(r_mat) {
+  ltri_idxs <- which(lower.tri(r_mat), arr.ind = TRUE)
+  p_ast <- nrow(ltri_idxs)
+  omega <- .omega_computer(r_mat, p_ast, ltri_idxs)
+  return(omega)
+}
+
+#' Asymptotic variance matrix of lower half vector of correlation matrix
+#' @inheritParams .log_m
+#' @param p_ast (positive integer) Dimension of strict lower half vector
+#' @param ltri_idxs (array) Indices of strict lower half vector
+#' @returns Asymptotic variance matrix of strict lower half vector
+#' of correlation matrix.
+#' @keywords internal
+.omega_computer <- function(r_mat, p_ast, ltri_idxs) {
+  omega <- matrix(0, nrow = p_ast, ncol = p_ast)
+  for (col in 1:p_ast) {
+    sub_idx <- col:p_ast
+    idx_id <- matrix(nrow = length(sub_idx), ncol = 4)
+    idx_id[, 1] <- ltri_idxs[col, 1]
+    idx_id[, 2] <- ltri_idxs[col, 2]
+    idx_id[, 3] <- ltri_idxs[sub_idx, 1]
+    idx_id[, 4] <- ltri_idxs[sub_idx, 2]
+    res_vec <- .four_idx_solver(r_mat, idx_id)
+    omega[col, sub_idx] <- res_vec
+    omega[sub_idx, col] <- res_vec
+  }
+  return(omega)
+}
+
+#' An internal solver for omega
+#' @inheritParams .log_m
+#' @param idx_four (array) Contains four-way indices for computing omega.
+#' @returns asymptotic covariances
+#' @keywords internal
+.four_idx_solver <- function(r_mat, idx_four) {
+  i <- idx_four[, 1]
+  j <- idx_four[, 2]
+  k <- idx_four[, 3]
+  l <- idx_four[, 4]
+  r_s <- matrix(nrow = nrow(idx_four), ncol = 6)
+  p <- nrow(r_mat)
+  r_s[, 1] <- r_mat[(j - 1) * p + i]
+  r_s[, 2] <- r_mat[(k - 1) * p + i]
+  r_s[, 3] <- r_mat[(l - 1) * p + i]
+  r_s[, 4] <- r_mat[(k - 1) * p + j]
+  r_s[, 5] <- r_mat[(l - 1) * p + j]
+  r_s[, 6] <- r_mat[(l - 1) * p + k]
+  ret <- .5 * r_s[, 1] * r_s[, 6] *
+    (r_s[, 2]^2 + r_s[, 3]^2 + r_s[, 4]^2 + r_s[, 5]^2) +
+    r_s[, 2] * r_s[, 5] + r_s[, 3] * r_s[, 4] - (
+      r_s[, 1] * r_s[, 2] * r_s[, 3] + r_s[, 1] * r_s[, 4] * r_s[, 5] +
+        r_s[, 2] * r_s[, 4] * r_s[, 6] + r_s[, 3] * r_s[, 5] * r_s[, 6]
+    )
+  return(ret)
 }

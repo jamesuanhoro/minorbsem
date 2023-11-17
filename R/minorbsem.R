@@ -18,6 +18,15 @@
 #' If TRUE: assume simple structure;
 #' If FALSE: estimate all cross-loadings using generalized
 #' double Pareto priors.
+#' @param correlation (LOGICAL)
+#' If TRUE: perform correlation structure analysis based on logarithm
+#' of a matrix transformation
+#' \insertCite{archakov_new_2021}{minorbsem};
+#' If FALSE (default): perform covariance structure analysis.
+#' @param centered (LOGICAL)
+#' Only relevant for WB-cond and WW methods when \code{correlation = TRUE}.
+#' If TRUE (default): Use a centered parameterization;
+#' If FALSE: Use a non-centered parameterization.
 #' @param seed (positive integer) seed, set to obtain replicable results.
 #' @param warmup (positive integer) The number of warmup iterations to run per
 #' chain.
@@ -70,6 +79,9 @@
 #' - \code{WW}: A variation on WB-cond, but assumes the population
 #' covariance matrix is Wishart as opposed to inverse-Wishart;
 #' - \code{none}: if intending to ignore the influence of minor factors.
+#'
+#' WB-cond and WW are equivalent for correlation structure analysis.
+#'
 #' @examples
 #' \dontrun{
 #' minorbsem("# latent variable definitions
@@ -94,6 +106,8 @@ minorbsem <- function(
     method = "normal",
     orthogonal = FALSE,
     simple_struc = TRUE,
+    correlation = FALSE,
+    centered = TRUE,
     seed = 12345,
     warmup = 1000,
     sampling = 1000,
@@ -152,9 +166,11 @@ minorbsem <- function(
     lavaan_object = lav_fit,
     method = method,
     simple_struc = simple_struc,
+    correlation = correlation,
     priors = priors,
     compute_ll = compute_ll,
-    partab = partab
+    partab = partab,
+    centered = centered
   )
 
   message("User input fully processed :)\n Now to modeling.")

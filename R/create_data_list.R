@@ -9,9 +9,11 @@ create_data_list <- function(
     lavaan_object = NULL,
     method = "normal",
     simple_struc = TRUE,
+    correlation = correlation,
     priors = NULL,
     compute_ll = FALSE,
-    partab = NULL) {
+    partab = NULL,
+    centered = TRUE) {
   data_list <- list()
 
   # Retrieve parameter structure from lavaan
@@ -51,19 +53,18 @@ create_data_list <- function(
     data_list$Y <- t(t(data_list$Y) - colMeans(data_list$Y))
   }
   # return ll?
-  # yes, when requested, data available and method != 90
+  # yes, when requested, data available and method != 90 and NOT Corr-Struc-Ana
   # TODO: add a warning
   data_list$ret_ll <- isTRUE(compute_ll) * data_list$has_data *
-    (data_list$method != 90)
+    (data_list$method != 90) * !isTRUE(correlation)
 
   # Loading pattern, 0s and 1s
   data_list$loading_pattern <- (param_structure$lambda > 0) * 1
   # Number of factors
   data_list$Nf <- ncol(data_list$loading_pattern)
 
-
-  psi_mat <- param_structure$psi
   # Assume CFA by default
+  psi_mat <- param_structure$psi
   data_list$sem_indicator <- 0
   data_list$complex_struc <- as.integer(ifelse(isFALSE(simple_struc), 1, 0))
 
@@ -160,6 +161,7 @@ create_data_list <- function(
       data_list$loading_pattern[, j] != 0
     )[1]
   }
+  data_list$markers[is.na(data_list$markers)] <- 0
 
   # Check for correlated error terms
   # Number of correlated errors
@@ -178,6 +180,18 @@ create_data_list <- function(
   }
   data_list$error_pattern <- theta_corr_mat
   data_list$Nce <- nrow(data_list$error_mat)
+
+  data_list$correlation <- 0
+  if (isTRUE(correlation)) {
+    data_list$centered <- ifelse(isFALSE(centered), 0, 1)
+    data_list$correlation <- 1
+    r_mat <- stats::cov2cor(data_list$S)
+    r_vec <- r_mat[lower.tri(data_list$S, diag = FALSE)]
+    data_list$r_obs_vec <- .g_map(r_vec)
+    data_list$r_obs_vec_cov <- .get_avar_mat(
+      r_mat, data_list$Np
+    )
+  }
 
   return(data_list)
 }

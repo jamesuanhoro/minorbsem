@@ -8,9 +8,11 @@ create_data_list(
   lavaan_object = NULL,
   method = "normal",
   simple_struc = TRUE,
+  correlation = correlation,
   priors = NULL,
   compute_ll = FALSE,
-  partab = NULL
+  partab = NULL,
+  centered = TRUE
 )
 }
 \arguments{
@@ -24,6 +26,12 @@ If TRUE: assume simple structure;
 If FALSE: estimate all cross-loadings using generalized
 double Pareto priors.}
 
+\item{correlation}{(LOGICAL)
+If TRUE: perform correlation structure analysis based on logarithm
+of a matrix transformation
+\insertCite{archakov_new_2021}{minorbsem};
+If FALSE (default): perform covariance structure analysis.}
+
 \item{priors}{An object of \code{\link{mbsempriors-class}}.
 See \code{\link{new_mbsempriors}} for more information.}
 
@@ -34,6 +42,11 @@ ignored when:
 (ii) the method is WB, use WB-cond instead.}
 
 \item{partab}{lavaanify result of corresponding model}
+
+\item{centered}{(LOGICAL)
+Only relevant for WB-cond and WW methods when \code{correlation = TRUE}.
+If TRUE (default): Use a centered parameterization;
+If FALSE: Use a non-centered parameterization.}
 }
 \value{
 Data list object used in fitting Stan model

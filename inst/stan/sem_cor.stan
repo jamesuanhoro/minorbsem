@@ -17,33 +17,52 @@ functions {
       2 * lmgamma(p, x / 2) - x * p * log(x / 2) + x * p
     );
   }
-  real gen_matrix_beta_ii_lpdf(matrix S, matrix Omega, real n, real m, real ln_det_S) {
-    int p = rows(S);
-    real F_1 = eff(p, m) + eff(p, n) - eff(p, m + n);
-    real F_2 = -((n - p - 1) * ln_det_S) - (m * log_determinant_spd(Omega)) +
-      ((m + n) * log_determinant_spd((m * Omega + n * S) / (m + n)));
-    real ll = (F_1 + F_2) / -2.0;
-    return(ll);
+  vector matrix_log_vech(matrix A) {
+    int p = rows(A);
+    int p_ast = (p * (p - 1)) %/% 2;
+    vector[p] lambda_tmp = eigenvalues_sym(A);
+    matrix[p, p] q_mat_tmp = eigenvectors_sym(A);
+    vector[p] ln_lambda;
+    matrix[p, p] q_mat;
+    matrix[p, p] ln_A;
+    vector[p_ast] ln_A_lower_tri;
+
+    for (i in 1:p) {
+      ln_lambda[i] = log(lambda_tmp[p - i + 1]);
+      q_mat[, i] = q_mat_tmp[, p - i + 1];
+    }
+
+    ln_A = quad_form(diag_matrix(ln_lambda), q_mat');
+
+    {
+      int pos = 0;
+      for (j in 1:(p - 1)) {
+        for (i in (j + 1):p) {
+          pos += 1;
+          ln_A_lower_tri[pos] = ln_A[i, j];
+        }
+      }
+    }
+
+    return(ln_A_lower_tri);
   }
 }
 data {
   int<lower = 0> Np;  // number persons
   int<lower = 0> Ni;  // number items
-  matrix[Ni, Ni] S;  // covariance matrix
+  vector[(Ni * (Ni - 1)) %/% 2] r_obs_vec;  // correlation matrix
+  matrix[(Ni * (Ni - 1)) %/% 2, (Ni * (Ni - 1)) %/% 2] r_obs_vec_cov;  // ACOV(correlation matrix)
   int<lower = 0> Nf;  // number factors
   int<lower = 0> Nce;  // number correlated errors
   array[Ni, Ni] int error_pattern; // cor error matrix
   array[Ni, Nf] int loading_pattern;  // loading pattern
   array[Ni, Nf] real loading_fixed;  // loading pattern
-  array[Ni] int res_var_pattern;  // res_var pattern
-  array[Ni] real<lower = 0.0> res_var_fixed;  // res_var pattern
   array[Nf, Nf] int coef_pattern;  // coef pattern
   array[Nf, Nf] real coef_fixed;  // coef fixed
   array[Nf] int markers;  // marker variables
   matrix[Nf, Nf] corr_mask;  // 1 for correlated factors, 0 otherwise
   real<lower = 1> shape_phi_c;  // lkj prior shape for phi
   real<lower = 0> rm_par;  // rms scale parameter
-  real<lower = 0> rs_par;  // residual sd parameter
   real<lower = 1> rc_par;  // residual corr parameter
   int<lower = 1, upper = 100> method; // which method
   int<lower = 0, upper = 1> complex_struc;
@@ -51,9 +70,7 @@ data {
   matrix[Ni, Nf] load_se;
   matrix[Nf, Nf] coef_est;
   matrix[Nf, Nf] coef_se;
-  int <lower = 0, upper = 1> ret_ll; // return log-likelihood?
-  int <lower = 0, upper = 1> has_data; // has data?
-  matrix[Np * has_data, Ni] Y; // data
+  int<lower = 0, upper = 1> centered;
 }
 transformed data {
   real sqrt_two = sqrt(2.0);
@@ -61,28 +78,24 @@ transformed data {
   int<lower = 0> Nl_uniq = 0;  // N_non-zero loadings unique
   int<lower = 0> Nl = 0;  // N_non-zero loadings
   int<lower = 0> Nl_fixed = 0;  // N_non-zero loadings unique
-  int<lower = 0> Nrv_uniq = 0;  // N_non-zero res_var unique
-  int<lower = 0> Nrv = 0;  // N_non-zero res_var
-  int<lower = 0> Nrv_fixed = 0;  // N_non-zero res_var unique
   int<lower = 0> Nco_uniq = 0;  // N_non-zero coef unique
   int<lower = 0> Nco = 0;  // N_non-zero coef
   int<lower = 0> Nco_fixed = 0;  // N_non-zero coef unique
-  cholesky_factor_cov[Ni] NL_S = sqrt(Np - 1) * cholesky_decompose(S);  // covariance matrix-chol
   int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
+  int Nisqd2_vec = (Ni * (Ni - 1)) %/% 2;
   int N_rms = 1;
   int N_alpha = 0;
   int N_complex = 0;
-  real ln_det_S = log_determinant_spd(S);
-  int N_Sigma = 1;
+  int is_wb_adj = 0;
   int<lower = 0> Nce_uniq = 0; // N_correlated errors unique
-  int Np_ll = Np * ret_ll * has_data;
+  matrix[Nisqd2_vec, Nisqd2_vec] L_vec_cov = cholesky_decompose(r_obs_vec_cov);
 
   if (method >= 90) {
     Nisqd2 = 0;
   }
 
   if (method == 91 || method == 92) {
-    N_Sigma = Ni;
+    is_wb_adj = 1;
   }
 
   if (method == 100) {
@@ -124,29 +137,19 @@ transformed data {
       }
     }
   }
-
-  for (i in 1:Ni) {
-    if (res_var_pattern[i] != 0) {
-      Nrv += 1;
-      if (res_var_pattern[i] > Nrv_uniq) Nrv_uniq = res_var_pattern[i];
-    } else if (res_var_fixed[i] != 999) {
-      Nrv_fixed += 1;
-    }
-  }
 }
 parameters {
   vector<lower = 0.0, upper = 1.0>[N_rms] rms_src_p;
   vector<lower = 2.0>[N_alpha] gdp_alpha;
   vector[Nisqd2] resids;  // residual vector
-  vector[Nl_uniq] loadings;  // loadings
-  vector<lower = 0>[Nrv_uniq] res_sds_u;  // item residual sds heteroskedastic
+  vector<lower = -1.0, upper = 1.0>[Nl_uniq] loadings;  // loadings
   cholesky_factor_corr[Nf] phi_mat_chol;
   vector<lower = 0, upper = 1>[Nce_uniq] res_cor_01;  // correlated errors on 01
-  vector[N_complex] loadings_complex;
+  vector<lower = -1.0, upper = 1.0>[N_complex] loadings_complex;  // loadings
   vector<lower = -1, upper = 1>[Nco_uniq] coefs;  // may need to be limited to (-1, 1)?
   vector<lower = 0>[complex_struc] sigma_loadings_complex;
   vector<lower = 2.0>[complex_struc] gdp_loadings_complex;
-  cov_matrix[N_Sigma] Sigma;
+  array[is_wb_adj] vector[Nisqd2_vec] r_vec_ri;
 }
 transformed parameters {
   real rms_src_tmp = 0.0;
@@ -187,13 +190,12 @@ model {
       loadings_complex | gdp_loadings_complex[1], sigma_loadings_complex[1]);
   }
 
-  res_sds_u ~ student_t(3, 0, rs_par);
   phi_mat_chol ~ lkj_corr_cholesky(shape_phi_c);
   res_cor_01 ~ beta(rc_par, rc_par);
 
   {
-    real m;
     matrix[Ni, Ni] Omega;
+    vector[Nisqd2_vec] r_vec;
     vector[Ni] res_var;
     matrix[Nf, Nf] phi_mat = multiply_lower_tri_self_transpose(phi_mat_chol) .* corr_mask;
     vector[Nce_uniq] res_cor_u = res_cor_01 * 2 - 1;
@@ -243,13 +245,7 @@ model {
     imp_phi = quad_form_sym(quad_form_diag(phi_mat, phi_sd), One_min_Beta_inv');
     lamb_phi_lamb = quad_form_sym(imp_phi, Load_mat');
 
-    for (i in 1:Ni) {
-      if (res_var_pattern[i] != 0) {
-        res_var[i] = square(res_sds_u[res_var_pattern[i]]);
-      } else if (res_var_fixed[i] != 999) {
-        res_var[i] = res_var_fixed[i];
-      }
-    }
+    res_var = 1.0 - diagonal(lamb_phi_lamb);
 
     {
       int pos_err = 0;
@@ -286,23 +282,27 @@ model {
       }
     }
 
-    if (method != 91 && method != 92) {
-      Sigma ~ inv_wishart(1000, identity_matrix(1));
-    }
+    r_vec = matrix_log_vech(Omega);
 
-    if (method >= 90 && method <= 99) {
-      m = 1.0 / square(rms_src_tmp) + Ni - 1;
-      if (method == 90) {
-        target += gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
-      } else if (method == 91) {
-        Sigma ~ inv_wishart(m, m * Omega);
-        target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Sigma));
-      } else if (method == 92) {
-        Sigma ~ wishart(m, Omega / m);
-        target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Sigma));
+    {
+      vector[Nisqd2_vec] tmp_loc = r_vec;
+      matrix[Nisqd2_vec, Nisqd2_vec] tmp_cov = L_vec_cov;
+
+      if (method >= 90 && method <= 99) {
+        if (method == 90) {
+          tmp_cov = cholesky_decompose(add_diag(r_obs_vec_cov, square(rms_src_tmp)));
+        } else if (method == 91 || method == 92) {
+          if (centered == 0) {
+            r_vec_ri[1] ~ std_normal();
+            tmp_loc = r_vec + rms_src_tmp * r_vec_ri[1];
+          } else if (centered == 1) {
+            r_vec_ri[1] ~ normal(r_vec, rms_src_tmp);
+            tmp_loc = r_vec_ri[1];
+          }
+        }
       }
-    } else {
-      target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Omega));
+
+      target += multi_normal_cholesky_lupdf(r_obs_vec | tmp_loc, tmp_cov);
     }
   }
 }
@@ -321,7 +321,6 @@ generated quantities {
   vector[Nce] res_cov;
   matrix[Ni, Ni] Resid = rep_matrix(0.0, Ni, Ni);
   matrix[Ni, Ni] Omega;
-  vector[Np_ll] log_lik;
 
   if (method != 100) rms_src = rms_src_p[1];
 
@@ -337,9 +336,8 @@ generated quantities {
   }
 
   {
-    real m;
-    matrix[Ni, Ni] Sigma_p;
-    matrix[Ni, Ni] S_sim;
+    vector[Nisqd2_vec] r_vec;
+    vector[Nisqd2_vec] r_vec_sim;
     vector[Nce_uniq] res_cor_u = res_cor_01 * 2 - 1;
     matrix[Nf, Nf] One_min_Beta_inv;
     matrix[Nf, Nf] imp_phi;
@@ -383,13 +381,7 @@ generated quantities {
     imp_phi = quad_form_sym(quad_form_diag(phi_mat, phi_sd), One_min_Beta_inv');
     lamb_phi_lamb = quad_form_sym(imp_phi, Load_mat');
 
-    for (i in 1:Ni) {
-      if (res_var_pattern[i] != 0) {
-        res_var[i] = square(res_sds_u[res_var_pattern[i]]);
-      } else if (res_var_fixed[i] != 999) {
-        res_var[i] = res_var_fixed[i];
-      }
-    }
+    res_var = 1.0 - diagonal(lamb_phi_lamb);
 
     res_sds = sqrt(res_var);
 
@@ -430,35 +422,27 @@ generated quantities {
       }
     }
 
-    if (ret_ll == 1) {
-      vector[Ni] zero_vec = rep_vector(0.0, Ni);
-      if (method == 91 || method == 92) {
-        for (i in 1:Np_ll) {
-          log_lik[i] = multi_normal_lpdf(Y[i, ] | zero_vec, Sigma);
-        }
-      } else {
-        for (i in 1:Np_ll) {
-          log_lik[i] = multi_normal_lpdf(Y[i, ] | zero_vec, Omega);
-        }
-      }
-    }
+    r_vec = matrix_log_vech(Omega);
 
-    if (method >= 90 && method <= 99) {
-      if (method == 90) {
-        m = 1.0 / square(rms_src_tmp) + Ni - 1;
-        Sigma_p = inv_wishart_rng(m, m * Omega);
-        S_sim = wishart_rng(Np - 1.0, Sigma_p / (Np - 1.0));
-        D_obs = -2.0 * gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
-        D_rep = -2.0 * gen_matrix_beta_ii_lpdf(S_sim | Omega, Np - 1.0, m, ln_det_S);
-      } else if (method == 91 || method == 92) {
-        S_sim = wishart_rng(Np - 1.0, Sigma / (Np - 1.0));
-        D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Sigma);
-        D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Sigma);
+    {
+      vector[Nisqd2_vec] tmp_loc = r_vec;
+      matrix[Nisqd2_vec, Nisqd2_vec] tmp_cov = L_vec_cov;
+
+      if (method >= 90 && method <= 99) {
+        if (method == 90) {
+          tmp_cov = cholesky_decompose(add_diag(r_obs_vec_cov, square(rms_src_tmp)));
+        } else if (method == 91 || method == 92) {
+          if (centered == 0) {
+            tmp_loc = r_vec + rms_src_tmp * r_vec_ri[1];
+          } else if (centered == 1) {
+            tmp_loc = r_vec_ri[1];
+          }
+        }
       }
-    } else {
-      S_sim = wishart_rng(Np - 1.0, Omega / (Np - 1.0));
-      D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Omega / (Np - 1.0));
-      D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Omega / (Np - 1.0));
+
+      r_vec_sim = multi_normal_cholesky_rng(tmp_loc, tmp_cov);
+      D_obs = -2.0 * multi_normal_cholesky_lpdf(r_obs_vec | tmp_loc, tmp_cov);
+      D_rep = -2.0 * multi_normal_cholesky_lpdf(r_vec_sim | tmp_loc, tmp_cov);
     }
     ppp = D_rep > D_obs ? 1.0 : 0.0;
 
@@ -466,12 +450,14 @@ generated quantities {
   }
 
   for (j in 1:Nf) {
-    if (Load_mat[markers[j], j] < 0) {
-      Load_mat[, j] *= -1.0;
-      phi_mat[, j] *= -1.0;
-      phi_mat[j, ] *= -1.0;
-      Coef_mat[, j] *= -1.0;
-      Coef_mat[j, ] *= -1.0;
+    if (markers[j] != 0) {
+      if (Load_mat[markers[j], j] < 0) {
+        Load_mat[, j] *= -1.0;
+        phi_mat[, j] *= -1.0;
+        phi_mat[j, ] *= -1.0;
+        Coef_mat[, j] *= -1.0;
+        Coef_mat[j, ] *= -1.0;
+      }
     }
   }
 }
