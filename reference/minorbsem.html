@@ -14,7 +14,7 @@ minor factors (Uanhoro 2023)
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,6 +65,8 @@ minor factors (Uanhoro 2023)
 <span>  method <span class="op">=</span> <span class="st">"normal"</span>,</span>
 <span>  orthogonal <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  simple_struc <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  correlation <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  centered <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  seed <span class="op">=</span> <span class="fl">12345</span>,</span>
 <span>  warmup <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  sampling <span class="op">=</span> <span class="fl">1000</span>,</span>
@@ -117,6 +119,22 @@ bifactor models.</p></dd>
 If TRUE: assume simple structure;
 If FALSE: estimate all cross-loadings using generalized
 double Pareto priors.</p></dd>
+
+
+<dt>correlation</dt>
+<dd><p>(LOGICAL)
+If TRUE: perform correlation structure analysis based on logarithm
+of a matrix transformation
+(Archakov and Hansen 2021)
+;
+If FALSE (default): perform covariance structure analysis.</p></dd>
+
+
+<dt>centered</dt>
+<dd><p>(LOGICAL)
+Only relevant for WB-cond and WW methods when <code>correlation = TRUE</code>.
+If TRUE (default): Use a centered parameterization;
+If FALSE: Use a non-centered parameterization.</p></dd>
 
 
 <dt>seed</dt>
@@ -215,10 +233,15 @@ allowing for computation of casewise log-likelihoods and LOO-CV.</p></li>
 <li><p><code>WW</code>: A variation on WB-cond, but assumes the population
 covariance matrix is Wishart as opposed to inverse-Wishart;</p></li>
 <li><p><code>none</code>: if intending to ignore the influence of minor factors.</p></li>
-</ul></div>
+</ul><p>WB-cond and WW are equivalent for correlation structure analysis.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Armagan A, Dunson DB, Lee J (2013).
+    <p>Archakov I, Hansen PR (2021).
+“A New Parametrization of Correlation Matrices.”
+<em>Econometrica</em>, <b>89</b>(4), 1699--1715.
+ISSN 1468-0262, <a href="https://doi.org/10.3982/ECTA16910" class="external-link">doi:10.3982/ECTA16910</a>
+, <a href="https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA16910" class="external-link">https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA16910</a>.<br><br> Armagan A, Dunson DB, Lee J (2013).
 “Generalized double Pareto shrinkage.”
 <em>Statistica Sinica</em>, <b>23</b>(1), 119--143.
 ISSN 1017-0405, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/" class="external-link">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3903426/</a>.<br><br> Uanhoro JO (2023).
