@@ -8,6 +8,7 @@ create_data_list(
   lavaan_object = NULL,
   method = "normal",
   simple_struc = TRUE,
+  correlation = correlation,
   priors = NULL,
   compute_ll = FALSE,
   partab = NULL
@@ -23,6 +24,12 @@ create_data_list(
 If TRUE: assume simple structure;
 If FALSE: estimate all cross-loadings using generalized
 double Pareto priors.}
+
+\item{correlation}{(LOGICAL)
+If TRUE: perform correlation structure analysis based on logarithm
+of a matrix transformation
+\insertCite{archakov_new_2021}{minorbsem};
+If FALSE (default): perform covariance structure analysis.}
 
 \item{priors}{An object of \code{\link{mbsempriors-class}}.
 See \code{\link{new_mbsempriors}} for more information.}

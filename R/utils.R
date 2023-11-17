@@ -148,7 +148,7 @@ target_fitter <- function(
   }
 
   mod_resid <- instantiate::stan_package_model(
-    name = "sem", package = "minorbsem"
+    name = "sem_cov", package = "minorbsem"
   )
 
   message("Fitting Stan model ...")

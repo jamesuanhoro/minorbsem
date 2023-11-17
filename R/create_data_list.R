@@ -9,6 +9,7 @@ create_data_list <- function(
     lavaan_object = NULL,
     method = "normal",
     simple_struc = TRUE,
+    correlation = correlation,
     priors = NULL,
     compute_ll = FALSE,
     partab = NULL) {
@@ -160,6 +161,7 @@ create_data_list <- function(
       data_list$loading_pattern[, j] != 0
     )[1]
   }
+  data_list$markers[is.na(data_list$markers)] <- 0
 
   # Check for correlated error terms
   # Number of correlated errors
@@ -178,6 +180,10 @@ create_data_list <- function(
   }
   data_list$error_pattern <- theta_corr_mat
   data_list$Nce <- nrow(data_list$error_mat)
+
+  if (isTRUE(correlation)) {
+    # data_list$
+  }
 
   return(data_list)
 }

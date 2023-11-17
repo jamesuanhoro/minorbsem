@@ -12,6 +12,7 @@ minorbsem(
   method = "normal",
   orthogonal = FALSE,
   simple_struc = TRUE,
+  correlation = FALSE,
   seed = 12345,
   warmup = 1000,
   sampling = 1000,
@@ -49,6 +50,12 @@ bifactor models.}
 If TRUE: assume simple structure;
 If FALSE: estimate all cross-loadings using generalized
 double Pareto priors.}
+
+\item{correlation}{(LOGICAL)
+If TRUE: perform correlation structure analysis based on logarithm
+of a matrix transformation
+\insertCite{archakov_new_2021}{minorbsem};
+If FALSE (default): perform covariance structure analysis.}
 
 \item{seed}{(positive integer) seed, set to obtain replicable results.}
 

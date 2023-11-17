@@ -466,12 +466,14 @@ generated quantities {
   }
 
   for (j in 1:Nf) {
-    if (Load_mat[markers[j], j] < 0) {
-      Load_mat[, j] *= -1.0;
-      phi_mat[, j] *= -1.0;
-      phi_mat[j, ] *= -1.0;
-      Coef_mat[, j] *= -1.0;
-      Coef_mat[j, ] *= -1.0;
+    if (markers[j] != 0) {
+      if (Load_mat[markers[j], j] < 0) {
+        Load_mat[, j] *= -1.0;
+        phi_mat[, j] *= -1.0;
+        phi_mat[j, ] *= -1.0;
+        Coef_mat[, j] *= -1.0;
+        Coef_mat[j, ] *= -1.0;
+      }
     }
   }
 }
