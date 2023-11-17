@@ -1,3 +1,7 @@
+# minorbsem 0.2.7
+
+* Added correlation structure analysis via matrix logarithm transformation
+
 # minorbsem 0.2.6
 
 * Now using single Stan script for all models
