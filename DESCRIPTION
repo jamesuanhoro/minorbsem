@@ -24,7 +24,9 @@ Imports:
     lavaan,
     methods,
     posterior,
-    Rdpack
+    pracma,
+    Rdpack,
+    stats
 Suggests: 
     covr,
     loo,

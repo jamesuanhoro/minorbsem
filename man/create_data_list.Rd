@@ -11,7 +11,8 @@ create_data_list(
   correlation = correlation,
   priors = NULL,
   compute_ll = FALSE,
-  partab = NULL
+  partab = NULL,
+  centered = TRUE
 )
 }
 \arguments{
@@ -41,6 +42,11 @@ ignored when:
 (ii) the method is WB, use WB-cond instead.}
 
 \item{partab}{lavaanify result of corresponding model}
+
+\item{centered}{(LOGICAL)
+Only relevant for WB-cond and WW methods when \code{correlation = TRUE}.
+If TRUE (default): Use a centered parameterization;
+If FALSE: Use a non-centered parameterization.}
 }
 \value{
 Data list object used in fitting Stan model

@@ -73,7 +73,7 @@ transformed data {
   int N_alpha = 0;
   int N_complex = 0;
   real ln_det_S = log_determinant_spd(S);
-  int N_Sigma = 1;
+  int is_wb_adj = 0;
   int<lower = 0> Nce_uniq = 0; // N_correlated errors unique
   int Np_ll = Np * ret_ll * has_data;
 
@@ -82,7 +82,7 @@ transformed data {
   }
 
   if (method == 91 || method == 92) {
-    N_Sigma = Ni;
+    is_wb_adj = 1;
   }
 
   if (method == 100) {
@@ -146,7 +146,7 @@ parameters {
   vector<lower = -1, upper = 1>[Nco_uniq] coefs;  // may need to be limited to (-1, 1)?
   vector<lower = 0>[complex_struc] sigma_loadings_complex;
   vector<lower = 2.0>[complex_struc] gdp_loadings_complex;
-  cov_matrix[N_Sigma] Sigma;
+  array[is_wb_adj] cov_matrix[Ni] Sigma;
 }
 transformed parameters {
   real rms_src_tmp = 0.0;
@@ -286,20 +286,16 @@ model {
       }
     }
 
-    if (method != 91 && method != 92) {
-      Sigma ~ inv_wishart(1000, identity_matrix(1));
-    }
-
     if (method >= 90 && method <= 99) {
       m = 1.0 / square(rms_src_tmp) + Ni - 1;
       if (method == 90) {
         target += gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
       } else if (method == 91) {
-        Sigma ~ inv_wishart(m, m * Omega);
-        target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Sigma));
+        Sigma[1] ~ inv_wishart(m, m * Omega);
+        target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Sigma[1]));
       } else if (method == 92) {
-        Sigma ~ wishart(m, Omega / m);
-        target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Sigma));
+        Sigma[1] ~ wishart(m, Omega / m);
+        target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Sigma[1]));
       }
     } else {
       target += wishart_cholesky_lupdf(NL_S | Np - 1, cholesky_decompose(Omega));
@@ -434,7 +430,7 @@ generated quantities {
       vector[Ni] zero_vec = rep_vector(0.0, Ni);
       if (method == 91 || method == 92) {
         for (i in 1:Np_ll) {
-          log_lik[i] = multi_normal_lpdf(Y[i, ] | zero_vec, Sigma);
+          log_lik[i] = multi_normal_lpdf(Y[i, ] | zero_vec, Sigma[1]);
         }
       } else {
         for (i in 1:Np_ll) {
@@ -451,9 +447,9 @@ generated quantities {
         D_obs = -2.0 * gen_matrix_beta_ii_lpdf(S | Omega, Np - 1.0, m, ln_det_S);
         D_rep = -2.0 * gen_matrix_beta_ii_lpdf(S_sim | Omega, Np - 1.0, m, ln_det_S);
       } else if (method == 91 || method == 92) {
-        S_sim = wishart_rng(Np - 1.0, Sigma / (Np - 1.0));
-        D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Sigma);
-        D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Sigma);
+        S_sim = wishart_rng(Np - 1.0, Sigma[1] / (Np - 1.0));
+        D_obs = -2.0 * wishart_lpdf(S | Np - 1.0, Sigma[1]);
+        D_rep = -2.0 * wishart_lpdf(S_sim | Np - 1.0, Sigma[1]);
       }
     } else {
       S_sim = wishart_rng(Np - 1.0, Omega / (Np - 1.0));

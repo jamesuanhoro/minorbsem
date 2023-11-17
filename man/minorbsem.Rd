@@ -13,6 +13,7 @@ minorbsem(
   orthogonal = FALSE,
   simple_struc = TRUE,
   correlation = FALSE,
+  centered = TRUE,
   seed = 12345,
   warmup = 1000,
   sampling = 1000,
@@ -56,6 +57,11 @@ If TRUE: perform correlation structure analysis based on logarithm
 of a matrix transformation
 \insertCite{archakov_new_2021}{minorbsem};
 If FALSE (default): perform covariance structure analysis.}
+
+\item{centered}{(LOGICAL)
+Only relevant for WB-cond and WW methods when \code{correlation = TRUE}.
+If TRUE (default): Use a centered parameterization;
+If FALSE: Use a non-centered parameterization.}
 
 \item{seed}{(positive integer) seed, set to obtain replicable results.}
 
@@ -128,6 +134,8 @@ allowing for computation of casewise log-likelihoods and LOO-CV.
 covariance matrix is Wishart as opposed to inverse-Wishart;
 \item \code{none}: if intending to ignore the influence of minor factors.
 }
+
+WB-cond and WW are equivalent for correlation structure analysis.
 }
 \examples{
 \dontrun{
