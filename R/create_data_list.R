@@ -62,9 +62,8 @@ create_data_list <- function(
   # Number of factors
   data_list$Nf <- ncol(data_list$loading_pattern)
 
-
-  psi_mat <- param_structure$psi
   # Assume CFA by default
+  psi_mat <- param_structure$psi
   data_list$sem_indicator <- 0
   data_list$complex_struc <- as.integer(ifelse(isFALSE(simple_struc), 1, 0))
 

@@ -97,6 +97,13 @@ user_input_check <- function(
       )
       stop(err_msg)
     }
+    if (isTRUE(object_2) && grepl("wb|ww", tolower(object_1))) {
+      err_msg <- paste0(
+        "If performing correlation structure analysis, ",
+        "method cannot be any of the following: WB, WB-cond, WW"
+      )
+      stop(err_msg)
+    }
   }
 
   if (type == "data") {

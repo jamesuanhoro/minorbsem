@@ -121,7 +121,7 @@ minorbsem <- function(
   user_input_check("priors", priors)
 
   # method must be valid
-  user_input_check("method", method)
+  user_input_check("method", method, correlation)
 
   # Must provide either data or sample_cov and sample_nobs
   user_input_check("data", data, sample_cov, sample_nobs)
