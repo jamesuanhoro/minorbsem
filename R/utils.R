@@ -712,3 +712,35 @@ rename_post_df_columns <- function(
     )
   return(ret)
 }
+
+#' A function to reorder asymptotic variance matrix
+#' @description A function to reorder asymptotic variance matrix
+#' @param acov_mat Major paramters table
+#' @param old_names Old names from correlation matrix
+#' @param new_names Old names from lavaan object
+#' @returns Returns reordered acov_mat
+#' @keywords internal
+.fix_acov <- function(acov_mat, old_names, new_names) {
+  curr_ind <- which(lower.tri(diag(length(old_names))), arr.ind = TRUE)
+  curr_order <- seq_len(nrow(curr_ind))
+
+  # check missing indicators then delete
+  miss_ind <- which(!old_names %in% new_names)
+  drop_ind <- curr_ind[, 1] %in% miss_ind | curr_ind[, 2] %in% miss_ind
+  curr_ind_2 <- curr_ind[!drop_ind, ]
+  curr_order_2 <- curr_order[!drop_ind]
+
+  # now find location of old indices
+  new_locs <- sapply(old_names, function(x) {
+    ret <- which(x == new_names)
+    if (length(ret) == 0) ret <- NA
+    return(ret)
+  })
+  curr_ind_3 <- matrix(nrow = nrow(curr_ind_2), ncol = ncol(curr_ind_2))
+  for (i in seq_len(length(new_locs))) {
+    curr_ind_3[curr_ind_2 == i] <- new_locs[i]
+  }
+  new_order_3 <- order(apply(curr_ind_3, 1, min), apply(curr_ind_3, 1, max))
+  curr_order_3 <- curr_order_2[new_order_3]
+  return(acov_mat[curr_order_3, curr_order_3])
+}
