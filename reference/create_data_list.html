@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,8 @@
 <span>  priors <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  compute_ll <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  partab <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  centered <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  centered <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  acov_mat <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -112,6 +113,14 @@ ignored when:
 Only relevant for WB-cond and WW methods when <code>correlation = TRUE</code>.
 If TRUE (default): Use a centered parameterization;
 If FALSE: Use a non-centered parameterization.</p></dd>
+
+
+<dt>acov_mat</dt>
+<dd><p>(Optional) Asymptotic variance matrix of
+lower triangular half (column-order) of the correlation matrix
+to be used for correlation structure analysis.
+This parameter is useful if importing polychoric or meta-analytic
+SEM pooled correlation matrix.</p></dd>
 
 </dl></div>
     <div class="section level2">

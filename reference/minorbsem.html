@@ -14,7 +14,7 @@ minor factors (Uanhoro 2023)
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.8</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,8 @@ minor factors (Uanhoro 2023)
 <span>  priors <span class="op">=</span> <span class="fu"><a href="new_mbsempriors.html">new_mbsempriors</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  show <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_messages <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  compute_ll <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  compute_ll <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  acov_mat <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -195,6 +196,14 @@ if FALSE, do not. This may be useful for cross-validation. This argument is
 ignored when:
 (i) the full dataset is not provided;
 (ii) the method is WB, use WB-cond instead.</p></dd>
+
+
+<dt>acov_mat</dt>
+<dd><p>(Optional) Asymptotic variance matrix of
+lower triangular half (column-order) of the correlation matrix
+to be used for correlation structure analysis.
+This parameter is useful if importing polychoric or meta-analytic
+SEM pooled correlation matrix.</p></dd>
 
 </dl></div>
     <div class="section level2">
