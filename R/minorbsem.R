@@ -51,6 +51,11 @@
 #' ignored when:
 #' (i) the full dataset is not provided;
 #' (ii) the method is WB, use WB-cond instead.
+#' @param acov_mat (Optional) Asymptotic variance matrix of
+#' lower triangular half (column-order) of the correlation matrix
+#' to be used for correlation structure analysis.
+#' This parameter is useful if importing polychoric or meta-analytic
+#' SEM pooled correlation matrix.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
 #' CFAs assume standardized factors.
@@ -119,7 +124,8 @@ minorbsem <- function(
     priors = new_mbsempriors(),
     show = TRUE,
     show_messages = TRUE,
-    compute_ll = FALSE) {
+    compute_ll = FALSE,
+    acov_mat = NULL) {
   message("Processing user input ...")
 
   # Model cannot be NULL
@@ -170,7 +176,8 @@ minorbsem <- function(
     priors = priors,
     compute_ll = compute_ll,
     partab = partab,
-    centered = centered
+    centered = centered,
+    acov_mat = acov_mat
   )
 
   message("User input fully processed :)\n Now to modeling.")

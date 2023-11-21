@@ -1,3 +1,7 @@
+# minorbsem 0.2.8
+
+* Users can now supply asymptotic variance matrix of correlation matrix as an input
+
 # minorbsem 0.2.7
 
 * Added correlation structure analysis via matrix logarithm transformation
