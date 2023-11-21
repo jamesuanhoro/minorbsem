@@ -40,28 +40,6 @@ minimum_r_version <- function() {
   return(r_version)
 }
 
-#' Run generic CFA and SEM function
-#' @returns NULL
-#' @export
-init_minorbsem <- function() {
-  model_syntax <- "
-  F1 =~ x1 + x2 + x3\n F2 =~ x4 + x5 + x6\n F3 =~ x7 + x8 + x9"
-  minorbsem(
-    model_syntax, minorbsem::HS,
-    warmup = 200, sampling = 200, chains = 1, show = FALSE,
-    method = "none", refresh = 0, show_messages = FALSE
-  )
-  model_syntax <- "
-  ind60 =~ x1 + x2 + x3\n dem60 =~ y1 + y2 + y3 + y4
-    dem65 =~ y5 + y6 + y7 + y8\n dem60 ~ ind60\n dem65 ~ ind60 + dem60"
-  minorbsem(
-    model_syntax, minorbsem::PD,
-    warmup = 200, sampling = 200, chains = 1, show = FALSE,
-    method = "none", refresh = 0, show_messages = FALSE
-  )
-  return(NULL)
-}
-
 #' Check user input function
 #' @description A function that checks user input for adequacy
 #' and fails on inadequate input.
