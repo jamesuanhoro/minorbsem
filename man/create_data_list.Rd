@@ -12,7 +12,8 @@ create_data_list(
   priors = NULL,
   compute_ll = FALSE,
   partab = NULL,
-  centered = TRUE
+  centered = TRUE,
+  acov_mat = NULL
 )
 }
 \arguments{
@@ -47,6 +48,12 @@ ignored when:
 Only relevant for WB-cond and WW methods when \code{correlation = TRUE}.
 If TRUE (default): Use a centered parameterization;
 If FALSE: Use a non-centered parameterization.}
+
+\item{acov_mat}{(Optional) Asymptotic variance matrix of
+lower triangular half (column-order) of the correlation matrix
+to be used for correlation structure analysis.
+This parameter is useful if importing polychoric or meta-analytic
+SEM pooled correlation matrix.}
 }
 \value{
 Data list object used in fitting Stan model

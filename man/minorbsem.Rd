@@ -25,7 +25,8 @@ minorbsem(
   priors = new_mbsempriors(),
   show = TRUE,
   show_messages = TRUE,
-  compute_ll = FALSE
+  compute_ll = FALSE,
+  acov_mat = NULL
 )
 }
 \arguments{
@@ -98,6 +99,12 @@ if FALSE, do not. This may be useful for cross-validation. This argument is
 ignored when:
 (i) the full dataset is not provided;
 (ii) the method is WB, use WB-cond instead.}
+
+\item{acov_mat}{(Optional) Asymptotic variance matrix of
+lower triangular half (column-order) of the correlation matrix
+to be used for correlation structure analysis.
+This parameter is useful if importing polychoric or meta-analytic
+SEM pooled correlation matrix.}
 }
 \value{
 An object of \code{\link{mbsem-class}}

@@ -13,7 +13,8 @@ create_data_list <- function(
     priors = NULL,
     compute_ll = FALSE,
     partab = NULL,
-    centered = TRUE) {
+    centered = TRUE,
+    acov_mat = NULL) {
   data_list <- list()
 
   # Retrieve parameter structure from lavaan
@@ -189,7 +190,7 @@ create_data_list <- function(
     r_vec <- r_mat[lower.tri(data_list$S, diag = FALSE)]
     data_list$r_obs_vec <- .g_map(r_vec)
     data_list$r_obs_vec_cov <- .get_avar_mat(
-      r_mat, data_list$Np
+      r_mat, data_list$Np, acov_mat
     )
   }
 
