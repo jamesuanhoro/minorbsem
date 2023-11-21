@@ -2,6 +2,8 @@
 #' @description A function that creates data list object passed to Stan
 #' @param lavaan_object lavaan fit object of corresponding model
 #' @param partab lavaanify result of corresponding model
+#' @param old_names (Optional) Variable name order of original
+#' correlation matrix, used to reorder acov_mat.
 #' @inheritParams minorbsem
 #' @returns Data list object used in fitting Stan model
 #' @keywords internal
@@ -14,7 +16,8 @@ create_data_list <- function(
     compute_ll = FALSE,
     partab = NULL,
     centered = TRUE,
-    acov_mat = NULL) {
+    acov_mat = NULL,
+    old_names = NULL) {
   data_list <- list()
 
   # Retrieve parameter structure from lavaan
@@ -189,8 +192,16 @@ create_data_list <- function(
     r_mat <- stats::cov2cor(data_list$S)
     r_vec <- r_mat[lower.tri(data_list$S, diag = FALSE)]
     data_list$r_obs_vec <- .g_map(r_vec)
+    tmp_acov <- acov_mat
+    if (!is.null(tmp_acov)) {
+      if (!isTRUE(all.equal(old_names, rownames(param_structure$lambda)))) {
+        tmp_acov <- .fix_acov(
+          acov_mat, old_names, rownames(param_structure$lambda)
+        )
+      }
+    }
     data_list$r_obs_vec_cov <- .get_avar_mat(
-      r_mat, data_list$Np, acov_mat
+      r_mat, data_list$Np, tmp_acov
     )
   }
 

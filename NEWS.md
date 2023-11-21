@@ -1,3 +1,7 @@
+# minorbsem 0.2.9
+
+* Fixed bug when `acov_mat` is supplied to ensure `acov_mat` is correctly ordered based on lavaan object
+
 # minorbsem 0.2.8
 
 * Users can now supply asymptotic variance matrix of correlation matrix as an input

@@ -168,17 +168,32 @@ minorbsem <- function(
   )
 
   # Obtain data list for Stan
-  data_list <- create_data_list(
-    lavaan_object = lav_fit,
-    method = method,
-    simple_struc = simple_struc,
-    correlation = correlation,
-    priors = priors,
-    compute_ll = compute_ll,
-    partab = partab,
-    centered = centered,
-    acov_mat = acov_mat
-  )
+  if (is.null(acov_mat)) {
+    data_list <- create_data_list(
+      lavaan_object = lav_fit,
+      method = method,
+      simple_struc = simple_struc,
+      correlation = correlation,
+      priors = priors,
+      compute_ll = compute_ll,
+      partab = partab,
+      centered = centered,
+      acov_mat = acov_mat
+    )
+  } else {
+    data_list <- create_data_list(
+      lavaan_object = lav_fit,
+      method = method,
+      simple_struc = simple_struc,
+      correlation = correlation,
+      priors = priors,
+      compute_ll = compute_ll,
+      partab = partab,
+      centered = centered,
+      acov_mat = acov_mat,
+      old_names = rownames(sample_cov)
+    )
+  }
 
   message("User input fully processed :)\n Now to modeling.")
 

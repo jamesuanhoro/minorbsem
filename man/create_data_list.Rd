@@ -13,7 +13,8 @@ create_data_list(
   compute_ll = FALSE,
   partab = NULL,
   centered = TRUE,
-  acov_mat = NULL
+  acov_mat = NULL,
+  old_names = NULL
 )
 }
 \arguments{
@@ -54,6 +55,9 @@ lower triangular half (column-order) of the correlation matrix
 to be used for correlation structure analysis.
 This parameter is useful if importing polychoric or meta-analytic
 SEM pooled correlation matrix.}
+
+\item{old_names}{(Optional) Variable name order of original
+correlation matrix, used to reorder acov_mat.}
 }
 \value{
 Data list object used in fitting Stan model
