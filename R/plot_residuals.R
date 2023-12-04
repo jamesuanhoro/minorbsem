@@ -78,7 +78,7 @@ plot_residuals <- function(object, type = "matrix") {
       ) +
       ggplot2::theme_classic() +
       ggplot2::theme(
-        axis.text.x = ggplot2::element_text(angle = 90, vjust = .5)
+        axis.text.x = ggplot2::element_text(angle = 90, vjust = .5, hjust = 1)
       ) +
       ggplot2::geom_hline(
         yintercept = horiz_lines, linetype = 2, alpha = .5
@@ -109,7 +109,7 @@ plot_residuals <- function(object, type = "matrix") {
       )) +
       ggplot2::theme_classic() +
       ggplot2::theme(
-        axis.text.x = ggplot2::element_text(angle = 90, vjust = .5)
+        axis.text.x = ggplot2::element_text(angle = 90, vjust = .5, hjust = 1)
       ) +
       ggplot2::guides(alpha = "none") +
       ggplot2::theme(
