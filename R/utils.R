@@ -648,6 +648,8 @@ rename_post_df_columns <- function(
   r_vec <- r_mat[lower.tri(r_mat, diag = FALSE)]
   a_mat_inv <- pracma::jacobian(.g_map, r_vec)
   omega_gamma <- a_mat_inv %*% omega_r %*% a_mat_inv
+  # lower and upper triangular matrices may not match due to numerical issues
+  omega_gamma[upper.tri(omega_gamma)] <- t(omega_gamma)[upper.tri(omega_gamma)]
   return(omega_gamma)
 }
 

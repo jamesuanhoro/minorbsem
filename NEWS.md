@@ -1,3 +1,8 @@
+# minorbsem 0.2.10
+
+* Ensure asymptotic variance of log-correlation matrix is symmetric
+* Minor improvement on residual plots
+
 # minorbsem 0.2.9
 
 * Fixed bug when `acov_mat` is supplied to ensure `acov_mat` is correctly ordered based on lavaan object
