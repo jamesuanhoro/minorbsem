@@ -1,5 +1,6 @@
-# minorbsem (development version)
+# minorbsem 0.2.10
 
+* Ensure asymptotic variance of log-correlation matrix is symmetric
 * Minor improvement on residual plots
 
 # minorbsem 0.2.9
