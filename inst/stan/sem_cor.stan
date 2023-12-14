@@ -505,7 +505,8 @@ generated quantities {
       }
     }
 
-    phi_sd = fmax(0.0, sqrt(find_factor_res_var(Coef_mat, phi_mat)));
+    r_square = 1.0 - find_factor_res_var(Coef_mat, phi_mat);
+    phi_sd = sqrt(fmax(0.0, 1.0 - r_square));
     One_min_Beta_inv = inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
     imp_phi = quad_form_sym(quad_form_diag(phi_mat, phi_sd), One_min_Beta_inv');
     lamb_phi_lamb = quad_form_sym(imp_phi, Load_mat');
@@ -574,8 +575,6 @@ generated quantities {
       D_rep = -2.0 * multi_normal_cholesky_lpdf(r_vec_sim | tmp_loc, tmp_cov);
     }
     ppp = D_rep > D_obs ? 1.0 : 0.0;
-
-    r_square = 1.0 - square(phi_sd);
   }
 
   for (j in 1:Nf) {
