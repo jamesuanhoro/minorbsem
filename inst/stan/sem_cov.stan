@@ -1,4 +1,137 @@
 functions {
+  array[] int find_row_zero(matrix sq_mat, array[] int is_row_fixed) {
+    int ni = rows(sq_mat);
+    int des_zero = ni - sum(is_row_fixed);
+    array[ni] int tmp_res = rep_array(0, ni);
+    int idx = 0;
+    for (i in 1:ni) {
+      if (is_row_fixed[i] == 0) {
+        int temp = 0;
+        for (j in 1:ni) {
+          if (is_row_fixed[j] == 0) {
+            if (sq_mat[i, j] == 0) temp += 1;
+          }
+        }
+        if (temp == des_zero) {
+          idx += 1;
+          tmp_res[idx] = i;
+        }
+      }
+    }
+    array[idx] int result = tmp_res[1:idx];
+    return(result);
+  }
+  array[,] int find_recursive_set(matrix coef_mat) {
+    int ni = rows(coef_mat);
+    array[ni, ni] int result = rep_array(0, ni, ni);
+    array[ni] int fix_variable = rep_array(0, ni);
+    int ni_sofar = 0;
+    int i = 0;
+    while (ni_sofar < ni) {
+      array[size(find_row_zero(coef_mat, fix_variable))] int temp = find_row_zero(coef_mat, fix_variable);
+      fix_variable[temp] = rep_array(1, size(temp));
+      i += 1;
+      result[i, 1:size(temp)] = temp;
+      ni_sofar += size(temp);
+    }
+    return(result);
+  }
+  vector find_factor_res_var(matrix coef_mat, matrix cor_psi) {
+    int ni = rows(coef_mat);
+    array[ni, ni] int full_set = find_recursive_set(coef_mat);
+    vector[ni] error_var = rep_vector(1.0, ni);
+    vector[ni] total_var_psi = rep_vector(1.0, ni);
+    array[ni] int iv = rep_array(0, ni);
+
+    int n_set_1 = 0;
+    for (i in 1:ni) {
+      if (full_set[1, i] != 0) n_set_1 += 1;
+    }
+    array[n_set_1] int idx_set_1 = rep_array(0, n_set_1);
+    {
+      int counter = 0;
+      for (i in 1:ni) {
+        if (full_set[1, i] != 0) {
+          counter += 1;
+          idx_set_1[counter] = full_set[1, i];
+        }
+      }
+    }
+    error_var[idx_set_1] = total_var_psi[idx_set_1];
+
+    matrix[n_set_1, n_set_1] ic_cor = cor_psi[idx_set_1, idx_set_1];
+    vector[n_set_1] start_var = total_var_psi[idx_set_1];
+    matrix[ni, ni] iv_cov;
+    iv_cov[1:n_set_1, 1:n_set_1] = quad_form_diag(ic_cor, sqrt(start_var));
+
+    int n_sets = 0;
+    for (i in 1:ni) {
+      if (sum(full_set[i, ]) > 0) n_sets += 1;
+    }
+    array[n_sets, ni] int set = full_set[1:n_sets, ];
+
+    int n_set_start;
+    int n_set_end = 0;
+    for (i in 1:(n_sets - 1)) {
+      n_set_start = n_set_end + 1;
+      int n_set_i = 0;
+      int n_set_ip1 = 0;
+      for (j in 1:ni) {
+        if (set[i, j] != 0) n_set_i += 1;
+        if (set[i + 1, j] != 0) n_set_ip1 += 1;
+      }
+      n_set_end += n_set_i;
+      array[n_set_i] int idx_set_i = rep_array(0, n_set_i);
+      array[n_set_ip1] int idx_set_ip1 = rep_array(0, n_set_ip1);
+      {
+        int counter_i = 0;
+        int counter_ip1 = 0;
+        for (j in 1:ni) {
+          if (set[i, j] != 0) {
+            counter_i += 1;
+            idx_set_i[counter_i] = set[i, j];
+          }
+          if (set[i + 1, j] != 0) {
+            counter_ip1 += 1;
+            idx_set_ip1[counter_ip1] = set[i + 1, j];
+          }
+        }
+      }
+      iv[n_set_start:n_set_end] = idx_set_i;
+
+      matrix[n_set_ip1, n_set_end] tmp_beta = coef_mat[idx_set_ip1, iv[1:n_set_end]];
+
+      matrix[n_set_ip1, n_set_ip1] var_reg = quad_form_sym(
+        iv_cov[1:n_set_end, 1:n_set_end], tmp_beta'
+      );
+
+      matrix[n_set_ip1, n_set_ip1] temp_psi = cor_psi[idx_set_ip1, idx_set_ip1];
+      vector[n_set_ip1] temp_psi_sd = rep_vector(0.0, n_set_ip1);
+
+      for (j in 1:n_set_ip1) {
+        error_var[idx_set_ip1[j]] = total_var_psi[idx_set_ip1[j]] - var_reg[j, j];
+        temp_psi_sd[j] = fmax(0.0, sqrt(error_var[idx_set_ip1[j]]));
+      }
+
+      if (i < (n_sets - 1)) {
+        temp_psi = quad_form_diag(temp_psi, temp_psi_sd);
+        int n_agg = n_set_end + n_set_ip1;
+        matrix[n_agg, n_agg] real_temp_psi = rep_matrix(0, n_agg, n_agg);
+        real_temp_psi[1:n_set_end, 1:n_set_end] = iv_cov[1:n_set_end, 1:n_set_end];
+        real_temp_psi[(n_set_end + 1):n_agg, (n_set_end + 1):n_agg] = temp_psi;
+        array[n_agg] int agg;
+        agg[1:n_set_end] = iv[1:n_set_end];
+        agg[(n_set_end + 1):n_agg] = idx_set_ip1;
+        matrix[n_agg, n_agg] temp_path2 = rep_matrix(0, n_agg, n_agg);
+        temp_path2[(n_set_end + 1):n_agg, ] = coef_mat[idx_set_ip1, agg];
+        matrix[n_agg, n_agg] id_mat = identity_matrix(n_agg);
+        matrix[n_agg, n_agg] id_tmp2_inv = inverse(id_mat - temp_path2);
+        iv_cov[1:n_agg, 1:n_agg] = quad_form(real_temp_psi, id_tmp2_inv');
+      }
+    }
+
+    return(error_var);
+  }
   int sign(real x) {
     if (x > 0)
       return 1;
@@ -236,9 +369,7 @@ model {
       }
     }
 
-    for (i in 1:Nf) {
-      phi_sd[i] = fmax(0.0, sqrt(1 - quad_form_sym(phi_mat, Coef_mat[i, ]')));
-    }
+    phi_sd = fmax(0.0, sqrt(find_factor_res_var(Coef_mat, phi_mat)));
     One_min_Beta_inv = inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
     imp_phi = quad_form_sym(quad_form_diag(phi_mat, phi_sd), One_min_Beta_inv');
     lamb_phi_lamb = quad_form_sym(imp_phi, Load_mat');
@@ -372,9 +503,7 @@ generated quantities {
       }
     }
 
-    for (i in 1:Nf) {
-      phi_sd[i] = fmax(0.0, sqrt(1 - quad_form_sym(phi_mat, Coef_mat[i, ]')));
-    }
+    phi_sd = fmax(0.0, sqrt(find_factor_res_var(Coef_mat, phi_mat)));
     One_min_Beta_inv = inverse(diag_matrix(rep_vector(1, Nf)) - Coef_mat);
     imp_phi = quad_form_sym(quad_form_diag(phi_mat, phi_sd), One_min_Beta_inv');
     lamb_phi_lamb = quad_form_sym(imp_phi, Load_mat');

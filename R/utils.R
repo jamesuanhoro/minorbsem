@@ -120,8 +120,7 @@ target_fitter <- function(
         data_list$complex_struc * sum(
           data_list$loading_pattern == 0 & data_list$loading_fixed == -999
         )
-      ),
-      coefs = array(0, max(data_list$coef_pattern))
+      )
     )
   }
 
