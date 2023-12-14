@@ -103,23 +103,19 @@
 <h3 id="goals">Goals<a class="anchor" aria-label="anchor" href="#goals"></a>
 </h3>
 <p>The goal of <code>minorbsem</code> is to facilitate fitting Bayesian SEMs that estimate the influence of minor factors on the covariance matrix, following the approach in Uanhoro (2023). Briefly, the method estimates all residual covariances with priors that shrink them towards zero, and the model returns the magnitude of the influence of minor factors.</p>
+<p>The package also allows you set priors on all substantive model parameters directly. Importantly, prior distributions assume latent variables have a total variance of 1, even in latent regression models.</p>
 </div>
 <div class="section level3">
 <h3 id="permitted-models-and-supported-data-types">Permitted models and supported data types<a class="anchor" aria-label="anchor" href="#permitted-models-and-supported-data-types"></a>
 </h3>
-<p>The package only fits a limited number of model configurations:</p>
+<p>The package is able to fit a variety of model configurations:</p>
 <ul>
-<li>CFA, allowing cross-loadings (which may be automatically estimated), correlated errors terms, and fully oblique or orthogonal factors (useful for fitting bifactor models)</li>
-<li>SEMs allowing latent regressions (only), cross-loadings, and correlated error terms.</li>
+<li>CFA, allowing automatically estimated penalized cross-loadings</li>
+<li>SEMs allowing latent regressions (only), and correlated error terms.</li>
+<li>MIMIC models using phantom latent variables</li>
 </ul>
-<p>However, the package does not currently support fitting:</p>
-<ul>
-<li>MIMIC,</li>
-<li>multi-group models,</li>
-<li>multilevel models, or</li>
-<li>models with specially constrained parameters (e.g., setting two parameters equal).</li>
-</ul>
-<p>All data are assumed multivariate normal, i.e. no binary, ordinal models.</p>
+<p>The package is also able to <strong>analyze correlation structures</strong> using methods in Archakov and Hansen (2021). This includes polychoric correlation matrices as long as an asymptotic variance matrix is provided. The relevant paper is under review at Structural Equation Modeling.</p>
+<p>The package does not support fitting multi-group or multilevel models. See the <a href="https://github.com/jamesuanhoro/bayesianmasem" class="external-link">bayesianmasem</a> package for multi-group factor analysis via meta-analysis methods.</p>
 </div>
 </div>
 <div class="section level2">
@@ -215,6 +211,9 @@
 <h2 id="citations">Citations<a class="anchor" aria-label="anchor" href="#citations"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-archakov_new_2021" class="csl-entry">
+Archakov, Ilya, and Peter Reinhard Hansen. 2021. “A New Parametrization of Correlation Matrices.” <em>Econometrica</em> 89 (4): 1699–1715. <a href="https://doi.org/10.3982/ECTA16910" class="external-link uri">https://doi.org/10.3982/ECTA16910</a>.
+</div>
 <div id="ref-maccallum_representing_1991" class="csl-entry">
 MacCallum, Robert C., and Ledyard R. Tucker. 1991. “Representing Sources of Error in the Common-Factor Model: Implications for Theory and Practice.” <em>Psychological Bulletin</em> 109 (3): 502–11. <a href="https://doi.org/10.1037/0033-2909.109.3.502" class="external-link uri">https://doi.org/10.1037/0033-2909.109.3.502</a>.
 </div>
