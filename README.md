@@ -54,26 +54,27 @@ following the approach in Uanhoro (2023). Briefly, the method estimates
 all residual covariances with priors that shrink them towards zero, and
 the model returns the magnitude of the influence of minor factors.
 
+The package also allows you set priors on all substantive model
+parameters directly. Importantly, prior distributions assume latent
+variables have a total variance of 1, even in latent regression models.
+
 ### Permitted models and supported data types
 
-The package only fits a limited number of model configurations:
+The package is able to fit a variety of model configurations:
 
-- CFA, allowing cross-loadings (which may be automatically estimated),
-  correlated errors terms, and fully oblique or orthogonal factors
-  (useful for fitting bifactor models)
-- SEMs allowing latent regressions (only), cross-loadings, and
-  correlated error terms.
+- CFA, allowing automatically estimated penalized cross-loadings
+- SEMs allowing latent regressions (only), and correlated error terms.
+- MIMIC models using phantom latent variables
 
-However, the package does not currently support fitting:
+The package is also able to **analyze correlation structures** using
+methods in Archakov and Hansen (2021). This includes polychoric
+correlation matrices as long as an asymptotic variance matrix is
+provided. The relevant paper is under review at Structural Equation
+Modeling.
 
-- MIMIC,
-- multi-group models,
-- multilevel models, or
-- models with specially constrained parameters (e.g., setting two
-  parameters equal).
-
-All data are assumed multivariate normal, i.e. no binary, ordinal
-models.
+The package does not support fitting multi-group or multilevel models.
+See the [bayesianmasem](https://github.com/jamesuanhoro/bayesianmasem)
+package for multi-group factor analysis via meta-analysis methods.
 
 ## Installation
 
@@ -176,6 +177,14 @@ Uanhoro at unt dot edu). Thank you for helping improve minorbsem :).
 ## Citations
 
 <div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-archakov_new_2021" class="csl-entry">
+
+Archakov, Ilya, and Peter Reinhard Hansen. 2021. “A New Parametrization
+of Correlation Matrices.” *Econometrica* 89 (4): 1699–1715.
+<https://doi.org/10.3982/ECTA16910>.
+
+</div>
 
 <div id="ref-maccallum_representing_1991" class="csl-entry">
 
