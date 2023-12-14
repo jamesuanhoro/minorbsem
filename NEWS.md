@@ -1,3 +1,8 @@
+# minorbsem 0.2.11
+
+* Fixed mistake in calculation of factor residual variance for latent regression models, by transforming `simsem::findFactorResidualVar()` into Stan code.
+* Also removed 0 start values for latent regression coefficients.
+
 # minorbsem 0.2.10
 
 * Ensure asymptotic variance of log-correlation matrix is symmetric
