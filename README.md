@@ -63,8 +63,10 @@ variables have a total variance of 1, even in latent regression models.
 The package is able to fit a variety of model configurations:
 
 - CFA, allowing automatically estimated penalized cross-loadings
-- SEMs allowing latent regressions (only), and correlated error terms.
-- MIMIC models using phantom latent variables
+- Path models with latent and observed variables
+  - Any observed variables in a structural model must be represented
+    with a single-indicator latent variable with the error variance of
+    the observed variable constrained to 0
 
 The package is also able to **analyze correlation structures** using
 methods in Archakov and Hansen (2021). This includes polychoric
