@@ -423,7 +423,10 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
       data_list$coef_pattern >= 1 | data_list$coef_fixed != -999,
       arr.ind = TRUE
     )
-    coef_order <- coef_order[order(coef_order[, "row"], coef_order[, "col"]), ]
+    coef_order <- coef_order[
+      order(coef_order[, "row"], coef_order[, "col"]), ,
+      drop = FALSE
+    ]
     coef_idxs <- paste0(
       "Coef_mat[", apply(coef_order, 1, paste0, collapse = ","), "]"
     )
