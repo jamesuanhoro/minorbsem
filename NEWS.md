@@ -1,3 +1,7 @@
+# minorbsem (development version)
+
+* Sort regression results by outcome variable
+
 # minorbsem 0.2.11
 
 * Fixed mistake in calculation of factor residual variance for latent regression models, by transforming `simsem::findFactorResidualVar()` into Stan code.
