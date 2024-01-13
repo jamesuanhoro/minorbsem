@@ -229,7 +229,7 @@ transformed data {
       if (loading_pattern[i, j] != 0) {
         Nl += 1;
         if (loading_pattern[i, j] > Nl_uniq) Nl_uniq = loading_pattern[i, j];
-      } else if (loading_fixed[i, j] != -999) {
+      } else if (loading_fixed[i, j] > -990) {
         Nl_fixed += 1;
       }
     }
@@ -244,7 +244,7 @@ transformed data {
       if (coef_pattern[i, j] != 0) {
         Nco += 1;
         if (coef_pattern[i, j] > Nco_uniq) Nco_uniq = coef_pattern[i, j];
-      } else if (coef_fixed[i, j] != -999) {
+      } else if (coef_fixed[i, j] > -990) {
         Nco_fixed += 1;
       }
     }
@@ -262,7 +262,7 @@ transformed data {
     if (res_var_pattern[i] != 0) {
       Nrv += 1;
       if (res_var_pattern[i] > Nrv_uniq) Nrv_uniq = res_var_pattern[i];
-    } else if (res_var_fixed[i] != 999) {
+    } else if (res_var_fixed[i] < 990) {
       Nrv_fixed += 1;
     }
   }
@@ -346,7 +346,7 @@ model {
         if (coef_pattern[i, j] != 0) {
           coefs[coef_pattern[i, j]] ~ normal(coef_est[i, j], coef_se[i, j]);
           Coef_mat[i, j] = coefs[coef_pattern[i, j]];
-        } else if (coef_fixed[i, j] != -999) {
+        } else if (coef_fixed[i, j] > -990) {
           Coef_mat[i, j] = coef_fixed[i, j];
         }
       }
@@ -359,7 +359,7 @@ model {
           if (loading_pattern[i, j] != 0) {
             loadings[loading_pattern[i, j]] ~ normal(load_est[i, j], load_se[i, j]);
             Load_mat[i, j] = loadings[loading_pattern[i, j]];
-          } else if (loading_fixed[i, j] != -999) {
+          } else if (loading_fixed[i, j] > -990) {
             Load_mat[i, j] = loading_fixed[i, j];
           } else if (complex_struc == 1) {
             pos_complex += 1;
@@ -377,7 +377,7 @@ model {
     for (i in 1:Ni) {
       if (res_var_pattern[i] != 0) {
         res_var[i] = square(res_sds_u[res_var_pattern[i]]);
-      } else if (res_var_fixed[i] != 999) {
+      } else if (res_var_fixed[i] < 990) {
         res_var[i] = res_var_fixed[i];
       }
     }
@@ -481,7 +481,7 @@ generated quantities {
       for (j in 1:Nf) {
         if (coef_pattern[i, j] != 0) {
           Coef_mat[i, j] = coefs[coef_pattern[i, j]];
-        } else if (coef_fixed[i, j] != -999) {
+        } else if (coef_fixed[i, j] > -990) {
           Coef_mat[i, j] = coef_fixed[i, j];
         }
       }
@@ -493,7 +493,7 @@ generated quantities {
         for (j in 1:Nf) {
           if (loading_pattern[i, j] != 0) {
             Load_mat[i, j] = loadings[loading_pattern[i, j]];
-          } else if (loading_fixed[i, j] != -999) {
+          } else if (loading_fixed[i, j] > -990) {
             Load_mat[i, j] = loading_fixed[i, j];
           } else if (complex_struc == 1) {
             pos_complex += 1;
@@ -512,7 +512,7 @@ generated quantities {
     for (i in 1:Ni) {
       if (res_var_pattern[i] != 0) {
         res_var[i] = square(res_sds_u[res_var_pattern[i]]);
-      } else if (res_var_fixed[i] != 999) {
+      } else if (res_var_fixed[i] < 990) {
         res_var[i] = res_var_fixed[i];
       }
     }
