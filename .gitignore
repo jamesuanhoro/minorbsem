@@ -12,7 +12,7 @@ README.html
 !/vignettes/articles/*.pdf
 docs
 trash.R
-inst/stan/**
-!inst/stan/**/*.*
-inst/stan/**/*.exe
-inst/stan/**/*.EXE
+src/stan/**
+!src/stan/**/*.*
+src/stan/**/*.exe
+src/stan/**/*.EXE
