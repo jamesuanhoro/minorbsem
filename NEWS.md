@@ -1,7 +1,8 @@
-# minorbsem (development version)
+# minorbsem 0.2.12
 
 * Sort regression results by outcome variable
 * Removed equality tests on real numbers in Stan
+* Instantiate-forced changes
 
 # minorbsem 0.2.11
 
