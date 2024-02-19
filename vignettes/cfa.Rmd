@@ -14,7 +14,7 @@ options(width = 100)
 
 We begin with a simple example of confirmatory factor analysis (CFA), using the`minorbsem()` function to fit the model. The `minorbsem` package contains a built-in dataset called `HS`, which is a part of classic Holzinger-Swineford dataset. This dataset is used in many papers and books on CFA. The dataset consists of mental ability test scores of seventh and eighth grade children from two different schools (Pasteur and Grant-White). In our version of the dataset (obtained from _lavaan_, @Rosseel2012), only 9 out of the original 26 tests are included.
 
-We begin by loading the `minorbsem`:
+We begin by loading the package:
 
 ```{r}
 library(minorbsem)
