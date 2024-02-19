@@ -94,17 +94,24 @@
 #'
 #' @examples
 #' \dontrun{
-#' minorbsem("# latent variable definitions
-#'            F1 =~ x1 + x2 + x3
-#'            F2 =~ x4 + x5 + x6
-#'            F3 =~ x7 + x8 + x9", HS)
-#' minorbsem("# latent variable definitions
-#'            ind60 =~ x1 + x2 + x3
-#'            dem60 =~ y1 + y2 + y3 + y4
-#'            dem65 =~ y5 + y6 + y7 + y8
-#'            # latent regressions
-#'            dem60 ~ ind60
-#'            dem65 ~ ind60 + dem60", PD)
+#' mod_cfa <- minorbsem(
+#'   "# latent variable definitions
+#'   F1 =~ x1 + x2 + x3
+#'   F2 =~ x4 + x5 + x6
+#'   F3 =~ x7 + x8 + x9", HS
+#' )
+#' new_pd <- PD
+#' apply(PD, 2, sd) # first 8 variables have relatively large SDs
+#' new_pd[, 1:8] <- new_pd[, 1:8] / 3 # move SDs closer to 1
+#' mod_sem <- minorbsem(
+#'   "# latent variable definitions
+#'   ind60 =~ x1 + x2 + x3
+#'   dem60 =~ y1 + y2 + y3 + y4
+#'   dem65 =~ y5 + y6 + y7 + y8
+#'   # latent regressions
+#'   dem60 ~ ind60
+#'   dem65 ~ ind60 + dem60", new_pd
+#' )
 #' mod_dl <- minorbsem(
 #'   "# latent variable definitions
 #'   F1 =~ x1 + x2 + x3
