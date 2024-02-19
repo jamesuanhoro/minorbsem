@@ -10,3 +10,13 @@ home:
     href: https://github.com/jamesuanhoro/minorbsem/issues/
   - text: Ask a question / Make a suggestion
     href: mailto:James.Uanhoro@unt.edu
+navbar:
+  structure:
+    left:  [intro, articles, reference, tutorials, news]
+    right: [search, github]
+  components:
+    articles:
+      text: Examples
+      menu:
+      - text: Confirmatory Factor Analysis
+        href: articles/cfa.html

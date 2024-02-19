@@ -1,0 +1,191 @@
+---
+title: "Confirmatory Factor Analysis"
+author: "Xiaolu Fan, James Uanhoro"
+output: github_document
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width = 100)
+```
+
+# Basic CFA Model
+
+We begin with a simple example of confirmatory factor analysis (CFA), using the`minorbsem()` function to fit the model. The `minorbsem` package contains a built-in dataset called `HS`, which is a part of classic Holzinger-Swineford dataset. This dataset is used in many papers and books on CFA. The dataset consists of mental ability test scores of seventh and eighth grade children from two different schools (Pasteur and Grant-White). In our version of the dataset (obtained from _lavaan_, @Rosseel2012), only 9 out of the original 26 tests are included.
+
+We begin by loading the package:
+
+```{r}
+library(minorbsem)
+```
+
+The first six lines of the dataset:
+
+```{r}
+head(HS)
+```
+
+## Data preparation
+
+The scale of data is important for setting priors on model parameters. The default priors for models fit with `minorbsem` are reasonable when variables have standard deviations close to 1. For this reason, we first check the standard deviations of the relevant variables for this analysis:
+
+```{r}
+item_data <- HS[, paste0("x", 1:9)]  # select columns x1:x9
+head(item_data)  # show first six rows
+apply(item_data, 2, sd)  # compute SD of each variable
+```
+
+All variables have standard deviations close to 1, so we can move forward with the data as they are. Otherwise, we would recommend re-scaling the variables.^[In the situation where variable scales have no information value, one can do a correlation-structure analysis instead using syntax of the form: `minorbsem(..., correlation = TRUE)`.]
+
+## Model syntax
+
+The model syntax is lavaan-style:
+
+```{r}
+syntax_basic <- "
+Visual =~ x1 + x2 + x3
+Verbal =~ x4 + x5 + x6
+Speed =~ x7 + x8 + x9"
+```
+
+This model assumes three latent variables (or factors): _visual_, _verbal_, and _speed_. The visual factor has the indicators: x1, x2, and x3; the verbal factor has indicators: x4, x5, and x6; the speed factor has indicators: x7, x8, and x9.
+
+## Fit the model
+
+We run the analysis using the `minorbsem()` function. By default, the function assumes that minor factors influence the covariance between the variables. `minorbsem` then prints out the iterations from Stan -- we show these iterations once so the reader knows what to expect.
+
+```{r cfa_0}
+fit_cfa <- minorbsem(model = syntax_basic, data = HS)
+```
+
+### Output structure
+
+At the top of the results table, `method = normal` indicates the approach of estimating the residual covariances between all items: the belief is that the standardized residual covariances (SRCs) which reflect minor factor influences are normally distributed with zero mean. The table also prints out the sample size of 301 -- only complete rows are retained for analysis.
+
+We describe the column headers. The `from`, `op` and `to` combination describe the type of parameter being reported according to lavaan-style syntax. For example, the `Visual =~ x1` row describes the loading from the visual factor to item x1. The `mean`, `sd` and percentage columns are descriptive statistics of posterior distributions. The `mean` and `sd` function like the estimate and standard error in standard frequentist statistics. The percentage columns are credible intervals. By default, they are 90\% credible intervals, i.e. given the prior and data, there is a 90\% chance the parameter falls in this interval. `rhat` (pronounced R-hat) and `ess_bulk` columns are the potential scale reduction factor ($\widehat{R}$) and effective sample size (ESS) respectively [@vehtari_rank-normalization_2021] -- they are useful for checking parameter convergence. For $\widehat{R}$, values very close to 1 are preferable. For ESS, larger values are preferable.
+<!-- checks parameter convergence and should not be much larger than 1. In this case, all R values are between 1.000 and 1.006. -->
+<!-- The ess_bulk stands for effective sample size (bulk). The larger the value, the better the model. Values in the hundreds are preferable. -->
+A final analysis in a manuscript would ideally have all parameters with $\widehat{R}$ under 1.01 and ESS above 400 for one to be sure parameter estimates have converged [@vehtari_rank-normalization_2021]. An easy way to meet these expectations is to increase the number of requested samples when calling `minorbsem()` via the `warmup =` and `sampling =` arguments, see `?minorbsem`.
+
+The parameter estimates are presented by the type of parameter.
+
+### Goodness of fit
+
+**PPP**. The first section of results contains parameters that help assess global model fit. "PPP" is the posterior predictive _p_-value in the form described by @Muthen2012, and is akin to a $\chi^2$ test in standard SEMs. It is conventional to prefer values under .05 or .10. Here, PPP = .382 indicating a good-fitting model. Desirable PPP-values are to be expected by default in `minorbsem` as the package accounts for model misspecification -- alternatively stated: PPP-values above .05 do not imply an absence of misfit and is not all that informative by default. We report PPP since `minorbsem` is also able to fit Bayesian SEMs that do not account for misspecification, e.g. `minorbsem(..., method = "none")`.
+
+**RMSE**. This the root mean square error of standardized residual covariances (SRCs) and communicates the typical size of SRCs. One may also interpret this metric as the standard deviation of SRCs with 95% of SRCs lying within 2 RMSE values from 0. In this example, RMSE = 0.063 and we can expect some SRCs to be greater than 0.10, suggesting some large SRCs [@Maydeu-Olivares2017a]. Large SRCs challenge the notion that model misspecification is due to the influence of minor factors -- if these influences are large, are these factors “minor”? It is possible that the hypothesized structure is incorrect, or minor factors have significant effects.
+
+### Substantive parameters
+
+The parameter estimates are reported by type of parameter: factor loadings, inter-factor correlations, and error variances. For this model, all items load on their respective factors with intervals that clearly exclude 0. All factors are assumed standardized in minorbsem, so only their correlations are reported; and all factors are non-trivially correlated.
+
+## Residual plots
+
+Given that the RMSE suggests large standardized residual covariances (SRCs), we can request a plot of SRCs using two options: a range-plot and a heat-map.
+
+```{r}
+plot_residuals(fit_cfa, type = "range")
+plot_residuals(fit_cfa, type = "matrix")
+```
+
+The heat-map is particularly useful for highlighting the largest SRCs. If these SRCs cluster in a non-random way, one may identify potential model modifications.
+
+# Bifactor model with orthogonal factors
+
+To improve on the basic model, we consider the bifactor structure, which builds on the basic CFA model by specifying a general factor 'G' that is reflected in all nine indicators. All factors are assumed orthogonal.
+
+## Model syntax
+
+```{r}
+syntax_bifactor <- paste0(
+  "G =~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9", "\n",
+  syntax_basic
+)
+writeLines(syntax_bifactor)
+```
+
+## Fit the model
+
+The call to `minorbsem()` needs to be of the form: `minorbsem(..., orthogonal = TRUE)` to ensure the factors are orthogonal:
+
+```{r cfa_bif_reg, include=FALSE}
+fit_bifactor <- minorbsem(syntax_bifactor, data = HS, orthogonal = TRUE)
+```
+
+```{r eval=FALSE}
+fit_bifactor <- minorbsem(syntax_bifactor, data = HS, orthogonal = TRUE)
+```
+
+```{r echo=FALSE}
+fit_bifactor
+```
+
+Compared to the basic CFA model, the RMSE drops from .063 to .028, suggesting a much better fitting model. All items load with 90\% intervals excluding 0 on the general factor, except for x7. Additionally, x1 -- x3 load confusingly on their specific factor, while x4 -- x9 load strongly on their specific factors especially when compared to their general factor loadings. This pattern of factor loadings provide little support for a bifactor structure.
+
+<!-- Regarding the factor loadings on the new factor 'G', items x1 through x6 and x9 all have relatively large loadings greater than 0.4, but items x7 and x8 do not load very well, with factor loadings of .112 and .289, respectively. For the factor F1 (Visual), all three items (x1, x2, and x3) have small loading under .25. For factor F2 (Verbal), all three items (x4, x5, and x6) load pretty well, with loadings of .857, 1.051, and .785, respectively. For factor F3 (Speed), all three factors (x7, x8, and x9) have good loadings greater than .40. In addition, `orthonogal=TRUE` argument set all the inter-factor correlations to be zero. -->
+
+# Bifactor model with parameter constraints
+
+We instead explore a more constrained bifactor structure where specific factor loadings are forced equal within each specific factor. Note that minorbsem uses the same parameter constraint syntax as lavaan:
+
+## Model syntax
+
+```{r}
+syntax_bifactor_cons <- paste0(
+  "G =~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9", "\n",
+  "Visual =~ a * x1 + a * x2 + a * x3
+  Verbal =~ b * x4 + b * x5 + b * x6
+  Speed =~ c * x7 + c * x8 + c * x9"
+)
+```
+
+<!-- This model is built upon the basic bifactor model by adding constraints. The loadings on the G factor remains unchanged as the basic bifactor model and allow to be freely estimated. However, the loadings of x1, x2, and x3 on F1 are forced to be the same. Similarly, loading of x4, x5, and x6 on F2 are forced to the same, and x7, x8, and x9 on F3 are also constrained to be the same number. -->
+
+## Fit the model
+
+```{r cfa_bif_cons, include=FALSE}
+fit_bifactor_cons <- fit_bifactor_cons <- minorbsem(
+  syntax_bifactor_cons,
+  data = HS, orthogonal = TRUE
+)
+```
+
+```{r eval=FALSE}
+fit_bifactor_cons <- fit_bifactor_cons <- minorbsem(
+  syntax_bifactor_cons,
+  data = HS, orthogonal = TRUE
+)
+```
+
+```{r echo=FALSE}
+fit_bifactor_cons
+```
+
+The RMSE increased since the model is more constrained. The pattern of results with the parameter constraints imposed suggest the general factor mostly reflects items x1 -- x3, with other items more strongly reflecting their specific factors. These results suggest limited applicability of the bifactor model for these data.
+
+<!-- The results reveals that the nine loadings on the G factor vary greatly. x1 and x3 load pretty well on factor G, with loadings of .745 and .471, respectively. All remaining seven loadings are below .4. In addition, the constrained loadings on F1, F2, and F3 are .393, .955, and .693, respectively. -->
+
+# Non-Simple Structure Model
+
+For our final model, we return to the original basic CFA and relax simple structure. Unlike @Muthen2012 who do this using small-variance priors, minorbsem does this using a global-local prior [@uanhoro_comparison_2024]. Precisely, this approach assumes that most cross-loadings are indeed zero and there are some outlier non-zero cross loadings.
+
+## Fit the model
+
+The call to `minorbsem()` needs to be of the form: `minorbsem(..., simple_struc = FALSE)`
+
+```{r cfa_complex, include=FALSE}
+fit_non_simple <- minorbsem(syntax_basic, data = HS, simple_struc = FALSE)
+```
+
+```{r eval=FALSE}
+fit_non_simple <- minorbsem(syntax_basic, data = HS, simple_struc = FALSE)
+```
+
+```{r echo=FALSE}
+fit_non_simple
+```
+
+The effect of minor factors is small, RMSE = 0.024. The original hypothesized loadings maintain their relation to their hypothesized factors. Of the cross-loadings, only the relation from the visual factor to x9 is non-trivial, with most being very close to 0. Additionally, the interfactor correlations have all reduced from the original basic CFA, suggesting that forcing cross-loadings to zero artificially inflated interfactor correlations [@Ferrando2000].
+
+# Works Cited

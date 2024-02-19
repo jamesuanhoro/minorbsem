@@ -5,7 +5,7 @@
 ^README\.html$
 ^README\_files$
 ^codecov\.yml$
-^vignettes/articles$
+^vignettes$
 ^README\.Rmd$
 ^_pkgdown\.yml$
 ^pkgdown$

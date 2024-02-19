@@ -1,3 +1,7 @@
+# minorbsem 0.2.14
+
+* Added the first CFA tutorial, to come: SEM, MIMIC, correlation structure analysis and modifying priors
+
 # minorbsem 0.2.13
 
 * Now possible to obtain `data_list` from Stan, useful for modifying specific priors.
