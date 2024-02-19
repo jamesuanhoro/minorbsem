@@ -9,6 +9,7 @@ minorbsem(
   data = NULL,
   sample_cov = NULL,
   sample_nobs = NULL,
+  data_list = NULL,
   method = "normal",
   orthogonal = FALSE,
   simple_struc = TRUE,
@@ -26,7 +27,8 @@ minorbsem(
   show = TRUE,
   show_messages = TRUE,
   compute_ll = FALSE,
-  acov_mat = NULL
+  acov_mat = NULL,
+  ret_data_list = FALSE
 )
 }
 \arguments{
@@ -41,6 +43,9 @@ The rownames and/or colnames must contain the observed variable names.}
 \item{sample_nobs}{(positive integer) Number of observations if the full
 data frame
 is missing and only sample covariance matrix is given.}
+
+\item{data_list}{(list) A modified version of the data_list returned
+by minorbsem. Can be used to modify specific priors, see example below.}
 
 \item{method}{(character) One of "normal", "lasso", "logistic",
 "GDP", "WB", "WB-cond", "WW", or "none". See details below.}
@@ -105,6 +110,10 @@ lower triangular half (column-order) of the correlation matrix
 to be used for correlation structure analysis.
 This parameter is useful if importing polychoric or meta-analytic
 SEM pooled correlation matrix.}
+
+\item{ret_data_list}{(LOGICAL)
+If TRUE, returns the \code{data_list} and \code{prior} objects, see example.
+If FALSE (default), fits the model given user inputs.}
 }
 \value{
 An object of \code{\link{mbsem-class}}
@@ -157,6 +166,18 @@ minorbsem("# latent variable definitions
            # latent regressions
            dem60 ~ ind60
            dem65 ~ ind60 + dem60", PD)
+mod_dl <- minorbsem(
+  "# latent variable definitions
+  F1 =~ x1 + x2 + x3
+  F2 =~ x4 + x5 + x6
+  F3 =~ x7 + x8 + x9", HS,
+  ret_data_list = TRUE
+)
+mod_dl$load_est # prior mean for loadings
+mod_dl$load_se # prior sd for loadings
+mod_dl$load_se[9, 3] <- .75 # set prior SD for F3 =~ x9 to .75
+# fit model with updated prior
+mod <- minorbsem(data_list = mod_dl)
 }
 }
 \references{

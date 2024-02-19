@@ -78,14 +78,19 @@ create_data_list <- function(
   data_list$Nf <- ncol(data_list$loading_pattern)
   # location(loading) parameter
   data_list$load_est <- matrix(
-    priors@ml_par, data_list$Ni, data_list$Nf
+    priors@ml_par, data_list$Ni, data_list$Nf,
+    dimnames = dimnames(data_list$loading_pattern)
   )
   # sigma(loading) parameter
   data_list$load_se <- matrix(
-    priors@sl_par, data_list$Ni, data_list$Nf
+    priors@sl_par, data_list$Ni, data_list$Nf,
+    dimnames = dimnames(data_list$loading_pattern)
   )
   # get fixed loadings
-  data_list$loading_fixed <- matrix(-999, data_list$Ni, data_list$Nf)
+  data_list$loading_fixed <- matrix(
+    -999, data_list$Ni, data_list$Nf,
+    dimnames = dimnames(data_list$loading_pattern)
+  )
   fix_load <- partab[partab$op == "=~" & partab$free == 0, ]
   fix_col_ids <- unname(sapply(
     fix_load$lhs, function(x) which(x == colnames(param_structure$lambda))
@@ -136,11 +141,14 @@ create_data_list <- function(
   if (!is.null(param_structure$beta)) {
     # This is an SEM
     data_list$sem_indicator <- 1
-    # Factor correlation matrix
+    # Factor coefficient matrix
     data_list$coef_pattern <- param_structure$beta
+    dimnames(data_list$coef_est) <- dimnames(data_list$coef_pattern)
+    dimnames(data_list$coef_se) <- dimnames(data_list$coef_pattern)
+    dimnames(data_list$coef_fixed) <- dimnames(data_list$coef_pattern)
     beta_zeroes <- data_list$coef_pattern != 0
     data_list$coef_pattern[beta_zeroes] <-
-     data_list$coef_pattern[beta_zeroes] -
+      data_list$coef_pattern[beta_zeroes] -
       min(data_list$coef_pattern[beta_zeroes]) + 1
     # get fixed coefs
     fix_coef <- partab[partab$op == "~" & partab$free == 0, ]
