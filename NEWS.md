@@ -1,3 +1,7 @@
+# minorbsem 0.2.13
+
+* Now possible to obtain `data_list` from Stan, useful for modifying specific priors.
+
 # minorbsem 0.2.12
 
 * Sort regression results by outcome variable

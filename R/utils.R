@@ -40,6 +40,94 @@ minimum_r_version <- function() {
   return(r_version)
 }
 
+#' User input processing function
+#' @description A function that processes.
+#' @inheritParams minorbsem
+#' @returns NULL
+#' @keywords internal
+user_input_process <- function(
+    model = NULL,
+    data = NULL,
+    sample_cov = NULL,
+    sample_nobs = NULL,
+    method = "normal",
+    orthogonal = FALSE,
+    simple_struc = TRUE,
+    correlation = FALSE,
+    centered = TRUE,
+    priors = new_mbsempriors(),
+    compute_ll = FALSE,
+    acov_mat = NULL) {
+  # Model cannot be NULL
+  user_input_check("model", model)
+
+  # Priors must be class mbsempriors
+  user_input_check("priors", priors)
+
+  # method must be valid
+  user_input_check("method", method)
+
+  # Must provide either data or sample_cov and sample_nobs
+  user_input_check("data", data, sample_cov, sample_nobs)
+
+  # Run lavaan fit
+  if (!is.null(data)) {
+    lav_fit <- lavaan::cfa(
+      model,
+      data = data,
+      std.lv = TRUE,
+      likelihood = "wishart",
+      do.fit = FALSE,
+      ceq.simple = TRUE,
+      orthogonal = orthogonal
+    )
+  } else {
+    lav_fit <- lavaan::cfa(
+      model,
+      sample.cov = sample_cov, sample.nobs = sample_nobs,
+      std.lv = TRUE,
+      likelihood = "wishart",
+      do.fit = FALSE,
+      ceq.simple = TRUE,
+      orthogonal = orthogonal
+    )
+  }
+  partab <- lavaan::lavaanify(
+    model,
+    ceq.simple = TRUE, std.lv = TRUE, orthogonal = orthogonal
+  )
+
+  # Obtain data list for Stan
+  if (is.null(acov_mat)) {
+    data_list <- create_data_list(
+      lavaan_object = lav_fit,
+      method = method,
+      simple_struc = simple_struc,
+      correlation = correlation,
+      priors = priors,
+      compute_ll = compute_ll,
+      partab = partab,
+      centered = centered,
+      acov_mat = acov_mat
+    )
+  } else {
+    data_list <- create_data_list(
+      lavaan_object = lav_fit,
+      method = method,
+      simple_struc = simple_struc,
+      correlation = correlation,
+      priors = priors,
+      compute_ll = compute_ll,
+      partab = partab,
+      centered = centered,
+      acov_mat = acov_mat,
+      old_names = rownames(sample_cov)
+    )
+  }
+
+  return(data_list)
+}
+
 #' Check user input function
 #' @description A function that checks user input for adequacy
 #' and fails on inadequate input.
@@ -289,7 +377,7 @@ get_param_plot_list <- function(data_list) {
   if (data_list$sem_indicator == 1) {
     coef_idxs <- which(
       data_list$coef_pattern >= 1 &
-      data_list$coef_fixed == -999,
+        data_list$coef_fixed == -999,
       arr.ind = TRUE
     )
     rsq_idxs <- which(rowSums(data_list$coef_pattern) >= 1)

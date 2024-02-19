@@ -10,6 +10,8 @@
 #' @param sample_nobs (positive integer) Number of observations if the full
 #' data frame
 #' is missing and only sample covariance matrix is given.
+#' @param data_list (list) A modified version of the data_list returned
+#' by minorbsem. Can be used to modify specific priors, see example below.
 #' @param method (character) One of "normal", "lasso", "logistic",
 #' "GDP", "WB", "WB-cond", "WW", or "none". See details below.
 #' @param orthogonal (logical) constrain factors orthogonal, must be TRUE to fit
@@ -56,6 +58,9 @@
 #' to be used for correlation structure analysis.
 #' This parameter is useful if importing polychoric or meta-analytic
 #' SEM pooled correlation matrix.
+#' @param ret_data_list (LOGICAL)
+#' If TRUE, returns the \code{data_list} and \code{prior} objects, see example.
+#' If FALSE (default), fits the model given user inputs.
 #' @returns An object of \code{\link{mbsem-class}}
 #' @details
 #' CFAs assume standardized factors.
@@ -89,17 +94,36 @@
 #'
 #' @examples
 #' \dontrun{
-#' minorbsem("# latent variable definitions
-#'            F1 =~ x1 + x2 + x3
-#'            F2 =~ x4 + x5 + x6
-#'            F3 =~ x7 + x8 + x9", HS)
-#' minorbsem("# latent variable definitions
-#'            ind60 =~ x1 + x2 + x3
-#'            dem60 =~ y1 + y2 + y3 + y4
-#'            dem65 =~ y5 + y6 + y7 + y8
-#'            # latent regressions
-#'            dem60 ~ ind60
-#'            dem65 ~ ind60 + dem60", PD)
+#' mod_cfa <- minorbsem(
+#'   "# latent variable definitions
+#'   F1 =~ x1 + x2 + x3
+#'   F2 =~ x4 + x5 + x6
+#'   F3 =~ x7 + x8 + x9", HS
+#' )
+#' new_pd <- PD
+#' apply(PD, 2, sd) # first 8 variables have relatively large SDs
+#' new_pd[, 1:8] <- new_pd[, 1:8] / 3 # move SDs closer to 1
+#' mod_sem <- minorbsem(
+#'   "# latent variable definitions
+#'   ind60 =~ x1 + x2 + x3
+#'   dem60 =~ y1 + y2 + y3 + y4
+#'   dem65 =~ y5 + y6 + y7 + y8
+#'   # latent regressions
+#'   dem60 ~ ind60
+#'   dem65 ~ ind60 + dem60", new_pd
+#' )
+#' mod_dl <- minorbsem(
+#'   "# latent variable definitions
+#'   F1 =~ x1 + x2 + x3
+#'   F2 =~ x4 + x5 + x6
+#'   F3 =~ x7 + x8 + x9", HS,
+#'   ret_data_list = TRUE
+#' )
+#' mod_dl$load_est # prior mean for loadings
+#' mod_dl$load_se # prior sd for loadings
+#' mod_dl$load_se[9, 3] <- .75 # set prior SD for F3 =~ x9 to .75
+#' # fit model with updated prior
+#' mod <- minorbsem(data_list = mod_dl)
 #' }
 #' @references \insertAllCited{}
 #' @export
@@ -108,6 +132,7 @@ minorbsem <- function(
     data = NULL,
     sample_cov = NULL,
     sample_nobs = NULL,
+    data_list = NULL,
     method = "normal",
     orthogonal = FALSE,
     simple_struc = TRUE,
@@ -125,74 +150,20 @@ minorbsem <- function(
     show = TRUE,
     show_messages = TRUE,
     compute_ll = FALSE,
-    acov_mat = NULL) {
+    acov_mat = NULL,
+    ret_data_list = FALSE) {
   message("Processing user input ...")
 
-  # Model cannot be NULL
-  user_input_check("model", model)
-
-  # Priors must be class mbsempriors
-  user_input_check("priors", priors)
-
-  # method must be valid
-  user_input_check("method", method)
-
-  # Must provide either data or sample_cov and sample_nobs
-  user_input_check("data", data, sample_cov, sample_nobs)
-
-  # Run lavaan fit
-  if (!is.null(data)) {
-    lav_fit <- lavaan::cfa(
-      model,
-      data = data,
-      std.lv = TRUE,
-      likelihood = "wishart",
-      do.fit = FALSE,
-      ceq.simple = TRUE,
-      orthogonal = orthogonal
-    )
-  } else {
-    lav_fit <- lavaan::cfa(
-      model,
-      sample.cov = sample_cov, sample.nobs = sample_nobs,
-      std.lv = TRUE,
-      likelihood = "wishart",
-      do.fit = FALSE,
-      ceq.simple = TRUE,
-      orthogonal = orthogonal
+  if (is.null(data_list)) {
+    data_list <- user_input_process(
+      model, data, sample_cov, sample_nobs, method,
+      orthogonal, simple_struc, correlation, centered, priors,
+      compute_ll, acov_mat
     )
   }
-  partab <- lavaan::lavaanify(
-    model,
-    ceq.simple = TRUE, std.lv = TRUE, orthogonal = orthogonal
-  )
 
-  # Obtain data list for Stan
-  if (is.null(acov_mat)) {
-    data_list <- create_data_list(
-      lavaan_object = lav_fit,
-      method = method,
-      simple_struc = simple_struc,
-      correlation = correlation,
-      priors = priors,
-      compute_ll = compute_ll,
-      partab = partab,
-      centered = centered,
-      acov_mat = acov_mat
-    )
-  } else {
-    data_list <- create_data_list(
-      lavaan_object = lav_fit,
-      method = method,
-      simple_struc = simple_struc,
-      correlation = correlation,
-      priors = priors,
-      compute_ll = compute_ll,
-      partab = partab,
-      centered = centered,
-      acov_mat = acov_mat,
-      old_names = rownames(sample_cov)
-    )
+  if (isTRUE(ret_data_list)) {
+    return(data_list)
   }
 
   message("User input fully processed :)\n Now to modeling.")
