@@ -14,7 +14,7 @@ minor factors (Uanhoro 2023)
     
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.12</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.13</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,6 +62,7 @@ minor factors (Uanhoro 2023)
 <span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sample_cov <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sample_nobs <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  data_list <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  method <span class="op">=</span> <span class="st">"normal"</span>,</span>
 <span>  orthogonal <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  simple_struc <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -79,7 +80,8 @@ minor factors (Uanhoro 2023)
 <span>  show <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_messages <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  compute_ll <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  acov_mat <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  acov_mat <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ret_data_list <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -103,6 +105,11 @@ The rownames and/or colnames must contain the observed variable names.</p></dd>
 <dd><p>(positive integer) Number of observations if the full
 data frame
 is missing and only sample covariance matrix is given.</p></dd>
+
+
+<dt>data_list</dt>
+<dd><p>(list) A modified version of the data_list returned
+by minorbsem. Can be used to modify specific priors, see example below.</p></dd>
 
 
 <dt>method</dt>
@@ -205,6 +212,12 @@ to be used for correlation structure analysis.
 This parameter is useful if importing polychoric or meta-analytic
 SEM pooled correlation matrix.</p></dd>
 
+
+<dt>ret_data_list</dt>
+<dd><p>(LOGICAL)
+If TRUE, returns the <code>data_list</code> and <code>prior</code> objects, see example.
+If FALSE (default), fits the model given user inputs.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -267,17 +280,36 @@ ISSN 1860-0980, <a href="https://doi.org/10.1007/s11336-015-9451-3" class="exter
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="fu">minorbsem</span><span class="op">(</span><span class="st">"# latent variable definitions</span></span></span>
-<span class="r-in"><span><span class="st">           F1 =~ x1 + x2 + x3</span></span></span>
-<span class="r-in"><span><span class="st">           F2 =~ x4 + x5 + x6</span></span></span>
-<span class="r-in"><span><span class="st">           F3 =~ x7 + x8 + x9"</span>, <span class="va">HS</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">minorbsem</span><span class="op">(</span><span class="st">"# latent variable definitions</span></span></span>
-<span class="r-in"><span><span class="st">           ind60 =~ x1 + x2 + x3</span></span></span>
-<span class="r-in"><span><span class="st">           dem60 =~ y1 + y2 + y3 + y4</span></span></span>
-<span class="r-in"><span><span class="st">           dem65 =~ y5 + y6 + y7 + y8</span></span></span>
-<span class="r-in"><span><span class="st">           # latent regressions</span></span></span>
-<span class="r-in"><span><span class="st">           dem60 ~ ind60</span></span></span>
-<span class="r-in"><span><span class="st">           dem65 ~ ind60 + dem60"</span>, <span class="va">PD</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mod_cfa</span> <span class="op">&lt;-</span> <span class="fu">minorbsem</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"# latent variable definitions</span></span></span>
+<span class="r-in"><span><span class="st">  F1 =~ x1 + x2 + x3</span></span></span>
+<span class="r-in"><span><span class="st">  F2 =~ x4 + x5 + x6</span></span></span>
+<span class="r-in"><span><span class="st">  F3 =~ x7 + x8 + x9"</span>, <span class="va">HS</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">new_pd</span> <span class="op">&lt;-</span> <span class="va">PD</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">PD</span>, <span class="fl">2</span>, <span class="va">sd</span><span class="op">)</span> <span class="co"># first 8 variables have relatively large SDs</span></span></span>
+<span class="r-in"><span><span class="va">new_pd</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">new_pd</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span> <span class="op">/</span> <span class="fl">3</span> <span class="co"># move SDs closer to 1</span></span></span>
+<span class="r-in"><span><span class="va">mod_sem</span> <span class="op">&lt;-</span> <span class="fu">minorbsem</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"# latent variable definitions</span></span></span>
+<span class="r-in"><span><span class="st">  ind60 =~ x1 + x2 + x3</span></span></span>
+<span class="r-in"><span><span class="st">  dem60 =~ y1 + y2 + y3 + y4</span></span></span>
+<span class="r-in"><span><span class="st">  dem65 =~ y5 + y6 + y7 + y8</span></span></span>
+<span class="r-in"><span><span class="st">  # latent regressions</span></span></span>
+<span class="r-in"><span><span class="st">  dem60 ~ ind60</span></span></span>
+<span class="r-in"><span><span class="st">  dem65 ~ ind60 + dem60"</span>, <span class="va">new_pd</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mod_dl</span> <span class="op">&lt;-</span> <span class="fu">minorbsem</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"# latent variable definitions</span></span></span>
+<span class="r-in"><span><span class="st">  F1 =~ x1 + x2 + x3</span></span></span>
+<span class="r-in"><span><span class="st">  F2 =~ x4 + x5 + x6</span></span></span>
+<span class="r-in"><span><span class="st">  F3 =~ x7 + x8 + x9"</span>, <span class="va">HS</span>,</span></span>
+<span class="r-in"><span>  ret_data_list <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mod_dl</span><span class="op">$</span><span class="va">load_est</span> <span class="co"># prior mean for loadings</span></span></span>
+<span class="r-in"><span><span class="va">mod_dl</span><span class="op">$</span><span class="va">load_se</span> <span class="co"># prior sd for loadings</span></span></span>
+<span class="r-in"><span><span class="va">mod_dl</span><span class="op">$</span><span class="va">load_se</span><span class="op">[</span><span class="fl">9</span>, <span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">.75</span> <span class="co"># set prior SD for F3 =~ x9 to .75</span></span></span>
+<span class="r-in"><span><span class="co"># fit model with updated prior</span></span></span>
+<span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">minorbsem</span><span class="op">(</span>data_list <span class="op">=</span> <span class="va">mod_dl</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
