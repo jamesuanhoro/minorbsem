@@ -20,3 +20,5 @@ navbar:
       menu:
       - text: Confirmatory Factor Analysis
         href: articles/cfa.html
+      - text: Detailed guide to setting priors
+        href: articles/priors.html
