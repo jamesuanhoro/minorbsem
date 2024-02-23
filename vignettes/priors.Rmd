@@ -1,0 +1,252 @@
+---
+title: "Detailed guide to setting priors"
+author: "James Uanhoro"
+output: github_document
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width = 100)
+library(ggplot2)
+theme_set(theme_bw())
+# The palette with grey:
+cb_palette <- c(
+  "#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
+  "#D55E00", "#CC79A7"
+)
+# The palette with black:
+cbb_palette <- c(
+  "#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
+  "#D55E00", "#CC79A7"
+)
+```
+
+## Default priors
+
+We begin by loading the package:
+
+```{r}
+library(minorbsem)
+```
+
+The default priors are:
+
+```{r}
+priors_default <- new_mbsempriors()
+priors_default
+```
+
+### `lkj_shape`
+
+The `lkj_shape` parameter is for setting priors on the interfactor correlation matrix. By default this value is 2, and implies each correlation in the matrix follows the distribution: $\frac{r + 1}{2} \sim \text{Beta}(a, a)$, where $a = \eta + \frac{d - 2}{2}$, where $\eta$ is the `lkj_shape` parameter and $d$ is the number of factors. For example, for three factors and $\eta = 5$, $a = 5 + (3 - 2) / 2 = 5.5$, so each correlation follows the distribution: Beta(5.5, 5.5). Assuming $\eta = 20$, we have Beta(20.5, 20.5). Both distributions are visualized below.
+
+```{r echo=FALSE, fig.height=3.5, fig.width=4}
+test_dat <- data.frame(x = seq(-1, 1, .01))
+test_dat$eta_05 <- dbeta((test_dat$x + 1) / 2, 5.5, 5.5)
+test_dat$eta_20 <- dbeta((test_dat$x + 1) / 2, 20.5, 20.5)
+test_dat_long <- reshape(
+  test_dat,
+  idvar = "x", direction = "long", varying = c("eta_05", "eta_20"),
+  times = c("eta = 05", "eta = 20"), v.names = "density"
+)
+ggplot(test_dat_long, aes(x, density, col = time, linetype = time)) +
+  geom_line() +
+  theme(legend.position = "top") +
+  scale_color_manual(values = cb_palette) +
+  labs(col = "When d = 3:", linetype = "When d = 3:")
+```
+
+We see that larger values of `lkj_shape` can be used to constrain interfactor correlations.
+
+### `ml_par` and `sl_par`
+
+`ml_par` and `sl_par` are the prior mean and SD for loadings which are assumed to be normally distributed. Note that factors are assumed to be standardized.
+
+### `rs_par`
+
+Residual standard deviation parameters are assumed to follow a location-scale Student-t distribution with degrees of freedom 3 (unchangeable), location 0 (unchangeable) and scale `rs_par`.
+
+### `rc_par`
+
+Residual correlations between indicators assumed $\text{Beta}(a, a)$ where $a = \mathsf{rc\_par}$.
+
+### `sc_par`
+
+All coefficients in `minorbsem` are assumed to be standardized. These coefficients are assumed normal with mean 0 (changeable, see [section on latent regression](#setting-priors-on-specific-coefficients) below) and SD of `sc_par`.
+
+### `rm_par`
+
+The $\tau$ (or CRMR) parameter and the RMSEA (for `method = "WB"`) are assumed normal with mean 0 (unchangeable) and SD of `rm_par`.
+
+## Simple changes to default priors
+
+### Holzinger-Swineford example
+
+This dataset is discussed in the [CFA tutorial](./cfa.html).
+
+```{r}
+item_data <- HS[, paste0("x", 1:9)] # select columns x1:x9
+head(item_data) # show first six rows
+```
+
+The scale of data is important for setting priors on model parameters. The default priors for models fit with `minorbsem` are reasonable when variables have standard deviations close to 1. For this reason, we first check the standard deviations of the relevant variables for this analysis:
+
+```{r}
+apply(item_data, 2, sd) # compute SD of each variable
+```
+
+All variables have standard deviations close to 1, so we can move forward with the data as they are. Otherwise, we would recommend re-scaling the variables.^[In the situation where variable scales have no information value, one can do a correlation-structure analysis instead using syntax of the form: `minorbsem(..., correlation = TRUE)`.]
+
+```{r}
+syntax_basic <- "
+Visual =~ x1 + x2 + x3
+Verbal =~ x4 + x5 + x6
+Speed =~ x7 + x8 + x9"
+```
+
+Let's fit the model with modified priors:
+
+```{r}
+priors_modified <- new_mbsempriors(lkj_shape = 10, sl_par = .75)
+priors_modified
+```
+
+We can fit make the call to the `minorbsem()` function and obtain the data list passed to Stan instead of fitting the model by setting `ret_data_list = TRUE`:
+
+```{r}
+base_dl <- minorbsem(
+  syntax_basic, item_data,
+  priors = priors_modified, ret_data_list = TRUE
+)
+base_dl$shape_phi_c # reflects the shape of interfactor correlation matrix
+base_dl$load_est # reflects prior mean for loadings
+base_dl$load_se # reflects prior SD for loadings
+base_dl$loading_pattern # shows indices for non-zero loadings
+```
+
+We can either run the model with:
+
+```{r eval=FALSE}
+base_mod <- minorbsem(syntax_basic, item_data, priors = priors_modified)
+```
+
+or
+
+```{r eval=FALSE}
+base_mod <- minorbsem(data_list = base_dl, priors = priors_modified)
+```
+
+The results would be identical. Adding `priors = priors_modified` is optional.^[`base_mod` contains a copy of the priors passed to `minorbsem()` verbatim in `base_mod@priors`. Note that the model is fitted based on the specifications in `base_dl`. So if we ran `base_mod <- minorbsem(data_list = base_dl)`, `base_mod@priors` would contain the default priors, even though these priors are ignored when fitting the model.]
+
+## Examples of priors on specific loadings and coefficients
+
+### Small variance prior on all cross-loadings
+
+Following @Muthen2012, one can estimate all cross-loadings by placing small variance priors on them. Note that minorbsem contains a cleaner approach to the same task with models of the form: `minorbsem(..., simple_struc = FALSE)`. But we demonstrate the small variance approach to show how to set specific priors on some loadings.
+
+```{r}
+syntax_cross <- paste(
+  paste0("Visual =~ ", paste0("x", 1:9, collapse = " + ")),
+  paste0("Verbal =~ ", paste0("x", 1:9, collapse = " + ")),
+  paste0("Speed =~ ", paste0("x", 1:9, collapse = " + ")),
+  sep = "\n"
+)
+writeLines(syntax_cross)
+```
+
+Then we call `minorbsem()` with `ret_data_list = TRUE` to obtain the data list:
+
+```{r}
+small_var_dl <- minorbsem(syntax_cross, item_data, ret_data_list = TRUE)
+```
+
+Set all cross-loadings to have prior SDs of 0.1:
+
+```{r}
+small_var_dl$load_se
+small_var_dl$load_se[4:9, 1] <- 0.1
+small_var_dl$load_se[-c(4:6), 2] <- 0.1
+small_var_dl$load_se[1:6, 3] <- 0.1
+small_var_dl$load_se
+```
+
+Before fitting the model, minorbsem automatically identifies an indicator per factor that it uses to align the factor in the right direction. Given that all indicators reflect all factors, we would need to identify these indicators manually:
+
+```{r}
+small_var_dl$markers
+small_var_dl$markers <- c(1, 4, 7) # for visual, verbal and speed respectively
+```
+
+Then fit the model:
+
+```{r include=FALSE}
+small_var_mod <- minorbsem(data_list = small_var_dl)
+```
+
+```{r eval=FALSE}
+small_var_mod <- minorbsem(data_list = small_var_dl)
+```
+
+```{r echo=FALSE}
+small_var_mod
+```
+
+### Priors on specific coefficients
+
+Consider the latent regression model:
+
+```{r}
+syntax_reg <- "
+Visual =~ x1 + x2 + x3 + x9
+Verbal =~ x4 + x5 + x6
+Speed =~ x7 + x8 + x9
+Verbal ~ Visual + Speed"
+```
+
+Assume we believe the most likely estimate of the coefficient from visual to verbal is .5, we can change the prior mean for this coefficient to .5. We first retrieve the data list object.
+
+```{r}
+reg_dl <- minorbsem(
+  syntax_reg, item_data,
+  ret_data_list = TRUE
+)
+```
+
+```{r}
+reg_dl$coef_pattern # coefficient pattern, note non-zero cells
+reg_dl$coef_est # default prior means
+reg_dl$coef_est["Verbal", "Visual"] <- .5
+reg_dl$coef_est # updated
+reg_dl$coef_se # default prior SDs
+```
+
+Then we fit the model with the updated data list:
+
+```{r include=FALSE}
+reg_mod <- minorbsem(data_list = reg_dl)
+```
+
+```{r eval=FALSE}
+reg_mod <- minorbsem(data_list = reg_dl)
+```
+
+```{r echo=FALSE}
+reg_mod
+```
+
+We also show results from the fit with default priors:
+
+```{r include=FALSE}
+reg_def_priors <- minorbsem(syntax_reg, item_data)
+```
+
+```{r eval=FALSE}
+reg_def_priors <- minorbsem(syntax_reg, item_data)
+```
+
+```{r echo=FALSE}
+reg_def_priors
+```
+
+## Works Cited
