@@ -39,6 +39,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-examples">Examples</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-examples">
     <a class="dropdown-item" href="../articles/cfa.html">Confirmatory Factor Analysis</a>
+    <a class="dropdown-item" href="../articles/priors.html">Detailed guide to setting priors</a>
   </div>
 </li>
 <li class="nav-item">
@@ -131,8 +132,8 @@ parameters. The default priors for models fit with
 deviations close to 1. For this reason, we first check the standard
 deviations of the relevant variables for this analysis:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">item_data</span> <span class="op">&lt;-</span> <span class="va">HS</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span><span class="op">]</span>  <span class="co"># select columns x1:x9</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">item_data</span><span class="op">)</span>  <span class="co"># show first six rows</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">item_data</span> <span class="op">&lt;-</span> <span class="va">HS</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span><span class="op">]</span> <span class="co"># select columns x1:x9</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">item_data</span><span class="op">)</span> <span class="co"># show first six rows</span></span></code></pre></div>
 <pre><code><span><span class="co">##         x1   x2    x3       x4   x5        x6       x7   x8       x9</span></span>
 <span><span class="co">## 1 3.333333 7.75 0.375 2.333333 5.75 1.2857143 3.391304 5.75 6.361111</span></span>
 <span><span class="co">## 2 5.333333 5.25 2.125 1.666667 3.00 1.2857143 3.782609 6.25 7.916667</span></span>
@@ -141,7 +142,7 @@ deviations of the relevant variables for this analysis:</p>
 <span><span class="co">## 5 4.833333 4.75 0.875 2.666667 4.00 2.5714286 3.695652 6.30 5.916667</span></span>
 <span><span class="co">## 6 5.333333 5.00 2.250 1.000000 3.00 0.8571429 4.347826 6.65 7.500000</span></span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">item_data</span>, <span class="fl">2</span>, <span class="va">sd</span><span class="op">)</span>  <span class="co"># compute SD of each variable</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">item_data</span>, <span class="fl">2</span>, <span class="va">sd</span><span class="op">)</span> <span class="co"># compute SD of each variable</span></span></code></pre></div>
 <pre><code><span><span class="co">##       x1       x2       x3       x4       x5       x6       x7       x8       x9 </span></span>
 <span><span class="co">## 1.167432 1.177451 1.130979 1.164116 1.290472 1.095603 1.089534 1.012615 1.009152</span></span></code></pre>
 <p>All variables have standard deviations close to 1, so we can move
@@ -188,99 +189,99 @@ knows what to expect.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Chain 1 Iteration:    1 / 2000 [  0%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: A is not symmetric. A[4,7] = inf, but A[7,4] = inf (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: A is not symmetric. A[4,7] = inf, but A[7,4] = inf (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Iteration:    1 / 2000 [  0%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = -inf, but A[2,1] = -inf (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = -inf, but A[2,1] = -inf (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = -inf, but A[2,1] = -inf (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = -inf, but A[2,1] = -inf (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Iteration:  200 / 2000 [ 10%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Iteration:  200 / 2000 [ 10%]  (Warmup) </span></span>
 <span><span class="co">## Chain 1 Iteration:  400 / 2000 [ 20%]  (Warmup) </span></span>
-<span><span class="co">## Chain 2 Iteration:  400 / 2000 [ 20%]  (Warmup) </span></span>
-<span><span class="co">## Chain 1 Iteration:  600 / 2000 [ 30%]  (Warmup)</span></span></code></pre>
+<span><span class="co">## Chain 2 Iteration:  400 / 2000 [ 20%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Iteration:  800 / 2000 [ 40%]  (Warmup) </span></span>
+<pre><code><span><span class="co">## Chain 1 Iteration:  600 / 2000 [ 30%]  (Warmup) </span></span>
+<span><span class="co">## Chain 1 Iteration:  800 / 2000 [ 40%]  (Warmup) </span></span>
 <span><span class="co">## Chain 2 Iteration:  600 / 2000 [ 30%]  (Warmup) </span></span>
 <span><span class="co">## Chain 2 Iteration:  800 / 2000 [ 40%]  (Warmup) </span></span>
 <span><span class="co">## Chain 1 Iteration: 1000 / 2000 [ 50%]  (Warmup) </span></span>
 <span><span class="co">## Chain 1 Iteration: 1001 / 2000 [ 50%]  (Sampling) </span></span>
+<span><span class="co">## Chain 1 Iteration: 1200 / 2000 [ 60%]  (Sampling) </span></span>
 <span><span class="co">## Chain 2 Iteration: 1000 / 2000 [ 50%]  (Warmup) </span></span>
 <span><span class="co">## Chain 2 Iteration: 1001 / 2000 [ 50%]  (Sampling) </span></span>
-<span><span class="co">## Chain 1 Iteration: 1200 / 2000 [ 60%]  (Sampling) </span></span>
 <span><span class="co">## Chain 2 Iteration: 1200 / 2000 [ 60%]  (Sampling) </span></span>
 <span><span class="co">## Chain 1 Iteration: 1400 / 2000 [ 70%]  (Sampling) </span></span>
 <span><span class="co">## Chain 2 Iteration: 1400 / 2000 [ 70%]  (Sampling) </span></span>
@@ -289,51 +290,51 @@ knows what to expect.</p>
 <span><span class="co">## Chain 1 Iteration: 1800 / 2000 [ 90%]  (Sampling) </span></span>
 <span><span class="co">## Chain 2 Iteration: 1800 / 2000 [ 90%]  (Sampling) </span></span>
 <span><span class="co">## Chain 1 Iteration: 2000 / 2000 [100%]  (Sampling) </span></span>
-<span><span class="co">## Chain 1 finished in 2.9 seconds.</span></span>
+<span><span class="co">## Chain 1 finished in 2.8 seconds.</span></span>
 <span><span class="co">## Chain 2 Iteration: 2000 / 2000 [100%]  (Sampling) </span></span>
 <span><span class="co">## Chain 3 Iteration:    1 / 2000 [  0%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 finished in 3.0 seconds.</span></span>
 <span><span class="co">## Chain 3 Iteration:  200 / 2000 [ 10%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Iteration:  400 / 2000 [ 20%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Iteration:  600 / 2000 [ 30%]  (Warmup) </span></span>
 <span><span class="co">## Chain 3 Iteration:  800 / 2000 [ 40%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpTcvA7l/model-22b840ae038d.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpO4Ubya/model-22a964aae8b9.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
@@ -348,7 +349,7 @@ knows what to expect.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## All 3 chains finished successfully.</span></span>
 <span><span class="co">## Mean chain execution time: 3.1 seconds.</span></span>
-<span><span class="co">## Total execution time: 6.6 seconds.</span></span>
+<span><span class="co">## Total execution time: 6.5 seconds.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##                     Parameter estimates (method = normal, sample size(s) = 301)                     </span></span>
 <span><span class="co">##              <span style="font-weight: bold;">from  </span>   <span style="font-weight: bold;">op</span>   <span style="font-weight: bold;">to    </span>   <span style="font-weight: bold;"> mean</span>   <span style="font-weight: bold;">   sd</span>   <span style="font-weight: bold;">5.000%</span>   <span style="font-weight: bold;">95.000%</span>   <span style="font-weight: bold;"> rhat</span>   <span style="font-weight: bold;">ess_bulk</span>  </span></span>
@@ -747,7 +748,7 @@ interfactor correlations <span class="citation">(Ferrando and
 Lorenzo-Seva 2000)</span>.</p>
 </div>
 </div>
-<div class="section level2">
+<div class="section level2 unnumbered">
 <h2 class="unnumbered" id="works-cited">Works Cited<a class="anchor" aria-label="anchor" href="#works-cited"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
