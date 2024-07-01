@@ -72,7 +72,8 @@ returned by <code><a href="minorbsem.html">minorbsem</a></code>.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>data.frame</p>
+<p>A data.frame containing posterior samples of the partial
+correlation matrix.</p>
     </div>
 
     <div class="section level2">
@@ -83,7 +84,8 @@ returned by <code><a href="minorbsem.html">minorbsem</a></code>.</p></dd>
 <span class="r-in"><span><span class="st">                  F3 =~ x7 + x8 + x9"</span>, <span class="va">HS</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">res_net</span> <span class="op">&lt;-</span> <span class="fu">compute_residual_network</span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p_corr_df</span> <span class="op">&lt;-</span> <span class="fu">posterior</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/posterior/reference/draws_summary.html" class="external-link">summarise_draws</a></span><span class="op">(</span><span class="va">res_net</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">p_corr_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="va">p_corr_df</span><span class="op">$</span><span class="va">mean</span>, <span class="va">fit</span><span class="op">@</span><span class="va">data_list</span><span class="op">$</span><span class="va">Ni</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">n_items</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">p_corr_df</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p_corr_mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="va">p_corr_df</span><span class="op">$</span><span class="va">mean</span>, <span class="va">n_items</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">p_corr_mat</span></span></span>
 <span class="r-in"><span><span class="fu">qgraph</span><span class="fu">::</span><span class="fu">qgraph</span><span class="op">(</span><span class="va">p_corr_mat</span>, threshold <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
