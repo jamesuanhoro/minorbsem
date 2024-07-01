@@ -1,4 +1,4 @@
-citHeader("There is one publication about the methods in minorbsem.")
+citHeader("There are a few publications related to minorbsem.")
 
 bibentry(
   "Article",
@@ -6,13 +6,44 @@ bibentry(
   author   = person(given = c("James", "O."), family = "Uanhoro",
                     email = "James.Uanhoro@unt.edu"),
   journal  = "Educational and Psychological Measurement",
-  year     = "2023",
+  year     = "2024",
+  volume   = "84",
+  number   = "2",
+  pages    = "245--270",
+  doi      = "10.1177/00131644231165306",
+  header   = paste0(
+    "The most relevant paper is:"
+  )
+)
+
+bibentry(
+  "Article",
+  title    = "Bayesian Structural Equation Models of Correlation Matrices",
+  author   = person(given = c("James", "O."), family = "Uanhoro",
+                    email = "James.Uanhoro@unt.edu"),
+  journal  = "Structural Equation Modeling: A Multidisciplinary Journal",
+  year     = "2024",
   volume   = "",
   number   = "",
   pages    = "",
-  doi      = "10.1177/00131644231165306",
+  doi      = "10.1080/10705511.2024.2306532",
   header   = paste0(
-    "For the methods for standard SEMs including the RMSE, ",
-    "the normal method and aspects like LOO, cite:"
+    "For Bayesian correlation structure analysis, cite:"
+  )
+)
+
+bibentry(
+  "InProceedings",
+  title    = "A comparison of different prior choices for estimating the influence of minor factors in Bayesian structural equation models",
+  author   = person(given = c("James", "O."), family = "Uanhoro",
+                    email = "James.Uanhoro@unt.edu"),
+  booktitle = "Annual Meeting of the American Educational Research Association",
+  year     = "2024",
+  volume   = "",
+  number   = "",
+  pages    = "",
+  url      = "https://www.jamesuanhoro.com/pdf/nrm_lss_lgt_gdp_aera.pdf",
+  header   = paste0(
+    "For the different methods of modeling misspecification that yield the CRMR, cite:"
   )
 )
