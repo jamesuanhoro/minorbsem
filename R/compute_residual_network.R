@@ -16,7 +16,7 @@
 #' qgraph::qgraph(p_corr_mat, threshold = .05)
 #' }
 #' @export
-compute_residual_network <- function(object, ...) {
+compute_residual_network <- function(object) {
   stopifnot(inherits(object, "mbsem"))
 
   if (object@data_list$method >= 90) {
@@ -32,7 +32,7 @@ compute_residual_network <- function(object, ...) {
   result <- t(apply(resids, 1, function(x) {
     mat <- matrix(x[1:len], p, p)
     diag(mat) <- 1
-    inv_mat <- -1 * cov2cor(MASS::ginv(mat))
+    inv_mat <- -1 * stats::cov2cor(MASS::ginv(mat))
     diag(inv_mat) <- 1
     inv_vec <- c(as.numeric(inv_mat), x[(len + 1):(len + 3)])
     return(inv_vec)

@@ -4,7 +4,7 @@
 \alias{compute_residual_network}
 \title{Compute residual network}
 \usage{
-compute_residual_network(object, ...)
+compute_residual_network(object)
 }
 \arguments{
 \item{object}{(mbsem) An object of \code{\link{mbsem-class}}
