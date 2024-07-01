@@ -1,6 +1,6 @@
 # minorbsem 0.2.15
 
-* Added a function for residual network analysis
+* Added a function for residual network analysis, doi: 10.1007/s11336-017-9557-x
 * Updated citations
 
 # minorbsem 0.2.14
