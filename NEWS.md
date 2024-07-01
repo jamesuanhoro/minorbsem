@@ -1,3 +1,8 @@
+# minorbsem 0.2.15
+
+* Added a function for residual network analysis
+* Updated citations
+
 # minorbsem 0.2.14
 
 * Added the first CFA tutorial, to come: SEM, MIMIC, correlation structure analysis and modifying priors
