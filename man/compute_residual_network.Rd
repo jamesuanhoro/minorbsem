@@ -11,7 +11,8 @@ compute_residual_network(object)
 returned by \code{\link{minorbsem}}.}
 }
 \value{
-data.frame
+A data.frame containing posterior samples of the partial
+correlation matrix.
 }
 \description{
 Interpret the error correlations as a residual network model.
@@ -23,7 +24,8 @@ fit <- minorbsem("F1 =~ x1 + x2 + x3
                   F3 =~ x7 + x8 + x9", HS)
 res_net <- compute_residual_network(fit)
 p_corr_df <- posterior::summarise_draws(res_net)
-p_corr_mat <- matrix(p_corr_df$mean, fit@data_list$Ni)
+n_items <- sqrt(nrow(p_corr_df))
+p_corr_mat <- matrix(p_corr_df$mean, n_items)
 p_corr_mat
 qgraph::qgraph(p_corr_mat, threshold = .05)
 }

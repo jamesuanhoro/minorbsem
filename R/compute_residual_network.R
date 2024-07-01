@@ -3,7 +3,8 @@
 #' @description Interpret the error correlations as a residual network model.
 #' @param object (mbsem) An object of \code{\link{mbsem-class}}
 #' returned by \code{\link{minorbsem}}.
-#' @returns data.frame
+#' @returns A data.frame containing posterior samples of the partial
+#' correlation matrix.
 #' @examples
 #' \dontrun{
 #' fit <- minorbsem("F1 =~ x1 + x2 + x3
