@@ -27,6 +27,16 @@ p_corr_df <- posterior::summarise_draws(res_net)
 n_items <- sqrt(nrow(p_corr_df))
 p_corr_mat <- matrix(p_corr_df$mean, n_items)
 p_corr_mat
-qgraph::qgraph(p_corr_mat, threshold = .05)
+qgraph::qgraph(p_corr_mat, layout = "spring")
+
+# Complete Gaussian graphical model via a unidimensional model
+# with all loadings set to zero.
+fit <- minorbsem(paste0("F =~ ", paste0("0 * x", 1:9, collapse = " + ")), HS)
+res_net <- compute_residual_network(fit)
+p_corr_df <- posterior::summarise_draws(res_net)
+n_items <- sqrt(nrow(p_corr_df))
+p_corr_mat <- matrix(p_corr_df$mean, n_items)
+p_corr_mat
+qgraph::qgraph(p_corr_mat, layout = "spring")
 }
 }
