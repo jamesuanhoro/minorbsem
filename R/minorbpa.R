@@ -47,7 +47,7 @@ minorbpa <- function(
 
   stan_fit <- target_fitter(
     data_list, seed, warmup, sampling, refresh,
-    adapt_delta, max_treedepth, chains, ncores, show_messages
+    adapt_delta, max_treedepth, chains, ncores, show_messages, pa = TRUE
   )
 
   mbsem_results <- clean_up_stan_fit(

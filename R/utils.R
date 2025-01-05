@@ -85,7 +85,7 @@ user_input_process <- function(
         do.fit = FALSE,
         ceq.simple = TRUE,
         orthogonal = orthogonal,
-        fixed.x = TRUE
+        fixed.x = FALSE
       )
     } else {
       lav_fit <- lavaan::cfa(
@@ -96,12 +96,12 @@ user_input_process <- function(
         do.fit = FALSE,
         ceq.simple = TRUE,
         orthogonal = orthogonal,
-        fixed.x = TRUE
+        fixed.x = FALSE
       )
     }
     partab <- lavaan::lavaanify(
       model,
-      ceq.simple = TRUE, std.lv = TRUE, orthogonal = orthogonal, fixed.x = TRUE
+      ceq.simple = TRUE, std.lv = TRUE, orthogonal = orthogonal, fixed.x = FALSE
     )
 
     # Obtain data list for Stan
@@ -263,22 +263,6 @@ target_fitter <- function(
     ncores,
     show_messages,
     pa = FALSE) {
-  init_resid <- function() {
-    list(
-      rms_src_p = array(.025, (data_list$method != 100) * 1),
-      resids = array(
-        0,
-        (data_list$method < 90) * (data_list$Ni^2 - data_list$Ni) / 2
-      ),
-      loadings_complex = array(
-        0,
-        data_list$complex_struc * sum(
-          data_list$loading_pattern == 0 & data_list$loading_fixed == -999
-        )
-      )
-    )
-  }
-
   if (isTRUE(pa)) {
     if (data_list$correlation == 0) {
       mod_resid <- instantiate::stan_package_model(
@@ -289,6 +273,15 @@ target_fitter <- function(
         name = "pa_cor", package = "minorbsem"
       )
     }
+    init_resid <- function() {
+      list(
+        rms_src_p = array(.025, (data_list$method != 100) * 1),
+        resids = array(
+          0,
+          (data_list$method < 90) * sum(data_list$cond_ind_mat) / 2
+        )
+      )
+    }
   } else {
     if (data_list$correlation == 0) {
       mod_resid <- instantiate::stan_package_model(
@@ -297,6 +290,21 @@ target_fitter <- function(
     } else if (data_list$correlation == 1) {
       mod_resid <- instantiate::stan_package_model(
         name = "sem_cor", package = "minorbsem"
+      )
+    }
+    init_resid <- function() {
+      list(
+        rms_src_p = array(.025, (data_list$method != 100) * 1),
+        resids = array(
+          0,
+          (data_list$method < 90) * (data_list$Ni^2 - data_list$Ni) / 2
+        ),
+        loadings_complex = array(
+          0,
+          data_list$complex_struc * sum(
+            data_list$loading_pattern == 0 & data_list$loading_fixed == -999
+          )
+        )
       )
     }
   }
@@ -402,6 +410,18 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
     draws, "mean", "median", "sd", "mad",
     ~ quantile(.x, probs = c(lo_lim, up_lim), na.rm = TRUE)
   )
+  if (isFALSE(major)) {
+    draws_mat <- posterior::as_draws_matrix(draws)
+    mode_s <- apply(draws_mat, 2, function(x) {
+      if (sd(x) == 0) {
+        mode <- 0
+      } else {
+        suppressWarnings(mode <- modeest::hsm(x))
+      }
+      return(mode)
+    })
+    sum_stats$mode <- mode_s
+  }
   convergence_metrics <- posterior::summarise_draws(
     draws, posterior::default_convergence_measures()
   )
@@ -442,16 +462,22 @@ get_param_plot_list <- function(data_list) {
 
   coef_idxs <- matrix(nrow = 0, ncol = 2)
   rsq_idxs <- array(dim = 0)
-  phi_idxs <- which(
-    lower.tri(data_list$corr_mask) & data_list$corr_mask == 1,
-    arr.ind = TRUE
-  )
-  load_idxs <- which(
-    data_list$loading_pattern >=
-      ifelse(data_list$complex_struc == 1, -999, 1) &
-      data_list$loading_fixed == -999,
-    arr.ind = TRUE
-  )
+  load_idxs <- matrix(nrow = 0, ncol = 2)
+  phi_idxs <- matrix(nrow = 0, ncol = 2)
+
+  if (data_list$pa_indicator != 1) {
+    phi_idxs <- which(
+      lower.tri(data_list$corr_mask) & data_list$corr_mask == 1,
+      arr.ind = TRUE
+    )
+    load_idxs <- which(
+      data_list$loading_pattern >=
+        ifelse(data_list$complex_struc == 1, -999, 1) &
+        data_list$loading_fixed == -999,
+      arr.ind = TRUE
+    )
+  }
+
   rv_idxs <- which(data_list$res_var_pattern != 0)
   if (data_list$sem_indicator == 1) {
     coef_idxs <- which(

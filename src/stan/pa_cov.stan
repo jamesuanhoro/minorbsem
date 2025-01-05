@@ -40,6 +40,7 @@ data {
   real<lower = 0> rs_par;  // residual sd parameter
   real<lower = 1> rc_par;  // residual corr parameter
   int<lower = 1, upper = 100> method; // which method
+  array[Ni, Ni] int cond_ind_mat; // conditional independence locations
   matrix[Ni, Ni] coef_est;
   matrix[Ni, Ni] coef_se;
   int <lower = 0, upper = 1> ret_ll; // return log-likelihood?
@@ -56,7 +57,7 @@ transformed data {
   int<lower = 0> Nco = 0;  // N_non-zero coef
   int<lower = 0> Nco_fixed = 0;  // N_non-zero coef unique
   cholesky_factor_cov[Ni] NL_S = sqrt(Np - 1) * cholesky_decompose(S);  // covariance matrix-chol
-  int Nisqd2 = (Ni * (Ni - 1)) %/% 2;
+  int Ncond_ind = 0;
   int N_rms = 1;
   int N_alpha = 0;
   real ln_det_S = log_determinant_spd(S);
@@ -64,8 +65,14 @@ transformed data {
   int<lower = 0> Nce_uniq = 0; // N_correlated errors unique
   int Np_ll = Np * ret_ll * has_data;
 
-  if (method >= 90) {
-    Nisqd2 = 0;
+  if (method < 90) {
+    for (i in 2:Ni) {
+      for (j in 1:(i - 1)) {
+        if (cond_ind_mat[i, j] == 1) {
+          Ncond_ind += 1;
+        }
+      }
+    }
   }
 
   if (method == 91 || method == 92) {
@@ -109,7 +116,7 @@ transformed data {
 parameters {
   vector<lower = 0.0, upper = 1.0>[N_rms] rms_src_p;
   vector<lower = 2.0>[N_alpha] gdp_alpha;
-  vector[Nisqd2] resids;  // residual vector
+  vector[Ncond_ind] resids;  // residual vector
   vector<lower = 0>[Nrv_uniq] res_sds_u;  // item residual sds heteroskedastic
   vector<lower = 0, upper = 1>[Nce_uniq] res_cor_01;  // correlated errors on 01
   vector<lower = -1, upper = 1>[Nco_uniq] coefs;  // may need to be limited to (-1, 1)?
@@ -215,9 +222,11 @@ model {
       int pos = 0;
       for (i in 2:Ni) {
         for (j in 1:(i - 1)) {
-          pos += 1;
-          Omega[i, j] += resids[pos] * rms_src_tmp * sqrt(total_var[i] * total_var[j]);
-          Omega[j, i] = Omega[i, j];
+          if (cond_ind_mat[i, j] == 1) {
+             pos += 1;
+             Omega[i, j] += resids[pos] * rms_src_tmp * sqrt(total_var[i] * total_var[j]);
+             Omega[j, i] = Omega[i, j];
+          }
         }
       }
     }
@@ -259,11 +268,14 @@ generated quantities {
     int pos = 0;
     for (i in 2:Ni) {
       for (j in 1:(i - 1)) {
-        pos += 1;
-        Resid[i, j] = resids[pos] * rms_src_tmp;
-        Resid[j, i] = Resid[i, j];
+        if (cond_ind_mat[i, j] == 1) {
+          pos += 1;
+          Resid[i, j] = resids[pos] * rms_src_tmp;
+          Resid[j, i] = Resid[i, j];
+        }
       }
     }
+    if (Ncond_ind == 0) rms_src = 0;
   }
 
   {
@@ -334,9 +346,11 @@ generated quantities {
       int pos = 0;
       for (i in 2:Ni) {
         for (j in 1:(i - 1)) {
-          pos += 1;
-          Omega[i, j] += resids[pos] * rms_src_tmp * sqrt(total_var[i] * total_var[j]);
-          Omega[j, i] = Omega[i, j];
+          if (cond_ind_mat[i, j] == 1) {
+            pos += 1;
+            Omega[i, j] += resids[pos] * rms_src_tmp * sqrt(total_var[i] * total_var[j]);
+            Omega[j, i] = Omega[i, j];
+          }
         }
       }
     }

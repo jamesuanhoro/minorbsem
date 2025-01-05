@@ -15,8 +15,8 @@
 #' }
 #' @export
 plot_residuals <- function(object, type = "matrix") {
-  parameter <- `50%` <- `5%` <- `95%` <- lo <- hi <- item_2_f <- item_1_f <-
-    NULL
+  parameter <- centre <- `5%` <- `95%` <- lo <- hi <-
+    item_2_f <- item_1_f <- NULL
 
   if (!type %in% c("range", "matrix")) {
     stop("type must be either \"range\" or \"matrix\"")
@@ -34,6 +34,22 @@ plot_residuals <- function(object, type = "matrix") {
     object@stan_fit$draws("Resid"),
     ~ stats::quantile(.x, c(.5, .25, .75, .05, .95, .025, .975), na.rm = TRUE)
   )
+  if (object@data_list$method %in% c(2, 4)) {
+    mode_s <- apply(
+      posterior::as_draws_matrix(
+        object@stan_fit$draws("Resid")
+      ), 2, function(x) {
+        if (sd(x) == 0) {
+          mode <- 0
+        } else {
+          suppressWarnings(mode <- modeest::hsm(x))
+        }
+        return(mode)
+      }
+    )
+    plot_df$mode <- mode_s
+  }
+
   plot_df$item_1 <- as.integer(gsub(
     "Resid\\[|,\\d+\\]", "", plot_df$variable
   ))
@@ -57,6 +73,11 @@ plot_residuals <- function(object, type = "matrix") {
   plot_df$lo <- plot_df$`2.5%`
   plot_df$hi <- plot_df$`97.5%`
 
+  plot_df$centre <- plot_df$`50%`
+  if (object@data_list$method %in% c(2, 4)) {
+    plot_df$centre <- plot_df$mode
+  }
+
   p <- list()
   if (type == "range") {
     horiz_lines <- c(-.05, 0, .05)
@@ -66,7 +87,7 @@ plot_residuals <- function(object, type = "matrix") {
     if (max(plot_df$`97.5%`) > .1) {
       horiz_lines <- c(horiz_lines, .1)
     }
-    p <- ggplot2::ggplot(plot_df, ggplot2::aes(parameter, `50%`)) +
+    p <- ggplot2::ggplot(plot_df, ggplot2::aes(parameter, centre)) +
       ggplot2::geom_point(shape = 4) +
       ggplot2::geom_linerange(
         ggplot2::aes(ymin = `5%`, ymax = `95%`),
@@ -94,18 +115,18 @@ plot_residuals <- function(object, type = "matrix") {
     # Create items, use factors to ensure correct ordering
     p <- ggplot2::ggplot(plot_df, ggplot2::aes(item_1_f, item_2_f)) +
       ggplot2::geom_tile(
-        ggplot2::aes(alpha = abs(`50%`)),
+        ggplot2::aes(alpha = abs(centre)),
         fill = "#444444", col = 1
       ) +
       ggplot2::geom_text(ggplot2::aes(
         label = gsub(
           "0\\.", "\\.",
           trimws(format(
-            round(`50%`, 3),
+            round(centre, 3),
             scientific = FALSE, digits = 2, nsmall = 2
           ))
         ),
-        alpha = abs(`50%`)
+        alpha = abs(centre)
       )) +
       ggplot2::theme_classic() +
       ggplot2::theme(

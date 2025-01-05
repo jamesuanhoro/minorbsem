@@ -108,7 +108,7 @@ create_data_list_pa <- function(
   }
 
   # res-var
-  theta_var_diag <- diag(param_structure$theta)
+  theta_var_diag <- diag(param_structure$psi)
   data_list$res_var_pattern <- theta_var_diag
   theta_zeroes <- theta_var_diag != 0
   if (sum(theta_zeroes) > 0) {
@@ -117,7 +117,7 @@ create_data_list_pa <- function(
     data_list$res_var_pattern <- theta_var_diag
   }
   data_list$res_var_fixed <- array(999, data_list$Ni)
-  ind_names <- rownames(param_structure$theta)
+  ind_names <- rownames(param_structure$psi)
   fix_rv <- partab[
     partab$op == "~~" & partab$free == 0 &
       partab$lhs %in% ind_names & partab$lhs == partab$rhs,
@@ -167,7 +167,7 @@ create_data_list_pa <- function(
   # Check for correlated error terms
   # Number of correlated errors
   data_list$error_mat <- matrix(ncol = 2, nrow = 0)
-  theta_corr_mat <- param_structure$theta
+  theta_corr_mat <- param_structure$psi
   diag(theta_corr_mat) <- 0
   theta_zeroes <- theta_corr_mat != 0
   if (sum(theta_zeroes) > 0) {
@@ -181,6 +181,29 @@ create_data_list_pa <- function(
   }
   data_list$error_pattern <- theta_corr_mat
   data_list$Nce <- nrow(data_list$error_mat)
+
+  # Check for conditional independence
+  cond_ind_list <- dagitty::impliedConditionalIndependencies(
+    dagitty::lavaanToGraph(partab)
+  )
+  ind_names <- rownames(param_structure$psi)
+  data_list$cond_ind_mat <- matrix(
+    0,
+    nrow = nrow(param_structure$psi), ncol = ncol(param_structure$psi),
+    dimnames = dimnames(param_structure$psi)
+  )
+  if (length(cond_ind_list) > 0) {
+    for (i in seq_along(cond_ind_list)) {
+      ci <- cond_ind_list[[i]]
+      x_ind <- which(ind_names == ci$X)
+      y_ind <- which(ind_names == ci$Y)
+      data_list$cond_ind_mat[x_ind, y_ind] <- 1
+      data_list$cond_ind_mat[y_ind, x_ind] <- 1
+    }
+  }
+  # don't for any correlations estimated by lavaan
+  data_list$cond_ind_mat <-
+    data_list$cond_ind_mat * (data_list$error_pattern == 0)
 
   data_list$correlation <- 0
   if (isTRUE(correlation)) {
