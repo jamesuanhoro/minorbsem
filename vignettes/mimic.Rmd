@@ -8,7 +8,7 @@ bibliography: references.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 options(width = 100)
-library(ggdag)
+# library(ggdag)
 library(ggplot2)
 theme_set(theme_bw())
 # The palette with grey:
@@ -25,17 +25,23 @@ cbb_palette <- c(
 
 Now we use the`minorbsem()` function to fit a MIMIC model. MIMIC stands for the "Multiple Indicators Multiple Causes" model, where the latent factor has observed variable predictors. The `minorbsem` package contains a built-in dataset called `HS`, which is a part of classic Holzinger-Swineford dataset. This dataset is discussed in the [CFA tutorial](./cfa.html).
 
-For this example, we assume the following DAG:
+For this example, we assume the following:
+
+1. There is a visual factor reflected in items `x1`, `x2` and `x3`
+2. This factor is directly predicted by age and grade.
+3. Grade is directly predicted by age.
+
+We are interested in the total effects of age and grade on the visual factor.
 
 ```{r echo = FALSE}
-ggdag::ggdag(
-  ggdag::dagify(
-    x1 ~ Visual, x2 ~ Visual, x3 ~ Visual, Visual ~ grade + age, grade ~ age,
-    exposure = "grade", latent = "Visual"
-  ),
-  layout = "tree", node_size = 20, stylized = TRUE
-) +
-  ggplot2::theme_void()
+# ggdag::ggdag(
+#   ggdag::dagify(
+#     x1 ~ Visual, x2 ~ Visual, x3 ~ Visual, Visual ~ grade + age, grade ~ age,
+#     exposure = "grade", latent = "Visual"
+#   ),
+#   layout = "tree", node_size = 20, stylized = TRUE
+# ) +
+#   ggplot2::theme_void()
 ```
 
 We begin by loading the package:
