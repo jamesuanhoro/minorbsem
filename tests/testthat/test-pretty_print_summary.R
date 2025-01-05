@@ -42,7 +42,7 @@ test_that("Random method prints correctly for SEM", {
   )
   mbsem_test_pp_shared(print_out, method_sem)
   expect_true(grepl(
-    "Latent regression coefficients",
+    "Regression coefficients",
     print_out,
     ignore.case = TRUE
   ))

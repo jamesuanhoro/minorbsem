@@ -14,7 +14,8 @@ target_fitter(
   max_treedepth,
   chains,
   ncores,
-  show_messages
+  show_messages,
+  pa = FALSE
 )
 }
 \arguments{
@@ -43,6 +44,10 @@ maximum tree depth.}
 
 \item{show_messages}{(Logical) If TRUE, show messages from Stan sampler,
 if FALSE, hide messages.}
+
+\item{pa}{(LOGICAL)
+If TRUE: Path-analytic model;
+If FALSE (default): Generic model.}
 }
 \value{
 Fitted Stan model
