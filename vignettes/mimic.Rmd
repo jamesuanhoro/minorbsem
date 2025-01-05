@@ -1,7 +1,6 @@
 ---
 title: "Multiple Indicators and Multiple Causes (MIMIC) Model"
 author: "Xiaolu Fan, James Uanhoro"
-date: "`r Sys.Date()`"
 output: github_document
 bibliography: references.bib
 ---
@@ -66,19 +65,17 @@ All variables have standard deviations close to 1, so we can move forward with t
 
 [^1]: In the situation where variable scales have no information value, one can do a correlation-structure analysis instead using syntax of the form: `minorbsem(..., correlation = TRUE)`.
 
-## Model One
-
-### Model Syntax
-
-The model syntax is lavaan-style:
-
-First, we need to create dummy variables for the `grade`. All eighth graders are coded 1 and seventh graders are all 0.
+We need to create dummy variables for the `grade`. All eighth graders are coded 1 and seventh graders are all 0.
 
 ```{r}
 HS$grade_8 <- ifelse(HS$grade == "8", 1, 0)
 ```
 
-In the first syntax, there is only one predictor `age`.
+## Model One
+
+### Model Syntax
+
+The model syntax is lavaan-style. In the first syntax, there is only one predictor `age`.
 
 ```{r}
 mimic_syntax_1 <-
