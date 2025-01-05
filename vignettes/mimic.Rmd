@@ -1,0 +1,198 @@
+---
+title: "Multiple Indicators and Multiple Causes (MIMIC) Model"
+author: "Xiaolu Fan, James Uanhoro"
+output: github_document
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width = 100)
+# library(ggdag)
+library(ggplot2)
+theme_set(theme_bw())
+# The palette with grey:
+cb_palette <- c(
+  "#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
+  "#D55E00", "#CC79A7"
+)
+# The palette with black:
+cbb_palette <- c(
+  "#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
+  "#D55E00", "#CC79A7"
+)
+```
+
+Now we use the`minorbsem()` function to fit a MIMIC model. MIMIC stands for the "Multiple Indicators Multiple Causes" model, where the latent factor has observed variable predictors. The `minorbsem` package contains a built-in dataset called `HS`, which is a part of classic Holzinger-Swineford dataset. This dataset is discussed in the [CFA tutorial](./cfa.html).
+
+For this example, we assume the following:
+
+1. There is a visual factor reflected in items `x1`, `x2` and `x3`
+2. This factor is directly predicted by age and grade.
+3. Grade is directly predicted by age.
+
+We are interested in the total effects of age and grade on the visual factor.
+
+```{r echo = FALSE}
+# ggdag::ggdag(
+#   ggdag::dagify(
+#     x1 ~ Visual, x2 ~ Visual, x3 ~ Visual, Visual ~ grade + age, grade ~ age,
+#     exposure = "grade", latent = "Visual"
+#   ),
+#   layout = "tree", node_size = 20, stylized = TRUE
+# ) +
+#   ggplot2::theme_void()
+```
+
+We begin by loading the package:
+
+```{r}
+library(minorbsem)
+```
+
+The first six lines of the dataset:
+
+```{r}
+head(HS)
+```
+
+## Data preparation
+
+The scale of data is important for setting priors on model parameters. The default priors for models fit with `minorbsem` are reasonable when variables have standard deviations close to 1. For this reason, we first check the standard deviations of the relevant variables for this analysis:
+
+```{r}
+apply(
+  HS[, c(paste0("x", 1:3), "ageyr")], # select relevant variables
+  2, sd # compute SD of each variable
+)
+```
+
+All variables have standard deviations close to 1, so we can move forward with the data as they are. Otherwise, we would recommend re-scaling the variables.[^1]
+
+[^1]: In the situation where variable scales have no information value, one can do a correlation-structure analysis instead using syntax of the form: `minorbsem(..., correlation = TRUE)`.
+
+We need to create dummy variables for the `grade`. All eighth graders are coded 1 and seventh graders are all 0.
+
+```{r}
+HS$grade_8 <- ifelse(HS$grade == "8", 1, 0)
+```
+
+## Model One
+
+### Model Syntax
+
+The model syntax is lavaan-style. In the first syntax, there is only one predictor `age`.
+
+```{r}
+mimic_syntax_1 <-
+  "Visual =~ x1 + x2 + x3
+   Visual ~ fageyr
+   fageyr =~ ageyr
+   ageyr ~~ 0 * ageyr
+"
+```
+
+This model defines a Visual latent factor with three observed variables `x1`, `x2` and `x3`, and specifies a regression of Visual on `fageyr`.`fageyr` is latent variable created to represent the observed year variable, `ageyr`. The last line of this syntax fixes the residual variance of `ageyr` to 0 to ensure all of the variance in `ageyr` is contained within `fageyr`, i.e. `fageyr` is the same as `ageyr`.
+
+### Fit the Model
+
+We run the analysis using the `minorbsem()` function. By default, the function assumes that minor factors influence the covariance between the variables. `minorbsem` then prints out the iterations from Stan -- we show these iterations once so the reader knows what to expect.
+
+```{r mimic_1}
+fit_mimic_1 <- minorbsem(
+  model = mimic_syntax_1,
+  data = HS
+)
+```
+
+### Output structure
+
+At the top of the results table, `method = normal` indicates the approach of estimating the residual covariances between all items: the belief is that the standardized residual covariances (SRCs) which reflect minor factor influences are normally distributed with zero mean. The table also prints out the sample size of 301 -- only complete rows in the data are retained for analysis.
+
+We describe the column headers. The `from`, `op` and `to` combination describe the type of parameter being reported according to lavaan-style syntax. For example, the `Visual =~ x1` row describes the loading from the visual factor to item x1. The `mean`, `sd` and percentage columns are descriptive statistics of posterior distributions. The `mean` and `sd` function like the estimate and standard error in standard frequentist statistics. The percentage columns are credible intervals. By default, they are 90% credible intervals, i.e. given the prior and data, there is a 90% chance the parameter falls in this interval. `rhat` (pronounced R-hat) and `ess_bulk` columns are the potential scale reduction factor ($\widehat{R}$) and effective sample size (ESS) respectively [@vehtari_rank-normalization_2021] -- they are useful for checking parameter convergence. For $\widehat{R}$, values very close to 1 are preferable. For ESS, larger values are preferable.
+
+<!-- The ess_bulk stands for effective sample size (bulk). The larger the value, the better the model. Values in the hundreds are preferable. -->
+
+A final analysis in a manuscript would ideally have all parameters with $\widehat{R}$ under 1.01 and ESS above 400 for one to be sure parameter estimates have converged [@vehtari_rank-normalization_2021]. An easy way to meet these expectations is to increase the number of requested samples when calling `minorbsem()` via the `warmup =` and `sampling =` arguments, see `?minorbsem`.
+
+The parameter estimates are presented by the type of parameter.
+
+#### Goodness of fit
+
+**PPP**. The first section of results contains parameters that help assess global model fit. "PPP" is the posterior predictive *p*-value in the form described by @Muthen2012, and is akin to a $\chi^2$ test in standard SEMs. It is conventional to prefer values under .05 or .10. Here, PPP = .382 indicating a good-fitting model. Desirable PPP-values are to be expected by default in `minorbsem` as the package accounts for model misspecification -- alternatively stated: PPP-values above .05 do not imply an absence of misfit and is not all that informative by default. We report PPP since `minorbsem` is also able to fit Bayesian SEMs that do not account for misspecification, e.g. `minorbsem(..., method = "none")`.
+
+**RMSE**. This the root mean square error of standardized residual covariances (SRCs) and communicates the typical size of SRCs. One may also interpret this metric as the standard deviation of SRCs with 95% of SRCs lying within 2 RMSE values from 0. In this example, RMSE = 0.063 and we can expect some SRCs to be greater than 0.10, suggesting some large SRCs [@Maydeu-Olivares2017a]. Large SRCs challenge the notion that model misspecification is due to the influence of minor factors -- if these influences are large, are these factors “minor”? It is possible that the hypothesized structure is incorrect, or minor factors have significant effects.
+
+#### Substantive parameters
+
+The parameter estimates are reported by type of parameter: regression coefficients (all standardized), R square (a derived parameter), factor loadings, inter-factor correlations, and error variances. For this model, all items load on their respective factors with intervals that clearly exclude 0. We find that the relation between age and the Visual trait is negligible.
+
+### Residual plots
+
+Given that the RMSE suggests large standardized residual covariances (SRCs), we can request a plot of SRCs using two options: a range-plot and a heat-map.
+
+```{r}
+plot_residuals(fit_mimic_1, type = "range")
+plot_residuals(fit_mimic_1, type = "matrix")
+```
+
+The heat-map is particularly useful for highlighting the largest SRCs. If these SRCs cluster in a non-random way, one may identify potential model modifications.
+
+## Model Two
+
+### Model Syntax
+
+In this syntax, the `Visual` factor has two predictors, `age` and `grade`.
+
+```{r}
+mimic_syntax_2 <-
+  "Visual =~ x1 + x2 + x3
+   Visual ~ fageyr + fgrade
+   fageyr =~ ageyr
+   fgrade =~ grade_8
+   ageyr ~~ 0 * ageyr
+   grade_8 ~~ 0 * grade_8
+"
+writeLines(mimic_syntax_2)
+```
+
+This `Visual` factor is now predicted by both `ageyr` and `grade` level.
+
+### Fit the Model
+
+```{r mimic_2, include=FALSE}
+fit_mimic_2 <- fit_mimic_2 <- minorbsem(
+  model = mimic_syntax_2,
+  data = HS
+)
+```
+
+```{r eval=FALSE}
+fit_mimic_2 <- fit_mimic_2 <- minorbsem(
+  model = mimic_syntax_2,
+  data = HS
+)
+```
+
+```{r echo=FALSE}
+fit_mimic_2
+```
+
+### Output structure
+
+#### Goodness of fit
+
+**PPP**. As expected with default minorbsem models, the PPP is adequate.
+
+**RMSE**. In this example, RMSE = 0.049 and we can expect very few SRCs to be greater than 0.10.
+
+#### Substantive parameters
+
+Comparing students with the same age, those a grade-level higher are also higher on the visual factor.
+
+### Residual plots
+
+```{r}
+plot_residuals(fit_mimic_2, type = "range")
+plot_residuals(fit_mimic_2, type = "matrix")
+```
