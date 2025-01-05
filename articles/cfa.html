@@ -5,30 +5,24 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="minorbsem">
 <title>Confirmatory Factor Analysis • minorbsem</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Confirmatory Factor Analysis">
-<meta property="og:description" content="minorbsem">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Confirmatory Factor Analysis">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.15</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,34 +30,24 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-examples">Examples</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-examples">
-    <a class="dropdown-item" href="../articles/cfa.html">Confirmatory Factor Analysis</a>
-    <a class="dropdown-item" href="../articles/priors.html">Detailed guide to setting priors</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-examples" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Examples</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-examples">
+<li><a class="dropdown-item" href="../articles/cfa.html">Confirmatory Factor Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/priors.html">Detailed guide to setting priors</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/jamesuanhoro/minorbsem/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jamesuanhoro/minorbsem/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -72,12 +56,13 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Confirmatory Factor Analysis</h1>
+
+      <h1>Confirmatory Factor Analysis</h1>
                         <h4 data-toc-skip class="author">Xiaolu Fan,
 James Uanhoro</h4>
             
       
-      
+
       <div class="d-none name"><code>cfa.Rmd</code></div>
     </div>
 
@@ -179,6 +164,8 @@ knows what to expect.</p>
 <pre><code><span><span class="co">## Processing user input ...</span></span></code></pre>
 <pre><code><span><span class="co">## User input fully processed :)</span></span>
 <span><span class="co">##  Now to modeling.</span></span></code></pre>
+<pre><code><span><span class="co">## Error in get(paste0(generic, ".", class), envir = get_method_env()) : </span></span>
+<span><span class="co">##   object 'type_sum.accel' not found</span></span></code></pre>
 <pre><code><span><span class="co">## Fitting Stan model ...</span></span></code></pre>
 <pre><code><span><span class="co">## Init values were only set for a subset of parameters. </span></span>
 <span><span class="co">## Missing init values for the following parameters:</span></span>
@@ -191,63 +178,63 @@ knows what to expect.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Chain 1 Iteration:    1 / 2000 [  0%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: A is not symmetric. A[1,4] = inf, but A[4,1] = inf (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: A is not symmetric. A[1,4] = inf, but A[4,1] = inf (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 1</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Iteration:    1 / 2000 [  0%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[7,8] = inf, but A[8,7] = inf (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[7,8] = inf, but A[8,7] = inf (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 2</span></span></code></pre>
@@ -265,40 +252,40 @@ knows what to expect.</p>
 <span><span class="co">## Chain 1 Iteration: 1000 / 2000 [ 50%]  (Warmup) </span></span>
 <span><span class="co">## Chain 1 Iteration: 1001 / 2000 [ 50%]  (Sampling) </span></span>
 <span><span class="co">## Chain 2 Iteration: 1400 / 2000 [ 70%]  (Sampling) </span></span>
-<span><span class="co">## Chain 2 Iteration: 1600 / 2000 [ 80%]  (Sampling) </span></span>
 <span><span class="co">## Chain 1 Iteration: 1200 / 2000 [ 60%]  (Sampling) </span></span>
+<span><span class="co">## Chain 2 Iteration: 1600 / 2000 [ 80%]  (Sampling) </span></span>
 <span><span class="co">## Chain 2 Iteration: 1800 / 2000 [ 90%]  (Sampling) </span></span>
 <span><span class="co">## Chain 1 Iteration: 1400 / 2000 [ 70%]  (Sampling) </span></span>
 <span><span class="co">## Chain 2 Iteration: 2000 / 2000 [100%]  (Sampling) </span></span>
 <span><span class="co">## Chain 2 finished in 3.2 seconds.</span></span>
 <span><span class="co">## Chain 3 Iteration:    1 / 2000 [  0%]  (Warmup)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 324, column 2 to column 48)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 324, column 2 to column 48)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:</span></span></code></pre>
-<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpjepldW/model-20773924bfe6.stan', line 432, column 6 to column 81)</span></span></code></pre>
+<pre><code><span><span class="co">## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpFjMc1R/model-217273132646.stan', line 432, column 6 to column 81)</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.</span></span></code></pre>
 <pre><code><span><span class="co">## Chain 3</span></span></code></pre>
@@ -317,7 +304,7 @@ knows what to expect.</p>
 <span><span class="co">## Chain 3 Iteration: 1600 / 2000 [ 80%]  (Sampling) </span></span>
 <span><span class="co">## Chain 3 Iteration: 1800 / 2000 [ 90%]  (Sampling) </span></span>
 <span><span class="co">## Chain 3 Iteration: 2000 / 2000 [100%]  (Sampling) </span></span>
-<span><span class="co">## Chain 3 finished in 4.0 seconds.</span></span>
+<span><span class="co">## Chain 3 finished in 4.1 seconds.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## All 3 chains finished successfully.</span></span>
 <span><span class="co">## Mean chain execution time: 3.9 seconds.</span></span>
@@ -385,19 +372,23 @@ columns are credible intervals. By default, they are 90% credible
 intervals, i.e. given the prior and data, there is a 90% chance the
 parameter falls in this interval. <code>rhat</code> (pronounced R-hat)
 and <code>ess_bulk</code> columns are the potential scale reduction
-factor (<span class="math inline">\(\widehat{R}\)</span>) and effective
-sample size (ESS) respectively <span class="citation">(Vehtari et al.
-2021)</span> – they are useful for checking parameter convergence. For
-<span class="math inline">\(\widehat{R}\)</span>, values very close to 1
-are preferable. For ESS, larger values are preferable.
+factor
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>R</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\widehat{R}</annotation></semantics></math>)
+and effective sample size (ESS) respectively <span class="citation">(Vehtari et al. 2021)</span> – they are useful for
+checking parameter convergence. For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>R</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\widehat{R}</annotation></semantics></math>,
+values very close to 1 are preferable. For ESS, larger values are
+preferable.
 <!-- checks parameter convergence and should not be much larger than 1. In this case, all R values are between 1.000 and 1.006. -->
 <!-- The ess_bulk stands for effective sample size (bulk). The larger the value, the better the model. Values in the hundreds are preferable. -->
 A final analysis in a manuscript would ideally have all parameters with
-<span class="math inline">\(\widehat{R}\)</span> under 1.01 and ESS
-above 400 for one to be sure parameter estimates have converged <span class="citation">(Vehtari et al. 2021)</span>. An easy way to meet these
-expectations is to increase the number of requested samples when calling
-<code><a href="../reference/minorbsem.html">minorbsem()</a></code> via the <code>warmup =</code> and
-<code>sampling =</code> arguments, see <code><a href="../reference/minorbsem.html">?minorbsem</a></code>.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>R</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\widehat{R}</annotation></semantics></math>
+under 1.01 and ESS above 400 for one to be sure parameter estimates have
+converged <span class="citation">(Vehtari et al. 2021)</span>. An easy
+way to meet these expectations is to increase the number of requested
+samples when calling <code><a href="../reference/minorbsem.html">minorbsem()</a></code> via the
+<code>warmup =</code> and <code>sampling =</code> arguments, see
+<code><a href="../reference/minorbsem.html">?minorbsem</a></code>.</p>
 <p>The parameter estimates are presented by the type of parameter.</p>
 </div>
 <div class="section level4">
@@ -406,15 +397,15 @@ expectations is to increase the number of requested samples when calling
 <p><strong>PPP</strong>. The first section of results contains
 parameters that help assess global model fit. “PPP” is the posterior
 predictive <em>p</em>-value in the form described by <span class="citation">Muthén and Asparouhov (2012)</span>, and is akin to a
-<span class="math inline">\(\chi^2\)</span> test in standard SEMs. It is
-conventional to prefer values under .05 or .10. Here, PPP = .382
-indicating a good-fitting model. Desirable PPP-values are to be expected
-by default in <code>minorbsem</code> as the package accounts for model
-misspecification – alternatively stated: PPP-values above .05 do not
-imply an absence of misfit and is not all that informative by default.
-We report PPP since <code>minorbsem</code> is also able to fit Bayesian
-SEMs that do not account for misspecification,
-e.g. <code>minorbsem(..., method = "none")</code>.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math>
+test in standard SEMs. It is conventional to prefer values under .05 or
+.10. Here, PPP = .382 indicating a good-fitting model. Desirable
+PPP-values are to be expected by default in <code>minorbsem</code> as
+the package accounts for model misspecification – alternatively stated:
+PPP-values above .05 do not imply an absence of misfit and is not all
+that informative by default. We report PPP since <code>minorbsem</code>
+is also able to fit Bayesian SEMs that do not account for
+misspecification, e.g. <code>minorbsem(..., method = "none")</code>.</p>
 <p><strong>RMSE</strong>. This the root mean square error of
 standardized residual covariances (SRCs) and communicates the typical
 size of SRCs. One may also interpret this metric as the standard
@@ -443,10 +434,10 @@ correlated.</p>
 <p>Given that the RMSE suggests large standardized residual covariances
 (SRCs), we can request a plot of SRCs using two options: a range-plot
 and a heat-map.</p>
-<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_residuals.html">plot_residuals</a></span><span class="op">(</span><span class="va">fit_cfa</span>, type <span class="op">=</span> <span class="st">"range"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="cfa_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_residuals.html">plot_residuals</a></span><span class="op">(</span><span class="va">fit_cfa</span>, type <span class="op">=</span> <span class="st">"matrix"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="cfa_files/figure-html/unnamed-chunk-5-2.png" width="700"></p>
 <p>The heat-map is particularly useful for highlighting the largest
@@ -464,7 +455,7 @@ orthogonal.</p>
 <div class="section level3">
 <h3 id="model-syntax-1">Model syntax<a class="anchor" aria-label="anchor" href="#model-syntax-1"></a>
 </h3>
-<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">syntax_bifactor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
 <span>  <span class="st">"G =~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9"</span>, <span class="st">"\n"</span>,</span>
 <span>  <span class="va">syntax_basic</span></span>
@@ -482,7 +473,7 @@ orthogonal.</p>
 <p>The call to <code><a href="../reference/minorbsem.html">minorbsem()</a></code> needs to be of the form:
 <code>minorbsem(..., orthogonal = TRUE)</code> to ensure the factors are
 orthogonal:</p>
-<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_bifactor</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/minorbsem.html">minorbsem</a></span><span class="op">(</span><span class="va">syntax_bifactor</span>, data <span class="op">=</span> <span class="va">HS</span>, orthogonal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                     Parameter estimates (method = normal, sample size(s) = 301)                     </span></span>
 <span><span class="co">##             <span style="font-weight: bold;">from  </span>   <span style="font-weight: bold;">op</span>   <span style="font-weight: bold;">to    </span>   <span style="font-weight: bold;">  mean</span>   <span style="font-weight: bold;">   sd</span>   <span style="font-weight: bold;">5.000%</span>   <span style="font-weight: bold;">95.000%</span>   <span style="font-weight: bold;"> rhat</span>   <span style="font-weight: bold;">ess_bulk</span>  </span></span>
@@ -557,7 +548,7 @@ lavaan:</p>
 <div class="section level3">
 <h3 id="model-syntax-2">Model syntax<a class="anchor" aria-label="anchor" href="#model-syntax-2"></a>
 </h3>
-<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">syntax_bifactor_cons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
 <span>  <span class="st">"G =~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9"</span>, <span class="st">"\n"</span>,</span>
 <span>  <span class="st">"Visual =~ a * x1 + a * x2 + a * x3</span></span>
@@ -569,7 +560,7 @@ lavaan:</p>
 <div class="section level3">
 <h3 id="fit-the-model-2">Fit the model<a class="anchor" aria-label="anchor" href="#fit-the-model-2"></a>
 </h3>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_bifactor_cons</span> <span class="op">&lt;-</span> <span class="va">fit_bifactor_cons</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/minorbsem.html">minorbsem</a></span><span class="op">(</span></span>
 <span>  <span class="va">syntax_bifactor_cons</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">HS</span>, orthogonal <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -649,7 +640,7 @@ are indeed zero and there are some outlier non-zero cross loadings.</p>
 </h3>
 <p>The call to <code><a href="../reference/minorbsem.html">minorbsem()</a></code> needs to be of the form:
 <code>minorbsem(..., simple_struc = FALSE)</code></p>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_non_simple</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/minorbsem.html">minorbsem</a></span><span class="op">(</span><span class="va">syntax_basic</span>, data <span class="op">=</span> <span class="va">HS</span>, simple_struc <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                     Parameter estimates (method = normal, sample size(s) = 301)                     </span></span>
 <span><span class="co">##             <span style="font-weight: bold;">from  </span>   <span style="font-weight: bold;">op</span>   <span style="font-weight: bold;">to    </span>   <span style="font-weight: bold;">  mean</span>   <span style="font-weight: bold;">   sd</span>   <span style="font-weight: bold;">5.000%</span>   <span style="font-weight: bold;">95.000%</span>   <span style="font-weight: bold;"> rhat</span>   <span style="font-weight: bold;">ess_bulk</span>  </span></span>
@@ -756,14 +747,16 @@ Structural Equation Models.”</span> In <em><span>Annual</span>
 <div id="ref-vehtari_rank-normalization_2021" class="csl-entry">
 Vehtari, Aki, Andrew Gelman, Daniel Simpson, Bob Carpenter, and
 Paul-Christian Bürkner. 2021. <span>“Rank-Normalization, Folding, and
-Localization: <span>An</span> Improved <span class="math inline">\(\widehat{R}\)</span> for Assessing Convergence of
-MCMC (with <span>Discussion</span>).”</span> <em>Bayesian Analysis</em>
-16 (2): 667–718. <a href="https://doi.org/10.1214/20-BA1221" class="external-link">https://doi.org/10.1214/20-BA1221</a>.
+Localization: <span>An</span> Improved
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>R</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\widehat{R}</annotation></semantics></math>
+for Assessing Convergence of MCMC (with
+<span>Discussion</span>).”</span> <em>Bayesian Analysis</em> 16 (2):
+667–718. <a href="https://doi.org/10.1214/20-BA1221" class="external-link">https://doi.org/10.1214/20-BA1221</a>.
 </div>
 </div>
 </div>
 
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
@@ -774,15 +767,15 @@ MCMC (with <span>Discussion</span>).”</span> <em>Bayesian Analysis</em>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

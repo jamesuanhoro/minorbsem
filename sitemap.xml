@@ -1,132 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/404.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/articles/cfa.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/articles/priors.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/HS.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/PD.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/clean_up_stan_fit.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/compute_residual_network.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/converter_helper.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/create_data_list.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/create_major_params.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-fix_acov.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-four_idx_solver.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-g_map.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-get_asy_cov.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-get_avar_mat.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-log_m.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-omega_computer.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-onAttach.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/get_param_plot_list.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/mbsem-class.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/mbsem_post_sum.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/mbsempriors-class.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/method_hash.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/minimum_r_version.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/minorbsem.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/minorbsem_version.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/modify_major_params.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/new_mbsempriors.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/parameter_hist.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/parameter_trace.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/plot_residuals.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/pretty_print_summary.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/random_method_selection.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/rename_post_df_columns.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/target_fitter.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/user_input_check.html</loc>
-  </url>
-  <url>
-    <loc>https://jamesuanhoro.github.io/minorbsem/reference/user_input_process.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/404.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/LICENSE.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/articles/cfa.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/articles/index.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/articles/mimic.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/articles/priors.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/authors.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/index.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/news/index.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/HS.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/PD.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/clean_up_stan_fit.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/compute_residual_network.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/converter_helper.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/create_data_list.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/create_major_params.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-fix_acov.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-four_idx_solver.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-g_map.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-get_asy_cov.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-get_avar_mat.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-log_m.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-omega_computer.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/dot-onAttach.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/get_param_plot_list.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/index.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/mbsem-class.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/mbsem_post_sum.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/mbsempriors-class.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/method_hash.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/minimum_r_version.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/minorbsem.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/minorbsem_version.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/modify_major_params.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/new_mbsempriors.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/parameter_hist.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/parameter_trace.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/plot_residuals.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/pretty_print_summary.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/random_method_selection.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/rename_post_df_columns.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/target_fitter.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/user_input_check.html</loc></url>
+<url><loc>https://jamesuanhoro.github.io/minorbsem/reference/user_input_process.html</loc></url>
 </urlset>
+
