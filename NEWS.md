@@ -1,3 +1,9 @@
+# minorbsem (development version)
+
+* Added a function (`minorbpa()`) for path analysis (observed variables only), that estimates SRCs based on assumptions of conditional independence within the path analysis model.
+* Residual plots for lasso and GDP methods now show the mode as estimate (`modeest::hsm()`) instead of the median, since these methods shrink the mode to 0.
+* There are some problems with residual correlations when `correlation = TRUE`
+
 # minorbsem 0.2.15
 
 * Added a function for residual network analysis, doi: 10.1007/s11336-017-9557-x

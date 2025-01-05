@@ -1,4 +1,4 @@
-#' Stan data helper function
+#' Stan data helper function for path analysis
 #' @description A function that creates data list object passed to Stan
 #' @param lavaan_object lavaan fit object of corresponding model
 #' @param partab lavaanify result of corresponding model
@@ -7,10 +7,9 @@
 #' @inheritParams minorbsem
 #' @returns Data list object used in fitting Stan model
 #' @keywords internal
-create_data_list <- function(
+create_data_list_pa <- function(
     lavaan_object = NULL,
     method = "normal",
-    simple_struc = TRUE,
     correlation = correlation,
     priors = NULL,
     compute_ll = FALSE,
@@ -25,9 +24,6 @@ create_data_list <- function(
 
   # Set method
   data_list$method <- method_hash(method)
-
-  # Set simple structure to 0 by default, change within CFA section
-  data_list$complex_struc <- 0
 
   methods::validObject(priors) # validate priors
   # Shape parameter for LKJ of interfactor corr
@@ -64,14 +60,10 @@ create_data_list <- function(
 
   # Loading pattern, 0s and 1s
   data_list$loading_pattern <- (param_structure$lambda > 0) * 1
-  # Number of factors
-  data_list$Nf <- ncol(data_list$loading_pattern)
 
   # Assume CFA by default
-  data_list$pa_indicator <- 0
-  psi_mat <- param_structure$psi
+  data_list$pa_indicator <- 1
   data_list$sem_indicator <- 0
-  data_list$complex_struc <- as.integer(ifelse(isFALSE(simple_struc), 1, 0))
 
   # Loading pattern
   data_list$loading_pattern <- param_structure$lambda
@@ -105,8 +97,18 @@ create_data_list <- function(
     ] <- fix_load$ustart[i]
   }
 
+  all_zero_loadings <- all(data_list$loading_pattern == 0)
+  all_zero_loadings_fix <- all(data_list$loading_fixed == -999)
+  if (isFALSE(all_zero_loadings) || isFALSE(all_zero_loadings_fix)) {
+    err_msg <- paste0(
+      "This model has latent variables, ",
+      "this function is only for path analysis"
+    )
+    stop(err_msg)
+  }
+
   # res-var
-  theta_var_diag <- diag(param_structure$theta)
+  theta_var_diag <- diag(param_structure$psi)
   data_list$res_var_pattern <- theta_var_diag
   theta_zeroes <- theta_var_diag != 0
   if (sum(theta_zeroes) > 0) {
@@ -115,7 +117,7 @@ create_data_list <- function(
     data_list$res_var_pattern <- theta_var_diag
   }
   data_list$res_var_fixed <- array(999, data_list$Ni)
-  ind_names <- rownames(param_structure$theta)
+  ind_names <- rownames(param_structure$psi)
   fix_rv <- partab[
     partab$op == "~~" & partab$free == 0 &
       partab$lhs %in% ind_names & partab$lhs == partab$rhs,
@@ -127,18 +129,11 @@ create_data_list <- function(
     data_list$res_var_fixed[fix_ind_ids[i]] <- fix_rv$ustart[i]
   }
 
-  # Set to 0 for uncorrelated factors, 1 for correlated
-  data_list$corr_mask <- diag(data_list$Nf)
-  data_list$corr_mask[lower.tri(data_list$corr_mask)] <-
-    (psi_mat[lower.tri(psi_mat)] != 0) + 0
-  data_list$corr_mask[upper.tri(data_list$corr_mask)] <-
-    t(data_list$corr_mask)[upper.tri(data_list$corr_mask)]
-
   # Set up coefficient table
-  data_list$coef_pattern <- matrix(0, data_list$Nf, data_list$Nf)
-  data_list$coef_est <- matrix(0, data_list$Nf, data_list$Nf)
-  data_list$coef_se <- matrix(priors@sc_par, data_list$Nf, data_list$Nf)
-  data_list$coef_fixed <- matrix(-999, data_list$Nf, data_list$Nf)
+  data_list$coef_pattern <- matrix(0, data_list$Ni, data_list$Ni)
+  data_list$coef_est <- matrix(0, data_list$Ni, data_list$Ni)
+  data_list$coef_se <- matrix(priors@sc_par, data_list$Ni, data_list$Ni)
+  data_list$coef_fixed <- matrix(-999, data_list$Ni, data_list$Ni)
   if (!is.null(param_structure$beta)) {
     # This is an SEM
     data_list$sem_indicator <- 1
@@ -164,22 +159,15 @@ create_data_list <- function(
         fix_row_ids[i], fix_col_ids[i]
       ] <- fix_coef$ustart[i]
     }
+  } else {
+    err_msg <- "Model does not specify any coefficients. Not a path analysis"
+    stop(err_msg)
   }
-
-  # Marker variables per factor
-  # Each factor should have one unique indicator or stop!
-  data_list$markers <- array(dim = data_list$Nf)
-  for (j in seq_len(ncol(data_list$loading_pattern))) {
-    data_list$markers[j] <- which(
-      data_list$loading_pattern[, j] != 0
-    )[1]
-  }
-  data_list$markers[is.na(data_list$markers)] <- 0
 
   # Check for correlated error terms
   # Number of correlated errors
   data_list$error_mat <- matrix(ncol = 2, nrow = 0)
-  theta_corr_mat <- param_structure$theta
+  theta_corr_mat <- param_structure$psi
   diag(theta_corr_mat) <- 0
   theta_zeroes <- theta_corr_mat != 0
   if (sum(theta_zeroes) > 0) {
@@ -193,6 +181,29 @@ create_data_list <- function(
   }
   data_list$error_pattern <- theta_corr_mat
   data_list$Nce <- nrow(data_list$error_mat)
+
+  # Check for conditional independence
+  cond_ind_list <- dagitty::impliedConditionalIndependencies(
+    dagitty::lavaanToGraph(partab)
+  )
+  ind_names <- rownames(param_structure$psi)
+  data_list$cond_ind_mat <- matrix(
+    0,
+    nrow = nrow(param_structure$psi), ncol = ncol(param_structure$psi),
+    dimnames = dimnames(param_structure$psi)
+  )
+  if (length(cond_ind_list) > 0) {
+    for (i in seq_along(cond_ind_list)) {
+      ci <- cond_ind_list[[i]]
+      x_ind <- which(ind_names == ci$X)
+      y_ind <- which(ind_names == ci$Y)
+      data_list$cond_ind_mat[x_ind, y_ind] <- 1
+      data_list$cond_ind_mat[y_ind, x_ind] <- 1
+    }
+  }
+  # don't for any correlations estimated by lavaan
+  data_list$cond_ind_mat <-
+    data_list$cond_ind_mat * (data_list$error_pattern == 0)
 
   data_list$correlation <- 0
   if (isTRUE(correlation)) {

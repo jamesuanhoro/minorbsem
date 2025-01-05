@@ -59,8 +59,8 @@ pretty_print_summary <- function(
   type_str <- ""
 
   table_to_print[
-    table_to_print$group == "Latent regression coefficients", "group"
-  ] <- "Latent regression coefficients (outcome ~ predictor)"
+    table_to_print$group == "Regression coefficients", "group"
+  ] <- "Regression coefficients (outcome ~ predictor)"
 
   caption_str <- paste0(
     "Parameter estimates (",

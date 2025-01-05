@@ -42,6 +42,9 @@ minimum_r_version <- function() {
 
 #' User input processing function
 #' @description A function that processes.
+#' @param pa (LOGICAL)
+#' If TRUE: Path-analytic model;
+#' If FALSE (default): Generic model.
 #' @inheritParams minorbsem
 #' @returns NULL
 #' @keywords internal
@@ -57,7 +60,8 @@ user_input_process <- function(
     centered = TRUE,
     priors = new_mbsempriors(),
     compute_ll = FALSE,
-    acov_mat = NULL) {
+    acov_mat = NULL,
+    pa = FALSE) {
   # Model cannot be NULL
   user_input_check("model", model)
 
@@ -70,59 +74,118 @@ user_input_process <- function(
   # Must provide either data or sample_cov and sample_nobs
   user_input_check("data", data, sample_cov, sample_nobs)
 
-  # Run lavaan fit
-  if (!is.null(data)) {
-    lav_fit <- lavaan::cfa(
+  if (isTRUE(pa)) {
+    # Run lavaan fit
+    if (!is.null(data)) {
+      lav_fit <- lavaan::cfa(
+        model,
+        data = data,
+        std.lv = TRUE,
+        likelihood = "wishart",
+        do.fit = FALSE,
+        ceq.simple = TRUE,
+        orthogonal = orthogonal,
+        fixed.x = FALSE
+      )
+    } else {
+      lav_fit <- lavaan::cfa(
+        model,
+        sample.cov = sample_cov, sample.nobs = sample_nobs,
+        std.lv = TRUE,
+        likelihood = "wishart",
+        do.fit = FALSE,
+        ceq.simple = TRUE,
+        orthogonal = orthogonal,
+        fixed.x = FALSE
+      )
+    }
+    partab <- lavaan::lavaanify(
       model,
-      data = data,
-      std.lv = TRUE,
-      likelihood = "wishart",
-      do.fit = FALSE,
-      ceq.simple = TRUE,
-      orthogonal = orthogonal
+      ceq.simple = TRUE, std.lv = TRUE, orthogonal = orthogonal, fixed.x = FALSE
     )
-  } else {
-    lav_fit <- lavaan::cfa(
-      model,
-      sample.cov = sample_cov, sample.nobs = sample_nobs,
-      std.lv = TRUE,
-      likelihood = "wishart",
-      do.fit = FALSE,
-      ceq.simple = TRUE,
-      orthogonal = orthogonal
-    )
-  }
-  partab <- lavaan::lavaanify(
-    model,
-    ceq.simple = TRUE, std.lv = TRUE, orthogonal = orthogonal
-  )
 
-  # Obtain data list for Stan
-  if (is.null(acov_mat)) {
-    data_list <- create_data_list(
-      lavaan_object = lav_fit,
-      method = method,
-      simple_struc = simple_struc,
-      correlation = correlation,
-      priors = priors,
-      compute_ll = compute_ll,
-      partab = partab,
-      centered = centered,
-      acov_mat = acov_mat
-    )
+    # Obtain data list for Stan
+    if (is.null(acov_mat)) {
+      data_list <- create_data_list_pa(
+        lavaan_object = lav_fit,
+        method = method,
+        correlation = correlation,
+        priors = priors,
+        compute_ll = compute_ll,
+        partab = partab,
+        centered = centered,
+        acov_mat = acov_mat
+      )
+    } else {
+      data_list <- create_data_list_pa(
+        lavaan_object = lav_fit,
+        method = method,
+        correlation = correlation,
+        priors = priors,
+        compute_ll = compute_ll,
+        partab = partab,
+        centered = centered,
+        acov_mat = acov_mat,
+        old_names = rownames(sample_cov)
+      )
+    }
+
   } else {
-    data_list <- create_data_list(
-      lavaan_object = lav_fit,
-      method = method,
-      simple_struc = simple_struc,
-      correlation = correlation,
-      priors = priors,
-      compute_ll = compute_ll,
-      partab = partab,
-      centered = centered,
-      acov_mat = acov_mat,
-      old_names = rownames(sample_cov)
+    # Run lavaan fit
+    if (!is.null(data)) {
+      lav_fit <- lavaan::cfa(
+        model,
+        data = data,
+        std.lv = TRUE,
+        likelihood = "wishart",
+        do.fit = FALSE,
+        ceq.simple = TRUE,
+        orthogonal = orthogonal
+      )
+    } else {
+      lav_fit <- lavaan::cfa(
+        model,
+        sample.cov = sample_cov, sample.nobs = sample_nobs,
+        std.lv = TRUE,
+        likelihood = "wishart",
+        do.fit = FALSE,
+        ceq.simple = TRUE,
+        orthogonal = orthogonal
+      )
+    }
+    partab <- lavaan::lavaanify(
+      model,
+      ceq.simple = TRUE, std.lv = TRUE, orthogonal = orthogonal
     )
+
+    # Obtain data list for Stan
+    if (is.null(acov_mat)) {
+      data_list <- create_data_list(
+        lavaan_object = lav_fit,
+        method = method,
+        simple_struc = simple_struc,
+        correlation = correlation,
+        priors = priors,
+        compute_ll = compute_ll,
+        partab = partab,
+        centered = centered,
+        acov_mat = acov_mat
+      )
+    } else {
+      data_list <- create_data_list(
+        lavaan_object = lav_fit,
+        method = method,
+        simple_struc = simple_struc,
+        correlation = correlation,
+        priors = priors,
+        compute_ll = compute_ll,
+        partab = partab,
+        centered = centered,
+        acov_mat = acov_mat,
+        old_names = rownames(sample_cov)
+      )
+    }
+
   }
 
   return(data_list)
@@ -182,6 +245,9 @@ user_input_check <- function(
 #' @description A function that takes user input and fits the
 #' Stan model.
 #' @param data_list Data list object passed to Stan
+#' @param pa (LOGICAL)
+#' If TRUE: Path-analytic model;
+#' If FALSE (default): Generic model.
 #' @inheritParams minorbsem
 #' @returns Fitted Stan model
 #' @keywords internal
@@ -195,31 +261,52 @@ target_fitter <- function(
     max_treedepth,
     chains,
     ncores,
-    show_messages) {
-  init_resid <- function() {
-    list(
-      rms_src_p = array(.025, (data_list$method != 100) * 1),
-      resids = array(
-        0,
-        (data_list$method < 90) * (data_list$Ni^2 - data_list$Ni) / 2
-      ),
-      loadings_complex = array(
-        0,
-        data_list$complex_struc * sum(
-          data_list$loading_pattern == 0 & data_list$loading_fixed == -999
+    show_messages,
+    pa = FALSE) {
+  if (isTRUE(pa)) {
+    if (data_list$correlation == 0) {
+      mod_resid <- instantiate::stan_package_model(
+        name = "pa_cov", package = "minorbsem"
+      )
+    } else if (data_list$correlation == 1) {
+      mod_resid <- instantiate::stan_package_model(
+        name = "pa_cor", package = "minorbsem"
+      )
+    }
+    init_resid <- function() {
+      list(
+        rms_src_p = array(.025, (data_list$method != 100) * 1),
+        resids = array(
+          0,
+          (data_list$method < 90) * sum(data_list$cond_ind_mat) / 2
         )
       )
-    )
-  }
-
-  if (data_list$correlation == 0) {
-    mod_resid <- instantiate::stan_package_model(
-      name = "sem_cov", package = "minorbsem"
-    )
-  } else if (data_list$correlation == 1) {
-    mod_resid <- instantiate::stan_package_model(
-      name = "sem_cor", package = "minorbsem"
-    )
+    }
+  } else {
+    if (data_list$correlation == 0) {
+      mod_resid <- instantiate::stan_package_model(
+        name = "sem_cov", package = "minorbsem"
+      )
+    } else if (data_list$correlation == 1) {
+      mod_resid <- instantiate::stan_package_model(
+        name = "sem_cor", package = "minorbsem"
+      )
+    }
+    init_resid <- function() {
+      list(
+        rms_src_p = array(.025, (data_list$method != 100) * 1),
+        resids = array(
+          0,
+          (data_list$method < 90) * (data_list$Ni^2 - data_list$Ni) / 2
+        ),
+        loadings_complex = array(
+          0,
+          data_list$complex_struc * sum(
+            data_list$loading_pattern == 0 & data_list$loading_fixed == -999
+          )
+        )
+      )
+    }
   }
 
   message("Fitting Stan model ...")
@@ -323,6 +410,18 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
     draws, "mean", "median", "sd", "mad",
     ~ quantile(.x, probs = c(lo_lim, up_lim), na.rm = TRUE)
   )
+  if (isFALSE(major)) {
+    draws_mat <- posterior::as_draws_matrix(draws)
+    mode_s <- apply(draws_mat, 2, function(x) {
+      if (sd(x) == 0) {
+        mode <- 0
+      } else {
+        suppressWarnings(mode <- modeest::hsm(x))
+      }
+      return(mode)
+    })
+    sum_stats$mode <- mode_s
+  }
   convergence_metrics <- posterior::summarise_draws(
     draws, posterior::default_convergence_measures()
   )
@@ -363,16 +462,22 @@ get_param_plot_list <- function(data_list) {
 
   coef_idxs <- matrix(nrow = 0, ncol = 2)
   rsq_idxs <- array(dim = 0)
-  phi_idxs <- which(
-    lower.tri(data_list$corr_mask) & data_list$corr_mask == 1,
-    arr.ind = TRUE
-  )
-  load_idxs <- which(
-    data_list$loading_pattern >=
-      ifelse(data_list$complex_struc == 1, -999, 1) &
-      data_list$loading_fixed == -999,
-    arr.ind = TRUE
-  )
+  load_idxs <- matrix(nrow = 0, ncol = 2)
+  phi_idxs <- matrix(nrow = 0, ncol = 2)
+
+  if (data_list$pa_indicator != 1) {
+    phi_idxs <- which(
+      lower.tri(data_list$corr_mask) & data_list$corr_mask == 1,
+      arr.ind = TRUE
+    )
+    load_idxs <- which(
+      data_list$loading_pattern >=
+        ifelse(data_list$complex_struc == 1, -999, 1) &
+        data_list$loading_fixed == -999,
+      arr.ind = TRUE
+    )
+  }
+
   rv_idxs <- which(data_list$res_var_pattern != 0)
   if (data_list$sem_indicator == 1) {
     coef_idxs <- which(
@@ -488,12 +593,15 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   params <- c("ppp", "rms_src")
   from_list <- c("PPP", "RMSE")
 
-  load_idxs <- paste0("Load_mat[", apply(which(
-    data_list$loading_pattern >= ifelse(data_list$complex_struc == 1, -999, 1) |
-      data_list$loading_fixed != -999,
-    arr.ind = TRUE
-  ), 1, paste0, collapse = ","), "]")
-  params <- c(params, load_idxs)
+  if (data_list$pa_indicator != 1) {
+    load_idxs <- paste0("Load_mat[", apply(which(
+      data_list$loading_pattern >=
+        ifelse(data_list$complex_struc == 1, -999, 1) |
+        data_list$loading_fixed != -999,
+      arr.ind = TRUE
+    ), 1, paste0, collapse = ","), "]")
+    params <- c(params, load_idxs)
+  }
 
   if (data_list$Nce > 0) {
     params <- c(params, "res_cor")
@@ -501,7 +609,10 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
 
   params <- c(params, "res_var")
 
-  params <- c(params, "phi_mat")
+  if (data_list$pa_indicator != 1) {
+    params <- c(params, "phi_mat")
+  }
+
   if (data_list$sem_indicator == 1) {
     # Get R-square
     params <- c(params, "r_square")
@@ -625,7 +736,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   idxs <- which(grepl("Coef\\_mat", major_parameters$variable))
   major_parameters <- modify_major_params(
     major_parameters, idxs,
-    group = "Latent regression coefficients", op = "~",
+    group = "Regression coefficients", op = "~",
     from = factor_labels[as.integer(
       gsub("Coef_mat\\[|,\\d+\\]", "", major_parameters[idxs, ]$variable)
     )],
@@ -640,7 +751,7 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
   target <- c(
     "Goodness of fit",
     "Dispersion between and within clusters",
-    "Latent regression coefficients", "R square",
+    "Regression coefficients", "R square",
     "Factor loadings", "Inter-factor correlations",
     "Residual variances", "Error correlations"
   )
