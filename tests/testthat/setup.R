@@ -71,6 +71,36 @@ mbsem_test_pp_shared <- function(print_out, method, simple = TRUE, pa = FALSE) {
   }
 }
 
+mbsem_test_pa_ci <- function(fit, summarize) {
+  if (fit@data_list$method < 90 && sum(fit@data_list$cond_ind_mat) > 0) {
+    if (isFALSE(summarize)) {
+      testthat::expect_true(
+        "draws_df" %in% ci_results(fit, summarize = TRUE)
+      )
+    } else {
+      testthat::expect_true(
+        ci_results(fit, summarize = FALSE) == "data.frame"
+      )
+    }
+  } else {
+    if (fit@data_list$method >= 90) {
+      err_msg <- paste0(
+        "There are no residuals to plot when ",
+        "method == \"none\", \"WB\", \"WB-cond\", \"WW\"."
+      )
+      testthat::expect_error(ci_results(fit), err_msg)
+    }
+
+    if (sum(fit@data_list$cond_ind_mat) == 0) {
+      msg <- paste0(
+        "All possible associations are modelled."
+      )
+      testthat::expect_message(ci_results(fit), msg)
+    }
+  }
+
+}
+
 dat_cov <- function(dat = "HS", data_must = FALSE) {
   if (dat == "HS") {
     dat <- HS[, paste0("x", 1:9)] # nolint
