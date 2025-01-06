@@ -413,7 +413,7 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
   if (isFALSE(major)) {
     draws_mat <- posterior::as_draws_matrix(draws)
     mode_s <- apply(draws_mat, 2, function(x) {
-      if (sd(x) == 0) {
+      if (stats::sd(x) == 0) {
         mode <- 0
       } else {
         suppressWarnings(mode <- modeest::hsm(x))

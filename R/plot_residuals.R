@@ -39,7 +39,7 @@ plot_residuals <- function(object, type = "matrix") {
       posterior::as_draws_matrix(
         object@stan_fit$draws("Resid")
       ), 2, function(x) {
-        if (sd(x) == 0) {
+        if (stats::sd(x) == 0) {
           mode <- 0
         } else {
           suppressWarnings(mode <- modeest::hsm(x))
