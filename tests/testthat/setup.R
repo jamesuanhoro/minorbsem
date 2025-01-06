@@ -79,7 +79,7 @@ mbsem_test_pa_ci <- function(fit, summarize) {
       )
     } else {
       testthat::expect_true(
-        class(ci_results(fit, summarize = FALSE) == "data.frame")
+        class(ci_results(fit, summarize = FALSE)) == "data.frame"
       )
     }
   } else {
