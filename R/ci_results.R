@@ -33,9 +33,9 @@ ci_results <- function(object, interval = .9, summarize = TRUE) {
   }
 
   if (sum(object@data_list$cond_ind_mat) == 0) {
-    print(paste0(
+    message(
       "All possible associations are modelled."
-    ))
+    )
     return(NULL)
   }
 
