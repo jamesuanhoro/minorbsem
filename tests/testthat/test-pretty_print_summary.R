@@ -56,3 +56,28 @@ test_that("Random method prints correctly for SEM", {
   )
   mbsem_test_pp_shared(print_out, method_sem, simple = FALSE)
 })
+
+test_that("Random method prints correctly for PA", {
+  expect_error(
+    print_out <- capture_output(
+      pretty_print_summary(fit_pa),
+      width = 300
+    ),
+    NA
+  )
+  mbsem_test_pp_shared(print_out, method_pa, pa = TRUE)
+  expect_true(grepl(
+    "Regression coefficients",
+    print_out,
+    ignore.case = TRUE
+  ))
+  expect_true(grepl("R square", print_out, ignore.case = TRUE))
+  expect_error(
+    print_out <- capture_output(
+      pretty_print_summary(fit_pa, simple = FALSE),
+      width = 300
+    ),
+    NA
+  )
+  mbsem_test_pp_shared(print_out, method_pa, simple = FALSE, pa = TRUE)
+})

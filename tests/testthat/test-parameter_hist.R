@@ -5,3 +5,7 @@ test_that("Random method (any case) returns histogram for CFA", {
 test_that("Random method (any case) returns histogram for SEM", {
   mbsem_test_hist(fit_sem)
 })
+
+test_that("Random method (any case) returns histogram for PA", {
+  mbsem_test_hist(fit_pa)
+})
