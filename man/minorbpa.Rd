@@ -116,3 +116,8 @@ An object of \code{\link{mbsem-class}}
 Fit Bayesian path anlaysis models with tests of
 conditional independence.
 }
+\examples{
+\dontrun{
+minorbpa("x3 ~ x1 + x2\n x4 ~ x3 + x1", HS)
+}
+}
