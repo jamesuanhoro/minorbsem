@@ -474,6 +474,8 @@ generated quantities {
         for (i in (j + 1):Ni) {
           if (error_pattern[i, j] != 0) {
             pos_err += 1;
+            res_cor[pos_err] = res_cor_u[error_pattern[i, j]];
+            res_cov[pos_err] = res_cor[pos_err] * res_sds[i] * res_sds[j];
             loading_par_exp[i, pos_err] = sqrt(
               abs(res_cor_u[error_pattern[i, j]]) * res_var[i]
             );

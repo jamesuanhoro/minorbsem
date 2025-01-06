@@ -5,3 +5,7 @@ test_that("Random method (any case) works for CFA residual plot", {
 test_that("Random method (any case) works for SEM residual plot", {
   mbsem_test_plot_residuals(fit_sem, method_sem)
 })
+
+test_that("Random method (any case) works for PA residual plot", {
+  mbsem_test_plot_residuals(fit_pa, method_pa)
+})

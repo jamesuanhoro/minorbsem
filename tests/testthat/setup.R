@@ -52,12 +52,16 @@ mbsem_test_plot_residuals <- function(fit, method) {
   }
 }
 
-mbsem_test_pp_shared <- function(print_out, method, simple = TRUE) {
+mbsem_test_pp_shared <- function(print_out, method, simple = TRUE, pa = FALSE) {
   testthat::expect_true(grepl(method, print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("Goodness of fit", print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("RMSE", print_out, ignore.case = TRUE))
-  testthat::expect_true(grepl("Factor loadings", print_out, ignore.case = TRUE))
   testthat::expect_true(grepl("PPP", print_out, ignore.case = TRUE))
+  if (!isTRUE(pa)) {
+    testthat::expect_true(
+      grepl("Factor loadings", print_out, ignore.case = TRUE)
+    )
+  }
   if (isFALSE(simple)) {
     testthat::expect_true(grepl("Location", print_out, ignore.case = TRUE))
     testthat::expect_true(grepl("Dispersion", print_out, ignore.case = TRUE))
@@ -65,6 +69,36 @@ mbsem_test_pp_shared <- function(print_out, method, simple = TRUE) {
     testthat::expect_true(grepl("median", print_out, ignore.case = TRUE))
     testthat::expect_true(grepl("mad", print_out, ignore.case = TRUE))
   }
+}
+
+mbsem_test_pa_ci <- function(fit, summarize) {
+  if (fit@data_list$method < 90 && sum(fit@data_list$cond_ind_mat) > 0) {
+    if (isFALSE(summarize)) {
+      testthat::expect_true(
+        "draws_df" %in% class(ci_results(fit, summarize = FALSE))
+      )
+    } else {
+      testthat::expect_true(
+        class(ci_results(fit, summarize = TRUE)) == "data.frame"
+      )
+    }
+  } else {
+    if (fit@data_list$method >= 90) {
+      err_msg <- paste0(
+        "There are no residuals to plot when ",
+        "method == \"none\", \"WB\", \"WB-cond\", \"WW\"."
+      )
+      testthat::expect_error(ci_results(fit), err_msg)
+    } else {
+      if (sum(fit@data_list$cond_ind_mat) == 0) {
+        msg <- paste0(
+          "All possible associations are modelled."
+        )
+        testthat::expect_message(ci_results(fit), msg)
+      }
+    }
+  }
+
 }
 
 dat_cov <- function(dat = "HS", data_must = FALSE) {
@@ -138,4 +172,25 @@ expect_error(fit_sem <- minorbsem(
   orthogonal = orthogonal_sem,
   warmup = 500, sampling = 500, chains = 1,
   method = method_sem, refresh = 0, show_messages = FALSE
+), NA)
+
+# Doing PA here then sharing across tests
+method_pa <- random_method_selection()
+model_pa_syntaxes <- c(
+  "x4 ~ x1 + x2 + x3
+  x5 ~ x1 + x4",
+  "x2 ~ x1",
+  "x3 ~ x1 + x2",
+  "x8 ~ x6 + x7
+  x9 ~ x7 + x8
+  x4 ~ x1 + x2 + x3"
+)
+syntax_pa_idx <- sample(length(model_pa_syntaxes), 1)
+model_pa_syntax <- model_pa_syntaxes[syntax_pa_idx]
+pa_dat <- dat_cov("HS")
+expect_error(fit_pa <- minorbpa(
+  model_pa_syntax,
+  data = pa_dat$dat, sample_cov = pa_dat$cov, sample_nobs = pa_dat$nobs,
+  warmup = 500, sampling = 500, chains = 1,
+  method = method_pa, refresh = 0, show_messages = FALSE
 ), NA)

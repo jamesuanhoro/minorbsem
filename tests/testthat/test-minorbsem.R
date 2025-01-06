@@ -13,6 +13,10 @@ test_that("Random method (any case) has correct slots for SEM", {
   mbsem_test_slots_correct(fit_sem)
 })
 
+test_that("Random method (any case) has correct slots for PA", {
+  mbsem_test_slots_correct(fit_pa)
+})
+
 test_that("Noncreated method fails", {
   method <- paste0(method_hash(), collapse = "")
   method <- strsplit(paste0(method_hash(), collapse = ""), "")[[1]]

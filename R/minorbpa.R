@@ -4,6 +4,10 @@
 #' conditional independence.
 #' @inheritParams minorbsem
 #' @returns An object of \code{\link{mbsem-class}}
+#' @examples
+#' \dontrun{
+#' minorbpa("x3 ~ x1 + x2\n x4 ~ x3 + x1", HS)
+#' }
 #' @export
 minorbpa <- function(
     model = NULL,

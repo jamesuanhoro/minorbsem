@@ -46,10 +46,24 @@ if (fit_sem@data_list$has_data == 0) {
   )
 }
 
+if (fit_pa@data_list$has_data == 0) {
+  pa_dat <- dat_cov("HS", data_must = TRUE)
+  fit_pa <- minorbpa(
+    model_pa_syntax,
+    data = pa_dat$dat, sample_cov = pa_dat$cov, sample_nobs = pa_dat$nobs,
+    warmup = 500, sampling = 500, chains = 1,
+    method = method_pa, refresh = 0, show_messages = FALSE, compute_ll = TRUE
+  )
+}
+
 test_that("Random method returns log-likelihood for CFA", {
   mbsem_test_ll_1(fit_cfa)
 })
 
 test_that("Random method returns log-likelihood for SEM", {
   mbsem_test_ll_1(fit_sem)
+})
+
+test_that("Random method returns log-likelihood for PA", {
+  mbsem_test_ll_1(fit_pa)
 })

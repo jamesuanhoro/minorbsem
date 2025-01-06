@@ -192,18 +192,25 @@ create_data_list_pa <- function(
     nrow = nrow(param_structure$psi), ncol = ncol(param_structure$psi),
     dimnames = dimnames(param_structure$psi)
   )
+  data_list$cond_ind_details <- matrix(nrow = 0, ncol = 2 + data_list$Ni)
   if (length(cond_ind_list) > 0) {
     for (i in seq_along(cond_ind_list)) {
       ci <- cond_ind_list[[i]]
       x_ind <- which(ind_names == ci$X)
       y_ind <- which(ind_names == ci$Y)
-      data_list$cond_ind_mat[x_ind, y_ind] <- 1
-      data_list$cond_ind_mat[y_ind, x_ind] <- 1
+      if (data_list$error_pattern[x_ind, y_ind] == 0) {
+        ci_row <- vector("integer", 2 + data_list$Ni)
+        ci_row[1] <- x_ind
+        ci_row[2] <- y_ind
+        ci_row[3:length(ci_row)] <- ifelse(ind_names %in% ci$Z, 1, 0)
+        data_list$cond_ind_details <- rbind(data_list$cond_ind_details, ci_row)
+        data_list$cond_ind_mat[x_ind, y_ind] <- 1
+        data_list$cond_ind_mat[y_ind, x_ind] <- 1
+        # keep using cond_ind_mat to know number of cis,
+        # ci_row repeats unique relations
+      }
     }
   }
-  # don't for any correlations estimated by lavaan
-  data_list$cond_ind_mat <-
-    data_list$cond_ind_mat * (data_list$error_pattern == 0)
 
   data_list$correlation <- 0
   if (isTRUE(correlation)) {
