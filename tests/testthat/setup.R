@@ -75,11 +75,11 @@ mbsem_test_pa_ci <- function(fit, summarize) {
   if (fit@data_list$method < 90 && sum(fit@data_list$cond_ind_mat) > 0) {
     if (isFALSE(summarize)) {
       testthat::expect_true(
-        "draws_df" %in% ci_results(fit, summarize = TRUE)
+        "draws_df" %in% class(ci_results(fit, summarize = TRUE))
       )
     } else {
       testthat::expect_true(
-        ci_results(fit, summarize = FALSE) == "data.frame"
+        class(ci_results(fit, summarize = FALSE) == "data.frame")
       )
     }
   } else {
