@@ -75,11 +75,11 @@ mbsem_test_pa_ci <- function(fit, summarize) {
   if (fit@data_list$method < 90 && sum(fit@data_list$cond_ind_mat) > 0) {
     if (isFALSE(summarize)) {
       testthat::expect_true(
-        "draws_df" %in% class(ci_results(fit, summarize = TRUE))
+        "draws_df" %in% class(ci_results(fit, summarize = FALSE))
       )
     } else {
       testthat::expect_true(
-        class(ci_results(fit, summarize = FALSE)) == "data.frame"
+        class(ci_results(fit, summarize = TRUE)) == "data.frame"
       )
     }
   } else {
@@ -89,13 +89,13 @@ mbsem_test_pa_ci <- function(fit, summarize) {
         "method == \"none\", \"WB\", \"WB-cond\", \"WW\"."
       )
       testthat::expect_error(ci_results(fit), err_msg)
-    }
-
-    if (sum(fit@data_list$cond_ind_mat) == 0) {
-      msg <- paste0(
-        "All possible associations are modelled."
-      )
-      testthat::expect_message(ci_results(fit), msg)
+    } else {
+      if (sum(fit@data_list$cond_ind_mat) == 0) {
+        msg <- paste0(
+          "All possible associations are modelled."
+        )
+        testthat::expect_message(ci_results(fit), msg)
+      }
     }
   }
 
