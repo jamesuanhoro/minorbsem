@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">minorbsem</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.16</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.16.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +76,7 @@ Uanhoro</h4>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jamesuanhoro.github.io/minorbsem/">minorbsem</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span></code></pre>
 <pre><code><span><span class="co">## ###############################################################################</span></span></code></pre>
-<pre><code><span><span class="co">## This is minorbsem 0.2.16</span></span></code></pre>
+<pre><code><span><span class="co">## This is minorbsem 0.2.16.9000</span></span></code></pre>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## All users of R (or SEM) are invited to report bugs, submit functions or ideas</span></span>
 <span><span class="co">## for functions. An efficient way to do this is to open an issue on GitHub</span></span>
@@ -127,7 +127,7 @@ is the number of factors. For example, for three factors and
 so each correlation follows the distribution: Beta(5.5, 5.5). Assuming
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>=</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">\eta = 20</annotation></semantics></math>,
 we have Beta(20.5, 20.5). Both distributions are visualized below.</p>
-<p><img src="priors_files/figure-html/unnamed-chunk-3-1.png" width="384"></p>
+<p><img src="priors_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="384"></p>
 <p>We see that larger values of <code>lkj_shape</code> can be used to
 constrain interfactor correlations.</p>
 </div>
@@ -378,56 +378,56 @@ to identify these indicators manually:</p>
 <span><span class="co">##           ───────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##             <span style="font-weight: bold;">Goodness of fit                                    </span>                          </span></span>
 <span><span class="co">##           ───────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##             PPP                     0.447                              1.000       1670  </span></span>
-<span><span class="co">##             RMSE                    0.027   0.013    0.006     0.051   1.003        495  </span></span>
+<span><span class="co">##             PPP                     0.427                              1.002       1847  </span></span>
+<span><span class="co">##             RMSE                    0.027   0.013    0.008     0.049   1.001        540  </span></span>
 <span><span class="co">##           ───────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##             <span style="font-weight: bold;">Factor loadings                                    </span>                          </span></span>
 <span><span class="co">##           ───────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##             Visual   =~   x1        0.758   0.118    0.574     0.957   1.001       1426  </span></span>
-<span><span class="co">##             Visual   =~   x2        0.560   0.105    0.379     0.732   1.002       2339  </span></span>
-<span><span class="co">##             Visual   =~   x3        0.749   0.111    0.572     0.937   1.003       1533  </span></span>
-<span><span class="co">##             Visual   =~   x4        0.036   0.074   -0.087     0.155   1.000       2632  </span></span>
-<span><span class="co">##             Visual   =~   x5       -0.063   0.079   -0.194     0.065   1.000       2446  </span></span>
-<span><span class="co">##             Visual   =~   x6        0.070   0.071   -0.048     0.184   1.000       2507  </span></span>
-<span><span class="co">##             Visual   =~   x7       -0.142   0.079   -0.271    -0.012   1.002       2580  </span></span>
-<span><span class="co">##             Visual   =~   x8        0.004   0.081   -0.128     0.132   1.000       2369  </span></span>
-<span><span class="co">##             Visual   =~   x9        0.209   0.076    0.078     0.325   1.002       2125  </span></span>
-<span><span class="co">##             Verbal   =~   x1        0.122   0.080   -0.012     0.248   1.001       2216  </span></span>
-<span><span class="co">##             Verbal   =~   x2        0.014   0.073   -0.108     0.133   1.001       3225  </span></span>
-<span><span class="co">##             Verbal   =~   x3       -0.078   0.075   -0.205     0.041   1.000       2805  </span></span>
-<span><span class="co">##             Verbal   =~   x4        0.979   0.080    0.853     1.113   1.003       2356  </span></span>
-<span><span class="co">##             Verbal   =~   x5        1.139   0.087    0.992     1.285   1.003       1834  </span></span>
-<span><span class="co">##             Verbal   =~   x6        0.885   0.072    0.770     1.006   1.001       2249  </span></span>
-<span><span class="co">##             Verbal   =~   x7        0.022   0.073   -0.099     0.143   1.000       2201  </span></span>
-<span><span class="co">##             Verbal   =~   x8       -0.039   0.076   -0.163     0.083   1.001       2270  </span></span>
-<span><span class="co">##             Verbal   =~   x9        0.032   0.068   -0.079     0.141   1.002       2410  </span></span>
-<span><span class="co">##             Speed    =~   x1        0.054   0.080   -0.082     0.182   1.000       2580  </span></span>
-<span><span class="co">##             Speed    =~   x2       -0.051   0.077   -0.175     0.076   1.000       2941  </span></span>
-<span><span class="co">##             Speed    =~   x3        0.041   0.079   -0.088     0.169   1.002       2355  </span></span>
-<span><span class="co">##             Speed    =~   x4        0.002   0.072   -0.113     0.121   1.000       2904  </span></span>
-<span><span class="co">##             Speed    =~   x5        0.006   0.078   -0.121     0.132   1.000       2747  </span></span>
-<span><span class="co">##             Speed    =~   x6        0.002   0.068   -0.110     0.115   1.001       2679  </span></span>
-<span><span class="co">##             Speed    =~   x7        0.732   0.100    0.568     0.903   1.004       1394  </span></span>
-<span><span class="co">##             Speed    =~   x8        0.779   0.098    0.625     0.951   1.007       1432  </span></span>
-<span><span class="co">##             Speed    =~   x9        0.542   0.089    0.401     0.694   1.001       1891  </span></span>
+<span><span class="co">##             Visual   =~   x1        0.752   0.116    0.570     0.950   1.000       1796  </span></span>
+<span><span class="co">##             Visual   =~   x2        0.557   0.102    0.393     0.732   1.000       2515  </span></span>
+<span><span class="co">##             Visual   =~   x3        0.752   0.107    0.575     0.928   1.000       1931  </span></span>
+<span><span class="co">##             Visual   =~   x4        0.035   0.074   -0.087     0.153   1.002       2831  </span></span>
+<span><span class="co">##             Visual   =~   x5       -0.067   0.080   -0.198     0.064   1.002       2438  </span></span>
+<span><span class="co">##             Visual   =~   x6        0.067   0.073   -0.054     0.185   1.002       2854  </span></span>
+<span><span class="co">##             Visual   =~   x7       -0.141   0.079   -0.271    -0.014   1.000       2196  </span></span>
+<span><span class="co">##             Visual   =~   x8        0.007   0.081   -0.126     0.143   1.001       2318  </span></span>
+<span><span class="co">##             Visual   =~   x9        0.215   0.072    0.099     0.329   1.000       2456  </span></span>
+<span><span class="co">##             Verbal   =~   x1        0.124   0.081   -0.017     0.252   1.000       2479  </span></span>
+<span><span class="co">##             Verbal   =~   x2        0.013   0.071   -0.109     0.129   1.000       3101  </span></span>
+<span><span class="co">##             Verbal   =~   x3       -0.080   0.075   -0.203     0.046   1.001       2881  </span></span>
+<span><span class="co">##             Verbal   =~   x4        0.979   0.078    0.856     1.109   1.001       2310  </span></span>
+<span><span class="co">##             Verbal   =~   x5        1.141   0.086    1.004     1.286   1.000       2292  </span></span>
+<span><span class="co">##             Verbal   =~   x6        0.886   0.073    0.773     1.008   1.001       2033  </span></span>
+<span><span class="co">##             Verbal   =~   x7        0.026   0.073   -0.097     0.147   1.001       2427  </span></span>
+<span><span class="co">##             Verbal   =~   x8       -0.036   0.074   -0.159     0.089   1.002       2860  </span></span>
+<span><span class="co">##             Verbal   =~   x9        0.034   0.067   -0.077     0.143   1.001       2373  </span></span>
+<span><span class="co">##             Speed    =~   x1        0.051   0.082   -0.085     0.182   1.002       2954  </span></span>
+<span><span class="co">##             Speed    =~   x2       -0.052   0.074   -0.175     0.069   1.000       3306  </span></span>
+<span><span class="co">##             Speed    =~   x3        0.041   0.078   -0.090     0.166   1.001       3077  </span></span>
+<span><span class="co">##             Speed    =~   x4        0.001   0.070   -0.115     0.114   1.002       2838  </span></span>
+<span><span class="co">##             Speed    =~   x5        0.008   0.076   -0.119     0.136   1.000       2797  </span></span>
+<span><span class="co">##             Speed    =~   x6        0.001   0.068   -0.110     0.112   1.000       2823  </span></span>
+<span><span class="co">##             Speed    =~   x7        0.731   0.099    0.569     0.899   1.000       1672  </span></span>
+<span><span class="co">##             Speed    =~   x8        0.779   0.102    0.620     0.961   1.000       1628  </span></span>
+<span><span class="co">##             Speed    =~   x9        0.539   0.085    0.402     0.679   1.001       2146  </span></span>
 <span><span class="co">##           ───────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##             <span style="font-weight: bold;">Inter-factor correlations                          </span>                          </span></span>
 <span><span class="co">##           ───────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##             Verbal   ~~   Visual    0.353   0.110    0.165     0.522   1.001       1781  </span></span>
-<span><span class="co">##             Speed    ~~   Visual    0.330   0.128    0.113     0.530   1.002       1795  </span></span>
-<span><span class="co">##             Speed    ~~   Verbal    0.245   0.117    0.047     0.431   1.000       2009  </span></span>
+<span><span class="co">##             Verbal   ~~   Visual    0.360   0.106    0.180     0.527   1.001       2200  </span></span>
+<span><span class="co">##             Speed    ~~   Visual    0.323   0.130    0.096     0.522   1.000       2226  </span></span>
+<span><span class="co">##             Speed    ~~   Verbal    0.239   0.117    0.037     0.422   1.001       1951  </span></span>
 <span><span class="co">##           ───────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##             <span style="font-weight: bold;">Residual variances                                 </span>                          </span></span>
 <span><span class="co">##           ───────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##             x1       ~~   x1        0.663   0.141    0.416     0.869   1.000       1678  </span></span>
-<span><span class="co">##             x2       ~~   x2        1.085   0.114    0.904     1.278   1.000       2318  </span></span>
-<span><span class="co">##             x3       ~~   x3        0.732   0.133    0.514     0.942   1.000       1475  </span></span>
-<span><span class="co">##             x4       ~~   x4        0.375   0.090    0.220     0.514   1.005       1526  </span></span>
-<span><span class="co">##             x5       ~~   x5        0.421   0.116    0.239     0.612   1.005       1340  </span></span>
-<span><span class="co">##             x6       ~~   x6        0.373   0.073    0.251     0.486   1.001       2206  </span></span>
-<span><span class="co">##             x7       ~~   x7        0.702   0.120    0.503     0.897   1.005       1369  </span></span>
-<span><span class="co">##             x8       ~~   x8        0.447   0.120    0.229     0.626   1.007       1288  </span></span>
-<span><span class="co">##             x9       ~~   x9        0.584   0.081    0.452     0.712   1.001       2522  </span></span>
+<span><span class="co">##             x1       ~~   x1        0.670   0.131    0.445     0.873   1.001       1861  </span></span>
+<span><span class="co">##             x2       ~~   x2        1.089   0.118    0.904     1.280   1.001       2892  </span></span>
+<span><span class="co">##             x3       ~~   x3        0.729   0.129    0.516     0.936   1.001       1854  </span></span>
+<span><span class="co">##             x4       ~~   x4        0.375   0.088    0.226     0.511   1.001       1759  </span></span>
+<span><span class="co">##             x5       ~~   x5        0.420   0.112    0.233     0.600   1.001       2068  </span></span>
+<span><span class="co">##             x6       ~~   x6        0.374   0.074    0.248     0.493   1.002       1890  </span></span>
+<span><span class="co">##             x7       ~~   x7        0.698   0.117    0.500     0.886   1.001       1532  </span></span>
+<span><span class="co">##             x8       ~~   x8        0.443   0.123    0.215     0.620   1.001       1250  </span></span>
+<span><span class="co">##             x9       ~~   x9        0.583   0.076    0.459     0.710   1.000       2648  </span></span>
 <span><span class="co">##           ───────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##                                                                                          </span></span>
 <span><span class="co">## </span></span>
@@ -485,50 +485,50 @@ coefficient to .5. We first retrieve the data list object.</p>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Goodness of fit                                   </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##              PPP                    0.385                              1.001       1668  </span></span>
-<span><span class="co">##              RMSE                   0.037   0.012    0.017     0.058   1.007        493  </span></span>
+<span><span class="co">##              PPP                    0.383                              1.001       1536  </span></span>
+<span><span class="co">##              RMSE                   0.037   0.012    0.019     0.058   1.002        591  </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Regression coefficients (outcome ~ predictor)     </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##              Verbal   ~    Visual   0.419   0.075    0.292     0.538   1.017        970  </span></span>
-<span><span class="co">##              Verbal   ~    Speed    0.080   0.078   -0.049     0.203   1.001       2382  </span></span>
+<span><span class="co">##              Verbal   ~    Visual   0.418   0.075    0.291     0.543   1.009       1520  </span></span>
+<span><span class="co">##              Verbal   ~    Speed    0.080   0.079   -0.053     0.208   1.003       2212  </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">R square                                          </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              Visual   ~~   Visual   0.000   0.000    0.000     0.000                     </span></span>
-<span><span class="co">##              Verbal   ~~   Verbal   0.209   0.059    0.117     0.310   1.014       1741  </span></span>
+<span><span class="co">##              Verbal   ~~   Verbal   0.208   0.058    0.119     0.310   1.006       1894  </span></span>
 <span><span class="co">##              Speed    ~~   Speed    0.000   0.000    0.000     0.000                     </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Factor loadings                                   </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##              Visual   =~   x1       0.912   0.100    0.752     1.081   1.001       1318  </span></span>
-<span><span class="co">##              Visual   =~   x2       0.501   0.088    0.361     0.645   1.000       2756  </span></span>
-<span><span class="co">##              Visual   =~   x3       0.650   0.088    0.504     0.797   1.001       2462  </span></span>
-<span><span class="co">##              Visual   =~   x9       0.400   0.079    0.270     0.531   1.002       1921  </span></span>
-<span><span class="co">##              Verbal   =~   x4       0.994   0.073    0.875     1.114   1.000       1626  </span></span>
-<span><span class="co">##              Verbal   =~   x5       1.080   0.077    0.957     1.210   1.000       2259  </span></span>
-<span><span class="co">##              Verbal   =~   x6       0.931   0.072    0.818     1.053   1.003       1018  </span></span>
-<span><span class="co">##              Speed    =~   x9       0.439   0.088    0.296     0.584   1.005       1184  </span></span>
-<span><span class="co">##              Speed    =~   x7       0.649   0.097    0.497     0.812   1.004       1242  </span></span>
-<span><span class="co">##              Speed    =~   x8       0.848   0.109    0.672     1.026   1.004        853  </span></span>
+<span><span class="co">##              Visual   =~   x1       0.919   0.105    0.754     1.106   1.002        718  </span></span>
+<span><span class="co">##              Visual   =~   x2       0.495   0.089    0.349     0.638   1.002       1936  </span></span>
+<span><span class="co">##              Visual   =~   x3       0.646   0.088    0.500     0.792   1.002       1702  </span></span>
+<span><span class="co">##              Visual   =~   x9       0.397   0.079    0.267     0.528   1.000       2152  </span></span>
+<span><span class="co">##              Verbal   =~   x4       0.997   0.074    0.881     1.125   1.002       1598  </span></span>
+<span><span class="co">##              Verbal   =~   x5       1.084   0.079    0.956     1.216   1.001       2344  </span></span>
+<span><span class="co">##              Verbal   =~   x6       0.927   0.066    0.818     1.037   1.004       2247  </span></span>
+<span><span class="co">##              Speed    =~   x9       0.443   0.089    0.304     0.595   1.001       1729  </span></span>
+<span><span class="co">##              Speed    =~   x7       0.648   0.092    0.505     0.802   1.002       1525  </span></span>
+<span><span class="co">##              Speed    =~   x8       0.845   0.103    0.680     1.017   1.004       1162  </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Inter-factor correlations                         </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              Verbal   ~~   Visual   0.000   0.000    0.000     0.000                     </span></span>
-<span><span class="co">##              Speed    ~~   Visual   0.271   0.088    0.129     0.411   1.000       2315  </span></span>
+<span><span class="co">##              Speed    ~~   Visual   0.272   0.088    0.125     0.417   1.001       2880  </span></span>
 <span><span class="co">##              Speed    ~~   Verbal   0.000   0.000    0.000     0.000                     </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Residual variances                                </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##              x1       ~~   x1       0.534   0.157    0.257     0.774   1.003       1117  </span></span>
-<span><span class="co">##              x2       ~~   x2       1.141   0.110    0.970     1.329   1.000       2908  </span></span>
-<span><span class="co">##              x3       ~~   x3       0.859   0.106    0.687     1.040   1.001       2054  </span></span>
-<span><span class="co">##              x9       ~~   x9       0.582   0.082    0.451     0.716   1.000       1890  </span></span>
-<span><span class="co">##              x4       ~~   x4       0.365   0.101    0.195     0.529   1.002       1126  </span></span>
-<span><span class="co">##              x5       ~~   x5       0.500   0.116    0.313     0.688   1.003       1499  </span></span>
-<span><span class="co">##              x6       ~~   x6       0.341   0.097    0.172     0.480   1.004        643  </span></span>
-<span><span class="co">##              x7       ~~   x7       0.772   0.118    0.572     0.955   1.005       1172  </span></span>
-<span><span class="co">##              x8       ~~   x8       0.316   0.166    0.017     0.567   1.006        554  </span></span>
+<span><span class="co">##              x1       ~~   x1       0.525   0.172    0.195     0.767   1.005        614  </span></span>
+<span><span class="co">##              x2       ~~   x2       1.144   0.113    0.967     1.338   1.001       2797  </span></span>
+<span><span class="co">##              x3       ~~   x3       0.859   0.108    0.687     1.040   1.001       1521  </span></span>
+<span><span class="co">##              x9       ~~   x9       0.580   0.081    0.450     0.710   1.000       2098  </span></span>
+<span><span class="co">##              x4       ~~   x4       0.357   0.106    0.175     0.526   1.000       1152  </span></span>
+<span><span class="co">##              x5       ~~   x5       0.493   0.119    0.297     0.689   1.001       1622  </span></span>
+<span><span class="co">##              x6       ~~   x6       0.348   0.090    0.202     0.492   1.004       1646  </span></span>
+<span><span class="co">##              x7       ~~   x7       0.773   0.116    0.581     0.952   1.002       1436  </span></span>
+<span><span class="co">##              x8       ~~   x8       0.319   0.158    0.028     0.566   1.005        960  </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##                                                                                          </span></span>
 <span><span class="co">## </span></span>
@@ -541,50 +541,50 @@ coefficient to .5. We first retrieve the data list object.</p>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Goodness of fit                                   </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##              PPP                    0.379                              1.003       1558  </span></span>
-<span><span class="co">##              RMSE                   0.037   0.013    0.018     0.059   1.005        622  </span></span>
+<span><span class="co">##              PPP                    0.406                              1.000       1728  </span></span>
+<span><span class="co">##              RMSE                   0.038   0.012    0.019     0.059   1.002        666  </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Regression coefficients (outcome ~ predictor)     </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##              Verbal   ~    Visual   0.418   0.074    0.293     0.537   1.004       2558  </span></span>
-<span><span class="co">##              Verbal   ~    Speed    0.078   0.078   -0.050     0.208   1.002       2386  </span></span>
+<span><span class="co">##              Verbal   ~    Visual   0.414   0.076    0.286     0.537   1.002       2628  </span></span>
+<span><span class="co">##              Verbal   ~    Speed    0.082   0.080   -0.052     0.213   1.002       1891  </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">R square                                          </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              Visual   ~~   Visual   0.000   0.000    0.000     0.000                     </span></span>
-<span><span class="co">##              Verbal   ~~   Verbal   0.208   0.058    0.116     0.305   1.002       3137  </span></span>
+<span><span class="co">##              Verbal   ~~   Verbal   0.206   0.058    0.115     0.305   1.000       3167  </span></span>
 <span><span class="co">##              Speed    ~~   Speed    0.000   0.000    0.000     0.000                     </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Factor loadings                                   </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##              Visual   =~   x1       0.904   0.098    0.750     1.078   1.000       2170  </span></span>
-<span><span class="co">##              Visual   =~   x2       0.496   0.090    0.350     0.647   1.001       2823  </span></span>
-<span><span class="co">##              Visual   =~   x3       0.647   0.084    0.511     0.786   1.001       2360  </span></span>
-<span><span class="co">##              Visual   =~   x9       0.398   0.080    0.264     0.526   1.001       2522  </span></span>
-<span><span class="co">##              Verbal   =~   x4       0.993   0.074    0.874     1.115   1.002       2105  </span></span>
-<span><span class="co">##              Verbal   =~   x5       1.084   0.081    0.955     1.223   1.000       2673  </span></span>
-<span><span class="co">##              Verbal   =~   x6       0.926   0.068    0.820     1.040   1.002       2108  </span></span>
-<span><span class="co">##              Speed    =~   x9       0.442   0.085    0.304     0.583   1.000       1896  </span></span>
-<span><span class="co">##              Speed    =~   x7       0.650   0.099    0.495     0.812   1.004       1608  </span></span>
-<span><span class="co">##              Speed    =~   x8       0.844   0.106    0.669     1.022   1.002       1293  </span></span>
+<span><span class="co">##              Visual   =~   x1       0.910   0.101    0.750     1.083   1.000       1795  </span></span>
+<span><span class="co">##              Visual   =~   x2       0.496   0.089    0.354     0.641   1.002       2577  </span></span>
+<span><span class="co">##              Visual   =~   x3       0.647   0.086    0.507     0.786   1.001       2525  </span></span>
+<span><span class="co">##              Visual   =~   x9       0.400   0.080    0.266     0.532   1.001       2263  </span></span>
+<span><span class="co">##              Verbal   =~   x4       0.994   0.074    0.875     1.119   1.001       1420  </span></span>
+<span><span class="co">##              Verbal   =~   x5       1.084   0.079    0.956     1.213   1.000       1994  </span></span>
+<span><span class="co">##              Verbal   =~   x6       0.927   0.068    0.822     1.039   1.001       1798  </span></span>
+<span><span class="co">##              Speed    =~   x9       0.446   0.088    0.306     0.591   1.001       1403  </span></span>
+<span><span class="co">##              Speed    =~   x7       0.650   0.096    0.500     0.816   1.001       1543  </span></span>
+<span><span class="co">##              Speed    =~   x8       0.842   0.108    0.668     1.020   1.001       1151  </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Inter-factor correlations                         </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              Verbal   ~~   Visual   0.000   0.000    0.000     0.000                     </span></span>
-<span><span class="co">##              Speed    ~~   Visual   0.270   0.087    0.123     0.410   1.001       2714  </span></span>
+<span><span class="co">##              Speed    ~~   Visual   0.270   0.087    0.126     0.416   1.001       2005  </span></span>
 <span><span class="co">##              Speed    ~~   Verbal   0.000   0.000    0.000     0.000                     </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##              <span style="font-weight: bold;">Residual variances                                </span>                          </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
-<span><span class="co">##              x1       ~~   x1       0.545   0.155    0.268     0.785   1.001       1811  </span></span>
-<span><span class="co">##              x2       ~~   x2       1.144   0.113    0.966     1.337   1.000       3362  </span></span>
-<span><span class="co">##              x3       ~~   x3       0.861   0.106    0.692     1.039   1.000       2422  </span></span>
-<span><span class="co">##              x9       ~~   x9       0.578   0.082    0.448     0.715   1.000       1963  </span></span>
-<span><span class="co">##              x4       ~~   x4       0.365   0.102    0.200     0.523   1.000       1712  </span></span>
-<span><span class="co">##              x5       ~~   x5       0.489   0.122    0.292     0.690   1.002       1740  </span></span>
-<span><span class="co">##              x6       ~~   x6       0.346   0.090    0.190     0.486   1.002       1483  </span></span>
-<span><span class="co">##              x7       ~~   x7       0.771   0.122    0.573     0.960   1.005       1492  </span></span>
-<span><span class="co">##              x8       ~~   x8       0.323   0.161    0.025     0.574   1.002       1214  </span></span>
+<span><span class="co">##              x1       ~~   x1       0.538   0.161    0.244     0.777   1.000       1599  </span></span>
+<span><span class="co">##              x2       ~~   x2       1.142   0.110    0.972     1.327   1.000       2459  </span></span>
+<span><span class="co">##              x3       ~~   x3       0.860   0.105    0.689     1.030   1.001       2330  </span></span>
+<span><span class="co">##              x9       ~~   x9       0.575   0.084    0.436     0.709   1.001       2067  </span></span>
+<span><span class="co">##              x4       ~~   x4       0.361   0.105    0.180     0.524   1.003       1151  </span></span>
+<span><span class="co">##              x5       ~~   x5       0.490   0.127    0.283     0.695   1.000       1464  </span></span>
+<span><span class="co">##              x6       ~~   x6       0.348   0.089    0.194     0.487   1.000       1495  </span></span>
+<span><span class="co">##              x7       ~~   x7       0.767   0.120    0.569     0.956   1.001       1337  </span></span>
+<span><span class="co">##              x8       ~~   x8       0.324   0.163    0.032     0.580   1.000        995  </span></span>
 <span><span class="co">##            ──────────────────────────────────────────────────────────────────────────────</span></span>
 <span><span class="co">##                                                                                          </span></span>
 <span><span class="co">## </span></span>
@@ -615,7 +615,7 @@ Substantive Theory.”</span> <em>Psychological Methods</em> 17 (3):
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
