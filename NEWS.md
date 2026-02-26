@@ -1,3 +1,8 @@
+# minorbsem (development version)
+
+* Updated package description
+* Trivial code cleanup
+
 # minorbsem 0.2.16
 
 * Added a function (`minorbpa()`) for path analysis (observed variables only), that estimates SRCs based on assumptions of conditional independence within the path analysis model.

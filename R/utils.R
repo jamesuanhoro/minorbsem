@@ -21,11 +21,10 @@
 #' @returns Package version as string
 #' @keywords internal
 minorbsem_version <- function() {
-  version <- read.dcf(
+  read.dcf(
     system.file("DESCRIPTION", package = "minorbsem"),
     fields = "Version"
   )[1]
-  return(version)
 }
 
 #' Get R minimum function
@@ -36,8 +35,7 @@ minimum_r_version <- function() {
     system.file("DESCRIPTION", package = "minorbsem"),
     fields = "Depends"
   )[1]
-  r_version <- trimws(gsub("R \\(>=|\\)", "", r_version_info))
-  return(r_version)
+  trimws(gsub("R \\(>=|\\)", "", r_version_info))
 }
 
 #' User input processing function
@@ -345,7 +343,7 @@ random_method_selection <- function() {
   }
 
   print(method)
-  return(method)
+  method
 }
 
 #' converter function
@@ -366,7 +364,7 @@ converter_helper <- function(search_term, str_list) {
     converted_value <- as.integer(str_list[idx])
   }
 
-  return(converted_value)
+  converted_value
 }
 
 #' Method hash function
@@ -387,8 +385,7 @@ method_hash <- function(search_term = NULL) {
     "WW" = 92,
     "none" = 100
   )
-  converted_value <- converter_helper(search_term, list_methods)
-  return(converted_value)
+  converter_helper(search_term, list_methods)
 }
 
 #' Posterior summary helper function
@@ -418,7 +415,7 @@ mbsem_post_sum <- function(stan_fit, variable, interval = .9, major = FALSE) {
       } else {
         suppressWarnings(mode <- modeest::hsm(x))
       }
-      return(mode)
+      mode
     })
     sum_stats$mode <- mode_s
   }
@@ -541,12 +538,10 @@ get_param_plot_list <- function(data_list) {
     })
   }
 
-  params <- c(
+  c(
     rms_params, coef_params, rsq_params, phi_params, load_params,
     rv_params, rc_params
   )
-
-  return(params)
 }
 
 #' Modify major parameters table helper function
@@ -716,10 +711,10 @@ create_major_params <- function(stan_fit, data_list, interval = .9) {
       gsub("phi_mat\\[|,\\d+\\]", "", major_parameters[idxs, ]$variable)
     )]
   )
-  major_parameters <- major_parameters[
-    !(major_parameters$group == "Inter-factor correlations" &
-      major_parameters$from == major_parameters$to),
-  ]
+  major_parameters <- major_parameters[!(
+    major_parameters$group == "Inter-factor correlations" &
+      major_parameters$from == major_parameters$to
+  ), ]
 
   idxs <- which(grepl("r\\_square", major_parameters$variable))
   major_parameters <- modify_major_params(
@@ -808,7 +803,7 @@ rename_post_df_columns <- function(
   col_names <- paste0(begin_name, " ", part_1, operation, part_2)
   colnames(df)[1:len_vars] <- col_names
 
-  return(df)
+  df
 }
 
 #' Log matrix function using eigendecomposition
@@ -817,7 +812,7 @@ rename_post_df_columns <- function(
 #' @keywords internal
 .log_m <- function(r_mat) {
   eig <- eigen(r_mat, symmetric = TRUE)
-  return(eig$vectors %*% diag(log(eig$values)) %*% t(eig$vectors))
+  eig$vectors %*% diag(log(eig$values)) %*% t(eig$vectors)
 }
 
 #' Log matrix function using eigendecomposition
@@ -832,7 +827,7 @@ rename_post_df_columns <- function(
   diag(r_mat) <- 1
   r_log_mat <- .log_m(r_mat)
   r_log_vec <- r_log_mat[lower.tri(r_log_mat, diag = FALSE)]
-  return(r_log_vec)
+  r_log_vec
 }
 
 #' Asymptotic variance matrix of lower half vector of log(correlation matrix)
@@ -867,7 +862,7 @@ rename_post_df_columns <- function(
   ltri_idxs <- which(lower.tri(r_mat), arr.ind = TRUE)
   p_ast <- nrow(ltri_idxs)
   omega <- .omega_computer(r_mat, p_ast, ltri_idxs)
-  return(omega)
+  omega
 }
 
 #' Asymptotic variance matrix of lower half vector of correlation matrix
@@ -890,7 +885,7 @@ rename_post_df_columns <- function(
     omega[col, sub_idx] <- res_vec
     omega[sub_idx, col] <- res_vec
   }
-  return(omega)
+  omega
 }
 
 #' An internal solver for omega
@@ -911,13 +906,13 @@ rename_post_df_columns <- function(
   r_s[, 4] <- r_mat[(k - 1) * p + j]
   r_s[, 5] <- r_mat[(l - 1) * p + j]
   r_s[, 6] <- r_mat[(l - 1) * p + k]
-  ret <- .5 * r_s[, 1] * r_s[, 6] *
-    (r_s[, 2]^2 + r_s[, 3]^2 + r_s[, 4]^2 + r_s[, 5]^2) +
-    r_s[, 2] * r_s[, 5] + r_s[, 3] * r_s[, 4] - (
-      r_s[, 1] * r_s[, 2] * r_s[, 3] + r_s[, 1] * r_s[, 4] * r_s[, 5] +
-        r_s[, 2] * r_s[, 4] * r_s[, 6] + r_s[, 3] * r_s[, 5] * r_s[, 6]
-    )
-  return(ret)
+  ret <- .5 * r_s[, 1] * r_s[, 6] * (
+    r_s[, 2]^2 + r_s[, 3]^2 + r_s[, 4]^2 + r_s[, 5]^2
+  ) + r_s[, 2] * r_s[, 5] + r_s[, 3] * r_s[, 4] - (
+    r_s[, 1] * r_s[, 2] * r_s[, 3] + r_s[, 1] * r_s[, 4] * r_s[, 5] +
+      r_s[, 2] * r_s[, 4] * r_s[, 6] + r_s[, 3] * r_s[, 5] * r_s[, 6]
+  )
+  ret
 }
 
 #' A function to reorder asymptotic variance matrix
@@ -941,7 +936,7 @@ rename_post_df_columns <- function(
   new_locs <- sapply(old_names, function(x) {
     ret <- which(x == new_names)
     if (length(ret) == 0) ret <- NA
-    return(ret)
+    ret
   })
   curr_ind_3 <- matrix(nrow = nrow(curr_ind_2), ncol = ncol(curr_ind_2))
   for (i in seq_len(length(new_locs))) {
@@ -949,5 +944,5 @@ rename_post_df_columns <- function(
   }
   new_order_3 <- order(apply(curr_ind_3, 1, min), apply(curr_ind_3, 1, max))
   curr_order_3 <- curr_order_2[new_order_3]
-  return(acov_mat[curr_order_3, curr_order_3])
+  acov_mat[curr_order_3, curr_order_3]
 }

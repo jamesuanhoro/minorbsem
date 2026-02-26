@@ -47,11 +47,11 @@ compute_residual_network <- function(object) {
     inv_mat <- -1 * stats::cov2cor(MASS::ginv(mat))
     diag(inv_mat) <- 1
     inv_vec <- c(as.numeric(inv_mat), x[(len + 1):(len + 3)])
-    return(inv_vec)
+    inv_vec
   }))
 
   colnames(result) <- gsub("Resid", "p_corr", colnames(resids))
   result <- posterior::as_draws_df(as.data.frame(result))
 
-  return(result)
+  result
 }

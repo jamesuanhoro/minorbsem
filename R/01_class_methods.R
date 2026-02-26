@@ -11,9 +11,7 @@ methods::setMethod(
   "fitted",
   "mbsem",
   function(object) {
-    omega_mat <- posterior::as_draws_matrix(object@stan_fit$draws("Omega"))
-
-    return(omega_mat)
+    posterior::as_draws_matrix(object@stan_fit$draws("Omega"))
   }
 )
 

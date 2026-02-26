@@ -44,7 +44,7 @@ plot_residuals <- function(object, type = "matrix") {
         } else {
           suppressWarnings(mode <- modeest::hsm(x))
         }
-        return(mode)
+        mode
       }
     )
     plot_df$mode <- mode_s
