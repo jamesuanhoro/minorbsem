@@ -1,18 +1,21 @@
 Package: minorbsem
-Title: Fit Bayesian structural equation models under the assumption that minor factors exist
-Version: 0.2.16
+Title: Fit Bayesian structural equation models under the assumption that
+    model misspecification is random.
+Version: 0.2.16.9000
 Authors@R: c(
     person(given = c("James", "O."), family = "Uanhoro",
            email = "james.uanhoro@unt.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4843-927X")))
 Description: Structural equation models (SEMs) rarely reject the null hypothesis
     that there is no model misspecification. One explanation for this problem
-    is that covariance structures are influenced by major factors which we can hypothesize about
-    and minor factors which we cannot predict a-priori.
+    is that covariance structures are influenced by major factors, which we can
+    hypothesise about and minor factors, which we cannot predict a priori.
+    These minor factors are random; precisely, they are measurement-instance
+    specific.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
 Biarch: true
 Depends: 
     R (>= 3.4.0)
