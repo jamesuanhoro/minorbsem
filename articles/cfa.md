@@ -23,7 +23,7 @@ library(minorbsem)
 
     ## ###############################################################################
 
-    ## This is minorbsem 0.2.16.9000
+    ## This is minorbsem 0.2.16.9001
 
     ## 
     ## All users of R (or SEM) are invited to report bugs, submit functions or ideas
@@ -135,7 +135,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 324, column 2 to column 48)
+    ## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 324, column 2 to column 48)
 
     ## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -145,7 +145,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 324, column 2 to column 48)
+    ## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 324, column 2 to column 48)
 
     ## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -155,7 +155,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 1 Exception: cholesky_decompose: A is not symmetric. A[1,4] = inf, but A[4,1] = inf (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 1 Exception: cholesky_decompose: A is not symmetric. A[1,4] = inf, but A[4,1] = inf (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -165,7 +165,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -175,7 +175,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 324, column 2 to column 48)
+    ## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 324, column 2 to column 48)
 
     ## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -185,7 +185,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 324, column 2 to column 48)
+    ## Chain 1 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 324, column 2 to column 48)
 
     ## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -197,7 +197,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -207,7 +207,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[1,2] = inf, but A[2,1] = inf (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -217,7 +217,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -227,7 +227,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 2 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -237,7 +237,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 2 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 324, column 2 to column 48)
+    ## Chain 2 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 324, column 2 to column 48)
 
     ## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -247,7 +247,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 2 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[7,8] = inf, but A[8,7] = inf (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 2 Exception: cholesky_decompose: A is not symmetric. A[7,8] = inf, but A[8,7] = inf (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 2 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -259,7 +259,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -273,11 +273,13 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
     ## Chain 1 Iteration:  600 / 2000 [ 30%]  (Warmup) 
     ## Chain 2 Iteration:  600 / 2000 [ 30%]  (Warmup) 
     ## Chain 1 Iteration:  800 / 2000 [ 40%]  (Warmup) 
-    ## Chain 2 Iteration:  800 / 2000 [ 40%]  (Warmup)
+    ## Chain 2 Iteration:  800 / 2000 [ 40%]  (Warmup) 
+    ## Chain 1 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
+    ## Chain 1 Iteration: 1001 / 2000 [ 50%]  (Sampling)
 
     ## Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 1 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -287,25 +289,21 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 2 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
     ## Chain 2 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
-    ## Chain 1 Iteration: 1000 / 2000 [ 50%]  (Warmup) 
-    ## Chain 1 Iteration: 1001 / 2000 [ 50%]  (Sampling) 
-    ## Chain 2 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
     ## Chain 1 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
-    ## Chain 2 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+    ## Chain 2 Iteration: 1200 / 2000 [ 60%]  (Sampling) 
     ## Chain 1 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
+    ## Chain 2 Iteration: 1400 / 2000 [ 70%]  (Sampling) 
     ## Chain 1 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
-    ## Chain 2 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
-    ## Chain 2 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
     ## Chain 1 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+    ## Chain 2 Iteration: 1600 / 2000 [ 80%]  (Sampling) 
     ## Chain 1 Iteration: 2000 / 2000 [100%]  (Sampling) 
-    ## Chain 2 Iteration: 2000 / 2000 [100%]  (Sampling) 
-    ## Chain 1 finished in 3.8 seconds.
-    ## Chain 2 finished in 3.8 seconds.
+    ## Chain 2 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
+    ## Chain 1 finished in 3.5 seconds.
     ## Chain 3 Iteration:    1 / 2000 [  0%]  (Warmup)
 
     ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 324, column 2 to column 48)
+    ## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 324, column 2 to column 48)
 
     ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -315,7 +313,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 324, column 2 to column 48)
+    ## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 324, column 2 to column 48)
 
     ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -325,7 +323,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -335,7 +333,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -345,7 +343,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 324, column 2 to column 48)
+    ## Chain 3 Exception: lkj_corr_cholesky_lpdf: Random variable[2] is 0, but must be positive! (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 324, column 2 to column 48)
 
     ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -355,7 +353,20 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
+
+    ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+
+    ## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+
+    ## Chain 3
+
+    ## Chain 2 Iteration: 2000 / 2000 [100%]  (Sampling) 
+    ## Chain 2 finished in 3.8 seconds.
+
+    ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+
+    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -365,17 +376,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
-
-    ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
-
-    ## Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
-
-    ## Chain 3
-
-    ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
-
-    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -387,7 +388,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -399,7 +400,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
 
     ## Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
 
-    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpfL4wEJ/model-248a5c6731c9.stan', line 432, column 6 to column 81)
+    ## Chain 3 Exception: cholesky_decompose: Matrix m is not positive definite (in '/tmp/RtmpnPo9pr/model-23fd767239a2.stan', line 432, column 6 to column 81)
 
     ## Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
 
@@ -420,7 +421,7 @@ fit_cfa <- minorbsem(model = syntax_basic, data = HS)
     ## 
     ## All 3 chains finished successfully.
     ## Mean chain execution time: 3.9 seconds.
-    ## Total execution time: 8.2 seconds.
+    ## Total execution time: 7.9 seconds.
 
     ## Warning: 1 of 3000 (0.0%) transitions ended with a divergence.
     ## See https://mc-stan.org/misc/warnings for details.

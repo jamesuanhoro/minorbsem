@@ -12,7 +12,7 @@ library(minorbsem)
 
     ## ###############################################################################
 
-    ## This is minorbsem 0.2.16.9000
+    ## This is minorbsem 0.2.16.9001
 
     ## 
     ## All users of R (or SEM) are invited to report bugs, submit functions or ideas
