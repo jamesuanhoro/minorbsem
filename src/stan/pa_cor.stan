@@ -249,6 +249,9 @@ transformed data {
       }
     }
   }
+
+  matrix[Nisqd2_vec, Nisqd2_vec] L_vec_cov_inv = inverse(L_vec_cov);
+  vector[Nisqd2_vec] r_obs_vec_white = L_vec_cov_inv * r_obs_vec;
 }
 parameters {
   vector<lower = 0.0, upper = 1.0>[N_rms] rms_src_p;
@@ -395,7 +398,11 @@ model {
         }
       }
 
-      target += multi_normal_cholesky_lupdf(r_obs_vec | tmp_loc, tmp_cov);
+      if (method == 90) {
+        target += multi_normal_cholesky_lupdf(r_obs_vec | tmp_loc, tmp_cov);
+      } else {
+        r_obs_vec_white ~ normal(L_vec_cov_inv * tmp_loc, 1);
+      }
     }
   }
 }
