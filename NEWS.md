@@ -2,7 +2,7 @@
 
 * Updated package description
 * Trivial code cleanup
-* Whitening correlation structure modeling prior to estimation for correlation structure models, speeds up estimation
+* Whitening correlations prior to estimation for correlation structure models, speeds up estimation
 
 # minorbsem 0.2.16
 
