@@ -1,7 +1,7 @@
 Package: minorbsem
 Title: Fit Bayesian structural equation models under the assumption that
     model misspecification is random.
-Version: 0.2.16.9000
+Version: 0.2.16.9001
 Authors@R: c(
     person(given = c("James", "O."), family = "Uanhoro",
            email = "james.uanhoro@unt.edu", role = c("aut", "cre"),
